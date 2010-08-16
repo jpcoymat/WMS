@@ -1,0 +1,6 @@
+<table>
+	<tr><td>Line Number				</td>	<td><%= form.text_field :line_number															%>	</td></tr>
+	<tr><td>Product					</td>	<td><%= form.select :product_id, @company.products.collect {|p| [p.name, p.id]}					%>	</td></tr>
+	<tr><td>Quantity UOM			</td>	<td><%= form.text_field	:quantity_uom															%>	</td></tr>
+	<tr><td>UOM						</td>	<td><%= form.select :product_package_id, @company.product_packages {|pp| [pp.uom.name, pp.id]}	%>	</td></tr>
+</table>

@@ -1,0 +1,9 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  product_id: 1
+  fifo_date: 2010-04-08
+
+two:
+  product_id: 1
+  fifo_date: 2010-04-08

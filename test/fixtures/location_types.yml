@@ -1,0 +1,17 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  location_type: MyString
+  zone: false
+  aisle: false
+  bay: false
+  level: false
+  position: false
+
+two:
+  location_type: MyString
+  zone: false
+  aisle: false
+  bay: false
+  level: false
+  position: false

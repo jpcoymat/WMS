@@ -1,0 +1,19 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  lp: MyString
+  container_location: 
+  container_type_id: 1
+  length: 9.99
+  width: 9.99
+  height: 9.99
+  max_weight: 9.99
+
+two:
+  lp: MyString
+  container_location: 
+  container_type_id: 1
+  length: 9.99
+  width: 9.99
+  height: 9.99
+  max_weight: 9.99

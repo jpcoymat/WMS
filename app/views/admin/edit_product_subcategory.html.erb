@@ -1,0 +1,9 @@
+<h3>Edit Product Subcategory</h3>
+	<% form_for :product_subcategory, :url => {:controller => 'admin', :action => 'update_product_subcategory'} do |form| %>
+		<%= form.hidden_field	:id	%>
+		<table>
+			<tr><td>Name		</td>	<td><%= form.text_field	:name			%>	</td></tr>
+			<tr><td>Description	</td>	<td><%= form.text_field	:description	%>	</td></tr>
+		</table>
+		<%= submit_tag "Update Subcategory"%>
+	<% end %>

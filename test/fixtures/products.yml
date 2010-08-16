@@ -1,0 +1,23 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  company_id: 1
+  name: MyString
+  description: MyString
+  supplier_id: 1
+  gtin_number: MyString
+  upc_number: MyString
+  image_filename: MyString
+  default_allocation_strategy_id: 1
+  default_putaway_strategy_id: 1
+
+two:
+  company_id: 1
+  name: MyString
+  description: MyString
+  supplier_id: 1
+  gtin_number: MyString
+  upc_number: MyString
+  image_filename: MyString
+  default_allocation_strategy_id: 1
+  default_putaway_strategy_id: 1

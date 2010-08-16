@@ -1,0 +1,21 @@
+<h3>Receipt Types	</h3>
+	<% if @receipt_types.empty?	%>
+		<p>No Receipt Types have been created.</p>
+	<% else 	%>
+		<table>
+			<tr><th>Code	</th>	<th>Name	</th>	<th>Description	</th></tr>
+			<% @receipt_types.each do |receipt_type|	%>
+				<tr><td><%= receipt_type.code																																				%>	</td>
+					<td><%= receipt_type.name																																				%>	</td>
+					<td><%= receipt_type.description																																		%>	</td>
+					<td><%= link_to "Edit", :controller => 'admin', :action => 'edit_receipt_type', :receipt_type => receipt_type															%>	</td>
+					<td><%= receipt_type.deleteable? ? link_to("Delete", {:controller => 'admin', :action => 'delete_receipt_type', :receipt_type => receipt_type}, :method => :post) : ""	%>	</td>
+			<% end %>
+		</table>
+	<% end %>
+	<br><br><hr><br>
+	<% form_for :receipt_type, :url => {:controller => 'admin', :action => 'create_receipt_type'} do |form|	%>
+		<%= form.hidden_field :company_id, :value => @company.id			%>
+		<%= render :partial => 'receipt_type', :locals => {:form => form}	%>
+		<%= submit_tag "Create Receipt Type"								%>
+	<% end %>

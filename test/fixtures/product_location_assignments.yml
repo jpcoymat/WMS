@@ -1,0 +1,17 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  product_id: 1
+  location_id: 1
+  replenishment_at: 1
+  maximum_quantity: 1
+  warehouse_id: 1
+  replenish_to: 1
+
+two:
+  product_id: 1
+  location_id: 1
+  replenishment_at: 1
+  maximum_quantity: 1
+  warehouse_id: 1
+  replenish_to: 1

@@ -1,0 +1,5 @@
+<h3>Edit Supplier	</h3>
+	<% form_for :supplier, :url => {:controller => 'admin', :action => 'update_supplier'} do |form| %>
+		<%= form.hidden_field :id	%>
+		<%= render :partial => 'supplier', :locals => {:form => form }	%>
+	<% end %>

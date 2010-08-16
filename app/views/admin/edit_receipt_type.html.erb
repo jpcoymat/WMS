@@ -1,0 +1,6 @@
+<h4>Edit Receipt Type	</h4>
+	<% form_for :receipt_type, :url => {:controller => 'admin', :action => 'update_receipt_type'} do |form|	%>
+		<%= form.hidden_field :id											%>
+		<%= render :partial => 'receipt_type', :locals => {:form => form}	%>
+		<%= submit_tag "Update Receipt Type"								%>
+	<% end %>

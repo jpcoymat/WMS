@@ -1,0 +1,6 @@
+Inventory model should be POLYMORPHIC - such that locations, staging locations, dock doors and containers are all different tables. Maybe the location_type in the table container table can have a polymorphic location attribute.
+Single Table Inheritance:
+	Useful for UOMs (Quantity, Volume, Length, Mass, etc.)
+	Useful for Replenishment locations (just one kind of subclassed object called ReplenishmentLocation
+	Useful for differente Assignment Types (Putaway, Cycle Counting, Picking, Loading, etc.)
+

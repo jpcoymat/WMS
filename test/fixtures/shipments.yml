@@ -1,0 +1,15 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  trailer_number: MyString
+  arrival_date: 2010-04-15
+  departure_date: 2010-04-15
+  direction: MyString
+  dock_door_id: 1
+
+two:
+  trailer_number: MyString
+  arrival_date: 2010-04-15
+  departure_date: 2010-04-15
+  direction: MyString
+  dock_door_id: 1

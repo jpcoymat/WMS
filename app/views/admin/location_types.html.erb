@@ -1,0 +1,25 @@
+<h2>Location Types	</h2>
+
+	<% if @location_types.empty?	%>
+		<p>No Location Types have been created.</p>
+	<% else 	%>
+		<table>
+			<tr><th>Code	</th>	<th>Name	</th></tr>
+			<% @location_types.each do |location_type|	%>
+				<tr><td><%= location_type.code																								%>	</td>
+					<td><%= location_type.name																								%>	</td>
+					<td><%= link_to "Details", :controller => 'admin', :action => 'view_location_type', :location_type => location_type		%>	</td>
+					<td><%= link_to "Edit",	:controller => 'admin', :action => 'edit_location_type', :location_type => location_type		%>	</td>
+				</tr>
+			<% end %>
+		</table>
+	<% end %>
+	
+	<br><br><hr><br>
+	<h4>Create New Location Type	</h4>
+	<% form_for :location_type, :url => {:controller => 'admin', :action => 'create_location_type'} do |form|	%>
+		<%= form.hidden_field :warehouse_id, :value => User.find(session[:user_id]).warehouse.id	%>
+		<%= render :partial => 'location_type', :locals => {:form => form}	%>
+		<%= submit_tag "Create Location Type"	%>
+	<% end %>
+		

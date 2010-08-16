@@ -1,0 +1,29 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  order_number: MyString
+  ship_date: 2010-04-10
+  customer_id: 1
+  received_date: 2010-04-10
+  order_priority: 1
+  order_type_id: 1
+  ship_addres_1: MyString
+  ship_address_2: MyString
+  ship_city: MyString
+  ship_postal_code: MyString
+  ship_state: MyString
+  ship_country_id: 1
+
+two:
+  order_number: MyString
+  ship_date: 2010-04-10
+  customer_id: 1
+  received_date: 2010-04-10
+  order_priority: 1
+  order_type_id: 1
+  ship_addres_1: MyString
+  ship_address_2: MyString
+  ship_city: MyString
+  ship_postal_code: MyString
+  ship_state: MyString
+  ship_country_id: 1

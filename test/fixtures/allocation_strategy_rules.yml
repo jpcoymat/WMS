@@ -1,0 +1,15 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  order_sequence: 1
+  order_type_id: 1
+  product_category_id: 1
+  product_subcategory_id: 1
+  warehouse_id: 1
+
+two:
+  order_sequence: 1
+  order_type_id: 1
+  product_category_id: 1
+  product_subcategory_id: 1
+  warehouse_id: 1

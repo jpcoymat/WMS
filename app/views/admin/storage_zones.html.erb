@@ -1,0 +1,25 @@
+<h3>Storage Zones	</h3>
+
+	<% unless @storage_zones.empty?	%>
+		<table>
+			<tr><th>Code	</th>	<th>name	</th>	</tr>
+			<% @storage_zones.each do |storage_zone|	%>
+				<tr><td><%= storage_zone.code																																				%>	</td>
+					<td><%= storage_zone.name																																				%>	</td>
+					<td><%= link_to "Edit", :controller => 'admin', :action => 'edit_storage_zone', :storage_zone => storage_zone															%>	</td>
+					<td><%= storage_zone.deleteable? ? link_to("Delete", {:controller => 'admin', :action => 'delete_storage_zone', :storage_zone => storage_zone}, :method => :post) : ""  %>	</td>
+					
+			<% end %>
+		</table>
+	<% else %>
+		<p>No Storage Zones created yet.	</p>
+	<% end %>
+	<br><br><hr><br>
+	<h3>New Storage Zone	</h3>
+	<% form_for :storage_zone, :url => {:controller => 'admin', :action => 'create_storage_zone'} do |form|	%>
+		<%= form.hidden_field :warehouse_id, :value => User.find(session[:user_id]).warehouse.id	%>
+		<%= render :partial => 'storage_zone', :locals => {:form => form}	%>
+		<%= submit_tag "Create Storage Zone"								%>
+	<% end %>
+			
+			

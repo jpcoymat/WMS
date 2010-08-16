@@ -1,0 +1,19 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  name: MyString
+  address_1: MyString
+  address_2: MyString
+  city: MyString
+  postal_code: MyString
+  country_id: 1
+  iso_country_code: MyString
+
+two:
+  name: MyString
+  address_1: MyString
+  address_2: MyString
+  city: MyString
+  postal_code: MyString
+  country_id: 1
+  iso_country_code: MyString
