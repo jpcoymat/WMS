@@ -40,6 +40,7 @@ class ReceivingController < ApplicationController
   
   def purchase_order_lines
     @purchase_order = PurchaseOrder.find(params[:purchase_order])
+    @company = @purchase_order.company
   end
   
   def create_purchase_order_line
