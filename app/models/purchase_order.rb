@@ -5,6 +5,7 @@ class PurchaseOrder < ActiveRecord::Base
   
   belongs_to              :supplier
   belongs_to              :purchase_order_type
+  belongs_to              :company
 
   has_many                :purchase_order_lines
   
