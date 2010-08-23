@@ -7,7 +7,7 @@ class ReceivingController < ApplicationController
   def purchase_orders
     @company = User.find(session[:user_id]).company
     if request.post?
-      params[:purchase_orders].delete_if {|k,v| v.blank?}
+      params[:purchase_order_criteria].delete_if {|k,v| v.blank?}
       @purchase_orders = PurchaseOrder.all(:conditions => params[:purchase_orders], :order => 'purchase_order_number')
     end
   end
