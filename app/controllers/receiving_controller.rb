@@ -29,6 +29,7 @@ class ReceivingController < ApplicationController
   
   def edit_purchase_order
     @purchase_order = PurchaseOrder.find(params[:purchase_order])
+    @company = @purchase_order.company
   end
   
   def update_purchase_order
