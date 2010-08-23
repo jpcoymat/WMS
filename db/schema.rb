@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100726023914) do
+ActiveRecord::Schema.define(:version => 20100823030057) do
 
   create_table "allocation_strategies", :force => true do |t|
     t.string   "name",         :limit => 25, :null => false
@@ -238,7 +238,6 @@ ActiveRecord::Schema.define(:version => 20100726023914) do
     t.integer  "product_id",           :null => false
     t.integer  "lot_id"
     t.integer  "product_status_id"
-    t.integer  "product_package_id"
     t.integer  "quantity_ordered",     :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -352,10 +351,9 @@ ActiveRecord::Schema.define(:version => 20100726023914) do
 
   create_table "purchase_order_lines", :force => true do |t|
     t.integer  "line_number"
-    t.integer  "purchase_order_id",  :null => false
-    t.integer  "product_id",         :null => false
-    t.decimal  "quantity_uom",       :null => false
-    t.integer  "product_package_id"
+    t.integer  "purchase_order_id", :null => false
+    t.integer  "product_id",        :null => false
+    t.decimal  "quantity",          :null => false
     t.text     "comments"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -383,7 +381,6 @@ ActiveRecord::Schema.define(:version => 20100726023914) do
     t.integer  "receipt_id",                         :null => false
     t.string   "lp",                   :limit => 50, :null => false
     t.integer  "product_id",                         :null => false
-    t.integer  "product_package_id",                 :null => false
     t.integer  "lot_id",                             :null => false
     t.integer  "product_status_id"
     t.decimal  "quantity",                           :null => false
