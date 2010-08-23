@@ -34,7 +34,7 @@
 	<% if @purchase_order.editable?	%>
 		<h3>Add PO Line
 		<% form_for :purchase_order_line, :url => {:controller => 'receiving', :action => 'create_purchase_order_line'} do |form|	%>
-			<%= form.hidden_field :purchase_order_od, :value => @purchase_order.id		%>
+			<%= form.hidden_field :purchase_order_id, :value => @purchase_order.id		%>
 			<%= render :partial => 'purchase_order_line', :locals => {:form => form}	%>
 			<%= submit_tag "Add PO Line"												%>
 		<% end %>
