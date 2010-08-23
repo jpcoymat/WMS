@@ -18,11 +18,10 @@
 			<table>
 				<tr><th>Line Number	</th>	<th>Product	</th>	<th>Ordered Quantity	</th>	<th>Ordered UOM</th>	<th>Total Quantity</th></tr>
 				<% @purchase_order.purchase_order_lines.each do |purchase_order_line| %>
-					<tr><td><%= purchase_order_line.line_number					%>	</td>
-						<td><%= purchase_order_line.product.name				%>	</td>
-						<td><%= purchase_order_line.quantity_uom				%>	</td>
-						<td><%= purchase_order_line.product_package.uom.name	%>	</td>
-						<td><%= purchase_order_line.total_quantity				%>	</td>
+					<tr><td><%= purchase_order_line.line_number															%>	</td>
+						<td><%= purchase_order_line.product.name														%>	</td>
+						<td><%= purchase_order_line.product_status.nil? ? "" : purchase_order_line.product_status.code	%>	</td>
+						<td><%= purchase_order_line.quantity															%>	</td>
 						<% if purchase_order_line.editable?	%>
 							<td><%= link_to "Edit", :controller => 'receiving', :action => 'edit_purchase_order_line', :purchase_order_line => purchase_order_line		%>	</td>
 							<td><%= link_to "Delete", :controller => 'receiving', :action => 'delete_purchase_order_line', :purchase_order_line => purchase_order_line 	%>	</td>
