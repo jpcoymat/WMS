@@ -15754,3 +15754,399 @@ Migrating to AddProductStatusPoLine (20100823034351)
   [4;36;1mSQL (0.3ms)[0m   [0;1mINSERT INTO schema_migrations (version) VALUES ('20100823034351')[0m
   [4;35;1mSQL (0.9ms)[0m   [0mCOMMIT[0m
   [4;36;1mSQL (0.2ms)[0m   [0;1mSELECT version FROM schema_migrations[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET client_min_messages TO 'panic'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET standard_conforming_strings = on[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET client_min_messages TO 'notice'[0m
+
+
+Processing MainController#index (for 201.116.41.130 at 2010-08-22 22:52:01) [GET]
+  [4;35;1mUser Load (0.5ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" IS NULL) LIMIT 1[0m
+Redirected to http://coymat.homeunix.com:3000/login/login
+Filter chain halted as [:authorize] rendered_or_redirected.
+Completed in 9ms (DB: 1) | 302 Found [http://coymat.homeunix.com/]
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET client_min_messages TO 'panic'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET standard_conforming_strings = on[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET client_min_messages TO 'notice'[0m
+
+
+Processing LoginController#login (for 201.116.41.130 at 2010-08-22 22:52:01) [GET]
+Rendering template within layouts/login
+Rendering login/login
+Completed in 4ms (View: 3, DB: 0) | 200 OK [http://coymat.homeunix.com/login/login]
+  [4;35;1mSQL (0.1ms)[0m   [0mSET client_min_messages TO 'panic'[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET standard_conforming_strings = on[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET client_min_messages TO 'notice'[0m
+
+
+Processing LoginController#login (for 201.116.41.130 at 2010-08-22 22:52:07) [POST]
+  Parameters: {"commit"=>"Log In", "user_login"=>{"username"=>"jpcoymat", "password"=>"calle6850"}, "authenticity_token"=>"GPeOHx7a+CfeAFt5oncx+qJDazUdjV9QA5DI40/jZ4s="}
+  [4;36;1mUser Load (2.2ms)[0m   [0;1mSELECT * FROM "users" WHERE (username = 'jpcoymat') LIMIT 1[0m
+Redirected to http://coymat.homeunix.com:3000/main?user=1
+Completed in 12ms (DB: 2) | 302 Found [http://coymat.homeunix.com/login/login]
+  [4;35;1mSQL (0.1ms)[0m   [0mSET client_min_messages TO 'panic'[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET standard_conforming_strings = on[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET client_min_messages TO 'notice'[0m
+
+
+Processing MainController#index (for 201.116.41.130 at 2010-08-22 22:52:07) [GET]
+  Parameters: {"user"=>"1"}
+  [4;36;1mUser Load (0.7ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 1) LIMIT 1[0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 1) LIMIT 1[0m
+Rendering template within layouts/main
+Rendering main/index
+Completed in 27ms (View: 13, DB: 1) | 200 OK [http://coymat.homeunix.com/main?user=1]
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET client_min_messages TO 'panic'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET standard_conforming_strings = on[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET client_min_messages TO 'notice'[0m
+
+
+Processing ReceivingController#index (for 201.116.41.130 at 2010-08-22 22:52:49) [GET]
+Rendering receiving/index
+Completed in 7ms (View: 6, DB: 0) | 200 OK [http://coymat.homeunix.com/receiving/]
+  [4;35;1mSQL (0.1ms)[0m   [0mSET client_min_messages TO 'panic'[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET standard_conforming_strings = on[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET client_min_messages TO 'notice'[0m
+
+
+Processing ReceivingController#purchase_orders (for 201.116.41.130 at 2010-08-22 22:52:53) [GET]
+  [4;36;1mUser Load (0.5ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 1) [0m
+  [4;35;1mWarehouse Load (0.4ms)[0m   [0mSELECT * FROM "warehouses" WHERE ("warehouses"."id" = 1) [0m
+  [4;36;1mCompany Load (0.4ms)[0m   [0;1mSELECT * FROM "companies" WHERE ("companies"."id" = 1) [0m
+Rendering receiving/purchase_orders
+ERROR: compiling _run_erb_app47views47receiving47purchase_orders46html46erb RAISED compile error
+/Users/jeanpierre/wms/app/views/receiving/purchase_orders.html.erb:6: syntax error, unexpected tIVAR, expecting ')'
+...urchase_order_type_id	@company.purchase_order_types.collect ...
+                     	        ^
+/Users/jeanpierre/wms/app/views/receiving/purchase_orders.html.erb:6: syntax error, unexpected ',', expecting ')'
+...pt| [pt.purchase_order_type]}, :include_blank => true	).to_s...
+                              ^
+Function body:           def _run_erb_app47views47receiving47purchase_orders46html46erb(local_assigns)
+            old_output_buffer = output_buffer;;@output_buffer = '';  __in_erb_template=true ; @output_buffer.concat "<h1>Purchase Orders</h1>\n<p>Please enter your search criteria\t</p>\n\n\t"
+
+
+;  form_for :purchase_orders, :url => {:controller => 'receiving', :action => 'purchase_orders'} do |form|	; @output_buffer.concat "\n\t<table>\n\t\t<tr><td>Purchase Order Type\t</td>\t<td>"
+
+; @output_buffer.concat(( form.select :purchase_order_type_id	@company.purchase_order_types.collect {|pt| [pt.purchase_order_type]}, :include_blank => true	).to_s); @output_buffer.concat "\t</td>\n\t\t\t<td>Supplier\t\t\t</td>\t<td>"
+; @output_buffer.concat(( form.select :supplier_id, @company.suppliers.collect {|s| [s.name, s.id]}, :include_blank => true									).to_s); @output_buffer.concat "\t</td>\n\t\t</tr>\n\t\t<tr><td>Purchase Order Number</td>\t<td>"
+
+; @output_buffer.concat(( form.text_field	:purchase_order_number																								).to_s); @output_buffer.concat "\t</td>\n\t\t\t<td>Ship Date\t\t\t</td>\t<td>"
+; @output_buffer.concat(( form.date_select :ship_date, :include_blank => true																					).to_s); @output_buffer.concat "\t</td>\n\t\t</tr>\n\t</table>\n\t"
+
+
+; @output_buffer.concat(( submit_tag "Look Up").to_s); @output_buffer.concat "\n\t"
+;  end ; @output_buffer.concat "\n\t<p>"
+; @output_buffer.concat(( link_to "Create New Purchase Order", :controller => 'receiving', :action => 'new_purchase_order'	).to_s); @output_buffer.concat "</p>\n\t<br><br><hr><br>\n\t"
+
+;  if request.post?	; @output_buffer.concat "\n\t\t"
+;  unless @purchase_orders.empty?	; @output_buffer.concat "\n\t\t\t<table>\n\t\t\t\t<tr><th>Purchase Order Number\t</th>\t<th>Supplier\t</th>\t<th>Ship Date\t</th>\t<th>Total Units\t</th></tr>\n\t\t\t\t"
+
+
+;  @purchase_orders.each do |purchase_order|	; @output_buffer.concat "\n\t\t\t\t\t<tr><td>"
+; @output_buffer.concat(( purchase_order.purchase_order_number			 																).to_s); @output_buffer.concat "\t</td>\n\t\t\t\t\t\t<td>"
+; @output_buffer.concat(( purchase_order.supplier.nil? ? "" : purchase_order.supplier.name												).to_s); @output_buffer.concat "\t</td>\n\t\t\t\t\t\t<td>"
+; @output_buffer.concat(( purchase_order.ship_date																						).to_s); @output_buffer.concat "\t</td>\n\t\t\t\t\t\t<td>"
+; @output_buffer.concat(( purchase_order.total_ordered_quantity																			).to_s); @output_buffer.concat "\t</td>\n\t\t\t\t\t\t<td>"
+; @output_buffer.concat(( link_to "View", :controller => 'receiving', :action => 'view_purchase_order'									).to_s); @output_buffer.concat "\t</td>\n\t\t\t\t\t\t<td>"
+; @output_buffer.concat(( link_to "Edit", :controller => 'receiving', :action => 'edit_purchase_order', :purchase_order => purchae_order	).to_s); @output_buffer.concat "\t</td>\n\t\t\t\t\t</tr>\n\t\t\t\t"
+
+;  end ; @output_buffer.concat "\t\n\t\t"
+;  else ; @output_buffer.concat "\n\t\t\t<p>No Purchase Orders match your criteria.</p>\n\t\t"
+
+;  end ; @output_buffer.concat "\n\t"
+;  end ; @output_buffer.concat "\n\t\n\t\n"
+
+
+; @output_buffer
+          ensure
+            self.output_buffer = old_output_buffer
+          end
+Backtrace: /Users/jeanpierre/wms/app/views/receiving/purchase_orders.html.erb:39:in `compile!'
+/Library/Ruby/Gems/1.8/gems/actionpack-2.3.8/lib/action_view/renderable.rb:61:in `compile'
+/Library/Ruby/Gems/1.8/gems/actionpack-2.3.8/lib/action_view/renderable.rb:28:in `render'
+/Library/Ruby/Gems/1.8/gems/actionpack-2.3.8/lib/action_view/template.rb:205:in `render_template'
+/Library/Ruby/Gems/1.8/gems/actionpack-2.3.8/lib/action_view/base.rb:265:in `render'
+/Library/Ruby/Gems/1.8/gems/actionpack-2.3.8/lib/action_controller/base.rb:1250:in `render_for_file'
+/Library/Ruby/Gems/1.8/gems/actionpack-2.3.8/lib/action_controller/base.rb:936:in `render_without_benchmark'
+/Library/Ruby/Gems/1.8/gems/actionpack-2.3.8/lib/action_controller/benchmarking.rb:51:in `render'
+/Library/Ruby/Gems/1.8/gems/activesupport-2.3.8/lib/active_support/core_ext/benchmark.rb:17:in `ms'
+/System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/benchmark.rb:308:in `realtime'
+/Library/Ruby/Gems/1.8/gems/activesupport-2.3.8/lib/active_support/core_ext/benchmark.rb:17:in `ms'
+/Library/Ruby/Gems/1.8/gems/actionpack-2.3.8/lib/action_controller/benchmarking.rb:51:in `render'
+/Library/Ruby/Gems/1.8/gems/actionpack-2.3.8/lib/action_controller/base.rb:1326:in `default_render'
+/Library/Ruby/Gems/1.8/gems/actionpack-2.3.8/lib/action_controller/base.rb:1332:in `perform_action_without_filters'
+/Library/Ruby/Gems/1.8/gems/actionpack-2.3.8/lib/action_controller/filters.rb:617:in `call_filters'
+/Library/Ruby/Gems/1.8/gems/actionpack-2.3.8/lib/action_controller/filters.rb:610:in `perform_action_without_benchmark'
+/Library/Ruby/Gems/1.8/gems/actionpack-2.3.8/lib/action_controller/benchmarking.rb:68:in `perform_action_without_rescue'
+/Library/Ruby/Gems/1.8/gems/activesupport-2.3.8/lib/active_support/core_ext/benchmark.rb:17:in `ms'
+/System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/benchmark.rb:308:in `realtime'
+/Library/Ruby/Gems/1.8/gems/activesupport-2.3.8/lib/active_support/core_ext/benchmark.rb:17:in `ms'
+/Library/Ruby/Gems/1.8/gems/actionpack-2.3.8/lib/action_controller/benchmarking.rb:68:in `perform_action_without_rescue'
+/Library/Ruby/Gems/1.8/gems/actionpack-2.3.8/lib/action_controller/rescue.rb:160:in `perform_action_without_flash'
+/Library/Ruby/Gems/1.8/gems/actionpack-2.3.8/lib/action_controller/flash.rb:151:in `perform_action'
+/Library/Ruby/Gems/1.8/gems/actionpack-2.3.8/lib/action_controller/base.rb:532:in `send'
+/Library/Ruby/Gems/1.8/gems/actionpack-2.3.8/lib/action_controller/base.rb:532:in `process_without_filters'
+/Library/Ruby/Gems/1.8/gems/actionpack-2.3.8/lib/action_controller/filters.rb:606:in `process'
+/Library/Ruby/Gems/1.8/gems/actionpack-2.3.8/lib/action_controller/base.rb:391:in `process'
+/Library/Ruby/Gems/1.8/gems/actionpack-2.3.8/lib/action_controller/base.rb:386:in `call'
+/Library/Ruby/Gems/1.8/gems/actionpack-2.3.8/lib/action_controller/routing/route_set.rb:438:in `call'
+/Library/Ruby/Gems/1.8/gems/actionpack-2.3.8/lib/action_controller/dispatcher.rb:87:in `dispatch'
+/Library/Ruby/Gems/1.8/gems/actionpack-2.3.8/lib/action_controller/dispatcher.rb:121:in `_call'
+/Library/Ruby/Gems/1.8/gems/actionpack-2.3.8/lib/action_controller/dispatcher.rb:130:in `build_middleware_stack'
+/Library/Ruby/Gems/1.8/gems/activerecord-2.3.8/lib/active_record/query_cache.rb:29:in `call'
+/Library/Ruby/Gems/1.8/gems/activerecord-2.3.8/lib/active_record/query_cache.rb:29:in `call'
+/Library/Ruby/Gems/1.8/gems/activerecord-2.3.8/lib/active_record/connection_adapters/abstract/query_cache.rb:34:in `cache'
+/Library/Ruby/Gems/1.8/gems/activerecord-2.3.8/lib/active_record/query_cache.rb:9:in `cache'
+/Library/Ruby/Gems/1.8/gems/activerecord-2.3.8/lib/active_record/query_cache.rb:28:in `call'
+/Library/Ruby/Gems/1.8/gems/activerecord-2.3.8/lib/active_record/connection_adapters/abstract/connection_pool.rb:361:in `call'
+/Library/Ruby/Gems/1.8/gems/actionpack-2.3.8/lib/action_controller/string_coercion.rb:25:in `call'
+/Library/Ruby/Gems/1.8/gems/rack-1.1.0/lib/rack/head.rb:9:in `call'
+/Library/Ruby/Gems/1.8/gems/rack-1.1.0/lib/rack/methodoverride.rb:24:in `call'
+/Library/Ruby/Gems/1.8/gems/actionpack-2.3.8/lib/action_controller/params_parser.rb:15:in `call'
+/Library/Ruby/Gems/1.8/gems/actionpack-2.3.8/lib/action_controller/session/cookie_store.rb:99:in `call'
+/Library/Ruby/Gems/1.8/gems/actionpack-2.3.8/lib/action_controller/failsafe.rb:26:in `call'
+/Library/Ruby/Gems/1.8/gems/rack-1.1.0/lib/rack/lock.rb:11:in `call'
+/Library/Ruby/Gems/1.8/gems/rack-1.1.0/lib/rack/lock.rb:11:in `synchronize'
+/Library/Ruby/Gems/1.8/gems/rack-1.1.0/lib/rack/lock.rb:11:in `call'
+/Library/Ruby/Gems/1.8/gems/actionpack-2.3.8/lib/action_controller/dispatcher.rb:114:in `call'
+/Library/Ruby/Gems/1.8/gems/actionpack-2.3.8/lib/action_controller/reloader.rb:34:in `run'
+/Library/Ruby/Gems/1.8/gems/actionpack-2.3.8/lib/action_controller/dispatcher.rb:108:in `call'
+/Library/Ruby/Gems/1.8/gems/rails-2.3.8/lib/rails/rack/static.rb:31:in `call'
+/Library/Ruby/Gems/1.8/gems/rack-1.1.0/lib/rack/urlmap.rb:47:in `call'
+/Library/Ruby/Gems/1.8/gems/rack-1.1.0/lib/rack/urlmap.rb:41:in `each'
+/Library/Ruby/Gems/1.8/gems/rack-1.1.0/lib/rack/urlmap.rb:41:in `call'
+/Library/Ruby/Gems/1.8/gems/rack-1.1.0/lib/rack/content_length.rb:13:in `call'
+/Library/Ruby/Gems/1.8/gems/rack-1.1.0/lib/rack/chunked.rb:15:in `call'
+/Library/Ruby/Gems/1.8/gems/rack-1.1.0/lib/rack/handler/mongrel.rb:67:in `process'
+/Library/Ruby/Gems/1.8/gems/mongrel-1.1.5/lib/mongrel.rb:159:in `process_client'
+/Library/Ruby/Gems/1.8/gems/mongrel-1.1.5/lib/mongrel.rb:158:in `each'
+/Library/Ruby/Gems/1.8/gems/mongrel-1.1.5/lib/mongrel.rb:158:in `process_client'
+/Library/Ruby/Gems/1.8/gems/mongrel-1.1.5/lib/mongrel.rb:285:in `run'
+/Library/Ruby/Gems/1.8/gems/mongrel-1.1.5/lib/mongrel.rb:285:in `initialize'
+/Library/Ruby/Gems/1.8/gems/mongrel-1.1.5/lib/mongrel.rb:285:in `new'
+/Library/Ruby/Gems/1.8/gems/mongrel-1.1.5/lib/mongrel.rb:285:in `run'
+/Library/Ruby/Gems/1.8/gems/mongrel-1.1.5/lib/mongrel.rb:268:in `initialize'
+/Library/Ruby/Gems/1.8/gems/mongrel-1.1.5/lib/mongrel.rb:268:in `new'
+/Library/Ruby/Gems/1.8/gems/mongrel-1.1.5/lib/mongrel.rb:268:in `run'
+/Library/Ruby/Gems/1.8/gems/rack-1.1.0/lib/rack/handler/mongrel.rb:38:in `run'
+/Library/Ruby/Gems/1.8/gems/rails-2.3.8/lib/commands/server.rb:111
+/Library/Ruby/Site/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
+/Library/Ruby/Site/1.8/rubygems/custom_require.rb:31:in `require'
+script/server:3
+
+ActionView::TemplateError (compile error
+/Users/jeanpierre/wms/app/views/receiving/purchase_orders.html.erb:6: syntax error, unexpected tIVAR, expecting ')'
+...urchase_order_type_id	@company.purchase_order_types.collect ...
+                     	        ^
+/Users/jeanpierre/wms/app/views/receiving/purchase_orders.html.erb:6: syntax error, unexpected ',', expecting ')'
+...pt| [pt.purchase_order_type]}, :include_blank => true	).to_s...
+                              ^) on line #6 of app/views/receiving/purchase_orders.html.erb:
+3: 
+4: 	<% form_for :purchase_orders, :url => {:controller => 'receiving', :action => 'purchase_orders'} do |form|	%>
+5: 	<table>
+6: 		<tr><td>Purchase Order Type	</td>	<td><%= form.select :purchase_order_type_id	@company.purchase_order_types.collect {|pt| [pt.purchase_order_type]}, :include_blank => true	%>	</td>
+7: 			<td>Supplier			</td>	<td><%= form.select :supplier_id, @company.suppliers.collect {|s| [s.name, s.id]}, :include_blank => true									%>	</td>
+8: 		</tr>
+9: 		<tr><td>Purchase Order Number</td>	<td><%= form.text_field	:purchase_order_number																								%>	</td>
+
+    app/views/receiving/purchase_orders.html.erb:39:in `compile!'
+
+Rendered rescues/_trace (92.4ms)
+Rendered rescues/_request_and_response (1.1ms)
+Rendering rescues/layout (internal_server_error)
+  [4;35;1mSQL (0.1ms)[0m   [0mSET client_min_messages TO 'panic'[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET standard_conforming_strings = on[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET client_min_messages TO 'notice'[0m
+
+
+Processing ReceivingController#purchase_orders (for 201.116.41.130 at 2010-08-22 22:54:58) [GET]
+  [4;36;1mUser Load (0.5ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 1) [0m
+  [4;35;1mWarehouse Load (0.4ms)[0m   [0mSELECT * FROM "warehouses" WHERE ("warehouses"."id" = 1) [0m
+  [4;36;1mCompany Load (0.4ms)[0m   [0;1mSELECT * FROM "companies" WHERE ("companies"."id" = 1) [0m
+Rendering receiving/purchase_orders
+ERROR: compiling _run_erb_app47views47receiving47purchase_orders46html46erb RAISED compile error
+/Users/jeanpierre/wms/app/views/receiving/purchase_orders.html.erb:6: syntax error, unexpected tIVAR, expecting ')'
+...urchase_order_type_id	@company.purchase_order_types.collect ...
+                     	        ^
+/Users/jeanpierre/wms/app/views/receiving/purchase_orders.html.erb:6: syntax error, unexpected ',', expecting ')'
+....purchase_order_type, pt.id]}, :include_blank => true	).to_s...
+                              ^
+Function body:           def _run_erb_app47views47receiving47purchase_orders46html46erb(local_assigns)
+            old_output_buffer = output_buffer;;@output_buffer = '';  __in_erb_template=true ; @output_buffer.concat "<h1>Purchase Orders</h1>\n<p>Please enter your search criteria\t</p>\n\n\t"
+
+
+;  form_for :purchase_orders, :url => {:controller => 'receiving', :action => 'purchase_orders'} do |form|	; @output_buffer.concat "\n\t<table>\n\t\t<tr><td>Purchase Order Type\t</td>\t<td>"
+
+; @output_buffer.concat(( form.select :purchase_order_type_id	@company.purchase_order_types.collect {|pt| [pt.purchase_order_type, pt.id]}, :include_blank => true	).to_s); @output_buffer.concat "\t</td>\n\t\t\t<td>Supplier\t\t\t</td>\t<td>"
+; @output_buffer.concat(( form.select :supplier_id, @company.suppliers.collect {|s| [s.name, s.id]}, :include_blank => true									).to_s); @output_buffer.concat "\t</td>\n\t\t</tr>\n\t\t<tr><td>Purchase Order Number</td>\t<td>"
+
+; @output_buffer.concat(( form.text_field	:purchase_order_number																								).to_s); @output_buffer.concat "\t</td>\n\t\t\t<td>Ship Date\t\t\t</td>\t<td>"
+; @output_buffer.concat(( form.date_select :ship_date, :include_blank => true																					).to_s); @output_buffer.concat "\t</td>\n\t\t</tr>\n\t</table>\n\t"
+
+
+; @output_buffer.concat(( submit_tag "Look Up").to_s); @output_buffer.concat "\n\t"
+;  end ; @output_buffer.concat "\n\t<p>"
+; @output_buffer.concat(( link_to "Create New Purchase Order", :controller => 'receiving', :action => 'new_purchase_order'	).to_s); @output_buffer.concat "</p>\n\t<br><br><hr><br>\n\t"
+
+;  if request.post?	; @output_buffer.concat "\n\t\t"
+;  unless @purchase_orders.empty?	; @output_buffer.concat "\n\t\t\t<table>\n\t\t\t\t<tr><th>Purchase Order Number\t</th>\t<th>Supplier\t</th>\t<th>Ship Date\t</th>\t<th>Total Units\t</th></tr>\n\t\t\t\t"
+
+
+;  @purchase_orders.each do |purchase_order|	; @output_buffer.concat "\n\t\t\t\t\t<tr><td>"
+; @output_buffer.concat(( purchase_order.purchase_order_number			 																).to_s); @output_buffer.concat "\t</td>\n\t\t\t\t\t\t<td>"
+; @output_buffer.concat(( purchase_order.supplier.nil? ? "" : purchase_order.supplier.name												).to_s); @output_buffer.concat "\t</td>\n\t\t\t\t\t\t<td>"
+; @output_buffer.concat(( purchase_order.ship_date																						).to_s); @output_buffer.concat "\t</td>\n\t\t\t\t\t\t<td>"
+; @output_buffer.concat(( purchase_order.total_ordered_quantity																			).to_s); @output_buffer.concat "\t</td>\n\t\t\t\t\t\t<td>"
+; @output_buffer.concat(( link_to "View", :controller => 'receiving', :action => 'view_purchase_order'									).to_s); @output_buffer.concat "\t</td>\n\t\t\t\t\t\t<td>"
+; @output_buffer.concat(( link_to "Edit", :controller => 'receiving', :action => 'edit_purchase_order', :purchase_order => purchae_order	).to_s); @output_buffer.concat "\t</td>\n\t\t\t\t\t</tr>\n\t\t\t\t"
+
+;  end ; @output_buffer.concat "\t\n\t\t"
+;  else ; @output_buffer.concat "\n\t\t\t<p>No Purchase Orders match your criteria.</p>\n\t\t"
+
+;  end ; @output_buffer.concat "\n\t"
+;  end ; @output_buffer.concat "\n\t\n\t\n"
+
+
+; @output_buffer
+          ensure
+            self.output_buffer = old_output_buffer
+          end
+Backtrace: /Users/jeanpierre/wms/app/views/receiving/purchase_orders.html.erb:39:in `compile!'
+/Library/Ruby/Gems/1.8/gems/actionpack-2.3.8/lib/action_view/renderable.rb:61:in `compile'
+/Library/Ruby/Gems/1.8/gems/actionpack-2.3.8/lib/action_view/renderable.rb:28:in `render'
+/Library/Ruby/Gems/1.8/gems/actionpack-2.3.8/lib/action_view/template.rb:205:in `render_template'
+/Library/Ruby/Gems/1.8/gems/actionpack-2.3.8/lib/action_view/base.rb:265:in `render'
+/Library/Ruby/Gems/1.8/gems/actionpack-2.3.8/lib/action_controller/base.rb:1250:in `render_for_file'
+/Library/Ruby/Gems/1.8/gems/actionpack-2.3.8/lib/action_controller/base.rb:936:in `render_without_benchmark'
+/Library/Ruby/Gems/1.8/gems/actionpack-2.3.8/lib/action_controller/benchmarking.rb:51:in `render'
+/Library/Ruby/Gems/1.8/gems/activesupport-2.3.8/lib/active_support/core_ext/benchmark.rb:17:in `ms'
+/System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/benchmark.rb:308:in `realtime'
+/Library/Ruby/Gems/1.8/gems/activesupport-2.3.8/lib/active_support/core_ext/benchmark.rb:17:in `ms'
+/Library/Ruby/Gems/1.8/gems/actionpack-2.3.8/lib/action_controller/benchmarking.rb:51:in `render'
+/Library/Ruby/Gems/1.8/gems/actionpack-2.3.8/lib/action_controller/base.rb:1326:in `default_render'
+/Library/Ruby/Gems/1.8/gems/actionpack-2.3.8/lib/action_controller/base.rb:1332:in `perform_action_without_filters'
+/Library/Ruby/Gems/1.8/gems/actionpack-2.3.8/lib/action_controller/filters.rb:617:in `call_filters'
+/Library/Ruby/Gems/1.8/gems/actionpack-2.3.8/lib/action_controller/filters.rb:610:in `perform_action_without_benchmark'
+/Library/Ruby/Gems/1.8/gems/actionpack-2.3.8/lib/action_controller/benchmarking.rb:68:in `perform_action_without_rescue'
+/Library/Ruby/Gems/1.8/gems/activesupport-2.3.8/lib/active_support/core_ext/benchmark.rb:17:in `ms'
+/System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/benchmark.rb:308:in `realtime'
+/Library/Ruby/Gems/1.8/gems/activesupport-2.3.8/lib/active_support/core_ext/benchmark.rb:17:in `ms'
+/Library/Ruby/Gems/1.8/gems/actionpack-2.3.8/lib/action_controller/benchmarking.rb:68:in `perform_action_without_rescue'
+/Library/Ruby/Gems/1.8/gems/actionpack-2.3.8/lib/action_controller/rescue.rb:160:in `perform_action_without_flash'
+/Library/Ruby/Gems/1.8/gems/actionpack-2.3.8/lib/action_controller/flash.rb:151:in `perform_action'
+/Library/Ruby/Gems/1.8/gems/actionpack-2.3.8/lib/action_controller/base.rb:532:in `send'
+/Library/Ruby/Gems/1.8/gems/actionpack-2.3.8/lib/action_controller/base.rb:532:in `process_without_filters'
+/Library/Ruby/Gems/1.8/gems/actionpack-2.3.8/lib/action_controller/filters.rb:606:in `process'
+/Library/Ruby/Gems/1.8/gems/actionpack-2.3.8/lib/action_controller/base.rb:391:in `process'
+/Library/Ruby/Gems/1.8/gems/actionpack-2.3.8/lib/action_controller/base.rb:386:in `call'
+/Library/Ruby/Gems/1.8/gems/actionpack-2.3.8/lib/action_controller/routing/route_set.rb:438:in `call'
+/Library/Ruby/Gems/1.8/gems/actionpack-2.3.8/lib/action_controller/dispatcher.rb:87:in `dispatch'
+/Library/Ruby/Gems/1.8/gems/actionpack-2.3.8/lib/action_controller/dispatcher.rb:121:in `_call'
+/Library/Ruby/Gems/1.8/gems/actionpack-2.3.8/lib/action_controller/dispatcher.rb:130:in `build_middleware_stack'
+/Library/Ruby/Gems/1.8/gems/activerecord-2.3.8/lib/active_record/query_cache.rb:29:in `call'
+/Library/Ruby/Gems/1.8/gems/activerecord-2.3.8/lib/active_record/query_cache.rb:29:in `call'
+/Library/Ruby/Gems/1.8/gems/activerecord-2.3.8/lib/active_record/connection_adapters/abstract/query_cache.rb:34:in `cache'
+/Library/Ruby/Gems/1.8/gems/activerecord-2.3.8/lib/active_record/query_cache.rb:9:in `cache'
+/Library/Ruby/Gems/1.8/gems/activerecord-2.3.8/lib/active_record/query_cache.rb:28:in `call'
+/Library/Ruby/Gems/1.8/gems/activerecord-2.3.8/lib/active_record/connection_adapters/abstract/connection_pool.rb:361:in `call'
+/Library/Ruby/Gems/1.8/gems/actionpack-2.3.8/lib/action_controller/string_coercion.rb:25:in `call'
+/Library/Ruby/Gems/1.8/gems/rack-1.1.0/lib/rack/head.rb:9:in `call'
+/Library/Ruby/Gems/1.8/gems/rack-1.1.0/lib/rack/methodoverride.rb:24:in `call'
+/Library/Ruby/Gems/1.8/gems/actionpack-2.3.8/lib/action_controller/params_parser.rb:15:in `call'
+/Library/Ruby/Gems/1.8/gems/actionpack-2.3.8/lib/action_controller/session/cookie_store.rb:99:in `call'
+/Library/Ruby/Gems/1.8/gems/actionpack-2.3.8/lib/action_controller/failsafe.rb:26:in `call'
+/Library/Ruby/Gems/1.8/gems/rack-1.1.0/lib/rack/lock.rb:11:in `call'
+/Library/Ruby/Gems/1.8/gems/rack-1.1.0/lib/rack/lock.rb:11:in `synchronize'
+/Library/Ruby/Gems/1.8/gems/rack-1.1.0/lib/rack/lock.rb:11:in `call'
+/Library/Ruby/Gems/1.8/gems/actionpack-2.3.8/lib/action_controller/dispatcher.rb:114:in `call'
+/Library/Ruby/Gems/1.8/gems/actionpack-2.3.8/lib/action_controller/reloader.rb:34:in `run'
+/Library/Ruby/Gems/1.8/gems/actionpack-2.3.8/lib/action_controller/dispatcher.rb:108:in `call'
+/Library/Ruby/Gems/1.8/gems/rails-2.3.8/lib/rails/rack/static.rb:31:in `call'
+/Library/Ruby/Gems/1.8/gems/rack-1.1.0/lib/rack/urlmap.rb:47:in `call'
+/Library/Ruby/Gems/1.8/gems/rack-1.1.0/lib/rack/urlmap.rb:41:in `each'
+/Library/Ruby/Gems/1.8/gems/rack-1.1.0/lib/rack/urlmap.rb:41:in `call'
+/Library/Ruby/Gems/1.8/gems/rack-1.1.0/lib/rack/content_length.rb:13:in `call'
+/Library/Ruby/Gems/1.8/gems/rack-1.1.0/lib/rack/chunked.rb:15:in `call'
+/Library/Ruby/Gems/1.8/gems/rack-1.1.0/lib/rack/handler/mongrel.rb:67:in `process'
+/Library/Ruby/Gems/1.8/gems/mongrel-1.1.5/lib/mongrel.rb:159:in `process_client'
+/Library/Ruby/Gems/1.8/gems/mongrel-1.1.5/lib/mongrel.rb:158:in `each'
+/Library/Ruby/Gems/1.8/gems/mongrel-1.1.5/lib/mongrel.rb:158:in `process_client'
+/Library/Ruby/Gems/1.8/gems/mongrel-1.1.5/lib/mongrel.rb:285:in `run'
+/Library/Ruby/Gems/1.8/gems/mongrel-1.1.5/lib/mongrel.rb:285:in `initialize'
+/Library/Ruby/Gems/1.8/gems/mongrel-1.1.5/lib/mongrel.rb:285:in `new'
+/Library/Ruby/Gems/1.8/gems/mongrel-1.1.5/lib/mongrel.rb:285:in `run'
+/Library/Ruby/Gems/1.8/gems/mongrel-1.1.5/lib/mongrel.rb:268:in `initialize'
+/Library/Ruby/Gems/1.8/gems/mongrel-1.1.5/lib/mongrel.rb:268:in `new'
+/Library/Ruby/Gems/1.8/gems/mongrel-1.1.5/lib/mongrel.rb:268:in `run'
+/Library/Ruby/Gems/1.8/gems/rack-1.1.0/lib/rack/handler/mongrel.rb:38:in `run'
+/Library/Ruby/Gems/1.8/gems/rails-2.3.8/lib/commands/server.rb:111
+/Library/Ruby/Site/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
+/Library/Ruby/Site/1.8/rubygems/custom_require.rb:31:in `require'
+script/server:3
+
+ActionView::TemplateError (compile error
+/Users/jeanpierre/wms/app/views/receiving/purchase_orders.html.erb:6: syntax error, unexpected tIVAR, expecting ')'
+...urchase_order_type_id	@company.purchase_order_types.collect ...
+                     	        ^
+/Users/jeanpierre/wms/app/views/receiving/purchase_orders.html.erb:6: syntax error, unexpected ',', expecting ')'
+....purchase_order_type, pt.id]}, :include_blank => true	).to_s...
+                              ^) on line #6 of app/views/receiving/purchase_orders.html.erb:
+3: 
+4: 	<% form_for :purchase_orders, :url => {:controller => 'receiving', :action => 'purchase_orders'} do |form|	%>
+5: 	<table>
+6: 		<tr><td>Purchase Order Type	</td>	<td><%= form.select :purchase_order_type_id	@company.purchase_order_types.collect {|pt| [pt.purchase_order_type, pt.id]}, :include_blank => true	%>	</td>
+7: 			<td>Supplier			</td>	<td><%= form.select :supplier_id, @company.suppliers.collect {|s| [s.name, s.id]}, :include_blank => true									%>	</td>
+8: 		</tr>
+9: 		<tr><td>Purchase Order Number</td>	<td><%= form.text_field	:purchase_order_number																								%>	</td>
+
+    app/views/receiving/purchase_orders.html.erb:39:in `compile!'
+
+Rendered rescues/_trace (94.6ms)
+Rendered rescues/_request_and_response (0.3ms)
+Rendering rescues/layout (internal_server_error)
+  [4;35;1mSQL (0.1ms)[0m   [0mSET client_min_messages TO 'panic'[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET standard_conforming_strings = on[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET client_min_messages TO 'notice'[0m
+
+
+Processing ReceivingController#purchase_orders (for 201.116.41.130 at 2010-08-22 23:00:43) [GET]
+  [4;36;1mUser Load (0.5ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 1) [0m
+  [4;35;1mWarehouse Load (0.4ms)[0m   [0mSELECT * FROM "warehouses" WHERE ("warehouses"."id" = 1) [0m
+  [4;36;1mCompany Load (0.4ms)[0m   [0;1mSELECT * FROM "companies" WHERE ("companies"."id" = 1) [0m
+Rendering receiving/purchase_orders
+  [4;35;1mPurchaseOrderType Load (0.6ms)[0m   [0mSELECT * FROM "purchase_order_types" WHERE ("purchase_order_types".company_id = 1) [0m
+  [4;36;1mSupplier Load (0.6ms)[0m   [0;1mSELECT * FROM "suppliers" WHERE ("suppliers".company_id = 1) [0m
+Completed in 60ms (View: 25, DB: 3) | 200 OK [http://coymat.homeunix.com/receiving/purchase_orders]
+  [4;35;1mSQL (0.1ms)[0m   [0mSET client_min_messages TO 'panic'[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET standard_conforming_strings = on[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET client_min_messages TO 'notice'[0m
+
+
+Processing ReceivingController#purchase_orders (for 201.116.41.130 at 2010-08-22 23:00:49) [POST]
+  Parameters: {"commit"=>"Look Up", "authenticity_token"=>"GPeOHx7a+CfeAFt5oncx+qJDazUdjV9QA5DI40/jZ4s=", "purchase_orders"=>{"purchase_order_number"=>"", "ship_date(1i)"=>"", "ship_date(2i)"=>"", "supplier_id"=>"", "ship_date(3i)"=>"", "purchase_order_type_id"=>""}}
+  [4;36;1mUser Load (0.5ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 1) [0m
+  [4;35;1mWarehouse Load (0.4ms)[0m   [0mSELECT * FROM "warehouses" WHERE ("warehouses"."id" = 1) [0m
+  [4;36;1mCompany Load (0.4ms)[0m   [0;1mSELECT * FROM "companies" WHERE ("companies"."id" = 1) [0m
+  [4;35;1mPurchaseOrder Load (0.7ms)[0m   [0mSELECT * FROM "purchase_orders" ORDER BY purchase_order_number[0m
+Rendering receiving/purchase_orders
+  [4;36;1mPurchaseOrderType Load (0.5ms)[0m   [0;1mSELECT * FROM "purchase_order_types" WHERE ("purchase_order_types".company_id = 1) [0m
+
+ActionView::TemplateError (undefined method `purchase_order_type_id' for []:Array) on line #6 of app/views/receiving/purchase_orders.html.erb:
+3: 
+4: 	<% form_for :purchase_orders, :url => {:controller => 'receiving', :action => 'purchase_orders'} do |form|	%>
+5: 	<table>
+6: 		<tr><td>Purchase Order Type	</td>	<td><%= form.select :purchase_order_type_id, @company.purchase_order_types.collect {|pt| [pt.purchase_order_type, pt.id]}, :include_blank => true	%>	</td>
+7: 			<td>Supplier			</td>	<td><%= form.select :supplier_id, @company.suppliers.collect {|s| [s.name, s.id]}, :include_blank => true									%>	</td>
+8: 		</tr>
+9: 		<tr><td>Purchase Order Number</td>	<td><%= form.text_field	:purchase_order_number																								%>	</td>
+
+    app/views/receiving/purchase_orders.html.erb:6
+    app/views/receiving/purchase_orders.html.erb:4
+
+Rendered rescues/_trace (90.0ms)
+Rendered rescues/_request_and_response (0.3ms)
+Rendering rescues/layout (internal_server_error)
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET client_min_messages TO 'panic'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET standard_conforming_strings = on[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET client_min_messages TO 'notice'[0m
+  [4;35;1mCompany Load (1.3ms)[0m   [0mSELECT * FROM "companies" LIMIT 1[0m
+  [4;36;1mPurchaseOrderType Load (0.7ms)[0m   [0;1mSELECT * FROM "purchase_order_types" WHERE ("purchase_order_types".company_id = 1) [0m
