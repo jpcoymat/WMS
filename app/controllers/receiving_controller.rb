@@ -19,7 +19,7 @@ class ReceivingController < ApplicationController
 
   def create_purchase_order
     @purchase_order = PurchaseOrder.new(params[:purchase_order])
-    if @purcase_order.save
+    if @purchase_order.save
       redirect_to :controller => 'receiving', :action => 'purchase_order_lines', :purchase_order => @purchase_order
     else
       flash[:notice] = "Error creating Purchase Order.  Please try again."
