@@ -22,7 +22,7 @@
 					<tr><td><%= purchase_order.purchase_order_number			 																%>	</td>
 						<td><%= purchase_order.supplier.nil? ? "" : purchase_order.supplier.name												%>	</td>
 						<td><%= purchase_order.ship_date																						%>	</td>
-						<td><%= purchase_order.total_ordered_quantity																			%>	</td>
+						<td><%= purchase_order.quantity																							%>	</td>
 						<td><%= link_to "View", :controller => 'receiving', :action => 'view_purchase_order'									%>	</td>
 						<td><%= link_to "Edit", :controller => 'receiving', :action => 'edit_purchase_order', :purchase_order => purchae_order	%>	</td>
 					</tr>
