@@ -14,4 +14,12 @@ class PurchaseOrder < ActiveRecord::Base
     return true
   end
 
+  def total_quantity
+    ordered_qty = 0
+    self.purchase_order_lines.each do |purchase_order_line|
+      ordered_qty += purchase_order_line.quantity
+    end
+    ordered_qty
+  end
+
 end
