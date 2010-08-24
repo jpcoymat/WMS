@@ -19,12 +19,12 @@
 			<table>
 				<tr><th>Purchase Order Number	</th>	<th>Supplier	</th>	<th>Ship Date	</th>	<th>Total Units	</th></tr>
 				<% @purchase_orders.each do |purchase_order|	%>
-					<tr><td><%= purchase_order.purchase_order_number			 																%>	</td>
-						<td><%= purchase_order.supplier.nil? ? "" : purchase_order.supplier.name												%>	</td>
-						<td><%= purchase_order.ship_date																						%>	</td>
-						<td><%= purchase_order.total_quantity																					%>	</td>
-						<td><%= link_to "View", :controller => 'receiving', :action => 'view_purchase_order'									%>	</td>
-						<td><%= link_to "Edit", :controller => 'receiving', :action => 'edit_purchase_order', :purchase_order => purchase_order	%>	</td>
+					<tr><td><%= purchase_order.purchase_order_number			 																	%>	</td>
+						<td><%= purchase_order.supplier.nil? ? "" : purchase_order.supplier.name													%>	</td>
+						<td><%= purchase_order.ship_date																							%>	</td>
+						<td><%= purchase_order.total_quantity																						%>	</td>
+						<td><%= link_to "View", :controller => 'receiving', :action => 'view_purchase_order',	:purchase_order => purchase_order	%>	</td>
+						<td><%= link_to "Edit", :controller => 'receiving', :action => 'edit_purchase_order', 	:purchase_order => purchase_order	%>	</td>
 					</tr>
 				<% end %>	
 		<% else %>
