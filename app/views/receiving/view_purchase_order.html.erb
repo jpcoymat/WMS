@@ -17,7 +17,7 @@
 			<% @purchase_order.purchase_order_lines.each do |purchase_order_line|	%>
 				<tr><td><%= purchase_order_line.line_number																																												%>	</td>
 					<td><%= purchase_order_line.product.name																																											%>	</td>
-					<td><%= purchsae_order_line.quantity																																												%>	</td>
+					<td><%= purchase_order_line.quantity																																												%>	</td>
 					<td><%= purchase_order_line.received_quantity																																										%>	</td>
 					<td><%= purchase_order_line.comments																																												%>	</td>
 					<td><%= purchase_order_line.purchase_order.editable? ? link_to("Edit", :controller => 'receiving', :action => 'edit_purchase_order_line', :purchase_order_line => purchase_order_line) : ""							%>	</td>
