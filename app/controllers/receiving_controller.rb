@@ -69,6 +69,11 @@ class ReceivingController < ApplicationController
     end
   end
 
+  def view_purchase_order
+    @purchase_order = PurchaseOrder.find(params[:purchase_order])
+    @company = @purchase_order.company
+  end
+
   def receipts
     @warehouse = User.find(session[:user_id]).warehouse
     if request.post?

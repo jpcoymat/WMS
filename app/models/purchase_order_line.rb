@@ -7,11 +7,19 @@ class PurchaseOrderLine < ActiveRecord::Base
   belongs_to              :product
   belongs_to              :product_status
 
-  has_many                :receipt_lines, :as => :purchase_order_objects
+  has_many                :receipt_lines, :as => :purchase_order_object
 
 
   def editable?
     self.receipt_lines.empty?
+  end
+  
+  def received_quantity
+    @receivied_quantity = 0
+    self.receipt_lines.each do |receipt_line|
+      @received_quantity += receipt_line.quantity
+    end
+    @received_quantity
   end
 
   

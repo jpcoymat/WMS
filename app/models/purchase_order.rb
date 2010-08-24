@@ -7,7 +7,7 @@ class PurchaseOrder < ActiveRecord::Base
   belongs_to              :purchase_order_type
   belongs_to              :company
 
-  has_many                :receipt_lines, :as => :purchase_order_objects
+  has_many                :receipt_lines, :as => :purchase_order_object
   has_many                :purchase_order_lines
   
   def editable?
