@@ -7,10 +7,11 @@ class PurchaseOrderLine < ActiveRecord::Base
   belongs_to              :product
   belongs_to              :product_status
 
+  has_many                :receipt_lines, :as => :purchase_order_objects
 
-  #needs to be updated upon determining PO Line - Receipt - Receipt Line - Container relationship
+
   def editable?
-    return true
+    self.receipt_lines.empty?
   end
 
   

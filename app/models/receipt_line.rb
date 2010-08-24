@@ -7,6 +7,6 @@ class ReceiptLine < ActiveRecord::Base
   belongs_to              :product
   belongs_to              :product_package
   belongs_to              :lot
-
+  belongs_to              :purchase_order_object, :polymorphic =>true
 
 end
