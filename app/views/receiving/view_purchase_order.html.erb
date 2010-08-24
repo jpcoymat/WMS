@@ -9,12 +9,12 @@
 	
 	<h3>Purchase Order Lines	</h3>
 	
-	<% if self.purchase_order_lines.empty?	%>
+	<% if @purchase_order.purchase_order_lines.empty?	%>
 		<p>No Lines have been added for this Purchase Order</p>
 	<% else %>
 		<table>
 			<tr><th>Line Number	</th>	<th>Product </th>	<th>Quantity Ordered	</th>	<th>Quantity Received	</th>	<th>Comments	</th></tr>
-			<% self.purchase_order_lines.each do |purchase_order_line|	%>
+			<% @purchase_order.purchase_order_lines.each do |purchase_order_line|	%>
 				<tr><td><%= purchase_order_line.line_number																																												%>	</td>
 					<td><%= purchase_order_line.product.name																																											%>	</td>
 					<td><%= purchsae_order_line.quantity																																												%>	</td>
