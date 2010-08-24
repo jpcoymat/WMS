@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100823034351) do
+ActiveRecord::Schema.define(:version => 20100824024011) do
 
   create_table "allocation_strategies", :force => true do |t|
     t.string   "name",         :limit => 25, :null => false
@@ -379,15 +379,17 @@ ActiveRecord::Schema.define(:version => 20100823034351) do
   end
 
   create_table "receipt_lines", :force => true do |t|
-    t.integer  "receipt_id",                         :null => false
-    t.string   "lp",                   :limit => 50, :null => false
-    t.integer  "product_id",                         :null => false
-    t.integer  "lot_id",                             :null => false
+    t.integer  "receipt_id",                                :null => false
+    t.string   "lp",                         :limit => 50,  :null => false
+    t.integer  "product_id",                                :null => false
+    t.integer  "lot_id",                                    :null => false
     t.integer  "product_status_id"
-    t.decimal  "quantity",                           :null => false
+    t.decimal  "quantity",                                  :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "strorage_strategy_id"
+    t.string   "purchase_order_object_type", :limit => 100
+    t.integer  "purchase_order_object_id"
   end
 
   create_table "receipt_types", :force => true do |t|
@@ -409,7 +411,6 @@ ActiveRecord::Schema.define(:version => 20100823034351) do
     t.date     "ship_date"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "purchase_order_id"
   end
 
   create_table "shipments", :force => true do |t|
