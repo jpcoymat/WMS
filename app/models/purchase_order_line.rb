@@ -10,9 +10,6 @@ class PurchaseOrderLine < ActiveRecord::Base
   has_many                :receipt_lines, :as => :purchase_order_object
 
 
-  def editable?
-    self.receipt_lines.empty?
-  end
   
   def received_quantity
     @receivied_quantity = 0

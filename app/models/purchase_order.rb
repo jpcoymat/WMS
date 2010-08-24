@@ -14,7 +14,7 @@ class PurchaseOrder < ActiveRecord::Base
     @editable = true
     if self.receipt_lines.empty?
       self.purchase_order_lines.each do |purchase_order_line|
-        if purchase_order_line.editable?
+        if purchase_order_line.receipt_lines.count > 0
           @editable = false
           break
         end
