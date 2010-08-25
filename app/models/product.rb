@@ -17,9 +17,9 @@ class Product < ActiveRecord::Base
   
 
   def health_check
-    logical_each    =  ProductPackage.find(:first, :conditions => ["product_id = #{self.id} and logical_each = true"])
-    logical_case    =  ProductPackage.find(:first, :conditions => ["product_id = #{self.id} and logical_case = true"])
-    logical_pallet  =  ProductPackage.find(:first, :conditions => ["product_id = #{self.id} and logical_pallet = true"])
+    logical_each    =  ProductPackage.first(:conditions => ["product_id = #{self.id} and logical_each = true"])
+    logical_case    =  ProductPackage.first(:conditions => ["product_id = #{self.id} and logical_case = true"])
+    logical_pallet  =  ProductPackage.first(:conditions => ["product_id = #{self.id} and logical_pallet = true"])
     if logical_each and logical_case and logical_pallet
       true
     else

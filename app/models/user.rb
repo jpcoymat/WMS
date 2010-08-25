@@ -16,7 +16,7 @@ class User < ActiveRecord::Base
   end
   
   def self.authenticate(username, password)
-    user = find(:first, :conditions => ["username = ?", username])
+    user = first(:conditions => ["username = ?", username])
     unless user.nil?
       expected_password = Digest::SHA1.hexdigest(password)
       if user.hashed_password != expected_password
