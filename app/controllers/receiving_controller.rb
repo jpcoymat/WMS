@@ -114,6 +114,7 @@ class ReceivingController < ApplicationController
   
   def receipt_lines
     @receipt = Receipt.find(param[:receipt])
+    @company = @receipt.warehouse.company
   end
   
   def create_receipt_line

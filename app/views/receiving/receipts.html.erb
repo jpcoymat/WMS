@@ -3,12 +3,13 @@
 	<% form_for :receipts, :url => {:controller => 'receiving', :action => 'receipts'} do |form|	%>
 		<table>
 			<tr><td>Supplier		</td>	<td><%= form.select :supplier_id, @warehouse.company.suppliers.collect {|s| [s.name, s.id]}, :include_blank => true				%>	</td>
-				<td>Receipt Type	</td>	<td><%= form.select :receipt_type_id, @warehouse.company.receipt_types.collect {|rt| [st.name, st.id]}, :include_blank => true	%>	</td>
+				<td>Receipt Type	</td>	<td><%= form.select :receipt_type_id, @warehouse.company.receipt_types.collect {|rt| [rt.name, rt.id]}, :include_blank => true	%>	</td>
 			</tr>
 			<tr>
-				<td>Est. Receipt Date	</td>	<td><%= form.date_select :estimated_receipt_date	%>	</td>
-				<td>Real Receipt Date	</td>	<td><%= form.date_select :real_receipt_date			%>	</td>
+				<td>Est. Receipt Date	</td>	<td><%= form.date_select :estimated_receipt_date, 	:include_blank => true	%>	</td>
+				<td>Real Receipt Date	</td>	<td><%= form.date_select :real_receipt_date, 		:include_blank => true	%>	</td>
 			</tr>
+			
 		</table>
 	<% end %>
 	<br><br><hr>

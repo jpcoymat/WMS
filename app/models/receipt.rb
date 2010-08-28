@@ -5,7 +5,6 @@ class Receipt < ActiveRecord::Base
   
   belongs_to              :company
   belongs_to              :supplier
-  belongs_to              :purchase_order
   
   has_many                :receipt_lines
   
