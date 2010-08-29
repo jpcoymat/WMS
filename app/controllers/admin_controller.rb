@@ -3,7 +3,7 @@ class AdminController < ApplicationController
   before_filter :authorize
 
   def companies
-    @companies = Company.find(:all, :order => 'name')
+    @companies = Company.all(:order => 'name')
   end
 
   def new_company
@@ -130,7 +130,7 @@ class AdminController < ApplicationController
     if request.post?
       params[:system_parameter].delete_if {|k,v| v.blank? }
       params[:system_parameter][:warehouse_id] = @user.warehouse_id
-      @system_parameters = SystemParameter.find(:all, :conditions => params[:system_parameter])
+      @system_parameters = SystemParameter.all(:conditions => params[:system_parameter])
     end
   end
 
@@ -232,7 +232,7 @@ class AdminController < ApplicationController
       
       params[:product].delete_if {|k,v| v.blank?  }
       params[:product][:company_id]  = @company.id  
-      @products = Product.find(:all, :conditions => params[:product])
+      @products = Product.all(:conditions => params[:product])
       
     end
   end
@@ -534,7 +534,7 @@ class AdminController < ApplicationController
     if request.post?
       params[:location].delete_if {|k,v| v.blank?   }
       params[:location][:warehouse_id] = @warehouse.id
-      @locations = Location.find(:all, :conditions => params[:location], :order => 'name')
+      @locations = Location.all(:conditions => params[:location], :order => 'name')
     end
   end
   
@@ -1000,7 +1000,7 @@ class AdminController < ApplicationController
       params[:location].delete_if {|k,v| v.blank? }
       params[:location][:warehouse_id] = @warehouse.id
       params[:location][:replenishable] = true
-      @locations = Location.find(:all, :conditions => params[:location])
+      @locations = Location.all(:conditions => params[:location])
     end
   end
 

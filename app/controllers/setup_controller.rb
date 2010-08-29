@@ -1,7 +1,7 @@
 class SetupController < ApplicationController
 
 	def index
-		@countries = Country.find(:all, :order => 'code')
+		@countries = Country.all(:order => 'code')
 	end
 
 	def create_company
@@ -19,9 +19,9 @@ class SetupController < ApplicationController
 
 	def defualt_uom_setup
 		@company = Company.find(params[:company])
-		@dim_uoms = DimensionUom.find(:all, :conditions => ["company_id = ?", @company.id])
-		@qty_uoms = QuantityUom.find(:all, :conditions => ["company_id = ?", @company.id])
-		@wgt_uoms = WeightUom.find(:all, :conditions => ["company_id = ?", @company.id])
+		@dim_uoms = DimensionUom.all(:conditions => ["company_id = ?", @company.id])
+		@qty_uoms = QuantityUom.all(:conditions => ["company_id = ?", @company.id])
+		@wgt_uoms = WeightUom.all(:conditions => ["company_id = ?", @company.id])
 	end
 	
 
