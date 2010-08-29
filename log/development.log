@@ -2527,3 +2527,360 @@ Completed 200 OK in 1194ms (Views: 588.9ms | ActiveRecord: 399.2ms)
  AND a.attnum > 0 AND NOT a.attisdropped
  ORDER BY a.attnum
 [0m
+
+
+Started GET "/" for 10.0.1.2 at 2010-08-29 01:22:36 -0500
+  [1m[36mSQL (0.3ms)[0m  [1mSHOW client_min_messages[0m
+  [1m[35mSQL (0.1ms)[0m  SET client_min_messages TO 'panic'
+  [1m[36mSQL (0.1ms)[0m  [1mSET standard_conforming_strings = on[0m
+  [1m[35mSQL (0.1ms)[0m  SET client_min_messages TO 'notice'
+  [1m[36mSQL (0.4ms)[0m  [1mSET time zone 'UTC'[0m
+  [1m[35mSQL (0.1ms)[0m  SHOW TIME ZONE
+  Processing by MainController#index as HTML
+  [1m[36mSQL (3.2ms)[0m  [1m SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = '"users"'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+[0m
+  [1m[35mSQL (2.1ms)[0m   SELECT tablename
+ FROM pg_tables
+ WHERE schemaname = ANY (current_schemas(false))
+  [1m[36mSQL (0.6ms)[0m  [1m SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = '"users"'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+[0m
+  [1m[35mUser Load (0.7ms)[0m  SELECT "users".* FROM "users" WHERE ("users"."id" = 1) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "users".* FROM "users" WHERE ("users"."id" = 1) LIMIT 1[0m
+Rendered main/index.html.erb within layouts/main (6.2ms)
+Completed 200 OK in 188ms (Views: 9.5ms | ActiveRecord: 7.8ms)
+
+
+Started GET "/admin/warehouses" for 10.0.1.2 at 2010-08-29 01:22:40 -0500
+  Processing by AdminController#warehouses as HTML
+  [1m[35mSQL (0.8ms)[0m   SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = '"users"'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+  [1m[36mSQL (0.7ms)[0m  [1m SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = '"users"'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+[0m
+  [1m[35mUser Load (0.4ms)[0m  SELECT "users".* FROM "users" WHERE ("users"."id" = 1) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "users".* FROM "users" WHERE ("users"."id" = 1) LIMIT 1[0m
+  [1m[35mSQL (0.7ms)[0m   SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = '"warehouses"'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+  [1m[36mWarehouse Load (0.7ms)[0m  [1mSELECT "warehouses".* FROM "warehouses" WHERE ("warehouses"."id" = 1) LIMIT 1[0m
+  [1m[35mSQL (0.5ms)[0m   SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = '"warehouses"'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+  [1m[36mSQL (0.8ms)[0m  [1m SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = '"companies"'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+[0m
+  [1m[35mCompany Load (0.7ms)[0m  SELECT "companies".* FROM "companies" WHERE ("companies"."id" = 1) LIMIT 1
+  [1m[36mSQL (0.7ms)[0m  [1m SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = '"companies"'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+[0m
+  [1m[35mSQL (0.5ms)[0m  SELECT COUNT(*) AS count_id FROM (SELECT 1 FROM "warehouses" WHERE ("warehouses".company_id = 1)) AS subquery
+  [1m[36mWarehouse Load (0.2ms)[0m  [1mSELECT "warehouses".* FROM "warehouses" WHERE ("warehouses".company_id = 1)[0m
+  [1m[35mSQL (0.7ms)[0m   SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = '"countries"'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+  [1m[36mCountry Load (347.1ms)[0m  [1mSELECT "countries".* FROM "countries" WHERE ("countries"."id" = 1) LIMIT 1[0m
+  [1m[35mSQL (0.9ms)[0m   SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = '"countries"'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+  [1m[36mSQL (0.9ms)[0m  [1m SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = '"locations"'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+[0m
+  [1m[35mSQL (129.0ms)[0m  SELECT COUNT(*) AS count_id FROM (SELECT 1 FROM "locations" WHERE ("locations".warehouse_id = 1)) AS subquery
+Rendered admin/warehouses.html.erb within layouts/admin (720.5ms)
+Completed 200 OK in 1046ms (Views: 243.8ms | ActiveRecord: 485.4ms)
+
+
+Started GET "/admin/view_warehouse?warehouse=1" for 10.0.1.2 at 2010-08-29 01:22:44 -0500
+  Processing by AdminController#view_warehouse as HTML
+  Parameters: {"warehouse"=>"1"}
+  [1m[36mSQL (0.7ms)[0m  [1m SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = '"users"'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+[0m
+  [1m[35mSQL (0.7ms)[0m   SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = '"users"'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT "users".* FROM "users" WHERE ("users"."id" = 1) LIMIT 1[0m
+  [1m[35mSQL (0.7ms)[0m   SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = '"warehouses"'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+  [1m[36mWarehouse Load (0.4ms)[0m  [1mSELECT "warehouses".* FROM "warehouses" WHERE ("warehouses"."id" = 1) LIMIT 1[0m
+  [1m[35mSQL (0.7ms)[0m   SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = '"warehouses"'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+  [1m[36mSQL (0.7ms)[0m  [1m SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = '"countries"'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+[0m
+  [1m[35mCountry Load (0.4ms)[0m  SELECT "countries".* FROM "countries" WHERE ("countries"."id" = 1) LIMIT 1
+  [1m[36mSQL (0.5ms)[0m  [1m SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = '"countries"'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+[0m
+Rendered admin/view_warehouse.html.erb within layouts/admin (116.6ms)
+Completed 200 OK in 265ms (Views: 117.4ms | ActiveRecord: 5.3ms)
+
+
+Started GET "/admin/dock_doors?warehouse=1" for 10.0.1.2 at 2010-08-29 01:22:47 -0500
+  Processing by AdminController#dock_doors as HTML
+  Parameters: {"warehouse"=>"1"}
+  [1m[35mSQL (0.8ms)[0m   SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = '"users"'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+  [1m[36mSQL (0.7ms)[0m  [1m SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = '"users"'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+[0m
+  [1m[35mUser Load (0.4ms)[0m  SELECT "users".* FROM "users" WHERE ("users"."id" = 1) LIMIT 1
+  [1m[36mSQL (0.7ms)[0m  [1m SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = '"warehouses"'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+[0m
+  [1m[35mWarehouse Load (0.4ms)[0m  SELECT "warehouses".* FROM "warehouses" WHERE ("warehouses"."id" = 1) LIMIT 1
+  [1m[36mSQL (0.7ms)[0m  [1m SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = '"warehouses"'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+[0m
+  [1m[35mSQL (0.7ms)[0m   SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = '"dock_doors"'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+  [1m[36mSQL (18.4ms)[0m  [1mSELECT COUNT(*) AS count_id FROM (SELECT 1 FROM "dock_doors" WHERE ("dock_doors".warehouse_id = 1)) AS subquery[0m
+  [1m[35mDockDoor Load (0.4ms)[0m  SELECT "dock_doors".* FROM "dock_doors" WHERE ("dock_doors".warehouse_id = 1)
+Rendered admin/_dock_door.html.erb (51.7ms)
+Rendered admin/dock_doors.html.erb within layouts/admin (90.6ms)
+Completed   in 294ms
+
+ActionView::Template::Error (undefined method `lable' for #<ActionView::Helpers::FormBuilder:0x0000010294ff68>):
+    1: <table>
+    2: 	<tr><td><%= form.label :name		%>	</td>	<td><%= form.text_field	:name											%>	</td></tr>
+    3: 	<tr><td><%= form.lable :direction	%>	</td>	<td><%= form.select :direction, DockDoor.directions.collect {|d| [d,d]}	%>	</td></tr>
+    4: </table>
+  app/views/admin/_dock_door.html.erb:3:in `_app_views_admin__dock_door_html_erb__3075506729309579687_2169136500_4353159804147215695'
+  actionpack (3.0.0.rc2) lib/action_view/template.rb:135:in `block in render'
+  activesupport (3.0.0.rc2) lib/active_support/notifications.rb:54:in `instrument'
+  actionpack (3.0.0.rc2) lib/action_view/template.rb:127:in `render'
+  actionpack (3.0.0.rc2) lib/action_view/render/partials.rb:294:in `render_partial'
+  actionpack (3.0.0.rc2) lib/action_view/render/partials.rb:223:in `block in render'
+  activesupport (3.0.0.rc2) lib/active_support/notifications.rb:52:in `block in instrument'
+  activesupport (3.0.0.rc2) lib/active_support/notifications/instrumenter.rb:21:in `instrument'
+  activesupport (3.0.0.rc2) lib/active_support/notifications.rb:52:in `instrument'
+  actionpack (3.0.0.rc2) lib/action_view/render/partials.rb:221:in `render'
+  actionpack (3.0.0.rc2) lib/action_view/render/partials.rb:334:in `_render_partial'
+  actionpack (3.0.0.rc2) lib/action_view/render/rendering.rb:22:in `render'
+  app/views/admin/dock_doors.html.erb:18:in `block in _app_views_admin_dock_doors_html_erb__2982497330915277652_2169872040__4432709399498033805'
+  actionpack (3.0.0.rc2) lib/action_view/helpers/capture_helper.rb:39:in `block in capture'
+  actionpack (3.0.0.rc2) lib/action_view/helpers/capture_helper.rb:171:in `with_output_buffer'
+  actionpack (3.0.0.rc2) lib/action_view/helpers/capture_helper.rb:39:in `capture'
+  actionpack (3.0.0.rc2) lib/action_view/helpers/form_helper.rb:536:in `fields_for'
+  actionpack (3.0.0.rc2) lib/action_view/helpers/form_helper.rb:314:in `form_for'
+  app/views/admin/dock_doors.html.erb:16:in `_app_views_admin_dock_doors_html_erb__2982497330915277652_2169872040__4432709399498033805'
+  actionpack (3.0.0.rc2) lib/action_view/template.rb:135:in `block in render'
+  activesupport (3.0.0.rc2) lib/active_support/notifications.rb:54:in `instrument'
+  actionpack (3.0.0.rc2) lib/action_view/template.rb:127:in `render'
+  actionpack (3.0.0.rc2) lib/action_view/render/rendering.rb:59:in `block in _render_template'
+  activesupport (3.0.0.rc2) lib/active_support/notifications.rb:52:in `block in instrument'
+  activesupport (3.0.0.rc2) lib/active_support/notifications/instrumenter.rb:21:in `instrument'
+  activesupport (3.0.0.rc2) lib/active_support/notifications.rb:52:in `instrument'
+  actionpack (3.0.0.rc2) lib/action_view/render/rendering.rb:56:in `_render_template'
+  actionpack (3.0.0.rc2) lib/action_view/render/rendering.rb:26:in `render'
+  actionpack (3.0.0.rc2) lib/abstract_controller/rendering.rb:114:in `_render_template'
+  actionpack (3.0.0.rc2) lib/abstract_controller/rendering.rb:108:in `render_to_body'
+  actionpack (3.0.0.rc2) lib/action_controller/metal/renderers.rb:47:in `render_to_body'
+  actionpack (3.0.0.rc2) lib/action_controller/metal/compatibility.rb:55:in `render_to_body'
+  actionpack (3.0.0.rc2) lib/abstract_controller/rendering.rb:101:in `render_to_string'
+  actionpack (3.0.0.rc2) lib/abstract_controller/rendering.rb:92:in `render'
+  actionpack (3.0.0.rc2) lib/action_controller/metal/rendering.rb:17:in `render'
+  actionpack (3.0.0.rc2) lib/action_controller/metal/instrumentation.rb:40:in `block (2 levels) in render'
+  activesupport (3.0.0.rc2) lib/active_support/core_ext/benchmark.rb:5:in `block in ms'
+  /Users/jeanpierre/.rvm/rubies/ruby-1.9.2-p0/lib/ruby/1.9.1/benchmark.rb:309:in `realtime'
+  activesupport (3.0.0.rc2) lib/active_support/core_ext/benchmark.rb:5:in `ms'
+  actionpack (3.0.0.rc2) lib/action_controller/metal/instrumentation.rb:40:in `block in render'
+  actionpack (3.0.0.rc2) lib/action_controller/metal/instrumentation.rb:78:in `cleanup_view_runtime'
+  activerecord (3.0.0.rc2) lib/active_record/railties/controller_runtime.rb:15:in `cleanup_view_runtime'
+  actionpack (3.0.0.rc2) lib/action_controller/metal/instrumentation.rb:39:in `render'
+  actionpack (3.0.0.rc2) lib/action_controller/metal/implicit_render.rb:10:in `default_render'
+  actionpack (3.0.0.rc2) lib/action_controller/metal/implicit_render.rb:5:in `send_action'
+  actionpack (3.0.0.rc2) lib/abstract_controller/base.rb:148:in `process_action'
+  actionpack (3.0.0.rc2) lib/action_controller/metal/rendering.rb:11:in `process_action'
+  actionpack (3.0.0.rc2) lib/abstract_controller/callbacks.rb:18:in `block in process_action'
+  activesupport (3.0.0.rc2) lib/active_support/callbacks.rb:440:in `_run__3878994439086694652__process_action__3857283032371279194__callbacks'
+  activesupport (3.0.0.rc2) lib/active_support/callbacks.rb:409:in `_run_process_action_callbacks'
+  activesupport (3.0.0.rc2) lib/active_support/callbacks.rb:93:in `run_callbacks'
+  actionpack (3.0.0.rc2) lib/abstract_controller/callbacks.rb:17:in `process_action'
+  actionpack (3.0.0.rc2) lib/action_controller/metal/instrumentation.rb:30:in `block in process_action'
+  activesupport (3.0.0.rc2) lib/active_support/notifications.rb:52:in `block in instrument'
+  activesupport (3.0.0.rc2) lib/active_support/notifications/instrumenter.rb:21:in `instrument'
+  activesupport (3.0.0.rc2) lib/active_support/notifications.rb:52:in `instrument'
+  actionpack (3.0.0.rc2) lib/action_controller/metal/instrumentation.rb:29:in `process_action'
+  actionpack (3.0.0.rc2) lib/action_controller/metal/rescue.rb:17:in `process_action'
+  actionpack (3.0.0.rc2) lib/abstract_controller/base.rb:117:in `process'
+  actionpack (3.0.0.rc2) lib/abstract_controller/rendering.rb:40:in `process'
+  actionpack (3.0.0.rc2) lib/action_controller/metal.rb:133:in `dispatch'
+  actionpack (3.0.0.rc2) lib/action_controller/metal/rack_delegation.rb:14:in `dispatch'
+  actionpack (3.0.0.rc2) lib/action_controller/metal.rb:173:in `block in action'
+  actionpack (3.0.0.rc2) lib/action_dispatch/routing/route_set.rb:62:in `call'
+  actionpack (3.0.0.rc2) lib/action_dispatch/routing/route_set.rb:62:in `dispatch'
+  actionpack (3.0.0.rc2) lib/action_dispatch/routing/route_set.rb:27:in `call'
+  rack-mount (0.6.12) lib/rack/mount/route_set.rb:148:in `block in call'
+  rack-mount (0.6.12) lib/rack/mount/code_generation.rb:93:in `block in recognize'
+  rack-mount (0.6.12) lib/rack/mount/code_generation.rb:68:in `optimized_each'
+  rack-mount (0.6.12) lib/rack/mount/code_generation.rb:92:in `recognize'
+  rack-mount (0.6.12) lib/rack/mount/route_set.rb:139:in `call'
+  actionpack (3.0.0.rc2) lib/action_dispatch/routing/route_set.rb:492:in `call'
+  actionpack (3.0.0.rc2) lib/action_dispatch/middleware/best_standards_support.rb:17:in `call'
+  actionpack (3.0.0.rc2) lib/action_dispatch/middleware/head.rb:14:in `call'
+  rack (1.2.1) lib/rack/methodoverride.rb:24:in `call'
+  actionpack (3.0.0.rc2) lib/action_dispatch/middleware/params_parser.rb:21:in `call'
+  actionpack (3.0.0.rc2) lib/action_dispatch/middleware/flash.rb:177:in `call'
+  actionpack (3.0.0.rc2) lib/action_dispatch/middleware/session/abstract_store.rb:149:in `call'
+  actionpack (3.0.0.rc2) lib/action_dispatch/middleware/cookies.rb:278:in `call'
+  activerecord (3.0.0.rc2) lib/active_record/query_cache.rb:32:in `block in call'
+  activerecord (3.0.0.rc2) lib/active_record/connection_adapters/abstract/query_cache.rb:28:in `cache'
+  activerecord (3.0.0.rc2) lib/active_record/query_cache.rb:12:in `cache'
+  activerecord (3.0.0.rc2) lib/active_record/query_cache.rb:31:in `call'
+  activerecord (3.0.0.rc2) lib/active_record/connection_adapters/abstract/connection_pool.rb:355:in `call'
+  actionpack (3.0.0.rc2) lib/action_dispatch/middleware/callbacks.rb:46:in `block in call'
+  activesupport (3.0.0.rc2) lib/active_support/callbacks.rb:415:in `_run_call_callbacks'
+  actionpack (3.0.0.rc2) lib/action_dispatch/middleware/callbacks.rb:44:in `call'
+  rack (1.2.1) lib/rack/sendfile.rb:107:in `call'
+  actionpack (3.0.0.rc2) lib/action_dispatch/middleware/remote_ip.rb:48:in `call'
+  actionpack (3.0.0.rc2) lib/action_dispatch/middleware/show_exceptions.rb:46:in `call'
+  railties (3.0.0.rc2) lib/rails/rack/logger.rb:13:in `call'
+  rack (1.2.1) lib/rack/runtime.rb:17:in `call'
+  activesupport (3.0.0.rc2) lib/active_support/cache/strategy/local_cache.rb:72:in `call'
+  rack (1.2.1) lib/rack/lock.rb:11:in `block in call'
+  <internal:prelude>:10:in `synchronize'
+  rack (1.2.1) lib/rack/lock.rb:11:in `call'
+  actionpack (3.0.0.rc2) lib/action_dispatch/middleware/static.rb:30:in `call'
+  railties (3.0.0.rc2) lib/rails/application.rb:168:in `call'
+  railties (3.0.0.rc2) lib/rails/application.rb:77:in `method_missing'
+  railties (3.0.0.rc2) lib/rails/rack/log_tailer.rb:14:in `call'
+  rack (1.2.1) lib/rack/content_length.rb:13:in `call'
+  rack (1.2.1) lib/rack/handler/webrick.rb:52:in `service'
+  /Users/jeanpierre/.rvm/rubies/ruby-1.9.2-p0/lib/ruby/1.9.1/webrick/httpserver.rb:111:in `service'
+  /Users/jeanpierre/.rvm/rubies/ruby-1.9.2-p0/lib/ruby/1.9.1/webrick/httpserver.rb:70:in `run'
+  /Users/jeanpierre/.rvm/rubies/ruby-1.9.2-p0/lib/ruby/1.9.1/webrick/server.rb:183:in `block in start_thread'
+
+Rendered /Users/jeanpierre/.rvm/gems/ruby-1.9.2-p0/gems/actionpack-3.0.0.rc2/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.3ms)
+Rendered /Users/jeanpierre/.rvm/gems/ruby-1.9.2-p0/gems/actionpack-3.0.0.rc2/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (3.3ms)
+Rendered /Users/jeanpierre/.rvm/gems/ruby-1.9.2-p0/gems/actionpack-3.0.0.rc2/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (8.6ms)
+
+
+Started GET "/admin/dock_doors?warehouse=1" for 10.0.1.2 at 2010-08-29 01:23:53 -0500
+  Processing by AdminController#dock_doors as HTML
+  Parameters: {"warehouse"=>"1"}
+  [1m[36mSQL (0.8ms)[0m  [1m SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = '"users"'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+[0m
+  [1m[35mSQL (0.7ms)[0m   SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = '"users"'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT "users".* FROM "users" WHERE ("users"."id" = 1) LIMIT 1[0m
+  [1m[35mSQL (0.7ms)[0m   SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = '"warehouses"'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+  [1m[36mWarehouse Load (0.4ms)[0m  [1mSELECT "warehouses".* FROM "warehouses" WHERE ("warehouses"."id" = 1) LIMIT 1[0m
+  [1m[35mSQL (0.7ms)[0m   SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = '"warehouses"'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+  [1m[36mSQL (0.7ms)[0m  [1m SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = '"dock_doors"'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+[0m
+  [1m[35mSQL (0.4ms)[0m  SELECT COUNT(*) AS count_id FROM (SELECT 1 FROM "dock_doors" WHERE ("dock_doors".warehouse_id = 1)) AS subquery
+  [1m[36mDockDoor Load (0.2ms)[0m  [1mSELECT "dock_doors".* FROM "dock_doors" WHERE ("dock_doors".warehouse_id = 1)[0m
+Rendered admin/_dock_door.html.erb (1.3ms)
+DEPRECATION WARNING: <% %> style block helpers are deprecated. Please use <%= %>. (called from _app_views_admin_dock_doors_html_erb__2982497330915277652_2169334340__4432709399498033805 at /Users/jeanpierre/wms/app/views/admin/dock_doors.html.erb:16)
+Rendered admin/dock_doors.html.erb within layouts/admin (54.5ms)
+Completed 200 OK in 273ms (Views: 56.7ms | ActiveRecord: 5.2ms)
