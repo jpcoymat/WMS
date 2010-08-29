@@ -1,0 +1,19 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  receipt_id: 1
+  lp: MyString
+  product_id: 1
+  product_package_id: 1
+  lot_id: 1
+  product_status_id: 1
+  quantity: 9.99
+
+two:
+  receipt_id: 1
+  lp: MyString
+  product_id: 1
+  product_package_id: 1
+  lot_id: 1
+  product_status_id: 1
+  quantity: 9.99

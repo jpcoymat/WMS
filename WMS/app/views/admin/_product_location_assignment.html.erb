@@ -1,0 +1,6 @@
+<table>
+	<tr><td>Replenish At			</td>	<td><%= form.text_field :replenishment_at																		%>	</td></tr>
+	<tr><td>Replenish Up To			</td>	<td><%= form.text_field :replenish_to																			%>	</td></tr>
+	<tr><td>Maximum Location Qty	</td>	<td><%= form.text_field	:maximum_quantity																		%>	</td></tr>
+	<tr><td>Allocation Strategy		</td>	<td><%= form.select :allocation_strategy_id, @warehouse.allocation_strategies.collect {|as| [as.name, as.id]}	%>	</td></tr>
+</table>

@@ -1,0 +1,23 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  product_id: MyString
+  logical_each: false
+  logical_case: false
+  logical_pallet: false
+  length: 9.99
+  width: 9.99
+  height: 9.99
+  quantity: 1
+  active: false
+
+two:
+  product_id: MyString
+  logical_each: false
+  logical_case: false
+  logical_pallet: false
+  length: 9.99
+  width: 9.99
+  height: 9.99
+  quantity: 1
+  active: false

@@ -1,0 +1,25 @@
+<h2>Warehouse Users</h2>
+	<% if @warehouse.users.empty? %>
+		<p>No users have been created for this warehouse.</p>
+	<% else %>
+		<table>
+			<tr><th>First Name</th>	<th>Last Name</th>	<th>Position</th>	<th>Email</th>	</tr>
+			<% for user in @warehouse.users %>
+				<tr><td><%= user.first_name 																%>	</td>
+					<td><%= user.last_name 																	%>	</td>
+					<td><%= user.position																	%>	</td>
+					<td><%= user.email																		%>	</td>
+					<td><%= link_to "View", :controller => 'setup', :aciton => 'view_user', :user => user 	%>	</td>
+					<td><%= link_to "Edit", :controller => 'setup', :action => 'edit_user',	:user => user	%>	</td>
+				</tr>
+			<% end %>
+		</table>
+	<% end %>
+	<br><br><hr><br>
+	<h3>Add New User</h3>
+		<% form_for :user, :url => {:controler => 'setup', :action => 'add_user'} do |form| %>
+			<%= form.hidden_field :warehouse_id, :value => @warehouse.id 	%>
+			<%= render :partial => 'user', :locals => {:form => form} 	%>
+			<%= submit_tag "Create User"	%>
+		<% end %>
+			

@@ -1,0 +1,11 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  code: MyString
+  description: MyString
+  allocatable: false
+
+two:
+  code: MyString
+  description: MyString
+  allocatable: false

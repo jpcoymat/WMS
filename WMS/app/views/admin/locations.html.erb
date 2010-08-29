@@ -1,0 +1,44 @@
+<h3>Location Look-up</h3>
+
+	<% form_for :location, :url => {:controller => 'admin', :action => 'locations'} do |form|	%>
+		<table>
+			<tr><td>Location Type	</td>	
+				<td><%= form.select :location_type_id, @warehouse.location_types.collect {|lt| [lt.code, lt.id]}, :include_blank => true	%>	</td>	
+			    <td>Allocation Zone </td>
+				<td><%= form.select :allocation_zone_id, @warehouse.allocation_zones.collect {|az| [az.code, az.id]}, :include_blank => true	%>	</td>
+			</tr>
+			<tr><td>Storage Zone 	</td>
+			    <td><%= form.select :storage_zone_id, @warehouse.storage_zones.collect {|sz| [sz.code, sz.id]}, :include_blank => true		%>	</td>
+			    <td>Location Name   </td> <td> <%= form.text_field :name										%>	</td>
+			</tr>
+			<tr><td>Zone	</td> <td>Aisle </td> 	<td>Bay	</td>	<td>Level	</td>	<td>Position	</td>						</tr>
+			<tr><td><%= form.text_field :zone	%></td>
+		  	    <td><%= form.text_field :aisle 	%></td>
+		   	    <td><%= form.text_field :bay	%></td>
+			    <td><%= form.text_field :level	%></td>
+			    <td><%= form.text_field :position	%></td>
+			</tr>
+		</table>	
+		<%= submit_tag "Search Locations"%>
+	<% end %>
+	
+	<% if request.post?	%>
+		<% if @locations.empty?	%>
+			<p>No locations were found that match that criteria.</p>
+		<% else %>
+			<table>
+				<tr><th>Location	</th>	<th>Location Type	</th>	<th>Allocation Zone	</th>	<th>Storage Zone	</th></tr>
+				<% @locations.each do |location|	%>
+					<tr><td><%= location.name				%></td>
+						<td><%= location.location_type.code	%>	</td>
+						<td><%= location.allocation_zone.nil? ? "" : location.allocation_zone.code								%>	</td>
+						<td><%= location.storage_zone.nil?  ? "" : location.storage_zone.code									%>	</td>
+						<td><%= link_to "Details",	:controller => 'admin', :action => 'view_location', :location => location	%>	</td>
+						<td><%= link_to "Edit", :controller => 'admin', :action => 'edit_location', :location => location		%>	</td>
+					</tr>
+				<% end %>
+			</table>
+		<% end %>
+	<% end %>
+	
+	<%=	link_to	"Add Locations", :controller => 'admin', :action => 'add_locations' %>

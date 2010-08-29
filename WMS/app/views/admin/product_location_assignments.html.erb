@@ -1,0 +1,33 @@
+<h1>Product Locations Assignment	</h1>
+
+	<p>Location:	<%= @location.name	%>	</p>
+	
+	<% if @product_location_assignments.empty?	%>
+		<p>No Product Locations have been assigned for this location.</p>
+	<% else 	%>
+		<table>
+			<tr><th>Product	</th>	<th>Replenishment Level	</th>	<th>Replenish Up To </th>	<th>Maximum Location Qty </th>	<th>Allocation Strategy	</th></tr>
+			<% @product_location_assignments.each do |product_location_assignment| %>
+				<tr><td><%= product_location_assignment.product.name																																													%>	</td>
+					<td><%= product_location_assignment.replenishment_at																																												%>	</td>
+					<td><%= product_location_assignment.replenish_to																																													%>	</td>
+					<td><%= product_location_assignment.maximum_quantity																																												%>	</td>
+					<td><%= product_location_assignment.allocation_strategy.name																																										%>	</td>
+					<td><%= link_to "Edit", :controller => 'admin', :action => 'edit_product_location_assignment', :product_location_assignment => product_location_assignment																			%>	</td>
+					<td><%= product_location_assignment.deleteable? ? link_to("Delete", {:controller => 'admin', :action => 'delete_product_location_assignment', :product_location_assignment => product_location_assignment}, :method => :post) : ""	%>	</td>
+				</tr>
+			<% end %>
+		</table>
+	<% end %>
+	
+	<br><br><hr><br>
+	<h3>Create New Product Location Assignment	</h3>
+	<% form_for :product_location_assignment, :url => {:controller => 'admin', :action => 'create_product_location_assignment'} do |form|	%>
+		<%= form.hidden_field	:warehouse_id,	:value => @warehouse.id			%>
+		<%= form.hidden_field 	:location_id, 	:value => @location.id			%>
+		<table>
+			<tr><td>Product	</td>	<td><%= form.select :product_id, @products.collect {|p| [p.name, p.id]}	%>	</td></tr>
+		</table>
+		<%= render :partial => 'product_location_assignment', :locals => {:form => form}	%>
+		<%= submit_tag "Create PLA"	%>
+	<% end %>

@@ -1,0 +1,15 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  name: MyString
+  iso_code: MyString
+  code: MyString
+  language: MyString
+  telephone_country_code: 1
+
+two:
+  name: MyString
+  iso_code: MyString
+  code: MyString
+  language: MyString
+  telephone_country_code: 1

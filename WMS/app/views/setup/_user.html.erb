@@ -1,0 +1,12 @@
+<table>
+	<tr><td>First Name		</td>	<td><%= form.text_field 		:first_name 							%>	</td></tr>
+	<tr><td>Last Name		</td>	<td><%= form.text_field 		:last_name								%>	</td></tr>
+	<tr><td>Sex				</td>	<td><%= form.select 	:sex, [["Male", "Male"], ["Female", "Female"]]	%>	</td></tr>
+	<tr><td>Email			</td>	<td><%= form.text_field			:email									%>	</td></tr>
+	<tr><td>Username		</td>	<td><%= form.text_field			:username								%>	</td></tr>
+	<tr><td>Password		</td>	<td><%= form.password_field 	:password								%>	</td></tr>
+	<tr><td>Verify Password	</td>	<td><%= form.password_field		:password_confirmation					%>	</td></tr>
+	<tr><td>Date of Birth	</td>	<td><%= form.date_select 		:dob, :start_year => Time.now.year - 65	%>	</td></tr>
+	<tr><td>Positions		</td>	<td><%= form.text_field			:position								%>	</td></tr>
+</table>
+		

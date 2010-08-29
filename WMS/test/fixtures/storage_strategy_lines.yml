@@ -1,0 +1,9 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  order_sequence_number: 1
+  storage_zone_id: 1
+
+two:
+  order_sequence_number: 1
+  storage_zone_id: 1

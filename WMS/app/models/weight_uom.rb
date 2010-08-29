@@ -1,0 +1,3 @@
+class WeightUom < Uom
+  
+end

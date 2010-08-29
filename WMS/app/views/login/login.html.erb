@@ -1,0 +1,10 @@
+<% form_for :user_login, :url=>{:controller=>'login', :action=>'login'} do |form| %>
+  <table>
+    <tr><td align=right>Username	</td> <td><%= form.text_field :username %>		</td></tr>
+    <tr><td align=right>Password  	</td> <td><%= form.password_field :password %>	</td></tr>
+  </table>
+  <%= submit_tag "Log In" %>
+<% end %>
+<br><br>
+<%= link_to "Create New Company", :controller => 'setup', :action => 'index' %>
+

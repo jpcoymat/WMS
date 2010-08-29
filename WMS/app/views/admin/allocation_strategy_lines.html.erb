@@ -1,0 +1,30 @@
+<h3>Allocation Strategy Details	</h3>
+	<table>
+		<tr><td>Name		</td>	<td><%= @allocation_strategy.name				%>	</td></tr>
+		<tr><td>Code		</td>	<td><%= @allocation_strategy.code				%>	</td></tr>
+		<tr><td>Description	</td>	<td><%=	@allocation_strategy.description		%>	</td></tr>
+	</table>
+<h4>Allocation Strategy Lines	</h4>
+	<% if @allocation_strategy.allocation_strategy_lines.empty?	%>
+		<p>No Allocation Strategy Lines have been created.</p>
+	<% else 	%>
+		<table>
+			<tr><th>Order Seq.</th>	<th>Allocation Zone </th>	<th>Containerization Method	</th>	<th>Minimum Pick UOM </th>	<th>Containerization Level	</th></tr>
+			<%  @allocation_strategy.allocation_strategy_lines.each do |allocation_strategy_line|	%>
+				<tr><td><%= allocation_strategy_line.order_sequence																																%>	</td>
+					<td><%= allocation_strategy_line.allocation_zone.name																														%>	</td>
+					<td><%= allocation_strategy_line.containerization_method																													%>	</td>
+					<td><%= allocation_strategy_line.minimum_pick_uom																															%>	</td>
+					<td><%= allocation_strategy_line.containerization_level																														%>	</td>
+					<td><%= link_to "Edit", :controller => 'admin', :action => 'edit_allocation_strategy_line', :allocation_strategy_line => allocation_strategy_line							%>	</td>
+					<td><%= link_to "Delete", {:controller => 'admin', :action => 'delete_allocation_strategy_line', :allocation_strategy_line => allocation_strategy_line}, :method => :post	%>	</td>
+				</tr>
+			<% end %>
+		</table>
+	<% end %>
+	<br><br><hr><br>
+	<% form_for :allocation_strategy_line, :url => {:controller => 'admin', :action => 'create_allocation_strategy_line'} do |form|	%>
+		<%= form.hidden_field :allocation_strategy_id, :value => @allocation_strategy.id	%>
+		<%= render :partial => 'allocation_strategy_line', :locals => {:form => form}		%>
+		<%= submit_tag "Add Allocation Line"	%>
+	<% end %>

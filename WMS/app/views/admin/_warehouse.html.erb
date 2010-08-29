@@ -1,0 +1,11 @@
+<table>
+	<tr><td>Warehouse Name				</td>	<td><%= form.text_field :name																%>	</td></tr>
+	<tr><td>Warehouse Code				</td>	<td><%= form.text_field	:code																%>	</td></tr>
+	<tr><td>Warehouse Description		</td>	<td><%= form.text_field :description														%>	</td></tr>
+	<tr><td>Address 1					</td>	<td><%= form.text_field	:address_1															%>	</td></tr>
+	<tr><td>Address 2					</td>	<td><%= form.text_field	:address_2															%>	</td></tr>
+	<tr><td>City						</td>	<td><%= form.text_field	:city																%>	</td></tr>
+	<tr><td>State						</td>	<td><%= form.text_field	:state																%>	</td></tr>
+	<tr><td>Postal Code					</td>	<td><%= form.text_field :postal_code														%>	</td></tr>
+	<tr><td>Country						</td>	<td><%= form.select :country_id, Country.all(:order => 'code').collect {|c| [c.code, c.id]}	%>	</td></tr>
+</table>

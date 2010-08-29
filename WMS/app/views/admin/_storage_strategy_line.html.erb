@@ -1,0 +1,7 @@
+<table>
+	<tr><td>Order Sequence		</td>	<td><%= form.text_field :order_sequence																%>	</td></tr>
+	<tr><td>Storage Zone		</td>	<td><%= form.select		:storage_zone_id, @warehouse.storage_zones.collect {|sz| [sz.name, sz.id]}	%>	</td></tr>
+	<tr><td>Check Volume		</td>	<td><%= form.check_box	:check_volume																%>	</td></tr>
+	<tr><td>Check Dimensions	</td>	<td><%= form.check_box	:check_dimensions															%>	</td></tr>
+	<tr><td>Check Containers	</td>	<td><%= form.check_box	:check_containers															%>	</td></tr>
+</table>

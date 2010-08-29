@@ -1,0 +1,6 @@
+<h1>Edit Company Profile</h1>
+
+<% form_for :company, :url => {:controller => 'admin', :action => 'update_company'} do |form| %>
+ 	<%= render :partial => "company", :locals => {:form => form} %>
+	<%= render :partial => "company_uoms", :locals => {:form => form} %>
+<% end %>
