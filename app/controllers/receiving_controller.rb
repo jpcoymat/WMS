@@ -78,8 +78,8 @@ class ReceivingController < ApplicationController
   def receipts
     @warehouse = User.find(session[:user_id]).warehouse
     if request.post?
-      params[:receipts].delete_if {|k,v| v.blank?}
-      @receipts = Receipt.all(:conditions => params[:receipts], :order => 'receipt_number')
+      params[:receipt_search_criteria].delete_if {|k,v| v.blank?}
+      @receipts = Receipt.all(:conditions => params[:receipt_search_criteria], :order => 'receipt_number')
     end
   end
   

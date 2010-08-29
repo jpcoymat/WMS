@@ -1,5 +1,3 @@
-require 'ftools'
-
 class Company < ActiveRecord::Base
 
   belongs_to :country
@@ -33,22 +31,6 @@ class Company < ActiveRecord::Base
 
   def default_length_uom
     @default_length_uom = Uom.find(self.default_length_uom_id)
-  end
-
-
-  def picture_file=(file_data)
-    @pic_file = file_data
-    self.logo_filename = @pic_file.original_filename
-  end
-
-  def write_file
-    if @pic_file
-      File.open(IMAGES_PATH + self.logo_filename, "w") { |file| file.write(@pic_file.read) }
-    end
-  end
-
-  def file_exists?
-    File.exist?(IMAGES_PATH + self.logo_filename)
   end
 
   def create_uoms
