@@ -18,11 +18,8 @@ class Company < ActiveRecord::Base
   has_many  :uoms
   has_many  :assignment_types  
 
-  validates	:name, 		:uniqueness => true
-  validates	:name, 		:presence => true
-  validates     :address_1, 	:presence => true
-  validates     :city, 		:presence => true
-  validates     :country_id, 	:presence => true
+  validates	:name, :uniqueness => true
+  validates	:name, :address_1, :city, :country_id, :presence => true
 
   def default_quantity_uom
     @default_quantity_uom = Uom.find(self.default_quantity_uom_id)

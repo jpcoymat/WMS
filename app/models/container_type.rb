@@ -1,8 +1,8 @@
 class ContainerType < ActiveRecord::Base
 
-  has_many  :containers
+  has_many  	:containers
   
-  validates_presence_of   :length, :width, :height, :maximum_weight, :purpose
+  validates	:length, :width, :height, :maximum_weight, :purpose, :presence => true
   
   
   def volume

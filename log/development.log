@@ -7089,3 +7089,16 @@ Completed 200 OK in 754ms (Views: 618.2ms | ActiveRecord: 10.6ms)
 [0m
   [1m[35mCompany Load (0.7ms)[0m  SELECT "companies"."id" FROM "companies" WHERE ("companies"."name" IS NULL) LIMIT 1
   [1m[36mCompany Load (0.7ms)[0m  [1mSELECT "companies"."id" FROM "companies" WHERE ("companies"."name" = 'Some Company') LIMIT 1[0m
+  [1m[36mSQL (0.3ms)[0m  [1mSHOW client_min_messages[0m
+  [1m[35mSQL (0.1ms)[0m  SET client_min_messages TO 'panic'
+  [1m[36mSQL (0.1ms)[0m  [1mSET standard_conforming_strings = on[0m
+  [1m[35mSQL (0.1ms)[0m  SET client_min_messages TO 'notice'
+  [1m[36mSQL (0.5ms)[0m  [1mSET time zone 'UTC'[0m
+  [1m[35mSQL (0.1ms)[0m  SHOW TIME ZONE
+  [1m[36mSQL (3.1ms)[0m  [1m SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = '"customers"'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+[0m

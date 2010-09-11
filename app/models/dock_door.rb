@@ -1,8 +1,8 @@
 class DockDoor < ActiveRecord::Base
 
-	belongs_to              :warehouse
-	validates_presence_of	  :name, :direction, :warehouse_id
-	validates_uniqueness_of	:name, :scope => :warehouse_id
+	belongs_to	:warehouse
+	validates	:name, :direction, :warehouse_id, :presence => true
+	validates	:name, :scope => :warehouse_id, :uniqueness => true
 
   def self.directions
     ["Inbound", "Outbound", "Both"]

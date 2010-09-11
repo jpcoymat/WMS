@@ -7,6 +7,6 @@ class ContainerContent < ActiveRecord::Base
   belongs_to    :receipt_line
   belongs_to    :order_line
   
-  validates_presence_of :quantity 
+  validates	:quantity, :container_id, product_id, :presence => true 
 
 end
