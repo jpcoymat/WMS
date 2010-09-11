@@ -1,13 +1,15 @@
 class PurchaseOrderLine < ActiveRecord::Base
 
-  validates_presence_of   :line_number, :purchase_order_id, :product_id, :quantity
-  validates_uniqueness_of :line_number, :scope => :purchase_order_id
-  
-  belongs_to              :purchase_order
-  belongs_to              :product
-  belongs_to              :product_status
+  validates 	:line_number, :purchase_order_id, :product_id, :quantity, :presence => true
+  validates 	:line_number, :scope => :purchase_order_id, :uniqueness => true
+ 
+  validates 	:quantity, :numericality => {:greater_than_or_equal_to => 1}
+ 
+  belongs_to    :purchase_order
+  belongs_to    :product
+  belongs_to    :product_status
 
-  has_many                :receipt_lines, :as => :purchase_order_object
+  has_many      :receipt_lines, :as => :purchase_order_object
 
 
   

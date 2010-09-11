@@ -2,14 +2,22 @@ require 'digest/sha1'
 
 class User < ActiveRecord::Base
 
-  validates_length_of       :username, :within => 3..40
-  validates_presence_of     :username, :first_name, :last_name, :email, :warehouse_id, :hashed_password
-  validates_uniqueness_of   :username
+  validates	:username, :length => {:within => 3..40}
+  validates	:username, :first_name, :last_name, :email, :warehouse_id, :hashed_password, :presence => true
+  validates	:username, :uniqueness => true
 
-  validates_confirmation_of :password
-  attr_accessor             :password, :password_confirmation
+  validates	:password, :confirmation => true
+
+  validate 	:password_must_be_present
+
+  attr_accessor	:password, :password_confirmation
   
-  belongs_to :warehouse
+  belongs_to 	:warehouse
+
+
+  def password_must_be_present
+    errors.add(:password, "Missing password" ) unless hashed_password.present?
+  end
 
   def self.sex
     ["Male", "Female"]

@@ -1,10 +1,10 @@
 class LocationType < ActiveRecord::Base
   
-  validates_presence_of :code,  :name,  :length, :width, :height
+  validates	:code,  :name,  :length, :width, :height, :presence => true
   
 
-  belongs_to            :warehouse
-    
+  belongs_to    :warehouse
+  has_many	:locations  
 
   
   def components

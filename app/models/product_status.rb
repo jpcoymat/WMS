@@ -1,8 +1,8 @@
 class ProductStatus < ActiveRecord::Base
 
-  validates_presence_of     :code, :description, :company_id
-  validates_uniqueness_of   :code, :scope => :company_id
+  validates	:code, :description, :company_id, :presence =>true
+  validates	:code, :scope => :company_id, :uniqueness => true
 
-
+  belongs_to	:company
 
 end

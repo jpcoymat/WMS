@@ -1,14 +1,14 @@
 class PurchaseOrder < ActiveRecord::Base
 
-  validates_presence_of   :purchase_order_number, :company_id
-  validates_uniqueness_of :purchase_order_number, :scope => :company_id
+  validates	:purchase_order_number, :company_id, :presence => true
+  validate	:purchase_order_number, :scope => :company_id, :uniqueness => true
   
-  belongs_to              :supplier
-  belongs_to              :purchase_order_type
-  belongs_to              :company
+  belongs_to    :supplier
+  belongs_to    :purchase_order_type
+  belongs_to    :company
 
-  has_many                :receipt_lines, :as => :purchase_order_object
-  has_many                :purchase_order_lines
+  has_many      :receipt_lines, :as => :purchase_order_object
+  has_many      :purchase_order_lines
   
   def editable?
     @editable = true

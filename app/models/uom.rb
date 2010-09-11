@@ -1,10 +1,10 @@
 class Uom < ActiveRecord::Base
 
-  validates_uniqueness_of :code
-  validates_uniqueness_of :name
-  validates_presence_of   :code, :name, :company_id
+  validates	:code, :scope => company_id, :uniqueness => true
+  validates 	:name, :scope => company_id, :uniqueness => true
+  validates   	:code, :name, :company_id
   
-  has_many                :product_packages
+  has_many	:product_packages
   
   def self.types
     ["Quantity", "Dimension", "Weight", "Volume"]

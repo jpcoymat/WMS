@@ -1,10 +1,10 @@
 class ReceiptType < ActiveRecord::Base
 
-  belongs_to              :company
-  has_many                :receipts
-  has_many                :storage_strategy_rules
-  validates_presence_of   :company_id, :code, :name
-  validates_uniqueness_of :code, :scope => :company_id
+  belongs_to	:company
+  has_many	:receipts
+  has_many	:storage_strategy_rules
+  validates	:company_id, :code, :name, :presence => true
+  validates	:code, :scope => :company_id, :uniqueness => true
   
   def deleteable?
     self.receipts.empty? and self.storage_strategy_rules.empty?

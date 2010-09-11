@@ -1,10 +1,13 @@
 class ProductCategory < ActiveRecord::Base
 
-  validates_uniqueness_of :name 
-  validates_presence_of   :name, :description
-  has_many                :product_subcategories
-  has_many                :products
-  has_many                :storage_strategy_rules
+  validates	:name, :scope => company_id , :uniqueness => true
+  validates	:name, :description, :company_id, :presence => true
+
+  belongs_to	:company
+
+  has_many      :product_subcategories
+  has_many      :products
+  has_many      :storage_strategy_rules
   
 
   def deleteable?

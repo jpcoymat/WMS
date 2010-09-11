@@ -17,9 +17,9 @@ class Warehouse < ActiveRecord::Base
   has_many    :product_warehouse_setups
   has_many    :products, :through => :product_warehouse_setups
 
-  validates_uniqueness_of 	:name
-  validates_uniqueness_of	  :code
-  validates_presence_of 	  :name, :code, :address_1, :city, :country_id, :company_id
+  validates	:name, :uniqueness => true, :scope => :company_id
+  validates	:code, :uniqueness => true, :scope => :company_id 
+  validates 	:name, :code, :address_1, :city, :country_id, :company_id
 
   def add_system_parameters
     SystemParameter.create([{ 
