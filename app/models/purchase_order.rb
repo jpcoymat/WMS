@@ -1,7 +1,7 @@
 class PurchaseOrder < ActiveRecord::Base
 
   validates	:purchase_order_number, :company_id, :presence => true
-  validate	:purchase_order_number, :scope => :company_id, :uniqueness => true
+  validate	:purchase_order_number, :uniqueness => true
   
   belongs_to    :supplier
   belongs_to    :purchase_order_type

@@ -2,7 +2,7 @@ class OrderLine < ActiveRecord::Base
 
 
   validates :line_sequence_number, :product_id, :quantity_ordered, :order_id, :presence => true
-  validates :line_sequence_number, :uniqueness => true, :scope => :order_id
+  validates :line_sequence_number, :uniqueness => true
 
   validates :quantity_ordered, :numericality => {:greater_than => 0}
 

@@ -3,7 +3,7 @@ class Location < ActiveRecord::Base
   before_create         :name
 
   validates		:name,  :warehouse_id,  :location_type_id, :presence => true
-  validates		:name,  :scope => :warehouse_id, :uniqueness => true
+  validates		:name,  :uniqueness => true
   
   has_many    :containers
   has_many    :product_location_assignments

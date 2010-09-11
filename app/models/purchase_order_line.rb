@@ -1,7 +1,7 @@
 class PurchaseOrderLine < ActiveRecord::Base
 
   validates 	:line_number, :purchase_order_id, :product_id, :quantity, :presence => true
-  validates 	:line_number, :scope => :purchase_order_id, :uniqueness => true
+  validates 	:line_number, :uniqueness => true
  
   validates 	:quantity, :numericality => {:greater_than_or_equal_to => 1}
  

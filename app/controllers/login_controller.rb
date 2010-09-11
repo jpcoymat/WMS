@@ -8,7 +8,7 @@ class LoginController < ApplicationController
       if @user
         flash[:notice] = "Welcome to WMS."
         session[:user_id] = @user.id
-        redirect_to :controller => 'main', :action => 'index', :user => @user
+        redirect_to :controller => 'main', :action => 'index'
       else
         flash[:notice] = "Invalid username/password."
         redirect_to :controller => 'login', :action => 'login'

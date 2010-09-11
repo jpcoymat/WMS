@@ -1,8 +1,8 @@
 class Uom < ActiveRecord::Base
 
-  validates	:code, :scope => company_id, :uniqueness => true
-  validates 	:name, :scope => company_id, :uniqueness => true
-  validates   	:code, :name, :company_id
+  validates	:code, :uniqueness => true
+  validates 	:name, :uniqueness => true
+  validates   	:code, :name, :company_id, :presence => true
   
   has_many	:product_packages
   

@@ -1,7 +1,7 @@
 class StorageStrategyRule < ActiveRecord::Base
 
   validates	:warehouse_id, :storage_strategy_id, :order_sequence_number, :presence => true
-  validates	:order_sequence_number, :scope => :warehouse_id, :uniqueness => true
+  validates	:order_sequence_number, :uniqueness => true
   
   belongs_to  :warehouse
   belongs_to  :product_category

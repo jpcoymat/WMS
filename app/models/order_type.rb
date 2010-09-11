@@ -1,7 +1,7 @@
 class OrderType < ActiveRecord::Base
 
   validates	:order_type, :company_id, :presence => true
-  validates	:order_type, :scope => :company_id, :uniqueness => true
+  validates	:order_type, :uniqueness => true
   
   belongs_to	:company
   has_many      :orders

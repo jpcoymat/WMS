@@ -7,7 +7,7 @@ class ProductWarehouseSetup < ActiveRecord::Base
   belongs_to	:storage_strategy
   
   validates	:product_id,  :warehouse_id,  :product_status_id, :presence => true
-  validates	:product_id,  :scope => :warehouse_id, :uniqueness => true
+  validates	:product_id,  :uniqueness => true
 
 
 end

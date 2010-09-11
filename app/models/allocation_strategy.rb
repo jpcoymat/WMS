@@ -7,7 +7,7 @@ class AllocationStrategy < ActiveRecord::Base
   has_many                :product_location_assignments
 
   validates   :name, :code, :warehouse_id, :presence => true
-  validates   :code, :scope => :warehouse_id, :uniqueness => true
+  validates   :code, :uniqueness => true
   
   def deleteable?
     self.product_warehouse_setups.empty? and self.allocation_strategy_rules.empty? and self.product_location_assignments.empty?
