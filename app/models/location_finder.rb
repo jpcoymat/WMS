@@ -5,6 +5,8 @@ class LocationFinder
   attr_accessor :container
 
   def locate(*args)
+    exclude_location = args[:exclude]
+    
   end
 
   def get_matching_storage_strategy
