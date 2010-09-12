@@ -1,5 +1,5 @@
 <h3>Edit Storage Zone	</h3>
-	<% form_for :storage_zone, :url => {:controller => 'admin', :action => 'update_storage_zone'} do |form|	%>
+	<%= form_for :storage_zone, :url => {:controller => 'admin', :action => 'update_storage_zone'} do |form|	%>
 		<%= form.hidden_field :id	%>
 		<%= render :partial => 'storage_zone', :locals => {:form => form}	%>
 		<%= submit_tag "Update Storage Zone"	%>

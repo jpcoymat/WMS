@@ -1,6 +1,6 @@
 <h3>Location Look-up</h3>
 
-	<% form_for :location, :url => {:controller => 'admin', :action => 'locations'} do |form|	%>
+	<%= form_for :location, :url => {:controller => 'admin', :action => 'locations'} do |form|	%>
 		<table>
 			<tr><td>Location Type	</td>	
 				<td><%= form.select :location_type_id, @warehouse.location_types.collect {|lt| [lt.code, lt.id]}, :include_blank => true	%>	</td>	

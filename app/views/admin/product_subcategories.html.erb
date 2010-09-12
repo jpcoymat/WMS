@@ -15,7 +15,7 @@
 	<% end %>
 	<br><br><hr>
 	<h4>Create New Product Category<h4>
-		<% form_for :product_subcategory, :url => {:controller => 'admin', :action => 'create_product_subcategory'} do |form| %>
+		<%= form_for :product_subcategory, :url => {:controller => 'admin', :action => 'create_product_subcategory'} do |form| %>
 			<%= form.hidden_field :company_id, :value => User.first(session[:user_id]).warehouse.company_id %>
 			<%= form.hidden_field :product_category_id, :value => @product_category.id %>
 			<table>

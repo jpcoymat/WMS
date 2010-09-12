@@ -13,7 +13,7 @@
 		</table>
 	<% end %>
 	<br><br><hr><br>
-	<% form_for :dock_door, :url => {:controller => 'admin', :action => 'create_dock_door'} do |form|	%>
+	<%= form_for :dock_door, :url => {:controller => 'admin', :action => 'create_dock_door'} do |form|	%>
 		<%= form.hidden_field	:warehouse_id, :value => @warehouse.id	%>
 		<%= render :partial => 'dock_door', :locals => {:form => form}	%>
 		<%= submit_tag "Create Dock Door"								%>

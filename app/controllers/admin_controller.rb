@@ -8,7 +8,7 @@ class AdminController < ApplicationController
 
   def new_company
     @company = Company.new
-    @countries = Country.all(:order => 'code')
+    @countries = Country.all(:order => 'name')
   end
 
   def view_company
@@ -36,7 +36,7 @@ class AdminController < ApplicationController
 
   def edit_company
     @company = Company.find(params[:company])
-    @countries = Country.all(:order => 'code')
+    @countries = Country.all(:order => 'name')
     @quantity_uoms = QuantityUom.all(:conditions => "company_id = #{@company.id} ")
     @weight_uoms = Uom.all(:conditions => "company_id = #{@company.id} ")
     @dimension_uoms = Uom.all(:conditions => "company_id = #{@company.id} ")    

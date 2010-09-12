@@ -20,7 +20,7 @@
 	<% end %>
 	<br><br><hr><br>
 	<h4>Create new supplier	</h4>
-		<% form_for :supplier, :url => {:controller => 'admin', :action => 'create_supplier'} do |form| %>
+		<%= form_for :supplier, :url => {:controller => 'admin', :action => 'create_supplier'} do |form| %>
 			<%= form.hidden_field	:company_id, :value => User.find(session[:user_id]).company.id	%>
 			<%= render :partial => 'supplier', :locals => {:form => form }%>
 			<%= submit_tag "Create Supplier"	%>

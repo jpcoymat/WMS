@@ -1,6 +1,6 @@
 <h1>Receipts</h1>
 <p>Please enter your search criteria.</p>
-	<% form_for :receipt_search_criteria, :url => {:controller => 'receiving', :action => 'receipts'} do |form|	%>
+	<%= form_for :receipt_search_criteria, :url => {:controller => 'receiving', :action => 'receipts'} do |form|	%>
 		<table>
 			<tr><td>Supplier		</td>	<td><%= form.select :supplier_id, @warehouse.company.suppliers.collect {|s| [s.name, s.id]}, :include_blank => true				%>	</td>
 				<td>Receipt Type	</td>	<td><%= form.select :receipt_type_id, @warehouse.company.receipt_types.collect {|rt| [rt.name, rt.id]}, :include_blank => true	%>	</td>

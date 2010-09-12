@@ -1,6 +1,6 @@
 <h2>Replenishment Locations	</h2>
 
-	<% form_for :location, :url => {:controller => 'admin', :action=> 'replenishment_locations'} do |form|	%>
+	<%= form_for :location, :url => {:controller => 'admin', :action=> 'replenishment_locations'} do |form|	%>
 		<table>
 			<tr><td>Location				</td>	<td><%= form.text_field	:location																										%>	</td></tr>
 			<tr><td>Allocation Zone			</td>	<td><%= form.select :allocation_zone_id, @warehouse.allocation_zones.collect {|az| [az.name, az.id]}, :include_blank => true 			%>	</td></tr>

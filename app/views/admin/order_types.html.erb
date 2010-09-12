@@ -15,7 +15,7 @@
 	<% end %>
 	<br><br><hr><br>
 	<h3>Create New Order Type	</h3>
-	<% form_for :order_type, :url => {:controller => 'admin', :action => 'create_order_type'} do |form|		%>
+	<%= form_for :order_type, :url => {:controller => 'admin', :action => 'create_order_type'} do |form|		%>
 		<%= form.hidden_field :company_id, :value => @warehouse.company.id	%>
 		<table>
 			<tr><td>Order Type					</td>	<td><%= form.text_field :order_type			%>	</td></tr>

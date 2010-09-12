@@ -15,7 +15,7 @@
 		</table>
 	<% end %>
 	<br><br><hr><br>
-	<% form_for :user, :url => {:controller => 'admin', :action => 'create_user'} do |form|	%>
+	<%= form_for :user, :url => {:controller => 'admin', :action => 'create_user'} do |form|	%>
 		<%= form.hidden_field :warehouse_id, :value => @warehouse.id	%>
 		<%= render :partial => 'user', :locals => {:form => form 	}	%>
 		<table>

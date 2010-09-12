@@ -22,7 +22,7 @@
 	
 	<br><br><hr><br>
 	<h3>Create New Product Location Assignment	</h3>
-	<% form_for :product_location_assignment, :url => {:controller => 'admin', :action => 'create_product_location_assignment'} do |form|	%>
+	<%= form_for :product_location_assignment, :url => {:controller => 'admin', :action => 'create_product_location_assignment'} do |form|	%>
 		<%= form.hidden_field	:warehouse_id,	:value => @warehouse.id			%>
 		<%= form.hidden_field 	:location_id, 	:value => @location.id			%>
 		<table>

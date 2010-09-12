@@ -15,7 +15,7 @@
 	<% end %>
 	<br><br><hr><br>
 	<h3>Create New Product Status	</h3>
-		<% form_for :product_status, :url => {:controller => 'admin', :action => 'create_product_status'} do |form|	%>
+		<%= form_for :product_status, :url => {:controller => 'admin', :action => 'create_product_status'} do |form|	%>
 			<%= form.hidden_field	:company_id, :value => @company.id			%>
 			<%= render :partial => 'product_status', :locals => {:form => form}	%>
 			<%= submit_tag "Create Product Status"								%>

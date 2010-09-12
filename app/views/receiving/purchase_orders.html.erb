@@ -1,7 +1,7 @@
 <h1>Purchase Orders</h1>
 <p>Please enter your search criteria	</p>
 
-	<% form_for :purchase_order_criteria, :url => {:controller => 'receiving', :action => 'purchase_orders'} do |form|	%>
+	<%= form_for :purchase_order_criteria, :url => {:controller => 'receiving', :action => 'purchase_orders'} do |form|	%>
 	<table>
 		<tr><td>Purchase Order Type	</td>	<td><%= form.select :purchase_order_type_id, @company.purchase_order_types.collect {|pt| [pt.purchase_order_type, pt.id]}, :include_blank => true	%>	</td>
 			<td>Supplier			</td>	<td><%= form.select :supplier_id, @company.suppliers.collect {|s| [s.name, s.id]}, :include_blank => true									%>	</td>

@@ -1,6 +1,6 @@
 <h3>New Product</h3>
 
-	<% form_for :product, :url => {:controller => 'admin', :action => 'create_product'} do |form| %>
+	<%= form_for :product, :url => {:controller => 'admin', :action => 'create_product'} do |form| %>
 		<%= form.hidden_field :company_id, :value => User.find(session[:user_id]).company.id %>
 		<%= render :partial => "product", :locals => {:form => form }%>
 		<%= submit_tag "Add Product"%>

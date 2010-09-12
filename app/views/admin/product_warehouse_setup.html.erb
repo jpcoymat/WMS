@@ -20,7 +20,7 @@
 	
 	<br><br><hr><br>
 	<h4>Create New Product Warehouse Setup</h4>
-		<% form_for :product_warehouse_setup, :url => {:controller => 'admin', :action => 'create_product_warehouse_setup'}	do |form| %>
+		<%= form_for :product_warehouse_setup, :url => {:controller => 'admin', :action => 'create_product_warehouse_setup'}	do |form| %>
 			<%= form.hidden_field	:product_id, :value => @product.id	%>
 			<%= render :partial => 'product_warehouse_setup', :locals => {:form => form}	%>
 			<%= submit_tag "Create Whse Setup"	%>

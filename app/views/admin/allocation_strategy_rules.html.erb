@@ -21,7 +21,7 @@
 	<% end %>
 	<br><br><hr><br>
 	<h4>Create New Allocation Strategy Rule	</h4>
-		<% form_for :allocation_strategy_rule, :url => {:controller => 'admin', :action => 'create_allocation_strategy_rule'} do |form|	%>
+		<%= form_for :allocation_strategy_rule, :url => {:controller => 'admin', :action => 'create_allocation_strategy_rule'} do |form|	%>
 			<%= form.hidden_field :warehouse_id, :value => @warehouse.id	%>
 			<%= render :partial => 'allocation_strategy_rule', :locals => {:form => form}	%>
 			<%= submit_tag "Create Rule"%>

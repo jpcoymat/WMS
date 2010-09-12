@@ -1,5 +1,5 @@
 <h3>Add Locations</h3>
-	<% form_for :location_type, :url => {:controller => 'admin', :action => 'add_locations'} do |form|	%>
+	<%= form_for :location_type, :url => {:controller => 'admin', :action => 'add_locations'} do |form|	%>
 		<table>
 			<tr><td>Location Type	</td>	<td><%= form.select :id, @location_types.collect {|lt| [lt.code, lt.id]}	%>	</td></tr>
 		</table>
@@ -19,7 +19,7 @@
 		</table>
 		<br><br>
 		<h4>Location Range</h4>
-		<% form_for :locations, :url => {:controller =>	'admin', :action => 'create_locations'} do |form|	%>
+		<%= form_for :locations, :url => {:controller =>	'admin', :action => 'create_locations'} do |form|	%>
 			<%= form.hidden_field :location_type_id, 	:value => @location_type.id	%>
 			<%= form.hidden_field :warehouse_id, 		:value => @warehouse.id		%>
 				<%= form.hidden_field :location_type_id, :value => @location_type.id	%>

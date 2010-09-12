@@ -17,7 +17,7 @@
 		</table>
 	<% end %>
 	<br><br><hr><br>
-	<% form_for :storage_strategy_line, :url => {:controller => 'admin', :action => 'create_storage_strategy'} do |form|	%>
+	<%= form_for :storage_strategy_line, :url => {:controller => 'admin', :action => 'create_storage_strategy'} do |form|	%>
 		<%= form.hidden_field :warehouse_id, :value => @warehouse.id			%>
 		<%= render :partial => 'storage_strategy', :locals => {:form => form}	%>
 		<%= submit_tag "Create Storage Strategy"								%>

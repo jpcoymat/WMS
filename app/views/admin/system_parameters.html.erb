@@ -1,6 +1,6 @@
 <h1>System Parameter Maintenance</h1>
 <p>Please enter your search criteria</p>
-	<% form_for :system_parameter, :url => {:controller => 'admin', :action => 'system_parameters'} do |form| %>
+	<%= form_for :system_parameter, :url => {:controller => 'admin', :action => 'system_parameters'} do |form| %>
 		<table>
 			<tr><td>Parameter Code 			</td>	<td><%= form.text_field :code %>		</td>
 				<td>Parameter Description	</td>	<td><%= form.text_field :description %>	</td>

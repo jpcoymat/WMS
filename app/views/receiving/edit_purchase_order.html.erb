@@ -1,5 +1,5 @@
 <h1>Edit Purchase Order	</h1>
-	<% form_for :purchase_order, :url => {:controller => 'receiving', :action => 'update_purchase_order'} do |form|	%>
+	<%= form_for :purchase_order, :url => {:controller => 'receiving', :action => 'update_purchase_order'} do |form|	%>
 		<%= form.hidden_field :id											%>
 		<%= render :partial => 'purchase_order', :locals => {:form => form}	%>
 		<%= submit_tag "Update Purchase Order"								%>

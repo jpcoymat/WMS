@@ -23,7 +23,7 @@
 		</table>
 	<% end %>
 	<br><br><hr><br>
-	<% form_for :allocation_strategy_line, :url => {:controller => 'admin', :action => 'create_allocation_strategy_line'} do |form|	%>
+	<%= form_for :allocation_strategy_line, :url => {:controller => 'admin', :action => 'create_allocation_strategy_line'} do |form|	%>
 		<%= form.hidden_field :allocation_strategy_id, :value => @allocation_strategy.id	%>
 		<%= render :partial => 'allocation_strategy_line', :locals => {:form => form}		%>
 		<%= submit_tag "Add Allocation Line"	%>

@@ -3,7 +3,7 @@
 	<p>
 		Please enter search criteria for product lookup.
 	</p>
-	<% form_for :product, :url => {:controller => 'admin', :action => 'products'} do |form| %>
+	<%= form_for :product, :url => {:controller => 'admin', :action => 'products'} do |form| %>
 		<table>
 			<tr><td>Product Category	</td>	<td><%= form.select :product_category_id, @company.product_categories.collect {|pc| [pc.name, pc.id]}, :include_blank => true 			%></td>
 				<td>Product Subcategory	</td>	<td><%= form.select :product_subcategory_id, @company.product_subcategories.collect {|ps| [ps.name, ps.id]}, :include_blank => true 	%></td>

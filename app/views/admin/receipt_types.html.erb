@@ -14,7 +14,7 @@
 		</table>
 	<% end %>
 	<br><br><hr><br>
-	<% form_for :receipt_type, :url => {:controller => 'admin', :action => 'create_receipt_type'} do |form|	%>
+	<%= form_for :receipt_type, :url => {:controller => 'admin', :action => 'create_receipt_type'} do |form|	%>
 		<%= form.hidden_field :company_id, :value => @company.id			%>
 		<%= render :partial => 'receipt_type', :locals => {:form => form}	%>
 		<%= submit_tag "Create Receipt Type"								%>

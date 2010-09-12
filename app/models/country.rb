@@ -2,6 +2,6 @@ class Country < ActiveRecord::Base
 
   has_many :companies
 
-  validates	:name, :code, :presence => true
+  validates	:name, :iso_code, :presence => true
 
 end

@@ -14,7 +14,7 @@
 		</table>
 	<% end %>
 	<br><br><hr><br>
-	<% form_for :purchase_order_type, :url => {:controller => 'admin', :action => 'create_purchase_order_type'} do |form|	%>
+	<%= form_for :purchase_order_type, :url => {:controller => 'admin', :action => 'create_purchase_order_type'} do |form|	%>
 		<%= form.hidden_field	:company_id, :value => @warehouse.company.id	%>
 		<table>
 			<tr><td>Purchase Order Type		</td>	<td><%= form.text_field :purchase_order_type		%>	</td></tr>

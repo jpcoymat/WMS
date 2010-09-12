@@ -21,7 +21,7 @@
 		<p> No product packages have been defined for this product</p>
 	<% end %>
 	<br><br><hr><br>
-	<% form_for :product_package, :url => {:controller => 'admin', :action => 'create_product_package'} do |form| %>
+	<%= form_for :product_package, :url => {:controller => 'admin', :action => 'create_product_package'} do |form| %>
 		<%= form.hidden_field :product_id, :value => @product.id %>
 		<%= render :partial => 'product_package', :locals => {:form => form } %>
 		<%= submit_tag "Create Product Package"%>
