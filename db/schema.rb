@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100911190057) do
+ActiveRecord::Schema.define(:version => 20100912012716) do
 
   create_table "allocation_strategies", :force => true do |t|
     t.string   "name",         :limit => 25, :null => false
@@ -81,13 +81,14 @@ ActiveRecord::Schema.define(:version => 20100911190057) do
   end
 
   create_table "assignments", :force => true do |t|
-    t.integer  "assignment_type_id",                   :null => false
+    t.integer  "assignment_type_id",                                 :null => false
     t.integer  "user_id"
     t.date     "start_timestamp"
     t.date     "finish_timestamp"
-    t.boolean  "released_flag",      :default => true, :null => false
+    t.boolean  "released_flag",                    :default => true, :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "state",              :limit => 50,                   :null => false
   end
 
   create_table "companies", :force => true do |t|
@@ -140,6 +141,7 @@ ActiveRecord::Schema.define(:version => 20100911190057) do
     t.string   "container_location_type", :limit => 25,                               :null => false
     t.integer  "container_location_id",                                               :null => false
     t.integer  "parent_container_id"
+    t.string   "state",                   :limit => 50,                               :null => false
   end
 
   create_table "countries", :force => true do |t|
@@ -270,6 +272,7 @@ ActiveRecord::Schema.define(:version => 20100911190057) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "company_id"
+    t.string   "state",            :limit => 50, :null => false
   end
 
   create_table "product_categories", :force => true do |t|
@@ -379,6 +382,7 @@ ActiveRecord::Schema.define(:version => 20100911190057) do
     t.integer  "purchase_order_type_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "state",                  :limit => 50, :null => false
   end
 
   create_table "receipt_lines", :force => true do |t|
@@ -424,6 +428,7 @@ ActiveRecord::Schema.define(:version => 20100911190057) do
     t.integer  "dock_door_id",                 :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "state",          :limit => 50, :null => false
   end
 
   create_table "storage_strategies", :force => true do |t|

@@ -7,6 +7,10 @@ gem 'rails', '>= 3.0.0'
 
 gem 'pg'
 
+#plugins 
+gem 'acts_as_tree'
+gem 'acts_as_state_machine' 
+
 # Use unicorn as the web server
 gem 'unicorn'
 

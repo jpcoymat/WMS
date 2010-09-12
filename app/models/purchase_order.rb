@@ -10,19 +10,15 @@ class PurchaseOrder < ActiveRecord::Base
   has_many      :receipt_lines, :as => :purchase_order_object
   has_many      :purchase_order_lines
   
+  acts_as_state_machine :initial => :created
+
+  state :created
+  state :receiving_started
+  state :closed
+  
+
   def editable?
-    @editable = true
-    if self.receipt_lines.empty?
-      self.purchase_order_lines.each do |purchase_order_line|
-        if purchase_order_line.receipt_lines.count > 0
-          @editable = false
-          break
-        end
-      end
-    else
-      @editable = false
-    end
-    @editable
+    self.state == 'created'
   end
 
   def total_quantity
@@ -32,6 +28,14 @@ class PurchaseOrder < ActiveRecord::Base
     end
     ordered_quantity
   end
-  
+ 
+  def received_quantity
+	@received_quantity = 0
+	#first adding receipt lines against self
+	self.receipt_lines.each do |receipt_line|
+		@received_quantity += receipt_line.quantity	
+	end
+	@received_quantity
+  end 
 
 end

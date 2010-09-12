@@ -1,6 +1,6 @@
 class ReceiptLine < ActiveRecord::Base
 
-  validates	:receipt_id, :lp, :product_id, :product_package_id, :lot_id, :quantity, :presence
+  validates	:receipt_id, :lp, :product_id, :product_package_id, :lot_id, :quantity, :presence => true
   validates	:lp, :uniqueness => true
   validates	:quantity, :numericality => {:greater_than_or_equal_to => 1}
 

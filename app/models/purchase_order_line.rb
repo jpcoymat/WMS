@@ -21,5 +21,9 @@ class PurchaseOrderLine < ActiveRecord::Base
     @received_quantity
   end
 
+
+  def editable?
+	self.purchase_order.editable?
+  end
   
 end
