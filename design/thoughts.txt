@@ -3,4 +3,24 @@ Single Table Inheritance:
 	Useful for UOMs (Quantity, Volume, Length, Mass, etc.)
 	Useful for Replenishment locations (just one kind of subclassed object called ReplenishmentLocation
 	Useful for differente Assignment Types (Putaway, Cycle Counting, Picking, Loading, etc.)
+Singleton approach for the LocationFinder engine and Allocation engine.  Will need to manage queues (could also be separate classes) to multiple requests for multiple users.  Maybe something like:
+
+require 'singleton'
+class LocationFinder
+   include singleton
+
+   def locate(container, *args)
+   end	
+end
+
+require 'singleton'
+class LocationFinderQueue
+  include singleton
+  attr_accessor :container_queue 	
+  def add_to_queue(container)
+  end
+  def remove_from_queue(container)
+  end
+
+end
 

@@ -17897,3 +17897,80 @@ Started GET "/admin/edit_allocation_strategy?allocation_strategy=2" for 189.180.
 Rendered admin/_allocation_strategy.html.erb (0.9ms)
 Rendered admin/edit_allocation_strategy.html.erb within layouts/admin (44.7ms)
 Completed 200 OK in 164ms (Views: 47.3ms | ActiveRecord: 3.6ms)
+
+
+Started GET "/" for 189.180.16.52 at 2010-09-12 00:15:23 -0500
+  Processing by MainController#index as HTML
+  [1m[35mSQL (0.8ms)[0m   SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = '"users"'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+  [1m[36mSQL (0.7ms)[0m  [1m SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = '"users"'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+[0m
+  [1m[35mUser Load (0.4ms)[0m  SELECT "users".* FROM "users" WHERE ("users"."id" = 1) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "users".* FROM "users" WHERE ("users"."id" = 1) LIMIT 1[0m
+Rendered main/index.html.erb within layouts/main (6.2ms)
+Completed 200 OK in 75ms (Views: 9.1ms | ActiveRecord: 1.9ms)
+
+
+Started GET "/admin/system_parameters" for 189.180.16.52 at 2010-09-12 00:28:43 -0500
+  Processing by AdminController#system_parameters as HTML
+  [1m[35mSQL (0.7ms)[0m   SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = '"users"'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+  [1m[36mSQL (0.8ms)[0m  [1m SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = '"users"'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+[0m
+  [1m[35mUser Load (0.4ms)[0m  SELECT "users".* FROM "users" WHERE ("users"."id" = 1) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "users".* FROM "users" WHERE ("users"."id" = 1) LIMIT 1[0m
+Rendered admin/system_parameters.html.erb within layouts/admin (2.7ms)
+Completed 200 OK in 72ms (Views: 5.8ms | ActiveRecord: 1.9ms)
+
+
+Started POST "/admin/system_parameters" for 189.180.16.52 at 2010-09-12 00:28:45 -0500
+  Processing by AdminController#system_parameters as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"2fDTDg2NBidoIvNc6NsguUyXrk8q7Ub5O2zC8JKEGRo=", "system_parameter"=>{"code"=>"", "description"=>""}, "commit"=>"Search"}
+  [1m[35mSQL (0.7ms)[0m   SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = '"users"'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+  [1m[36mSQL (0.7ms)[0m  [1m SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = '"users"'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+[0m
+  [1m[35mUser Load (0.4ms)[0m  SELECT "users".* FROM "users" WHERE ("users"."id" = 1) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "users".* FROM "users" WHERE ("users"."id" = 1) LIMIT 1[0m
+  [1m[35mSQL (0.7ms)[0m   SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = '"system_parameters"'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+  [1m[36mSystemParameter Load (18.8ms)[0m  [1mSELECT "system_parameters".* FROM "system_parameters" WHERE ("system_parameters"."warehouse_id" = 1)[0m
+  [1m[35mSQL (0.7ms)[0m   SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = '"system_parameters"'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+Rendered admin/system_parameters.html.erb within layouts/admin (46.7ms)
+Completed 200 OK in 159ms (Views: 49.6ms | ActiveRecord: 22.1ms)
