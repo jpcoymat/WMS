@@ -22,15 +22,15 @@ class Company < ActiveRecord::Base
   validates	:name, :address_1, :city, :country_id, :presence => true
 
   def default_quantity_uom
-    @default_quantity_uom = Uom.find(self.default_quantity_uom_id)
+    @default_quantity_uom = QuantityUom.find(self.default_quantity_uom_id)
   end
   
   def default_weight_uom
-    @default_weight_uom = Uom.find(self.default_weight_uom_id)
+    @default_weight_uom = VolumeUom.find(self.default_weight_uom_id)
   end
 
   def default_length_uom
-    @default_length_uom = Uom.find(self.default_length_uom_id)
+    @default_length_uom = DimensionUom.find(self.default_length_uom_id)
   end
 
   def create_uoms

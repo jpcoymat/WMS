@@ -1,7 +1,7 @@
 require 'singleton'
 
 class LocationFinderQueue
-  include singleton
+  include Singleton
 
   attr_accesor :containers
 

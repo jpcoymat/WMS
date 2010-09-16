@@ -72,9 +72,9 @@ class Container < ActiveRecord::Base
 
   def storage_attributes
     @storage_attributes = {}
-    @storage_attributes[:receipt_type_id] => @receipt_type.id
-    @storage_attributes[:product_category_id] => @product_category.id
-    @storage_attributes[:product_subcategory_id] => @product_subcategory.id 
+    @storage_attributes[:receipt_type_id] = @receipt_type.id
+    @storage_attributes[:product_category_id] = @product_category.id
+    @storage_attributes[:product_subcategory_id] = @product_subcategory.id 
       	
 
       

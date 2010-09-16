@@ -1,6 +1,6 @@
 require 'singleton'
 class LocationFinder
-  include singleton
+  include Singleton
 
   attr_accessor :container
 
