@@ -27,10 +27,9 @@ class Container < ActiveRecord::Base
     if self.container_contents.count == 1
       return @single_product 
     else
-      products = []
-      products << self.container_contents.first.product_id
+      product = self.container_contents.first.product
       self.container_contents.each do |container_content|
-	if products.include? container_content.product
+	if product == container_content.product
           nil
         else
           @single_product = false
@@ -46,16 +45,58 @@ class Container < ActiveRecord::Base
     if self.container_contents.count == 1
       @receipt_type = self.receipt_line.receipt.receipt_type 
     else
-      receipts = []
-      receipts << self.container_contents.first.receipt_line.receipt.receipt_type
-      
+      @receipt_type = self.receipt_line.receipt.receipt_type
+      self.container_contents.each do |container_content|   
+        container_content.receipt.receipt_type == @receipt_type ? @receipt_type = nil : nil
+      end
     end	
+    @receipt_type
   end
-  
+ 
+  def product_category
+    @product_category = nil
+    if single_product?
+      @product_category = self.container_contents.first.product.product_category
+    end	
+    @product_category
+  end
+ 
+  def product_subcategory
+    @product_subcategory = nil
+    if single_product?
+      @product_subcategory = self.container_contents.first.product.product_subcategory
+    end
+    @product_subcategory
+  end
+
+
   def storage_attributes
     @storage_attributes = {}
-    if self.single_product?
+    @storage_attributes[:receipt_type_id] => @receipt_type.id
+    @storage_attributes[:product_category_id] => @product_category.id
+    @storage_attributes[:product_subcategory_id] => @product_subcategory.id 
+      	
+
       
   end
+
+  def total_quantity(*args)
+    args[:product].nil? ? product = nil : product = Product.find(args[:product])
+    args[:product_status].nil? ? product_status = nil : product_status = ProductStatus.find(args[:product_status])
+    args[:lot].nil? ? lot = nil : lot = Lot.find(args[:lot])
+    @total_quantity = 0
+    unless self.children.empty?
+      self.children.each do |child_container|
+        @total += child_container.total_quantity :product_id => product, :product_status => product, :lot => lot
+      end
+    end
+    unless self.container_contents.empty?
+      self.container_contents.each do |container_content|
+	@total += container_content.quantity
+      end
+    end
+    @total_quantity
+  end
+
 
 end
