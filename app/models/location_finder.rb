@@ -10,6 +10,7 @@ class LocationFinder
   end
 
   def get_matching_storage_strategy
+
   end
 
   def evaluate_locations(storage_zone, *args)
