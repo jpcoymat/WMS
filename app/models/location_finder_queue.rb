@@ -3,10 +3,10 @@ require 'singleton'
 class LocationFinderQueue
   include Singleton
 
-  attr_accesor :containers
+  attr_accessor :containers
 
-  def push_container(container)
-    @location_finder = LocationFinder.new
+  def add_container(container)
+    @location_finder = LocationFinder.instance
     if @location_finder.container.nil?
       @location_finder.container = container
     else
@@ -14,9 +14,10 @@ class LocationFinderQueue
     end 
   end
 
-  def pop_container
-    unless self.containers.last.nil? 
-      @container = self.containers.pop
+  def get_next_container
+    unless self.containers.first.nil? 
+      @container = self.containers.first
+	  self.containers.delete_at(0)
       return @container
     else
       return nil	

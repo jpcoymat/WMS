@@ -1,7 +1,7 @@
 <h1>Welcome to WMS</h1>
 
 
-<% form_for :user_login, :url=>{:controller=>'login', :action=>'login'} do |form| %>
+<%= form_for :user_login, :url=>{:controller=>'login', :action=>'login'} do |form| %>
   <table>
     <tr><td align=right>Username	</td> <td><%= form.text_field :username %>		</td></tr>
     <tr><td align=right>Password  	</td> <td><%= form.password_field :password %>	</td></tr>

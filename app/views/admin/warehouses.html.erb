@@ -10,7 +10,7 @@
 					<td><%= warehouse.address_1																																	%>	</td>
 					<td><%= warehouse.city																																		%>	</td>
 					<td><%= warehouse.state																																		%>	</td>
-					<td><%= warehouse.country.code																																%>	</td>
+					<td><%= warehouse.country.iso_code																																%>	</td>
 					<td><%= link_to "View Details", :controller => 'admin', :action => 'view_warehouse', :warehouse => warehouse												%>	</td>
 					<td><%= link_to "Edit", :controller => 'admin', :action => 'edit_warehouse', :warehouse => warehouse														%>	</td>
 					<td><%= warehouse.deleteable? ? link_to("Delete", {:controller =>'admin', :action => 'delete_warehouse', :warehouse => warehouse}, :method => :post) : ""	%>	</td>
