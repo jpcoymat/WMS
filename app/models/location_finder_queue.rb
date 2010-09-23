@@ -14,6 +14,10 @@ class LocationFinderQueue
     end 
   end
 
+  def containers
+    @containers ||= []
+  end
+
   def get_next_container
     unless self.containers.first.nil? 
       @container = self.containers.first

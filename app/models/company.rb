@@ -26,7 +26,7 @@ class Company < ActiveRecord::Base
   end
   
   def default_weight_uom
-    @default_weight_uom = VolumeUom.find(self.default_weight_uom_id)
+    @default_weight_uom = WeightUom.find(self.default_weight_uom_id)
   end
 
   def default_length_uom

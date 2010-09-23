@@ -17,7 +17,7 @@ class LocationFinder
 
   def get_next_container
     @location_finder_queue = LocationFinderQueue.new
-    self.container = @location_finder_queue.pop_container
+    self.container = @location_finder_queue.get_next_container
   end
 
 end

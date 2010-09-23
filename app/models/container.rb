@@ -24,12 +24,12 @@ class Container < ActiveRecord::Base
 
   def singe_product?
     @single_product = true 
-    if self.container_contents.count == 1
+    if self.container_contents.count == 1 and self.children.empty?
       return @single_product 
     else
       product = self.container_contents.first.product
       self.container_contents.each do |container_content|
-	if product == container_content.product
+	    if product == container_content.product
           nil
         else
           @single_product = false
@@ -97,6 +97,10 @@ class Container < ActiveRecord::Base
     end
     @total_quantity
   end
-
+  
+  def supplier
+    @supplier = nil
+	
+  end
 
 end
