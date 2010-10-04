@@ -21,7 +21,7 @@ class LocationFinderQueue
   def get_next_container
     unless self.containers.first.nil? 
       @container = self.containers.first
-	  self.containers.delete_at(0)
+	    self.containers.delete_at(0)
       return @container
     else
       return nil	

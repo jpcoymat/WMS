@@ -8,7 +8,7 @@ class Product < ActiveRecord::Base
   belongs_to    :allocation_strategy
   belongs_to    :storage_strategy
   
-  has_many      :product_packages, :order => :quantity
+  has_many      :product_packages, :order => 'quantity DESC'
   has_many      :product_warehouse_setups
   has_many      :product_location_assignments
   

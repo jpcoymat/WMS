@@ -36,6 +36,9 @@ class Container < ActiveRecord::Base
           break
         end
       end
+      if @single_product and children
+        
+      end
       return @single_product	
     end
   end
@@ -75,7 +78,8 @@ class Container < ActiveRecord::Base
     @storage_attributes[:receipt_type_id] = @receipt_type.id
     @storage_attributes[:product_category_id] = @product_category.id
     @storage_attributes[:product_subcategory_id] = @product_subcategory.id 
-      	
+    uom ? @storage_attributes[:uom_id] = @uom.id : nil
+    
 
       
   end
@@ -85,14 +89,15 @@ class Container < ActiveRecord::Base
     args[:product_status].nil? ? product_status = nil : product_status = ProductStatus.find(args[:product_status])
     args[:lot].nil? ? lot = nil : lot = Lot.find(args[:lot])
     @total_quantity = 0
+    
+    unless self.container_contents.empty?
+      self.container_contents.each do |container_content|
+	      @total += container_content.quantity
+      end
+    end
     unless self.children.empty?
       self.children.each do |child_container|
         @total += child_container.total_quantity :product_id => product, :product_status => product, :lot => lot
-      end
-    end
-    unless self.container_contents.empty?
-      self.container_contents.each do |container_content|
-	@total += container_content.quantity
       end
     end
     @total_quantity
@@ -100,7 +105,23 @@ class Container < ActiveRecord::Base
   
   def supplier
     @supplier = nil
-	
+	  
   end
+
+
+  def uom
+    @uom = nil
+    container_quantity = total_quatity
+    if @single_product
+      product_packages = self.contaner_contents.first.product.product_packages
+      product_packages.each do |product_package|
+        if container_quantity >= product_package.quantity 
+          @uom = product_package.uom
+          break
+        end
+      end
+    end
+    @uom
+  end 
 
 end
