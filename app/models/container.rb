@@ -22,32 +22,45 @@ class Container < ActiveRecord::Base
   validates	:lp, :uniqueness => true
   validates	:lp, :container_location, :presence => true
 
-  def singe_product?
+  def single_product?
     @single_product = true 
     if self.container_contents.count == 1 and self.children.empty?
       return @single_product 
-    else
-      product = self.container_contents.first.product
+    elsif children.empty?
+      @product = self.container_contents.first.product
       self.container_contents.each do |container_content|
-	    if product == container_content.product
+      	if @product == container_content.product
           nil
         else
           @single_product = false
           break
         end
       end
-      if @single_product and children
-        
+      return @single_product
+    else
+      products = []
+      self.container_contents.each do |container_content|
+      	 products.include? container_content.product ? nil : products << container_content.product
       end
-      return @single_product	
+      if products.count == 1
+      	self.children.each do |child_container|
+      	  child_container.container_contents.each do |container_content|
+      	    products.include? container_content.product ? nil : products << container_content.product
+      	  end
+      	end
+      	products.count == 1 ? @single_product = true : @single_product = false
+      else
+      	@single_product = false
+      end
+      return @single_product
     end
   end
 
   def receipt_type 
     @receipt_type = nil	
-    if self.container_contents.count == 1
+    if self.container_contents.count == 1 and children.empty?
       @receipt_type = self.receipt_line.receipt.receipt_type 
-    else
+    elsif children.empty?
       @receipt_type = self.receipt_line.receipt.receipt_type
       self.container_contents.each do |container_content|   
         container_content.receipt.receipt_type == @receipt_type ? @receipt_type = nil : nil
@@ -88,11 +101,10 @@ class Container < ActiveRecord::Base
     args[:product].nil? ? product = nil : product = Product.find(args[:product])
     args[:product_status].nil? ? product_status = nil : product_status = ProductStatus.find(args[:product_status])
     args[:lot].nil? ? lot = nil : lot = Lot.find(args[:lot])
-    @total_quantity = 0
-    
+    @total_quantity = 0    
     unless self.container_contents.empty?
       self.container_contents.each do |container_content|
-	      @total += container_content.quantity
+	@total += container_content.quantity
       end
     end
     unless self.children.empty?
@@ -105,7 +117,10 @@ class Container < ActiveRecord::Base
   
   def supplier
     @supplier = nil
-	  
+    unless self.receipt_line.nil?
+       @supplier = self.receipt_line.receipt.supplier	    
+    end
+    @supplier
   end
 
 
