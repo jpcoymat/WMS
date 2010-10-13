@@ -92,7 +92,11 @@ class Container < ActiveRecord::Base
     @storage_attributes[:product_category_id] = @product_category.id
     @storage_attributes[:product_subcategory_id] = @product_subcategory.id 
     uom ? @storage_attributes[:uom_id] = @uom.id : nil
-    
+    @storage_attributes[:supplier_id] = @supplier.id
+
+  belongs_to  :supplier
+  belongs_to  :product_status
+  belongs_to  :purchase_order_type
 
       
   end
@@ -138,5 +142,30 @@ class Container < ActiveRecord::Base
     end
     @uom
   end 
+  
+  def product_status
+  	  @product_status = nil
+  	  if children.empty? and self.container_contents.count == 1
+  	  	  @product_status = self.container_contents.first.product_status
+  	  	  return @product_status
+  	  elsif children.emtpy?
+		  @product_status = self.container_contents.first.product_status	  	  
+  	  	  self.container_contents.each do |container_content|
+  	  	  	  @product_status == container_contents.product_status ? nil : @product_status = nil 
+  	  	  end
+  	  	  return @product_status
+  	  else
+  	  	  product_statuses = []
+  	  	  self.container_contents.each do |container_content|
+  	  	  	  product_statuses.include? container_content.product_status ? nil : product_statuses << container_content.product_status
+  	  	  end
+  	  	  unless product_statuses > 1
+  	  	  	  children.each do |child_container|
+  	  	  	  end
+  	  	  end
+  	  end
+  	  
+  end
+  	 
 
 end
