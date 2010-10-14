@@ -93,28 +93,25 @@ class Container < ActiveRecord::Base
     @storage_attributes[:product_subcategory_id] = @product_subcategory.id 
     uom ? @storage_attributes[:uom_id] = @uom.id : nil
     @storage_attributes[:supplier_id] = @supplier.id
-
-  belongs_to  :supplier
-  belongs_to  :product_status
-  belongs_to  :purchase_order_type
-
       
   end
 
+  def direct_quantity(criteria = {})
+  	  @direct_quantity = 0
+  	  self.container_contents.each do |container_content|
+  	  	  container_content.attributes_match?(criteria) ? @direct_quantity += container_content.quantity : nil
+  	  end
+  	  @direct_quantity
+  end
+  
+  
   def total_quantity(*args)
     args[:product].nil? ? product = nil : product = Product.find(args[:product])
     args[:product_status].nil? ? product_status = nil : product_status = ProductStatus.find(args[:product_status])
     args[:lot].nil? ? lot = nil : lot = Lot.find(args[:lot])
-    @total_quantity = 0    
-    unless self.container_contents.empty?
-      self.container_contents.each do |container_content|
-	@total += container_content.quantity
-      end
-    end
-    unless self.children.empty?
-      self.children.each do |child_container|
-        @total += child_container.total_quantity :product_id => product, :product_status => product, :lot => lot
-      end
+    @total_quantity = direct_quantity(args)	
+    children.each do |container|
+    	    @total_quantity += container.total_quantity(args)
     end
     @total_quantity
   end
