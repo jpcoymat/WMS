@@ -23,38 +23,21 @@ class Container < ActiveRecord::Base
   validates	:lp, :container_location, :presence => true
 
   def single_product?
-    @single_product = true 
-    if self.container_contents.count == 1 and self.children.empty?
-      return @single_product 
-    elsif children.empty?
-      @product = self.container_contents.first.product
-      self.container_contents.each do |container_content|
-      	if @product == container_content.product
-          nil
-        else
-          @single_product = false
-          break
-        end
-      end
-      return @single_product
-    else
-      products = []
-      self.container_contents.each do |container_content|
-      	 products.include? container_content.product ? nil : products << container_content.product
-      end
-      if products.count == 1
-      	self.children.each do |child_container|
-      	  child_container.container_contents.each do |container_content|
-      	    products.include? container_content.product ? nil : products << container_content.product
-      	  end
-      	end
-      	products.count == 1 ? @single_product = true : @single_product = false
-      else
-      	@single_product = false
-      end
-      return @single_product
-    end
+  	  @products == 1
   end
+  
+  def products
+  	  @products = []
+  	  self.container_contents.each do |container_content|
+  	  	  @products << container_content.product unless @products.include?(container_content.product)
+  	  end
+  	  children.each do |child_container|
+  	  	  @products << child_container.products
+  	  end
+  	  @products.flatten!
+  	  @products
+  end
+  
 
   def receipt_type 
     @receipt_type = nil	
