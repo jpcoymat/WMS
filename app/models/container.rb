@@ -29,53 +29,66 @@ class Container < ActiveRecord::Base
   def products
   	  @products = []
   	  self.container_contents.each do |container_content|
-  	  	  @products << container_content.product unless @products.include?(container_content.product)
+  	  	  @products << container_content.product unless @products.include?(container_content.product) || container_content.product.nil?
   	  end
   	  children.each do |child_container|
   	  	  @products << child_container.products
   	  end
   	  @products.flatten!
+  	  @products.uniq!
   	  @products
   end
   
 
-  def receipt_type 
-    @receipt_type = nil	
-    if self.container_contents.count == 1 and children.empty?
-      @receipt_type = self.receipt_line.receipt.receipt_type 
-    elsif children.empty?
-      @receipt_type = self.receipt_line.receipt.receipt_type
-      self.container_contents.each do |container_content|   
-        container_content.receipt.receipt_type == @receipt_type ? @receipt_type = nil : nil
+  def receipt_types
+    @receipt_types = []
+    self.container_contents.each do |container_content|
+      unless container_content.receipt_line.nil?
+        @receipt_types << container_content.receipt_line.receipt.receipt_type unless @receipt_types.include?(container_content.receipt_line.receipt.receipt_type) 
       end
-    end	
-    @receipt_type
-  end
- 
-  def product_category
-    @product_category = nil
-    if single_product?
-      @product_category = self.container_contents.first.product.product_category
-    end	
-    @product_category
-  end
- 
-  def product_subcategory
-    @product_subcategory = nil
-    if single_product?
-      @product_subcategory = self.container_contents.first.product.product_subcategory
     end
-    @product_subcategory
+    children.each do |child_container|
+      @receipt_types << child_container.receipt_types
+    end
+    @receipt_types.flatten!
+    @receipt_types.uniq!
+    @receipt_types
+  end
+ 
+  def product_categories
+    @product_categories = []
+    self.container_contents.each do |container_content|
+      @product_categories << container_content.product.product_category unless @product_categories.include?(container_content.product.product_category) || container_content.product.product_category.nil? 
+    end
+    children.each do |child_container|
+      @product_categories << child_containe.product_categories
+    end
+    @product_categories.flatten!
+    @product_categories.uniq!
+    @product_categories
+  end
+ 
+  def product_subcategories
+    @product_subcategories = []
+    self.container_contents.each do |container_content|
+      @product_subcategories << container_content.product.product_category unless @product_subcategories.include?(container_content.product.product_category) || container_content.product.product_category.nil? 
+    end
+    children.each do |child_container|
+      @product_subcategories << child_containe.product_subcategories
+    end
+    @product_subcategories.flatten!
+    @product_subcategories.uniq!
+    @product_subcategories
   end
 
 
   def storage_attributes
     @storage_attributes = {}
-    @storage_attributes[:receipt_type_id] = @receipt_type.id
-    @storage_attributes[:product_category_id] = @product_category.id
-    @storage_attributes[:product_subcategory_id] = @product_subcategory.id 
+    receipt_types.count ==1 ? @storage_attributes[:receipt_type_id] = @receipt_types.first.id : nil
+    product_categories.count == 1 ? @storage_attributes[:product_category_id] = @product_categories.first.id : nil
+    product_subcategories.coun == 1 ? @storage_attributes[:product_subcategory_id] = @product_subcategories.first.id : nil 
     uom ? @storage_attributes[:uom_id] = @uom.id : nil
-    @storage_attributes[:supplier_id] = @supplier.id
+    supplier ? @storage_attributes[:supplier_id] = supplier.id : nil
       
   end
 
@@ -99,11 +112,22 @@ class Container < ActiveRecord::Base
     @total_quantity
   end
   
+  def receipts
+    @receipts = []
+    self.container_contents.each do |container_content| 
+      unless container_content.receipt_line.nil?
+        @receipts << container_content.receipt_line.receipt unless @receipts.include?(container_content.receipt_line.receipt)
+      end
+    end
+    children.each {|child_container| @receipts << child_container.receipts}
+    @receipts.flatten!
+    @receipts.uniq!
+    @receipts
+  end
+  
   def supplier
     @supplier = nil
-    unless self.receipt_line.nil?
-       @supplier = self.receipt_line.receipt.supplier	    
-    end
+    @supplier = receipts.first.supplier if receipts.count == 1
     @supplier
   end
 

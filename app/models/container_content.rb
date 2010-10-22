@@ -7,8 +7,8 @@ class ContainerContent < ActiveRecord::Base
   belongs_to    :receipt_line
   belongs_to    :order_line
   
-  validates	:quantity, :container_id, :product_id, :presence => true 
-  validates     :quantity, :numericality => {:greater_than_or_equal_to => 1}
+  validates :quantity, :container_id, :product_id, :presence => true 
+  validates :quantity, :numericality => {:greater_than_or_equal_to => 1}
 
 
   def attributes_match?(content_attributes)
