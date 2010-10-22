@@ -41,7 +41,7 @@ class LocationFinder
 
   def find_location(storage_zone)
     @storage_location = nil
-    locations = Location.where(:warehouse_id => @warehouse.id, :storage_zone =>storage_zone.id).order(:storage_travel_sequence).all
+    locations = Location.where(:warehouse_id => @warehouse.id, :storage_zone =>storage_zone.id, :available_for_storage => true).order(:storage_travel_sequence).all
     index = 0
     while @storage_location.nil?
       location = locations[index]
