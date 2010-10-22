@@ -22,5 +22,26 @@ class ContainerContent < ActiveRecord::Base
     return attributes_match
   end
 
+  def product_package
+    @product_package = nil
+    self.product.product_packages.each do |product_package| 
+      if self.quantity % product_package.quantity == 0
+        @product_package = product_package
+        break
+      end
+    end
+    @product_package
+  end
+  
+  def uom
+    @uom = @product_package.uom unless @product_package.nil?
+  end
+
+  def uom_quantity
+    @product_package = product_package
+    @uom_quantity = (self.quantity/@product_package.quantity).ceil
+    @uom_quantity
+  end
+
 
 end

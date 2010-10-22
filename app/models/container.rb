@@ -93,11 +93,11 @@ class Container < ActiveRecord::Base
   end
 
   def direct_quantity(criteria = {})
-  	  @direct_quantity = 0
-  	  self.container_contents.each do |container_content|
-  	  	  container_content.attributes_match?(criteria) ? @direct_quantity += container_content.quantity : nil
-  	  end
-  	  @direct_quantity
+  	@direct_quantity = 0
+  	self.container_contents.each do |container_content|
+  	  @direct_quantity += container_content.quantity if container_content.attributes_match?(criteria)
+  	end
+  	@direct_quantity
   end
   
   
@@ -107,7 +107,7 @@ class Container < ActiveRecord::Base
     args[:lot].nil? ? lot = nil : lot = Lot.find(args[:lot])
     @total_quantity = direct_quantity(args)	
     children.each do |container|
-    	    @total_quantity += container.total_quantity(args)
+    	@total_quantity += container.total_quantity(args)
     end
     @total_quantity
   end
@@ -138,7 +138,7 @@ class Container < ActiveRecord::Base
     if @single_product
       product_packages = self.contaner_contents.first.product.product_packages
       product_packages.each do |product_package|
-        if container_quantity >= product_package.quantity 
+        if total_quantity >= product_package.quantity 
           @uom = product_package.uom
           break
         end
@@ -148,28 +148,33 @@ class Container < ActiveRecord::Base
   end 
   
   def product_status
-  	  @product_status = nil
-  	  if children.empty? and self.container_contents.count == 1
-  	  	  @product_status = self.container_contents.first.product_status
-  	  	  return @product_status
-  	  elsif children.emtpy?
-		  @product_status = self.container_contents.first.product_status	  	  
-  	  	  self.container_contents.each do |container_content|
-  	  	  	  @product_status == container_contents.product_status ? nil : @product_status = nil 
-  	  	  end
-  	  	  return @product_status
-  	  else
-  	  	  product_statuses = []
-  	  	  self.container_contents.each do |container_content|
-  	  	  	  product_statuses.include? container_content.product_status ? nil : product_statuses << container_content.product_status
-  	  	  end
-  	  	  unless product_statuses > 1
-  	  	  	  children.each do |child_container|
-  	  	  	  end
-  	  	  end
-  	  end
-  	  
   end
   	 
+  def total_volume
+    @total_volume = 0
+    self.container_contents.each do |container_content|
+      @total_volume += container_content.uom_quantity*container_content.product_package.volume
+    end
+    children.each do |child_container|
+      @total_volume = child_container.total_volume
+    end
+  end  
+
+
+
+  def total_length
+    
+  end
+  
+  def total_weight
+    @total_weight = 0
+    self.container_contents.each do |container_content|
+      @total_weight += container_content.uom_quantity*container_content.product_package.weigth
+    end
+    children.each do |child_container|
+      @total_weight = child_container.total_weight
+    end    
+  end
+  
 
 end

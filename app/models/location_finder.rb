@@ -17,7 +17,8 @@ class LocationFinder
       rule_match = true
   	  storage_strategy_rule.match_criteria.each do |k,v|
   	    unless v == @container.storage_attributes[k]
-  	      rule_match 0= false
+  	      rule_match == false
+  	      break
 	      end
       end
 	    if rule_match
@@ -39,7 +40,15 @@ class LocationFinder
   end
 
   def find_location(storage_zone)
-    Location
+    @storage_location = nil
+    locations = Location.where(:warehouse_id => @warehouse.id, :storage_zone =>storage_zone.id).order(:storage_travel_sequence).all
+    index = 0
+    while @storage_location.nil?
+      location = locations[index]
+      
+      index+=1
+    end
+      
   end
 
 end

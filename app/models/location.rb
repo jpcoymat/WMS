@@ -31,7 +31,9 @@ class Location < ActiveRecord::Base
     @volume = self.location_type.volume 
   end
   
-  
+  def container_fits?(container)
+    
+  end
   
 
 end
