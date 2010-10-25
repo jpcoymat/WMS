@@ -92,12 +92,12 @@ class Container < ActiveRecord::Base
       
   end
 
-  def direct_quantity(criteria = {})
-  	@direct_quantity = 0
+  def content_quantity(criteria = {})
+  	@content_quantity = 0
   	self.container_contents.each do |container_content|
-  	  @direct_quantity += container_content.quantity if container_content.attributes_match?(criteria)
+  	  @content_quantity += container_content.quantity if container_content.attributes_match?(criteria)
   	end
-  	@direct_quantity
+  	@content_quantity
   end
   
   
@@ -105,7 +105,7 @@ class Container < ActiveRecord::Base
     args[:product].nil? ? product = nil : product = Product.find(args[:product])
     args[:product_status].nil? ? product_status = nil : product_status = ProductStatus.find(args[:product_status])
     args[:lot].nil? ? lot = nil : lot = Lot.find(args[:lot])
-    @total_quantity = direct_quantity(args)	
+    @total_quantity = content_quantity(args)	
     children.each do |container|
     	@total_quantity += container.total_quantity(args)
     end
@@ -149,28 +149,33 @@ class Container < ActiveRecord::Base
   
   def product_status
   end
+
+  def content_volume
+    @content_volume = 0
+    self.container_content.each do |container_content|
+      @content_volume += container_content.uom_quantity*container_content.product_package.volume
+    end
+    @content_volume
+  end
   	 
   def total_volume
-    @total_volume = 0
-    self.container_contents.each do |container_content|
-      @total_volume += container_content.uom_quantity*container_content.product_package.volume
-    end
+    @total_volume = content_volume
     children.each do |child_container|
-      @total_volume = child_container.total_volume
+      @total_volume += child_container.total_volume
     end
   end  
 
-
-
-  def total_length
-    
+  def direct_weight
+    @direct_weight = 0
+    self.container_contents.each do |cotnainer_content|
+      @direct_wegiht += container_content.uom_quantity*container_content.product_package.weight
+    end
+    @direct_weight
   end
+
   
   def total_weight
-    @total_weight = 0
-    self.container_contents.each do |container_content|
-      @total_weight += container_content.uom_quantity*container_content.product_package.weigth
-    end
+    @total_weight = direct_weight
     children.each do |child_container|
       @total_weight = child_container.total_weight
     end    

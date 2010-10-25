@@ -43,12 +43,14 @@ class LocationFinder
     @storage_location = nil
     locations = Location.where(:warehouse_id => @warehouse.id, :storage_zone =>storage_zone.id, :available_for_storage => true).order(:storage_travel_sequence).all
     index = 0
-    while @storage_location.nil?
+    while @storage_location.nil? and index < locations.count
       location = locations[index]
-      
+      if location.container_fits?(container)
+        @storeage_loation = location
+      end
       index+=1
     end
-      
+    @storage_location  
   end
 
 end

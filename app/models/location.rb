@@ -19,9 +19,7 @@ class Location < ActiveRecord::Base
     for i in (1 .. self.location_type.components.count)
       if self.location_type.attributes[ self.location_type.components[i]]
         @name += self.attributes[self.location_type.components[i]]
-        unless self.location_type.lowest_component ==  self.location_type.components[i]
-          @name += "-"
-        end
+        @name += "-" unless self.location_type.lowest_component ==  self.location_type.components[i]
       end
     end
     self.name = @name
@@ -31,8 +29,42 @@ class Location < ActiveRecord::Base
     @volume = self.location_type.volume 
   end
   
+  def occupied_volume
+    @occupied_volume = 0
+    self.containers.each do |container|
+      @occupied_volume += container.direct_weight
+    end
+    @occupied_volume
+  end
+  
+  def occupied_weight
+    @occupied_weight = 0
+    self.containers.each do |container|
+      @occupied_volume += container.direct_weight
+    end
+  end
+  
+  def available_volume
+    @available_volume = self.location_type.volume - occupied_volume
+  end
+  
+  def available_weight
+    @available_weight = self.location_type.maximum_weight - occupied_weight
+  end
+  
+  def current_topmost_containers
+    @current_topmost_containers = 0
+    self.containers.each {|container| @current_topmost_containers += 1 if container.parent_container.nil?}
+    @current_topmost_containers
+  end
+  
+  
   def container_fits?(container)
-    
+    @container_fits? = true
+    if container.total_weight > available_weight || container.total_volume > available_volume || (self.location_type.maximum_containers <= current_topmost_containers || !(self.location_type.collapse.containers))
+      @container_fits? = false 
+    end
+    @container_fits
   end
   
 
