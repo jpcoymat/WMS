@@ -60,9 +60,9 @@ class Location < ActiveRecord::Base
   
   
   def container_fits?(container)
-    @container_fits? = true
+    @container_fits = true
     if container.total_weight > available_weight || container.total_volume > available_volume || (self.location_type.maximum_containers <= current_topmost_containers || !(self.location_type.collapse.containers))
-      @container_fits? = false 
+      @container_fits = false 
     end
     @container_fits
   end
