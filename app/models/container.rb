@@ -163,6 +163,7 @@ class Container < ActiveRecord::Base
     children.each do |child_container|
       @total_volume += child_container.total_volume
     end
+    @total_volume    	    
   end  
 
   def direct_weight
@@ -177,8 +178,9 @@ class Container < ActiveRecord::Base
   def total_weight
     @total_weight = direct_weight
     children.each do |child_container|
-      @total_weight = child_container.total_weight
+      @total_weight += child_container.total_weight
     end    
+    @total_weight
   end
   
 

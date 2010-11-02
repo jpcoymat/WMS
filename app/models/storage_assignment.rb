@@ -1,0 +1,4 @@
+class StorageAssignment << Assignment
+
+
+end

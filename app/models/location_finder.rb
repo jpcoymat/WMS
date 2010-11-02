@@ -17,14 +17,15 @@ class LocationFinder
         index += 1
       end
       if storage_location
-        create_storage_assignments(container, storage_location)
+      	      @storage_assignment = create_storage_assignments(container, storage_location)
         
       end
     end
   end
 
-  def create_storage_assignments
-    
+  def create_storage_assignments(container, storage_location)
+  	  @storage_assignment = StorageAssignment.new(:from_location => container.container_location, :to_location => storage_location, :from_container => container, :to_container => container)
+  	  @storage_assignment.save! ? @storage_assignment : nil
   end
 
   def get_matching_storage_strategy
