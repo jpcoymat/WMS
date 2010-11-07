@@ -17,8 +17,7 @@ class LocationFinder
         index += 1
       end
       if storage_location
-      	      @storage_assignment = create_storage_assignments(container, storage_location)
-        
+      	      @storage_assignment = create_storage_assignments(storage_location)
       end
     end
   end
