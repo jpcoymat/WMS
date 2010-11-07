@@ -2,7 +2,7 @@ class Container < ActiveRecord::Base
 
   belongs_to	:container_location,  :polymorphic => true
   belongs_to 	:container_type
-  has_many	:container_contents
+  has_many	:container_contents, :dependent => :destroy
 
   acts_as_tree :foreign_key => 'parent_container_id'
 
