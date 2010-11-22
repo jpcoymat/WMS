@@ -8,6 +8,7 @@ class Warehouse < ActiveRecord::Base
   has_many    :dock_doors
   has_many    :system_parameters
   has_many    :users
+  has_many    :receipts
   has_many    :storage_strategies
   has_many    :storage_strategy_rules
   has_many    :allocation_strategies

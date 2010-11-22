@@ -14,7 +14,7 @@ class ReceivingController < ApplicationController
   
   def new_purchase_order
     @company = User.find(session[:user_id]).company
-    @puchase_order = PurchaseOrder.new
+    @purchase_order = PurchaseOrder.new
   end
 
   def create_purchase_order
@@ -113,7 +113,7 @@ class ReceivingController < ApplicationController
   end
   
   def receipt_lines
-    @receipt = Receipt.find(param[:receipt])
+    @receipt = Receipt.find(params[:receipt])
     @company = @receipt.warehouse.company
   end
   

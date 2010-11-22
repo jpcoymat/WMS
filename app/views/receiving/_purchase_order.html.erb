@@ -1,6 +1,6 @@
 <table>
 	<tr><td>Purchase Order Number		</td>	<td><%= form.text_field :purchase_order_number																								%>	</td></tr>
 	<tr><td>Ship Date					</td>	<td><%= form.date_select :ship_date																											%>	</td></tr>
-	<tr><td>Purchase Order Type			</td>	<td><%= form.select :purchase_order_type_id, @company.purchase_order_types.collect {|pt| [pt.purchase_order_type]}, :include_blank => true	%>	</td></tr>
+	<tr><td>Purchase Order Type			</td>	<td><%= form.select :purchase_order_type_id, @company.purchase_order_types.collect {|pt| [pt.purchase_order_type, pt.id]}, :include_blank => true	%>	</td></tr>
 	<tr><td>Supplier					</td>	<td><%= form.select :supplier_id, @company.suppliers.collect {|s| [s.name, s.id]}, :include_blank => true									%>	</td></tr>
 </table>
