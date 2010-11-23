@@ -11,16 +11,17 @@ class ProductWarehouseSetup < ActiveRecord::Base
 
   def find_or_create_lot
     fifo_date = get_fifo_date       
-    lot = Lot.find(:first, :conditions => [:product_id => self.product_id, :fifo_date => fifo_date])
+    lot = Lot.where(:product_id => self.product_id, :fifo_date => fifo_date.to_s).first
     unless lot
-      lot = Lot.new(:product_id => self.product_id,:fifo_date => fifo_date, :product_status_id => self.product_status_id)
+      lot = Lot.new(:product_id => self.product_id, :fifo_date => fifo_date, :product_status_id => self.product_status_id)
+      lot.set_name
       lot.save!
     end
     lot
   end
   
   def get_fifo_date
-    case self.lot_management_type
+    fifo_date = case self.lot_management_type
     when "Daily" 
       Time.now
     when "Weekly" 
@@ -28,7 +29,7 @@ class ProductWarehouseSetup < ActiveRecord::Base
     when "Monthly"
       Time.new(Time.now.year, Time.now.month,1)
     when "Bi-monthly" 
-      if Time.now.month%2 >0
+      if (Time.now.month.to_i) % 2 > 0
         Time.new(Time.now.year,Time.now.month,1)
       else
         Time.new(Time.now.year,Time.now.month-1,1)
@@ -42,6 +43,7 @@ class ProductWarehouseSetup < ActiveRecord::Base
     when "Annual" 
       Time.new(Time.now.year,1,1)
     end
+    fifo_date
   end
 
 

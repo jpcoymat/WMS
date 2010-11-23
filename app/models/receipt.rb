@@ -8,7 +8,13 @@ class Receipt < ActiveRecord::Base
   
   has_many      :receipt_lines
   
-
+  def total_quantity
+    @total_quantity =  0
+    self.receipt_lines.each do |receipt_line|
+      @total_quantity += receipt_line.quantity
+    end
+    @total_quantity
+  end
 
 
 end

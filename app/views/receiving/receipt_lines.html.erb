@@ -12,10 +12,11 @@
 	<table>
 		<tr><th>LP	</th>	<th>Product	</th>	<th>Lot	</th>	<th>Product Status</th>	<th>Quantity	</th></tr>
 		<% @receipt.receipt_lines.each do |receipt_line|	%>
-			<tr><td><%= receipt_line.lp								%>	</td>
-				<td><%= receipt_line.product.name					%>	</td>
-				<td><%= receipt_line.lot.name						%>	</td>
-				<td><%= number_with_delimiter receipt_line.quantity	%>	</td>
+			<tr><td><%= receipt_line.lp																%>	</td>
+				<td><%= receipt_line.product.name													%>	</td>
+				<td><%= receipt_line.lot.name														%>	</td>
+				<td><%= receipt_line.product_status.nil? ? "" : receipt_line.product_status.code	%>	</td>
+				<td><%= number_with_delimiter receipt_line.quantity									%>	</td>
 			</tr>
 		<% end %>
 	</table>

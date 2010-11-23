@@ -8,14 +8,16 @@ class ReceiptLine < ActiveRecord::Base
 
   belongs_to    :receipt
   belongs_to    :product
+  belongs_to    :product_status
   belongs_to    :product_package
   belongs_to    :lot
   
   def determine_lot
     if self.lot.nil?
-      @product_warehouse_setup = ProductWarehouseSetup.where(:product_id => self.product_id, :warehouse_id => self.receipt.warehouse_id)
-      @lot = @product_warehouse_setup.find_or_create_lot
+      @product_warehouse_setup = ProductWarehouseSetup.where(:product_id => self.product_id, :warehouse_id => self.receipt.warehouse_id).first
+      self.lot = @product_warehouse_setup.find_or_create_lot
     end
   end
+  
 
 end
