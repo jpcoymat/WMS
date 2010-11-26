@@ -8,6 +8,28 @@ class Receipt < ActiveRecord::Base
   
   has_many      :receipt_lines
   
+  acts_as_state_machine :initial => :created
+
+  state :created
+  state :in_receiving
+  state :completed
+  state :cancelled
+
+  event :start_receiving do
+    transitions :from => :created, :to => :in_receiving
+  end
+  
+  event :receiving_completed do
+    transitions :from => :in_receiving, :to => :completed
+    transitions :from => :created, :to => :completed
+    transitions :from => :completed, :to => :completed
+  end
+  
+  event :cancel do
+    transitions :from => :created, :to => :cancelled
+  end
+  
+  
   def total_quantity
     @total_quantity =  0
     self.receipt_lines.each do |receipt_line|

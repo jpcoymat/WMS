@@ -2,7 +2,7 @@ class Container < ActiveRecord::Base
 
   belongs_to	:container_location,  :polymorphic => true
   belongs_to 	:container_type
-  has_many	:container_contents
+  has_many	  :container_contents
 
   acts_as_tree :foreign_key => 'parent_container_id'
 
@@ -179,6 +179,20 @@ class Container < ActiveRecord::Base
     children.each do |child_container|
       @total_weight = child_container.total_weight
     end    
+  end
+  
+  def self.create_from_receipt_lines(lp, container_location)
+    @receipt_lines = ReceiptLine.where(:lp => lp).all
+    container = nil
+    unless @receipt_lines.empty?
+      container = Container.new(:lp => lp, :container_location => container_location)
+      container.save!
+      @receipt_lines.each do |receipt_line|
+        container_content = ContainerContent.new(:container_id => container.id, :product_id => receipt_line.product_id,:lot_id => receipt_line.lot_id,:product_status_id =>receipt_line.product_status_id, :quantity =>receipt_line.quantity, :receipt_line_id => receipt_line.id)
+        container_content.save
+      end
+    end
+    container
   end
   
   
