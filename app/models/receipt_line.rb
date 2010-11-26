@@ -11,6 +11,7 @@ class ReceiptLine < ActiveRecord::Base
   belongs_to    :product_package
   belongs_to    :lot
 
+  acts_as_state_machine :initial => :created
 
   state :created
   state :received

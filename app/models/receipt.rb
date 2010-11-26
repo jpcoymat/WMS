@@ -17,9 +17,10 @@ class Receipt < ActiveRecord::Base
 
   event :start_receiving do
     transitions :from => :created, :to => :in_receiving
+    self.real_receipt_date = Time.now
   end
   
-  event :receiving_completed do
+  event :complete_receiving do
     transitions :from => :in_receiving, :to => :completed
     transitions :from => :created, :to => :completed
     transitions :from => :completed, :to => :completed

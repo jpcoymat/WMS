@@ -94,6 +94,7 @@ class ReceivingController < ApplicationController
       redirect_to :controller => 'receiving', :action => 'receipt_lines', :receipt => @receipt
     else
       flash[:notice] = "Error creating receipt"
+      @receipt.errors.full_messages.each {|msg| flash[:notice] += msg}
       redirect_to :controller => 'receiving', :action => 'new_receipt'
     end
   end
