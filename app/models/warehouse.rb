@@ -50,5 +50,8 @@ class Warehouse < ActiveRecord::Base
     self.locations.empty? and self.allocation_zones.empty? and self.storage_zones.empty? and self.dock_doors.empty? and self.users.empty?
   end
   
+  def available_dock_doors
+    @available_dock_doors = DockDoor.where(:warehouse_id => self.id)
+  end
 
 end
