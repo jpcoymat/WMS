@@ -9,8 +9,6 @@ class Container < ActiveRecord::Base
   acts_as_state_machine :initial => :created
 
   state :created
-  state :received
-  state :stored
   state :allocated
   state :picked
   state :staged

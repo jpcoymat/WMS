@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101126132135) do
+ActiveRecord::Schema.define(:version => 20101127053835) do
 
   create_table "allocation_strategies", :force => true do |t|
     t.string   "name",         :limit => 25, :null => false
@@ -417,7 +417,7 @@ ActiveRecord::Schema.define(:version => 20101126132135) do
     t.date     "ship_date"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.date     "real_receipt_date"
+    t.date     "received_at"
     t.string   "state",                  :limit => 50, :null => false
   end
 
