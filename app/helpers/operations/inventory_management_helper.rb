@@ -1,0 +1,2 @@
+module Operations::InventoryManagementHelper
+end
