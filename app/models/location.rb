@@ -13,6 +13,10 @@ class Location < ActiveRecord::Base
   belongs_to  :storage_zone
   belongs_to  :allocation_zone
 
+  
+  def pending_storage_assignments
+  	  @pending_storage_assignments = AssignmentDetail.where(:to_location_id => self.id).all
+  end
 
   def name
     @name = ""
@@ -58,10 +62,13 @@ class Location < ActiveRecord::Base
     @current_topmost_containers
   end
   
+  def current_and_future_containers
+  	  pending_storage_assignments + current_topmost_containers
+  end
   
   def container_fits?(container)
     @container_fits = true
-    if container.total_weight > available_weight || container.total_volume > available_volume || (self.location_type.maximum_containers <= current_topmost_containers || !(self.location_type.collapse.containers))
+    if container.total_weight > available_weight || container.total_volume > available_volume || (self.location_type.maximum_containers <= current_and_future_containers || !(self.location_type.collapse.containers))
       @container_fits = false 
     end
     @container_fits

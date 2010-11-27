@@ -2,7 +2,11 @@ class Container < ActiveRecord::Base
 
   belongs_to	:container_location,  :polymorphic => true
   belongs_to 	:container_type
+<<<<<<< HEAD
   has_many	  :container_contents
+=======
+  has_many	:container_contents, :dependent => :destroy
+>>>>>>> edbba2bedcbe14d7bbf8b162069f345f0228879b
 
   acts_as_tree :foreign_key => 'parent_container_id'
 
@@ -161,6 +165,7 @@ class Container < ActiveRecord::Base
     children.each do |child_container|
       @total_volume += child_container.total_volume
     end
+    @total_volume    	    
   end  
 
   def direct_weight
@@ -175,8 +180,9 @@ class Container < ActiveRecord::Base
   def total_weight
     @total_weight = direct_weight
     children.each do |child_container|
-      @total_weight = child_container.total_weight
+      @total_weight += child_container.total_weight
     end    
+    @total_weight
   end
   
   def self.create_from_receipt_lines(lp, container_location)
