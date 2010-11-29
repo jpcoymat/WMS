@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101127234559) do
+ActiveRecord::Schema.define(:version => 20101129135200) do
 
   create_table "allocation_strategies", :force => true do |t|
     t.string   "name",         :limit => 25, :null => false
@@ -184,7 +184,6 @@ ActiveRecord::Schema.define(:version => 20101127234559) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "warehouse_id"
-    t.string   "state"
   end
 
   create_table "location_types", :force => true do |t|

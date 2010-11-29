@@ -496,7 +496,7 @@ class AdminController < ApplicationController
   
   def delete_storage_zone
     StorageZone.destroy(params[:storage_zone])
-    redirect_to :controlle => 'admin', :action => 'storage_zones'
+    redirect_to :controller => 'admin', :action => 'storage_zones'
   end
   
   def location_types

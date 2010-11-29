@@ -55,7 +55,7 @@ class Warehouse < ActiveRecord::Base
   end
   
   def receivable_receipts
-    @receivable_receipts = Receipts.where(:warehouse_id => self.id, :state => "created").all
+    @receivable_receipts = Receipt.where(:warehouse_id => self.id, :state => "created").all
   end
   
 

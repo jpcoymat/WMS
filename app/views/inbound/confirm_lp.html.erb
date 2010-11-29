@@ -1,2 +1,10 @@
-<h1>Inbound#confirm_lp</h1>
-<p>Find me in app/views/inbound/confirm_lp.html.erb</p>
+<h1>Confirm Receipt Line </h1>
+<p>Enter LP	</p>
+	<%= form_for :receipt_line, :url => {:controller => 'inbound', :action=> 'receive_receipt_line'} do |form| %>
+		<%= form.hidden_field	:dock_door_id,	:value => @dock_door.id	%>
+		<%= form.hidden_field 	:receipt_id,	:value => @receipt.id	%>
+		<table>
+			<tr><td>LP	</td>	<td><%= form.text_field :lp		%>	</td></tr>
+		</table>
+		<%=	submit_tag "Receive"%>
+	<% end %>
