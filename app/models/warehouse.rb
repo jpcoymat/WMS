@@ -51,7 +51,12 @@ class Warehouse < ActiveRecord::Base
   end
   
   def available_dock_doors
-    @available_dock_doors = DockDoor.where(:warehouse_id => self.id)
+    @available_dock_doors = DockDoor.where(:warehouse_id => self.id, :state => "available").all
   end
+  
+  def receivable_receipts
+    @receivable_receipts = Receipts.where(:warehouse_id => self.id, :state => "created").all
+  end
+  
 
 end

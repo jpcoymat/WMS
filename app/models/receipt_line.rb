@@ -10,6 +10,7 @@ class ReceiptLine < ActiveRecord::Base
   belongs_to    :product_status
   belongs_to    :product_package
   belongs_to    :lot
+  belongs_to    :dock_door
 
   acts_as_state_machine :initial => :created
 
@@ -33,5 +34,6 @@ class ReceiptLine < ActiveRecord::Base
     end
   end
   
+
 
 end

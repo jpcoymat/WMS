@@ -38,10 +38,5 @@ class Receipt < ActiveRecord::Base
     @total_quantity
   end
   
-  def receive
-    start_receiving
-    self.real_receipt_date = Time.now
-  end
-
-
+ 
 end
