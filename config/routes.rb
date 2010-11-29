@@ -1,4 +1,8 @@
 Wms::Application.routes.draw do
+  get "inbound/start_receiving"
+
+  get "inbound/confirm_lp"
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
