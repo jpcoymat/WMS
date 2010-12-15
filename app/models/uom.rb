@@ -2,7 +2,9 @@ class Uom < ActiveRecord::Base
 
   validates	:code, :uniqueness => true
   validates 	:name, :uniqueness => true
-  validates   	:code, :name, :company_id, :presence => true
+  validates   	:type, :code, :name, :company_id, :presence => true
+
+  belongs_to 	:company
   
   has_many	:product_packages
   
