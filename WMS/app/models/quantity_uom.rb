@@ -1,3 +1,0 @@
-class QuantityUom < Uom
-  
-end

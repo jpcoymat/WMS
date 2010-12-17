@@ -1,8 +1,0 @@
-<h1>New Purchase Order </h1>
-
-	<% form_for :purchase_order, :url => {:controller => 'receiving', :Action => 'create_purchase_order'} do |form|	%>
-		<%= form.hidden_field :company_id, :value => @company.id				%>
-		<%= render :partial => 'purchase_order', :locals => {:form => form}		%>
-		<%= submit_tag "Create Purchase Order"									%>
-	<% end %>
-	

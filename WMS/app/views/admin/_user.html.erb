@@ -1,9 +1,0 @@
-<table>
-	<tr><td>First Name					</td>	<td><%= form.text_field	:first_name									%>	</td></tr>
-	<tr><td>Last Name					</td>	<td><%= form.text_field	:last_name									%>	</td></tr>
-	<tr><td>Username					</td>	<td><%= form.text_field :username									%>	</td></tr>
-	<tr><td>Email						</td>	<td><%= form.text_field	:email										%>	</td></tr>
-	<tr><td>Date of Birth				</td>	<td><%= form.date_select 	:dob, :start_year => Time.now.year-100	%>	</td></tr>
-	<tr><td>Position					</td>	<td><%= form.text_field	:position									%>	</td></tr>
-	<tr><td>Sex							</td>	<td><%= form.select 	:sex, User.sex.collect {|s| [s,s]}			%>	</td></tr>
-</table>		

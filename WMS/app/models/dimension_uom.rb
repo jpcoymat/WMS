@@ -1,3 +1,0 @@
-class DimensionUom < Uom
-  
-end
