@@ -6,7 +6,7 @@ class StorageStrategy < ActiveRecord::Base
   has_many    	:storage_strategy_rules
   has_many    	:product_warehouse_setups
   
-  validates	:warehouse_id, :code, :presence => true
+  validates	:warehouse_id, :code, :name, :presence => true
   
   def deleteable?
     self.storage_strategy_rules.empty? and self.product_warehouse_setups.empty?
