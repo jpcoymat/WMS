@@ -9,7 +9,7 @@ class Uom < ActiveRecord::Base
   has_many	:product_packages
   
   def self.types
-    ["Quantity", "Dimension", "Weight", "Volume"]
+    ["QuantityUom", "DimensionUom", "WeightUom", "VolumeUom"]
   end
   
   def uom_type
