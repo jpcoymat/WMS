@@ -39,13 +39,13 @@ test:
   encoding: unicode
   database: wms_test
   pool: 5
-  username: wms
-  password:
+  username: postgres
+  password: postgres
 
 production:
   adapter: postgresql
   encoding: unicode
   database: wms_production
   pool: 5
-  username: wms
-  password:
+  username: postgres
+  password: postgres

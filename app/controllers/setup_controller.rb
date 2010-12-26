@@ -1,15 +1,16 @@
 class SetupController < ApplicationController
 
+	skip_before_filter :authorize
+
 	def index
-		@countries = Country.all(:order => 'code')
+		@countries = Country.all(:order => 'iso_code')
 	end
 
 	def create_company
 		@company = Company.new(params[:company])
-		if @company.save
+		if @company.save!
 			@company.create_uoms
-			@company.create_assignment_types
-			@company.product_statuses
+			@company.create_product_statuses
 			redirect_to :controller => 'setup', :action => 'defualt_uom_setup', :company => @company
 		else
 			flash[:notice] = "Error creating company.  Please try again."

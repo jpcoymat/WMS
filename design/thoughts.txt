@@ -24,3 +24,16 @@ class LocationFinderQueue
 
 end
 
+
+REST:
+  To make it fully RESTful, putaway clients should request to POST an assignment based on parameters.  
+  Example:
+	For a putaway assignment, a user provides the container as a parameter, and the url is a POST request to create a StorageAssignment.  Something like:
+		http://server:3000/api/storage_assignment?container_id=123
+	the URL is only accessible via a POST message to a method "create_storage_assignment" that creates the assignment with all the necessary logic behind it
+	Likewise, picking into a container can be done via a GET request by getting all PickingAssingmnent records that exist for a given container:
+		http://server:3000/api/picking_assignment/show?container_id=123
+	
+
+
+

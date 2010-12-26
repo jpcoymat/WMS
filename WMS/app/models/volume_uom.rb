@@ -1,3 +1,0 @@
-class VolumeUom < Uom
-  
-end

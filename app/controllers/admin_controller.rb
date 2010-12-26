@@ -17,11 +17,10 @@ class AdminController < ApplicationController
 
   def create_company
     @company = Company.new(params[:company])
-    if @company.save
+    if @company.save!
       @company.create_uoms
       @company.create_assignment_types
-      flash[:notice] = "Company #{@company.name} created succesfully."
-      redirect_to :controller => 'admin', :action => 'company_uom_setup'
+      redirect_to :controller => 'admin', :action => 'company_uom_setup', :notice =>  "Company #{@company.name} created succesfully."
     else
       redirect_to :controller => 'admin', :action => 'new_company'
     end
@@ -670,10 +669,8 @@ class AdminController < ApplicationController
   def update_user
     @user = User.find(params[:user][:id])
     if @user.update_attributes(params[:user])
-      flash[:notice] = "User updated succesfully"
       redirect_to :controller => 'admin', :action => 'users'
     else
-      flash[:notice] = "Error updating user profile"
       redirect_to :controller => 'admin', :action => 'edit_user', :user => @user
     end    
   end
@@ -896,7 +893,8 @@ class AdminController < ApplicationController
     if @storage_strategy.save
       redirect_to :controller => 'admin', :action => 'storage_strategy_lines', :storage_strategy => @storage_strategy
     else
-      flash[:notice] = "Error creating Storage Strategy"
+      flash[:notice] = "Error creating Storage Strategy. \n" 
+      @storage_strategy.errors.each_full {|msg| flash[:notice] += msg + "\n"}  
       redirect_to :controller => 'admin', :action => 'storage_strategies'
     end
   end
