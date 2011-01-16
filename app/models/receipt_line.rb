@@ -34,6 +34,10 @@ class ReceiptLine < ActiveRecord::Base
     end
   end
   
+  def valid_for_receiving?
+    self.state == "created"
+  end
+  
 
 
 end
