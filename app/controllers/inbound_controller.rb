@@ -23,15 +23,15 @@ class InboundController < ApplicationController
       if @receipt_lines.first.created?
         @receipt = Receipt.find(params[:receipt_line][:receipt_id])
         @dock_door = DockDoor.find(params[:receipt_line][:dock_door_id])
-        if @receipt.state == "created"
+        if @receipt.created?
           @receipt.received_at = Time.now
-          @receipt.state = "in_receiving"
+          @receipt.start_receiving
           @receipt.save!
         end
         @receipt_lines.each do |receipt_line|
           receipt_line.received_at = Time.now
           receipt_line.dock_door_id = params[:receipt_line][:dock_door_id]
-          receipt_line.state = "received"
+          receipt_line.start_receiving
           receipt_line.save!
         end
         Container.create_from_receipt_lines(params[:receipt_line][:lp], @dock_door)

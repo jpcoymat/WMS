@@ -4,6 +4,7 @@ class Receipt < ActiveRecord::Base
   
   aasm_column :state
   aasm_initial_state :created
+  aasm_state :created
   aasm_state :in_receiving
   aasm_state :completed
   aasm_state :canceled

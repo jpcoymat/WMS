@@ -4,6 +4,7 @@ class PurchaseOrderLine < ActiveRecord::Base
   
   aasm_column :state
   aasm_inital_state :created
+  aasm_state  :created
   aasm_state  :receiving_started
   aasm_state  :closed
 

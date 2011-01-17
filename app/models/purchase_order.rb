@@ -4,7 +4,7 @@ class PurchaseOrder < ActiveRecord::Base
 
   aasm_column :state
   
-  aasm_initial_state :crate
+  aasm_initial_state :created
   aasm_state :created
   aasm_state :receiving_started
   aasm_state :closed

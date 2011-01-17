@@ -4,8 +4,9 @@ class ReceiptLine < ActiveRecord::Base
   
   aasm_column :state
   aasm_initial_state  :created
-  aasm_state :received
-  aasm_state :canceled
+  aasm_state  :created
+  aasm_state  :received
+  aasm_state  :canceled
 
 
   validates	:receipt_id, :lp, :product_id, :quantity, :presence => true

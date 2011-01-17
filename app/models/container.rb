@@ -4,6 +4,7 @@ class Container < ActiveRecord::Base
   
   aasm_column :state
   aasm_initial_state :created
+  aasm_state  :created
   aasm_state :allocated
   aasm_state :picked
   aasm_state :staged
