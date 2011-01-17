@@ -6,7 +6,7 @@ class Receipt < ActiveRecord::Base
   aasm_initial_state :created
   aasm_state :in_receiving
   aasm_state :completed
-  aasm_state :cancelled
+  aasm_state :canceled
 
 
   validates	:estimated_receipt_date, :warehouse_id, :receipt_number, :presence => true
@@ -18,8 +18,8 @@ class Receipt < ActiveRecord::Base
   has_many      :receipt_lines
   
 
-  aas_event :start_receiving do
-    transitions :to => :in_receiving, :from => :created
+  aasm_event :start_receiving do
+    transitions :to => :in_receiving, :from => [:created]
   end
   
   aasm_event :complete_receiving do
@@ -27,7 +27,7 @@ class Receipt < ActiveRecord::Base
   end
   
   aasm_event :cancel do
-    transitions :to => :cancelled, :from => :created
+    transitions :to => :canceled, :from => [:created]
   end
   
   

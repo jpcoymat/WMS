@@ -3,7 +3,7 @@ class ReceiptLine < ActiveRecord::Base
   include AASM
   
   aasm_column :state
-  aasm_initial_state :created
+  aasm_initial_state  :created
   aasm_state :received
   aasm_state :canceled
 
@@ -22,11 +22,11 @@ class ReceiptLine < ActiveRecord::Base
 
 
   aasm_event :start_receiving do
-    transitions :to => :received, :to => :created
+    transitions :to => :received, :from => [:created]
   end
 
   aasm_event :cancel do
-    transitions :to => :canceled, :from => :created
+    transitions :to => :canceled, :from => [:created]
   end
 
 
