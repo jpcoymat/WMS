@@ -6,10 +6,10 @@ gem 'rails', '>= 3.0.0'
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
 gem 'pg'
-
+gem 'aasm'
 
 #plugins 
-gem 'acts_as_tree'
+#gem 'acts_as_tree'
 gem 'acts_as_state_machine' 
 
 # Use unicorn as the web server

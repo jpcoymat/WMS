@@ -1,4 +1,13 @@
 class Receipt < ActiveRecord::Base
+  
+  include AASM
+  
+  aasm_column :state
+  aasm_initial_state :created
+  aasm_state :in_receiving
+  aasm_state :completed
+  aasm_state :cancelled
+
 
   validates	:estimated_receipt_date, :warehouse_id, :receipt_number, :presence => true
   validates	:receipt_number, :uniqueness => true
@@ -8,25 +17,17 @@ class Receipt < ActiveRecord::Base
   
   has_many      :receipt_lines
   
-  acts_as_state_machine :initial => :created
 
-  state :created
-  state :in_receiving
-  state :completed
-  state :cancelled
-
-  event :start_receiving do
-    transitions :from => :created, :to => :in_receiving
+  aas_event :start_receiving do
+    transitions :to => :in_receiving, :from => :created
   end
   
-  event :complete_receiving do
-    transitions :from => :in_receiving, :to => :completed
-    transitions :from => :created, :to => :completed
-    transitions :from => :completed, :to => :completed
+  aasm_event :complete_receiving do
+    transitions :to => :completed, :from => [:created,:in_receiving] 
   end
   
-  event :cancel do
-    transitions :from => :created, :to => :cancelled
+  aasm_event :cancel do
+    transitions :to => :cancelled, :from => :created
   end
   
   

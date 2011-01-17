@@ -1,5 +1,12 @@
 class PurchaseOrderLine < ActiveRecord::Base
 
+  include AASM
+  
+  aasm_column :state
+  aasm_inital_state :created
+  aasm_state  :receiving_started
+  aasm_state  :closed
+
   validates 	:line_number, :purchase_order_id, :product_id, :quantity, :presence => true
   
   validates 	:quantity, :numericality => {:greater_than_or_equal_to => 1}

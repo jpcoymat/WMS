@@ -1,7 +1,17 @@
 class PurchaseOrder < ActiveRecord::Base
 
+  include AASM
+
+  aasm_column :state
+  
+  aasm_initial_state :crate
+  aasm_state :created
+  aasm_state :receiving_started
+  aasm_state :closed
+
+
   validates	:purchase_order_number, :company_id, :presence => true
-  validate	:purchase_order_number, :uniqueness => true
+  validates	:purchase_order_number, :uniqueness => true
   
   belongs_to    :supplier
   belongs_to    :purchase_order_type
@@ -10,11 +20,6 @@ class PurchaseOrder < ActiveRecord::Base
   has_many      :receipt_lines, :as => :purchase_order_object
   has_many      :purchase_order_lines
   
-  acts_as_state_machine :initial => :created
-
-  state :created
-  state :receiving_started
-  state :closed
   
 
   def editable?

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101215191934) do
+ActiveRecord::Schema.define(:version => 20110117035520) do
 
   create_table "allocation_strategies", :force => true do |t|
     t.string   "name",         :limit => 25, :null => false
@@ -355,13 +355,14 @@ ActiveRecord::Schema.define(:version => 20101215191934) do
 
   create_table "purchase_order_lines", :force => true do |t|
     t.integer  "line_number"
-    t.integer  "purchase_order_id", :null => false
-    t.integer  "product_id",        :null => false
-    t.decimal  "quantity",          :null => false
+    t.integer  "purchase_order_id",               :null => false
+    t.integer  "product_id",                      :null => false
+    t.decimal  "quantity",                        :null => false
     t.text     "comments"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "product_status_id"
+    t.string   "state",             :limit => 20, :null => false
   end
 
   create_table "purchase_order_types", :force => true do |t|

@@ -2,8 +2,8 @@
 <p>Identify Dock Door and Receipt</p>
 	<%= form_tag '/inbound/confirm_lp'  %>
 		<table>
-			<tr><td>Dock Door	</td>	<td><%= select_tag "dock_door_id", 	options_from_collection_for_select(@available_dock_doors, "id","name")			%>	</td></tr>
-			<tr><td>Receipt		</td>	<td><%= select_tag "receipt_id",	options_from_collection_for_select(@available_receipts, "id","receipt_number")	%>	</td></tr>
+			<tr><td>Dock Door	</td>	<td><%= select_tag :dock_door_id, 	options_from_collection_for_select(@available_dock_doors, "id","name")		%>	</td></tr>
+			<tr><td>Receipt		</td>	<td><%= select_tag :receipt_id,	options_from_collection_for_select(@available_receipts, "id","receipt_number")	%>	</td></tr>
 		</table>
 	<%= submit_tag "Receive"	%>
 	

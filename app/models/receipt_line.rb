@@ -1,5 +1,13 @@
 class ReceiptLine < ActiveRecord::Base
 
+  include AASM
+  
+  aasm_column :state
+  aasm_initial_state :created
+  aasm_state :received
+  aasm_state :canceled
+
+
   validates	:receipt_id, :lp, :product_id, :quantity, :presence => true
   validates	:quantity, :numericality => {:greater_than_or_equal_to => 1}
 
@@ -12,18 +20,13 @@ class ReceiptLine < ActiveRecord::Base
   belongs_to    :lot
   belongs_to    :dock_door
 
-  acts_as_state_machine :initial => :created
 
-  state :created
-  state :received
-  state :cancelled
-
-  event :start_receiving do
-    transitions :from => :created, :to => :received
+  aasm_event :start_receiving do
+    transitions :to => :received, :to => :created
   end
 
-  event :cancel do
-    transitions :from => :created, :to => :cancelled
+  aasm_event :cancel do
+    transitions :to => :canceled, :from => :created
   end
 
 
@@ -33,11 +36,7 @@ class ReceiptLine < ActiveRecord::Base
       self.lot = @product_warehouse_setup.find_or_create_lot
     end
   end
-  
-  def valid_for_receiving?
-    self.state == "created"
-  end
-  
+    
 
 
 end

@@ -1,5 +1,17 @@
 class Container < ActiveRecord::Base
 
+  include AASM
+  
+  aasm_column :state
+  aasm_initial_state :created
+  aasm_state :allocated
+  aasm_state :picked
+  aasm_state :staged
+  aasm_state :loaded
+  aasm_state :shipped  
+  aasm_state :closed
+
+
   belongs_to	:container_location,  :polymorphic => true
   belongs_to 	:container_type
   has_many	  :container_contents
@@ -7,15 +19,6 @@ class Container < ActiveRecord::Base
 
   acts_as_tree :foreign_key => 'parent_container_id'
 
-  acts_as_state_machine :initial => :created
-
-  state :created
-  state :allocated
-  state :picked
-  state :staged
-  state :loaded
-  state :shipped  
-  state :closed
 
   
   validates	:lp, :uniqueness => true
