@@ -44,5 +44,26 @@ class InboundController < ApplicationController
     end
     redirect_to :controller =>'inbound', :action => 'confirm_lp', :dock_door_id => params[:receipt_line][:dock_door_id], :receipt_id => params[:receipt_line][:receipt_id]
   end
+  
+  def close_receipt
+    @warehouse = User.find(session[:user_id]).warehouse
+    @closeable_receipts = @warehouse.closeable_receipts
+  end
+  
+  def complete_receipt
+    @receipt = Receipt.find(params[:receipt][:id])
+    unless @receipt.canceled? || @receipt.completed?
+      @receipt.receipt_lines.each do |receipt_line|
+        receipt_line.cancel
+        receipt_line.save!
+      end
+      @receipt.complete_receiving
+      @receipt.save!
+      flash[:notice] = "Receipt #{@receipt.receipt_number} closed succesfully."
+    else
+      flash[:notice] = "Receipt #{@receipt.receipt_number} in wrong status to close ( #{@receipt.state} )"  
+    end
+    redirect_to :controller => 'inbound', :action => 'close_receipt'
+  end
 
 end

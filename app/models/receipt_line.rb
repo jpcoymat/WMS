@@ -28,6 +28,7 @@ class ReceiptLine < ActiveRecord::Base
 
   aasm_event :cancel do
     transitions :to => :canceled, :from => [:created]
+    transitions :to => :received, :from => [:received]
   end
 
 

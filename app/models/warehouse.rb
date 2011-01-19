@@ -54,5 +54,9 @@ class Warehouse < ActiveRecord::Base
     @receivable_receipts = Receipt.where(:warehouse_id => self.id, :state => "created").all
   end
   
+  def closeable_receipts
+    @closeable_receipts = Receipt.where(:warehouse_id => self.id, :state => "in_receiving").all
+  end
+  
 
 end

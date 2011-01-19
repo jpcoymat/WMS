@@ -40,5 +40,12 @@ class Receipt < ActiveRecord::Base
     @total_quantity
   end
   
+  def received_quantity
+    @received_quantity = 0
+    self.receipt_lines.each do |receipt_line|
+      @received_quantity += receipt_line.quantity if receipt_line.received?
+    end
+    @received_quantity
+  end
  
 end

@@ -16,12 +16,20 @@
 	<% if request.post?	%>
 		<% unless @receipts.empty?	%>
 			<table>
-				<tr><th>Receipt Number	</th>	<th>Supplier	</th>	<th>Expected Receipt Date	</th>	<th>Total Receipt Quantity	</th></tr>
+				<tr><th>Receipt Number			</th>	
+					<th>Receipt State			</th>	
+					<th>Supplier				</th>	
+					<th>Expected Receipt Date	</th>	
+					<th>Total Receipt Quantity	</th>
+					<th>Total Received Quantity	</th>
+				</tr>
 				<% @receipts.each do |receipt|	%>
 					<tr><td><%= receipt.receipt_number	%>	</td>
+						<td><%= receipt.state																				%>	</td>
 						<td><%= receipt.supplier.nil? ? "" : receipt.supplier.name											%>	</td>
 						<td><%= receipt.estimated_receipt_date																%>	</td>
 						<td><%= receipt.total_quantity																		%>	</td>
+						<td><%= receipt.received_quantity																	%>	</td>
 						<td><%= link_to "View", :controller => 'receiving', :action => 'view_receipt'						%>	</td>
 						<td><%= link_to "Edit", :controller => 'receiving', :action => 'edit_receipt', :receipt => receipt	%>	</td>
 					</tr>
