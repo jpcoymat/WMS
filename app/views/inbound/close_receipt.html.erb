@@ -1,0 +1,10 @@
+<h2>Close Receipt </h2>
+
+	<p>Please select the receipt you wish to close.</p>
+	
+	<%= form_for :receipt, :url => {:controller => 'inbound', :action => 'complete_receipt'} do |form|	%>
+		<table>
+			<tr><td>Receipt	</td>	<td><%= form.select :id, @closeable_receipts.collect {|cr| [cr.receipt_number, cr.id]}	%>	</td></tr>
+		</table>
+		<%=submit_tag "Close Receipt"	%>
+	<% end %>
