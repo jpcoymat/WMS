@@ -70,6 +70,13 @@ class ReceivingController < ApplicationController
     end
   end
 
+  def delete_purchase_order_line
+    @purchase_order_line = PurchaseOrderLine.find(params[:purchase_order_line])
+    @purchase_order = @purchase_order_line.purchase_order
+    @purchase_order_line.destroy if @purchase_order_line.deleteable?
+    redirect_to :controller => 'receiving', :action => 'purchase_order_lines', :purchase_order => @purchase_order
+  end
+
   def view_purchase_order
     @purchase_order = PurchaseOrder.find(params[:purchase_order])
     @company = @purchase_order.company

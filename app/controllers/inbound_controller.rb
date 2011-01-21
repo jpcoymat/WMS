@@ -66,4 +66,12 @@ class InboundController < ApplicationController
     redirect_to :controller => 'inbound', :action => 'close_receipt'
   end
 
+
+  def receive_purchase_order
+     @warehouse = User.find(session[:user_id]).warehouse
+     @receivable_purchase_orders = @warehouse.receivable_purchase_orders 
+  end
+
+ 
+
 end

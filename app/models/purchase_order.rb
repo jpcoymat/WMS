@@ -5,9 +5,23 @@ class PurchaseOrder < ActiveRecord::Base
   aasm_column :state
   
   aasm_initial_state :created
+  aasm_state :canceled
   aasm_state :created
-  aasm_state :receiving_started
-  aasm_state :closed
+  aasm_state :in_receiving
+  aasm_state :completed
+
+  aasm_event :start_receiving do
+    transitions :to => :in_receiving, :from => [:created]
+  end
+
+  aasm_event :complete_receiving do
+    transitions :to => :completed, :from => [:created,:in_receiving]
+  end
+
+  aasm_event :cancel do
+    transitions :to => :canceled, :from => [:created]
+  end
+
 
 
   validates	:purchase_order_number, :company_id, :presence => true
