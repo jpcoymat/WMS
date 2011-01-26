@@ -101,6 +101,8 @@ DEPENDENCIES
   acts_as_state_machine
   pg
   rails (>= 3.0.0)
+  redis
+  redis-namespace
   resque
   thin
   unicorn
