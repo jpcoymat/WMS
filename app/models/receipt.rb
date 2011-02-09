@@ -15,6 +15,7 @@ class Receipt < ActiveRecord::Base
   
   belongs_to    :warehouse
   belongs_to    :supplier
+  belongs_to	:receipt_type
   
   has_many      :receipt_lines
   

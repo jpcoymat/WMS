@@ -19,9 +19,12 @@ class StorageStrategyRule < ActiveRecord::Base
   end
   
   def match_criteria
-
   	  @match_criteria = self.attributes
-  	  @match_criteria.delete_if {|k,v| v.blank}
+  	  @match_criteria.delete_if {|k,v| v.blank?}
+	  @match_criteria.delete("created_at")
+	  @match_criteria.delete("id")
+	  @match_criteria.delete("storage_strategy_id")
+	  @match_criteria.delete("updated_at")
   	  @match_criteria.delete("warehouse_id")
   	  @match_criteria.delete("storage_strategy")
   	  @match_criteria.delete("order_sequence_number")

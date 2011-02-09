@@ -26,7 +26,7 @@ class Container < ActiveRecord::Base
   validates	:lp, :container_location, :presence => true
 
   def single_product?
-  	  @products == 1
+  	 products.count == 1
   end
   
   def products
@@ -89,7 +89,7 @@ class Container < ActiveRecord::Base
     @storage_attributes = {}
     receipt_types.count ==1 ? @storage_attributes[:receipt_type_id] = @receipt_types.first.id : nil
     product_categories.count == 1 ? @storage_attributes[:product_category_id] = @product_categories.first.id : nil
-    product_subcategories.coun == 1 ? @storage_attributes[:product_subcategory_id] = @product_subcategories.first.id : nil 
+    product_subcategories.count == 1 ? @storage_attributes[:product_subcategory_id] = @product_subcategories.first.id : nil 
     uom ? @storage_attributes[:uom_id] = @uom.id : nil
     supplier ? @storage_attributes[:supplier_id] = supplier.id : nil
       
@@ -104,13 +104,10 @@ class Container < ActiveRecord::Base
   end
   
   
-  def total_quantity(*args)
-    args[:product].nil? ? product = nil : product = Product.find(args[:product])
-    args[:product_status].nil? ? product_status = nil : product_status = ProductStatus.find(args[:product_status])
-    args[:lot].nil? ? lot = nil : lot = Lot.find(args[:lot])
-    @total_quantity = content_quantity(args)	
+  def total_quantity(criteria = {})
+    @total_quantity = content_quantity(criteria)	
     children.each do |container|
-    	@total_quantity += container.total_quantity(args)
+    	@total_quantity += container.total_quantity(criteria)
     end
     @total_quantity
   end
@@ -137,7 +134,7 @@ class Container < ActiveRecord::Base
 
   def uom
     @uom = nil
-    container_quantity = total_quatity
+    container_quantity = total_quantity
     if @single_product
       product_packages = self.contaner_contents.first.product.product_packages
       product_packages.each do |product_package|
