@@ -72,6 +72,11 @@ class InboundController < ApplicationController
      @receivable_purchase_orders = @warehouse.receivable_purchase_orders 
   end
 
- 
+  def locate_container
+    @container = Container.find(params[:container])
+    if @container
+      Resque.enqueue(Locate,@container)
+    end
+  end 
 
 end
