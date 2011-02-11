@@ -1,9 +1,9 @@
-class LocationFinder
+class Locate
 
   attr_accessor :container
   attr_accessor :warehouse
 
-  def locate(*args)
+  def perform(*args)
     exclude_location = args[:exclude]
     storage_strategy = get_matching_storage_strategy
     if storage_strategy
