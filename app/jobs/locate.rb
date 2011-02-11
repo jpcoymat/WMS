@@ -3,6 +3,8 @@ class Locate
   attr_accessor :container
   attr_accessor :warehouse
 
+  @queue = :storage
+
   def perform(*args)
     exclude_location = args[:exclude]
     storage_strategy = get_matching_storage_strategy
