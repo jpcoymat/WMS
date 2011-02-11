@@ -20,7 +20,7 @@ class ReceiptLine < ActiveRecord::Base
   belongs_to    :product_package
   belongs_to    :lot
   belongs_to    :dock_door
-
+  belongs_to	:purchse_order_line
 
   aasm_event :start_receiving do
     transitions :to => :received, :from => [:created]

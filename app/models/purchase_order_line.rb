@@ -33,7 +33,7 @@ class PurchaseOrderLine < ActiveRecord::Base
   belongs_to    :product
   belongs_to    :product_status
 
-  has_many      :receipt_lines, :as => :purchase_order_object
+  has_many      :receipt_lines
 
 
   
