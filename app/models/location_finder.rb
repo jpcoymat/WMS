@@ -1,6 +1,4 @@
-require 'singleton'
 class LocationFinder
-  include Singleton
 
   attr_accessor :container
   attr_accessor :warehouse
@@ -23,29 +21,29 @@ class LocationFinder
   end
 
   def create_storage_assignments(storage_location)
-  	  @storage_assignment = StorageAssignment.new
-  	  @storage_assignment.assignment_details.create(:from_location_id => container.container_location.id, :to_location_id => storage_location.id, :from_container => container.id)
-  	  @storage_assignment.save!
-  	  @storage_assingment
+    @storage_assignment = StorageAssignment.new
+    @storage_assignment.assignment_details.create(:from_location_id => container.container_location.id, :to_location_id => storage_location.id, :from_container => container.id)
+    @storage_assignment.save!
+    @storage_assingment
   end
 
   def get_matching_storage_strategy
-  	@storage_strategy = nil
+        @storage_strategy = nil
   	@storage_strategy_rules = @warehouse.storage_strategy_rules
   	@storage_strategy_rules.each do |storage_strategy_rule|
-      rule_match = true
+	  rule_match = true
   	  storage_strategy_rule.match_criteria.each do |k,v|
   	    unless v == @container.storage_attributes[k]
   	      rule_match == false
   	      break
-	      end
-      end
-	    if rule_match
-	      @storage_strategy = storage_strategy_rule.storage_strategy
-	      break
 	    end
+          end
+	  if rule_match
+	    @storage_strategy = storage_strategy_rule.storage_strategy
+	    break
 	  end
-	  @storage_strategy
+	end
+	@storage_strategy
   end
 
   def get_next_container

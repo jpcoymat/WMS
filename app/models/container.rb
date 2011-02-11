@@ -134,14 +134,12 @@ class Container < ActiveRecord::Base
 
   def uom
     @uom = nil
-    container_quantity = total_quantity
-    if @single_product
-      product_packages = self.contaner_contents.first.product.product_packages
-      product_packages.each do |product_package|
-        if total_quantity >= product_package.quantity 
-          @uom = product_package.uom
-          break
-        end
+    if single_product?
+      product_packages = products.first.product_packages
+      index = 0
+      while @uom.nil? and index <= product_packages.count
+        @uom = product_packages[index].uom if total_quantity >= product_packages[index].quantity
+	index += 1
       end
     end
     @uom
