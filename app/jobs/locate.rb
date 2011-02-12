@@ -2,6 +2,8 @@ class Locate
 
   @queue = :storage
 
+  attr_accessor :container 
+
   def perform(container)
     @container = Container.find(container)
     @warehouse = @container.container_location.warehouse 
@@ -28,30 +30,19 @@ class Locate
     @storage_assingment
   end
 
+
   def get_matching_storage_strategy
-        @storage_strategy = nil
-  	@storage_strategy_rules = @warehouse.storage_strategy_rules
-  	@storage_strategy_rules.each do |storage_strategy_rule|
-	  rule_match = true
-  	  storage_strategy_rule.match_criteria.each do |k,v|
-  	    unless v == @container.storage_attributes[k]
-  	      rule_match == false
-  	      break
-	    end
-          end
-	  if rule_match
-	    @storage_strategy = storage_strategy_rule.storage_strategy
-	    break
-	  end
-	end
+	@storage_strategy = nil
+	@storage_strategy_rules = @container.container_location.warehouse.storage_strategy_rules
+	index = 0
+	while @storage_strategy.nil? and index < @storage_strategy_rules.count
+		storage_strategy_rule = @storage_strategy_rules[index]
+		@storage_strategy = storage_strategy_rule.storage_strategy if storage_strategy_rule.match_for_container?(@container) 
+	end 
 	@storage_strategy
   end
 
-  def get_next_container
-    @location_finder_queue = LocationFinderQueue.new
-    self.container = @location_finder_queue.get_next_container
-    self.warehouse = self.container.warehouse
-  end
+
 
   def find_location(storage_zone, *check_criteria)
     @storage_location = nil

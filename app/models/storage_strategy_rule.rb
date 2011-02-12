@@ -13,9 +13,15 @@ class StorageStrategyRule < ActiveRecord::Base
   belongs_to  :receipt_type
   belongs_to  :storage_strategy
 
-  def match?(container)
-  	  match_criteria
-  	  container.storage_attributes
+  def match_for_container?(container)
+  	match = true
+        match_criteria.each do |k,v|
+          unless v == @container.storage_attributes[k]
+            match = false
+	    break
+          end
+        end
+	return match
   end
   
   def match_criteria
