@@ -15,7 +15,7 @@ class ContainerContent < ActiveRecord::Base
     attributes_match =true
     content_attributes.delete_if {|k,v| v.blank?}
     content_attributes.each do |k,v| 
-       if self.attributes[k] != v
+      if self.attributes[k] != v
         attributes_match = false
       end
     end

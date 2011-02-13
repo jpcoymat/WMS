@@ -87,12 +87,12 @@ class Container < ActiveRecord::Base
 
   def storage_attributes
     @storage_attributes = {}
-    receipt_types.count ==1 ? @storage_attributes[:receipt_type_id] = @receipt_types.first.id : nil
-    product_categories.count == 1 ? @storage_attributes[:product_category_id] = @product_categories.first.id : nil
-    product_subcategories.count == 1 ? @storage_attributes[:product_subcategory_id] = @product_subcategories.first.id : nil 
-    uom ? @storage_attributes[:uom_id] = @uom.id : nil
-    supplier ? @storage_attributes[:supplier_id] = supplier.id : nil
-      
+    receipt_types.count ==1 ? @storage_attributes["receipt_type_id"] = @receipt_types.first.id : nil
+    product_categories.count == 1 ? @storage_attributes["product_category_id"] = @product_categories.first.id : nil
+    product_subcategories.count == 1 ? @storage_attributes["product_subcategory_id"] = @product_subcategories.first.id : nil 
+    uom ? @storage_attributes["uom_id"] = @uom.id : nil
+    supplier ? @storage_attributes["supplier_id"] = supplier.id : nil
+    @storage_attributes  
   end
 
   def content_quantity(criteria = {})
@@ -139,7 +139,7 @@ class Container < ActiveRecord::Base
       index = 0
       while @uom.nil? and index <= product_packages.count
         @uom = product_packages[index].uom if total_quantity >= product_packages[index].quantity
-	index += 1
+	      index += 1
       end
     end
     @uom
@@ -148,16 +148,16 @@ class Container < ActiveRecord::Base
   def product_status
   end
 
-  def content_volume
-    @content_volume = 0
-    self.container_content.each do |container_content|
-      @content_volume += container_content.uom_quantity*container_content.product_package.volume
+  def direct_volume
+    @direct_volume = 0
+    self.container_contents.each do |container_content|
+      @direct_volume += container_content.uom_quantity*container_content.product_package.volume
     end
-    @content_volume
+    @direct_volume
   end
   	 
   def total_volume
-    @total_volume = content_volume
+    @total_volume = direct_volume
     children.each do |child_container|
       @total_volume += child_container.total_volume
     end
@@ -166,8 +166,8 @@ class Container < ActiveRecord::Base
 
   def direct_weight
     @direct_weight = 0
-    self.container_contents.each do |cotnainer_content|
-      @direct_wegiht += container_content.uom_quantity*container_content.product_package.weight
+    self.container_contents.each do |container_content|
+      @direct_weight += container_content.uom_quantity*container_content.product_package.weight
     end
     @direct_weight
   end

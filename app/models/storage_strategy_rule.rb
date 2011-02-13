@@ -15,26 +15,26 @@ class StorageStrategyRule < ActiveRecord::Base
 
   def match_for_container?(container)
   	match = true
-        match_criteria.each do |k,v|
-          unless v == @container.storage_attributes[k]
-            match = false
-	    break
-          end
+      match_criteria.each do |k,v|
+        unless v == container.storage_attributes[k]
+          match = false
+	        break
         end
-	return match
+      end
+	  return match
   end
   
   def match_criteria
-  	  @match_criteria = self.attributes
-  	  @match_criteria.delete_if {|k,v| v.blank?}
+  	@match_criteria = self.attributes
+  	@match_criteria.delete_if {|k,v| v.blank?}
 	  @match_criteria.delete("created_at")
 	  @match_criteria.delete("id")
 	  @match_criteria.delete("storage_strategy_id")
 	  @match_criteria.delete("updated_at")
-  	  @match_criteria.delete("warehouse_id")
-  	  @match_criteria.delete("storage_strategy")
-  	  @match_criteria.delete("order_sequence_number")
-  	  @match_criteria
+  	@match_criteria.delete("warehouse_id")
+  	@match_criteria.delete("storage_strategy")
+    @match_criteria.delete("order_sequence_number")
+  	@match_criteria
   end
   
 end

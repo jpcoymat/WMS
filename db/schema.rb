@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110117035520) do
+ActiveRecord::Schema.define(:version => 20110213172245) do
 
   create_table "allocation_strategies", :force => true do |t|
     t.string   "name",         :limit => 25, :null => false
@@ -306,6 +306,7 @@ ActiveRecord::Schema.define(:version => 20110117035520) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "uom_id",                                                          :null => false
+    t.decimal  "weight",         :precision => 8, :scale => 2
   end
 
   create_table "product_statuses", :force => true do |t|

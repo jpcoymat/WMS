@@ -5,7 +5,7 @@ class Location < ActiveRecord::Base
   validates		:name,  :warehouse_id,  :location_type_id, :presence => true
   validates		:name,  :uniqueness => true
   
-  has_many    :containers
+  has_many    :containers, :as => :container_location
   has_many    :product_location_assignments
   has_many    :assignment_details
   belongs_to  :warehouse
@@ -46,6 +46,7 @@ class Location < ActiveRecord::Base
     self.containers.each do |container|
       @occupied_volume += container.direct_weight
     end
+    @occupied_weight
   end
   
   def available_volume
@@ -63,12 +64,12 @@ class Location < ActiveRecord::Base
   end
   
   def current_and_future_containers
-  	  pending_storage_assignments + current_topmost_containers
+  	  pending_storage_assignments.count + current_topmost_containers
   end
   
   def container_fits?(container)
     @container_fits = true
-    if container.total_weight > available_weight || container.total_volume > available_volume || (self.location_type.maximum_containers <= current_and_future_containers || !(self.location_type.collapse.containers))
+    if container.total_weight > available_weight || container.total_volume > available_volume || (self.location_type.maximum_containers <= current_and_future_containers || self.collapse_containers)
       @container_fits = false 
     end
     @container_fits
