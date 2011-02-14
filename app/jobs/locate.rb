@@ -4,7 +4,7 @@ class Locate
 
   attr_accessor :container 
 
-  def perform(container)
+  def self.perform(container)
     @container = Container.find(container)
     @warehouse = @container.container_location.warehouse 
     exclude_location = args[:exclude]

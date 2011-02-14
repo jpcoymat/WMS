@@ -5,7 +5,10 @@ class Location < ActiveRecord::Base
   validates		:name,  :warehouse_id,  :location_type_id, :presence => true
   validates		:name,  :uniqueness => true
   
-  has_many    :containers, :as => :container_location
+  has_many    :containers,          :as => :container_location
+  has_many    :assignment_details,  :as => :from_location
+  has_many    :assignment_details,  :as => :end_location
+  
   has_many    :product_location_assignments
   has_many    :assignment_details
   belongs_to  :warehouse

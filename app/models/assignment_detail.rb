@@ -1,15 +1,11 @@
 class AssignmentDetail < ActiveRecord::Base
 
-	belongs_to :assignment
-	validates :assignment_id, :presence => true
-
-	def from_location
-		@from_location = Location.first(self.from_location_id)
-	end
+	belongs_to  :assignment
+	validates   :assignment_id, :presence => true
 	
-	def to_location
-		@to_location = Location.first(self.to_location_id)
-	end
+	belongs_to  :from_location, :polymorphic => true
+	belongs_to  :end_location,  :polymorphic => true
+
 
 	def expected_product
 		@expected_product = Product.first(self.expected_product_id)

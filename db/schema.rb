@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110213172245) do
+ActiveRecord::Schema.define(:version => 20110214034117) do
 
   create_table "allocation_strategies", :force => true do |t|
     t.string   "name",         :limit => 25, :null => false
@@ -56,13 +56,11 @@ ActiveRecord::Schema.define(:version => 20110213172245) do
   end
 
   create_table "assignment_details", :force => true do |t|
-    t.integer  "assignment_id",       :null => false
+    t.integer  "assignment_id",                     :null => false
     t.integer  "expected_product_id"
     t.integer  "actual_product_id"
     t.integer  "expected_quantity"
     t.integer  "actual_quantity"
-    t.integer  "from_location_id"
-    t.integer  "to_location_id"
     t.integer  "from_container_id"
     t.integer  "to_container_id"
     t.date     "start_time"
@@ -70,6 +68,10 @@ ActiveRecord::Schema.define(:version => 20110213172245) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "user_id"
+    t.string   "start_location_type", :limit => 25
+    t.integer  "start_location_id"
+    t.string   "end_location_type",   :limit => 25
+    t.integer  "end_location_id"
   end
 
   create_table "assignment_types", :force => true do |t|
