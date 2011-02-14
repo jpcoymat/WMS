@@ -18,7 +18,14 @@ class Location < ActiveRecord::Base
 
   
   def pending_storage_assignments
-  	  @pending_storage_assignments = AssignmentDetail.where(:to_location_id => self.id).all
+      @pending_storage_assignments = []
+  	  assignment_details = AssignmentDetail.where(:end_location_id => self.id, :end_location_type => self.class.to_s).all
+  	  assignment_details.delete_if {|ad| ad.assignment.type == "StorageAssignment" and Container.find(ad.from_container_id).parent_container_i.nil?}
+  	  assignment_details.each do 
+  	    @pending_storage_assignments << assignment_details.assignment
+  	  end
+  	  @pending_storage_assignments.uniq!
+  	  @pending_storage_assignments 
   end
 
   def name

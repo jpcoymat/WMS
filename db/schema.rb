@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110214034117) do
+ActiveRecord::Schema.define(:version => 20110214042143) do
 
   create_table "allocation_strategies", :force => true do |t|
     t.string   "name",         :limit => 25, :null => false
@@ -83,14 +83,14 @@ ActiveRecord::Schema.define(:version => 20110214034117) do
   end
 
   create_table "assignments", :force => true do |t|
-    t.integer  "assignment_type_id",                                 :null => false
     t.integer  "user_id"
     t.date     "start_timestamp"
     t.date     "finish_timestamp"
-    t.boolean  "released_flag",                    :default => true, :null => false
+    t.boolean  "released_flag",                  :default => true, :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "state",              :limit => 50,                   :null => false
+    t.string   "state",            :limit => 50,                   :null => false
+    t.string   "type",             :limit => 25,                   :null => false
   end
 
   create_table "companies", :force => true do |t|

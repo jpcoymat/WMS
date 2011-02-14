@@ -4,10 +4,10 @@ class Locate
 
   attr_accessor :container 
 
-  def self.perform(container)
-    @container = Container.find(container)
+  def self.perform(lp)
+    @container = Container.where(:lp => lp).first
     @warehouse = @container.container_location.warehouse 
-    exclude_location = args[:exclude]
+    #exclude_location = args[:exclude]
     storage_strategy = get_matching_storage_strategy
     if storage_strategy
       storage_location = nil
@@ -23,15 +23,15 @@ class Locate
     end
   end
 
-  def create_storage_assignments(storage_location)
+  def self.create_storage_assignments(storage_location)
     @storage_assignment = StorageAssignment.new
-    @storage_assignment.assignment_details.create(:from_location_id => @container.container_location.id, :to_location_id => storage_location.id, :from_container => container.id)
     @storage_assignment.save!
+    @storage_assignment.assignment_details.create(:from_location => @container.container_location, :end_location => storage_location, :from_container_id => @container.id)
     @storage_assingment
   end
 
 
-  def get_matching_storage_strategy
+  def self.get_matching_storage_strategy
 	  @storage_strategy = nil
 	  @storage_strategy_rules = @container.container_location.warehouse.storage_strategy_rules
 	  index = 0
@@ -44,13 +44,13 @@ class Locate
 
 
 
-  def find_location(storage_zone, *check_criteria)
+  def self.find_location(storage_zone, *check_criteria)
     @storage_location = nil
     locations = Location.where(:warehouse_id => @container.container_location.warehouse.id, :storage_zone_id =>storage_zone.id, :available_for_storage => true).order(:storage_travel_sequence).all
     index = 0
     while @storage_location.nil? or index < locations.count
       location = locations[index]
-      @storage_location = location if location.container_fits?(container)
+      @storage_location = location if location.container_fits?(@container)
       index+=1
     end
     @storage_location  
