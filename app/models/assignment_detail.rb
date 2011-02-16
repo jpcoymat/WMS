@@ -8,19 +8,19 @@ class AssignmentDetail < ActiveRecord::Base
 
 
 	def expected_product
-		@expected_product = Product.first(self.expected_product_id)
+		@expected_product = Product.find(self.expected_product_id)
 	end
 	
 	def actual_product
-		@actual_product = Product.first(self.actual_product_id)
+		@actual_product = Product.find(self.actual_product_id)
 	end
 	
 	def from_container
-		@from_container = Container.first(self.from_container_id)
+		@from_container = Container.find(self.from_container_id)
 	end
 	
 	def to_container
-		@to_container = Container.first(self.to_container_id)
+		@to_container = Container.find(self.to_container_id)
 	end
 	
 	

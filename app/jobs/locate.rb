@@ -5,22 +5,31 @@ class Locate
   attr_accessor :container 
 
   def self.perform(lp)
+    @storage_assignment = nil
     @container = Container.where(:lp => lp).first
-    @warehouse = @container.container_location.warehouse 
-    #exclude_location = args[:exclude]
-    storage_strategy = get_matching_storage_strategy
-    if storage_strategy
-      storage_location = nil
-      index = 0
-      while  storage_location.nil? && index < storage_strategy.storage_strategy_lines.count
-        storage_strategy_line = storage_strategy.storage_strategy_lines[index]
-        storage_location = find_location(storage_strategy_line.storage_zone, storage_strategy_line.check_criteria)
-        index += 1
+    if @container
+      open_assignments = StorageAssignment.find_by_sql("select asg.* from assignments asg inner join assignment_details ad on ad.assignment_id = asg.id where asg.type = 'StorageAssignment' and ad.from_container_id = #{@container.id}")
+      if open_assignments.empty?
+        @warehouse = @container.container_location.warehouse 
+        #exclude_location = args[:exclude]
+        storage_strategy = get_matching_storage_strategy
+        if storage_strategy
+          storage_location = nil
+          index = 0
+          while  storage_location.nil? && index < storage_strategy.storage_strategy_lines.count
+            storage_strategy_line = storage_strategy.storage_strategy_lines[index]
+            storage_location = find_location(storage_strategy_line.storage_zone, storage_strategy_line.check_criteria)
+            index += 1
+          end
+          if storage_location
+            @storage_assignment = create_storage_assignments(storage_location)
+          end
+        end
+      else
+        @storage_assignment = open_assignments.first
       end
-      if storage_location
-        @storage_assignment = create_storage_assignments(storage_location)
-      end
-    end
+    end    
+    @storage_assignment
   end
 
   def self.create_storage_assignments(storage_location)

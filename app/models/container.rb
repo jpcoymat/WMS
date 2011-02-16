@@ -195,6 +195,13 @@ class Container < ActiveRecord::Base
     container
   end
   
+  def orders
+    
+  end
+  
+  def valid_for_storage?
+    
+  end
   
 
 end
