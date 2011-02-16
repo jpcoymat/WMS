@@ -1,0 +1,15 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  inventory_adjustment_type_id: 1
+  adjustment_type: MyString
+  adjustment_quantity: 1
+  user_i: 1
+  comments: MyText
+
+two:
+  inventory_adjustment_type_id: 1
+  adjustment_type: MyString
+  adjustment_quantity: 1
+  user_i: 1
+  comments: MyText
