@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110216220432) do
+ActiveRecord::Schema.define(:version => 20110219225035) do
 
   create_table "allocation_strategies", :force => true do |t|
     t.string   "name",         :limit => 25, :null => false
@@ -443,14 +443,14 @@ ActiveRecord::Schema.define(:version => 20110216220432) do
   end
 
   create_table "shipments", :force => true do |t|
-    t.string   "trailer_number",               :null => false
+    t.string   "shipment_number",               :null => false
     t.date     "arrival_date"
     t.date     "departure_date"
-    t.string   "direction",      :limit => 25, :null => false
-    t.integer  "dock_door_id",                 :null => false
+    t.string   "direction",       :limit => 25, :null => false
+    t.integer  "dock_door_id",                  :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "state",          :limit => 50, :null => false
+    t.string   "state",           :limit => 50, :null => false
   end
 
   create_table "storage_strategies", :force => true do |t|

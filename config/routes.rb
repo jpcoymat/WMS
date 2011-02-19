@@ -1,4 +1,14 @@
 Wms::Application.routes.draw do
+  get "inventory_management/containers"
+
+  get "inventory_management/inventory_updates"
+
+  get "inventory_management/locations"
+
+  get "inventory_management/shipments"
+
+  get "inventory_management/assignments"
+
   get "inbound/start_receiving"
 
   get "inbound/confirm_lp"

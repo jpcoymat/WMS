@@ -7,7 +7,7 @@ class Order < ActiveRecord::Base
   belongs_to	:customer
   belongs_to	:order_type
   
-  has_many	:order_line  
+  has_many	:order_lines  
 
   def ship_country
     @ship_country = Country.find(self.ship_country_id)
