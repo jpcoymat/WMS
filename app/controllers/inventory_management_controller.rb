@@ -11,6 +11,11 @@ class InventoryManagementController < ApplicationController
 		@location = Location.where(:name => params[:container][:location_name]).first unless params[:container][:location_name].nil?
 		@product = Product.find(params[:container][:product_id]) unless params[:container][:product_id].nil?
 		@shipment = Shipment.where(:shipment_number => params[:container][:shipment_number]).first unless params[:container][:shipment_number].nil?		
+		lookup_criteria = {}
+		lookup_criteria["order"] = @order unless @order.nil?
+		lookup_criteria["receipt"] = @receipt unless @receipt.nil?
+		lookup_criteria["location"] = @location unless @location.nil?
+		lookup_criteria["product"] = @product unless @product.nil?
 	end
   end
 
