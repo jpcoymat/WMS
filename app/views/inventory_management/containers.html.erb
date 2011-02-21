@@ -1,2 +1,26 @@
-<h1>InventoryManagement#containers</h1>
-<p>Find me in app/views/inventory_management/containers.html.erb</p>
+<h1>Containers</h1>
+<p>Please enter your search criteria to look-up for your containers.</p>
+
+<%= form_for :container, :url => {:controller => 'inventory_management', :action => 'containers'} do |form| %>
+	<table>
+		<tr><td>Location Type</td>	<td><%= form.select :container_location_type, @container_location_types.collect {|lt| [lt[0],lt[1]]}, {:include_blank => true} %></td></tr>
+		   <td>Location Name </td>	<td><%= form.text_field :container_location_id 	%></td></tr>
+		<tr><td>Container LP	</td>	<td><%= form.text_field :lp			%></td>
+		    <td>Shipment Number	</td>	<td><%= from.select @shipments.collect {|s| [s.shipment_number, s.id]}, {:include_blank => true}	%></td></tr>
+	</table>
+	<%= submit_tag "Look Up Containers"	%>
+<% end %>
+<% if request.post? %>
+	<table>
+		<tr><th>Container LP</th>	<th>Location	</th>	<th>Container State </th>	<th>Total Quantity	</th></tr>
+		<% for container in @containers %>
+			<tr>	<td><%= container.lp					%></td>
+				<td><%= container.container_location.name		%></td>
+				<td><%= container.state					%></td>
+				<td><%= container.total_quantity			%></td>
+				<td><%= link_to "View Container Contents", :controller => 'inventory_management', :action => 'container_contents', :container => container %></td>
+		<% end %>
+	
+
+<% end %> 	
+	 
