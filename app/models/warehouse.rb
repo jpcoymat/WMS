@@ -17,6 +17,8 @@ class Warehouse < ActiveRecord::Base
   has_many    :product_location_assignments
   has_many    :product_warehouse_setups
   has_many    :products, :through => :product_warehouse_setups
+  has_many    :shipments
+
 
   validates	:name, :uniqueness => true
   validates	:code, :uniqueness => true 

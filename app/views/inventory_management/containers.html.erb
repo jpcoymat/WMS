@@ -6,7 +6,7 @@
 		<tr><td>Location Type</td>	<td><%= form.select :container_location_type, @container_location_types.collect {|lt| [lt[0],lt[1]]}, {:include_blank => true} %></td></tr>
 		   <td>Location Name </td>	<td><%= form.text_field :container_location_id 	%></td></tr>
 		<tr><td>Container LP	</td>	<td><%= form.text_field :lp			%></td>
-		    <td>Shipment Number	</td>	<td><%= from.select @shipments.collect {|s| [s.shipment_number, s.id]}, {:include_blank => true}	%></td></tr>
+		    <td>Shipment Number	</td>	<td><%= from.select @open_shipments.collect {|s| [s.shipment_number, s.id]}, {:include_blank => true}	%></td></tr>
 	</table>
 	<%= submit_tag "Look Up Containers"	%>
 <% end %>
