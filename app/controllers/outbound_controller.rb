@@ -1,0 +1,2 @@
+class OutboundController < ApplicationController
+end

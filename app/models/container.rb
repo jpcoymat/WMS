@@ -25,6 +25,13 @@ class Container < ActiveRecord::Base
   validates	:lp, :uniqueness => true
   validates	:lp, :container_location, :presence => true
 
+
+  def self.location_types
+	@location_types = ["DockDoor","Location","User","Shipment"]
+	@location_types
+  end
+
+
   def single_product?
   	 products.count == 1
   end
