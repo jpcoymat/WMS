@@ -9,6 +9,9 @@ class Order < ActiveRecord::Base
   
   has_many	:order_lines  
 
+  has_many	:shipment_contents, :as => :content
+
+
   def ship_country
     @ship_country = Country.find(self.ship_country_id)
   end

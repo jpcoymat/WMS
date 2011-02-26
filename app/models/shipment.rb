@@ -1,6 +1,11 @@
 class Shipment < ActiveRecord::Base
 
 
+  has_many	:shipment_contents
+  belongs_to	:warehouse
+  belongs_to	:dock_door
+  
+
   include AASM
 
   aasm_column :state
