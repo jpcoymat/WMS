@@ -1,0 +1,15 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  wave_number: MyString
+  started_running_at: 2011-03-10
+  stopped_runningat: 2011-03-10
+  state: MyString
+  user_id: 1
+
+two:
+  wave_number: MyString
+  started_running_at: 2011-03-10
+  stopped_runningat: 2011-03-10
+  state: MyString
+  user_id: 1

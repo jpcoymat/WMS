@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110226051154) do
+ActiveRecord::Schema.define(:version => 20110310215302) do
 
   create_table "allocation_strategies", :force => true do |t|
     t.string   "name",         :limit => 25, :null => false
@@ -72,6 +72,7 @@ ActiveRecord::Schema.define(:version => 20110226051154) do
     t.integer  "start_location_id"
     t.string   "end_location_type",   :limit => 25
     t.integer  "end_location_id"
+    t.integer  "wave_id"
   end
 
   create_table "assignment_types", :force => true do |t|
@@ -570,6 +571,16 @@ ActiveRecord::Schema.define(:version => 20110226051154) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "state",       :limit => 25
+  end
+
+  create_table "waves", :force => true do |t|
+    t.string   "wave_number",        :limit => 25, :null => false
+    t.datetime "started_running_at"
+    t.datetime "stopped_running_at"
+    t.string   "state",              :limit => 25, :null => false
+    t.integer  "user_id",                          :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
 end
