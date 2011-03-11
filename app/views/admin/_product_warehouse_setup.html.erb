@@ -5,4 +5,5 @@
 	<tr><td>Product Status		</td>	<td><%= form.select :product_status_id,	ProductStatus.all.collect {|ps| [ps.code, ps.id]}																%>	</td></tr>
 	<tr><td>Storage Strategy	</td>	<td><%= form.select :storage_strategy_id, StorageStrategy.all(:order => 'code').collect {|ss| [ss.code, ss.id]}, :include_blank => true					%>	</td></tr>
 	<tr><td>Allocation Strategy	</td>	<td><%= form.select :allocation_strategy_id, AllocationStrategy.all(:order => 'code').collect {|as| [as.code, as.id]}, :include_blank => true			%>	</td></tr>
+	<tr><td>Maximum Stack Height (Containers) </td> <td><%= form.text_field :stack_height %> </td></tr>
 <table>
