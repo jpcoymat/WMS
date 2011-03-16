@@ -1042,5 +1042,6 @@ class AdminController < ApplicationController
     ProductLocationAssignment.destroy(params[:product_location_assignment])
     redirect_to :controller => 'admin', :action => 'product_location_assignments', :location => @location
   end
+  
 
 end 
