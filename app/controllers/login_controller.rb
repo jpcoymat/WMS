@@ -4,7 +4,7 @@ class LoginController < ApplicationController
 
   def login
     if request.post?
-      @user = User.authenticate(params[:user_login][:username],params[:user_login][:password])
+      @user = User.authenticate(params[:user_login][:username],params[:user_login][:password])     
       if @user
         flash[:notice] = "Welcome to WMS."
         session[:user_id] = @user.id
