@@ -3,11 +3,11 @@ class ProductWarehouseSetup < ActiveRecord::Base
   belongs_to  	:product
   belongs_to  	:warehouse
   belongs_to  	:product_status
-  belongs_to 	:allocation_strategy
-  belongs_to	:storage_strategy
+  belongs_to 	  :allocation_strategy
+  belongs_to  	:storage_strategy
   
-  validates	:product_id,  :warehouse_id,  :product_status_id, :presence => true
-  validates	:product_id,  :uniqueness => true
+  validates	    :product_id,  :warehouse_id,  :product_status_id, :presence => true
+  validates	    :product_id,  :uniqueness => true
 
   def find_or_create_lot
     fifo_date = get_fifo_date       

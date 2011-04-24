@@ -4,7 +4,7 @@ class Allocate
   
   def perform(wave_number)
     @wave = Wave.find(wave_id)
-    unless @wave.nil?
+    if @wave and @wave.created?      
       @order_lines = OrderLine.where(:wave_id => @wave.id).order(:item_id)
     else
         
