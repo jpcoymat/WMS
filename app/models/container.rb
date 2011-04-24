@@ -71,7 +71,7 @@ class Container < ActiveRecord::Base
       @product_categories << container_content.product.product_category unless @product_categories.include?(container_content.product.product_category) || container_content.product.product_category.nil? 
     end
     children.each do |child_container|
-      @product_categories << child_containe.product_categories
+      @product_categories << child_container.product_categories
     end
     @product_categories.flatten!
     @product_categories.uniq!
@@ -152,16 +152,6 @@ class Container < ActiveRecord::Base
     @uom
   end 
   
-  def product_status
-  end
-
-  def direct_volume
-    @direct_volume = 0
-    self.container_contents.each do |container_content|
-      @direct_volume += container_content.uom_quantity*container_content.product_package.volume
-    end
-    @direct_volume
-  end
   	 
   def total_volume
     @total_volume = direct_volume
@@ -170,14 +160,6 @@ class Container < ActiveRecord::Base
     end
     @total_volume    	    
   end  
-
-  def direct_weight
-    @direct_weight = 0
-    self.container_contents.each do |container_content|
-      @direct_weight += container_content.uom_quantity*container_content.product_package.weight
-    end
-    @direct_weight
-  end
 
   
   def total_weight
@@ -202,13 +184,48 @@ class Container < ActiveRecord::Base
     container
   end
   
+  
   def orders
-    
+    @orders = []
+    @orders << self.direct_orders
+    children.each do |container|
+      @orders = container.direct_orders
+    end
+    @orders.flatten!
+    @orders.unique!
+    @orders
   end
   
   def valid_for_storage?
-    
+    self.orders.empty?
   end
-  
+
+
+  protected
+    
+    def direct_orders
+      @direct_orders = []
+      self.container_contents.each do |container_content|
+        @direct_orders << container_content.order_line.order
+      end
+      @direct_orders   
+    end
+    
+    def direct_weight
+      @direct_weight = 0
+      self.container_contents.each do |container_content|
+        @direct_weight += container_content.uom_quantity*container_content.product_package.weight
+      end
+      @direct_weight
+    end
+    
+    def direct_volume
+      @direct_volume = 0
+      self.container_contents.each do |container_content|
+        @direct_volume += container_content.uom_quantity*container_content.product_package.volume
+      end
+      @direct_volume
+    end
+    
 
 end

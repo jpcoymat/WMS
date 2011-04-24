@@ -7,7 +7,7 @@ class Locate
   def self.perform(lp)
     @storage_assignment = nil
     @container = Container.where(:lp => lp).first
-    if @container
+    if @container and @container.valid_for_storage?
       open_assignments = StorageAssignment.find_by_sql("select asg.* from assignments asg inner join assignment_details ad on ad.assignment_id = asg.id where asg.type = 'StorageAssignment' and ad.from_container_id = #{@container.id}")
       if open_assignments.empty?
         @warehouse = @container.container_location.warehouse 

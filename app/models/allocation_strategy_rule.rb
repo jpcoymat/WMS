@@ -11,4 +11,14 @@ class AllocationStrategyRule < ActiveRecord::Base
   validates	:warehouse_id, :order_sequence, :allocation_strategy_id, :presence => true
 
 
+  def match_criteria
+    @allocation_strategy_criteria = self.attributes.clone
+    @allocation_strategy_criteria.delete("id")
+    @allocation_strategy_criteria.delete("warehouse_id")
+    @allocation_strategy_criteria.delete("order_sequence")
+    @allocation_strategy_criteria.delete("created_at")
+    @allocation_strategy_criteria.delete("updated_at")
+    @allocation_strategy_criteria.delete_if {|k,v| v.blank?}
+  end
+
 end

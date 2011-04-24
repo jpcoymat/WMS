@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110410051047) do
+ActiveRecord::Schema.define(:version => 20110424205604) do
 
   create_table "allocation_strategies", :force => true do |t|
     t.string   "name",         :limit => 25, :null => false
@@ -257,14 +257,16 @@ ActiveRecord::Schema.define(:version => 20110410051047) do
   end
 
   create_table "order_lines", :force => true do |t|
-    t.integer  "line_sequence_number", :null => false
-    t.integer  "product_id",           :null => false
+    t.integer  "line_sequence_number",   :null => false
+    t.integer  "product_id",             :null => false
     t.integer  "lot_id"
     t.integer  "product_status_id"
-    t.integer  "quantity_ordered",     :null => false
+    t.integer  "quantity_ordered",       :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "order_id",             :null => false
+    t.integer  "order_id",               :null => false
+    t.integer  "wave_id"
+    t.integer  "allocation_strategy_id"
   end
 
   create_table "order_types", :force => true do |t|
@@ -350,15 +352,15 @@ ActiveRecord::Schema.define(:version => 20110410051047) do
   end
 
   create_table "product_warehouse_setups", :force => true do |t|
-    t.integer  "product_id",                           :null => false
-    t.integer  "warehouse_id",                         :null => false
-    t.integer  "product_status_id",                    :null => false
-    t.string   "lot_management_type",    :limit => 10, :null => false
+    t.integer  "product_id",                            :null => false
+    t.integer  "warehouse_id",                          :null => false
+    t.integer  "product_status_id",                     :null => false
     t.integer  "allocation_strategy_id"
     t.integer  "storage_strategy_id"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "stack_height"
+    t.string   "lot_management_type",    :limit => 100, :null => false
   end
 
   create_table "products", :force => true do |t|
@@ -584,6 +586,7 @@ ActiveRecord::Schema.define(:version => 20110410051047) do
     t.integer  "user_id",                          :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "warehouse_id",                     :null => false
   end
 
 end
