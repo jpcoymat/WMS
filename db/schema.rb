@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110410051047) do
+ActiveRecord::Schema.define(:version => 20110424175120) do
 
   create_table "allocation_strategies", :force => true do |t|
     t.string   "name",         :limit => 25, :null => false
@@ -265,6 +265,7 @@ ActiveRecord::Schema.define(:version => 20110410051047) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "order_id",             :null => false
+    t.integer  "wave_id"
   end
 
   create_table "order_types", :force => true do |t|
@@ -584,6 +585,7 @@ ActiveRecord::Schema.define(:version => 20110410051047) do
     t.integer  "user_id",                          :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "warehouse_id",                     :null => false
   end
 
 end
