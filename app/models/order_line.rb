@@ -1,6 +1,6 @@
 class OrderLine < ActiveRecord::Base
 
-  after_create :find_allocation_strategy
+  before_create :find_allocation_strategy
 
   validates :line_sequence_number, :product_id, :quantity_ordered, :order_id, :presence => true
   validates :line_sequence_number, :uniqueness => true
@@ -12,7 +12,8 @@ class OrderLine < ActiveRecord::Base
   belongs_to	:lot
   belongs_to	:product_status
 
-  def allocation_strategy_criteria
+  def allocation_strategy_match_attributes
+    @allocation_strategy_match_attributes = {}
     order_type = self.order.order_type
     product_category = self.product.product_category
     product_subcategory = self.product.product_subcategory
@@ -21,19 +22,28 @@ class OrderLine < ActiveRecord::Base
     product_
   end
   
-  def match_allocation_rule?(allocation_rule)
+  def match_allocation_rule?(allocation_strategy_rule)
     rule_match = true
-    while rule_match
-      
+    allocation_strategy_rule.match_criteria.each do |k,v|
+      unless v == self.allocation_strategy_match_attributes[k]
+        rule_match = false
+        break
+      end
     end
+    rule_match
   end
 
   def find_allocation_strategy
-    allocation_strategy_rules = AllocationStrategyRules.where(:warehouse_id => self.order.warehouse_id).order(:order_sequence)
-    allocation_strategy_rules.each do |allocation_strategy_rule|
-      if allocation_strategy_criteria
+    @allocation_strategy = nil
+    index = 0
+    allocation_strategy_rules = AllocationStrategyRules.where(:warehouse_id => self.order.warehouse_id).order(:order_sequence).all
+    while @allocation_strategy.nil? and index < allocation_strategy_rules.count
+      allocation_strategy_rule = allocation_strategy_rules.allocation_strategy_rule
+      if match_allocation_rule?(allocation_strategy_rule)
+        @allocation_strategy = allocation_strategy_rule.allocation_strategy
         
       end
+      index += 1
     end
     
   end
