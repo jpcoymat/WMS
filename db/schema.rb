@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110424205604) do
+ActiveRecord::Schema.define(:version => 20110426042011) do
 
   create_table "allocation_strategies", :force => true do |t|
     t.string   "name",         :limit => 25, :null => false
@@ -92,6 +92,7 @@ ActiveRecord::Schema.define(:version => 20110424205604) do
     t.datetime "updated_at"
     t.string   "state",            :limit => 50,                   :null => false
     t.string   "type",             :limit => 25,                   :null => false
+    t.integer  "priority"
   end
 
   create_table "companies", :force => true do |t|
@@ -295,6 +296,7 @@ ActiveRecord::Schema.define(:version => 20110424205604) do
     t.integer  "company_id"
     t.string   "state",            :limit => 50, :null => false
     t.integer  "warehouse_id",                   :null => false
+    t.integer  "priority"
   end
 
   create_table "product_categories", :force => true do |t|
