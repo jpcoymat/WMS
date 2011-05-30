@@ -1,0 +1,28 @@
+var subcategories = new Array();
+<% @product_subcategories.each do |subcategory| %>
+	subcategories.push(new Array(<%= subcategory.product_category_id %>, '<%=h subcategory.name %>', <%= subcategory.id %>));
+<% end %>
+
+function categorySelected() {
+
+	product_category_id = $('product_product_category_id').getValue();
+	options = $('product_product_subcategory_id').options;
+	options.length = 1;
+	subcategories.each(function(subcategory) {
+		if (subcategory[0] == product_category_id) {
+			options[options.length] = new Option(subcategory[1],subcategory[2]);
+		}
+	
+	});
+	if (options.length == 1) {
+		$('product_subcategory_field').hide();
+	}
+	else {
+		$('product_subcategory_field').show();
+	}
+}
+
+document.observe('dom:loaded', function() {
+	categorySelected();
+	$('product_product_category_id').observe('change',categorySelected);
+});
