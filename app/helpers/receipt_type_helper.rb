@@ -1,0 +1,2 @@
+module ReceiptTypeHelper
+end
