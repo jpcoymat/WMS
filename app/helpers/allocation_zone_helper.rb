@@ -1,0 +1,2 @@
+module AllocationZoneHelper
+end
