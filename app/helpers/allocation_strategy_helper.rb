@@ -1,0 +1,2 @@
+module AllocationStrategyHelper
+end

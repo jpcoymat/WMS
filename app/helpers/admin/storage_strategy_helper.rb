@@ -1,0 +1,2 @@
+module Admin::StorageStrategyHelper
+end
