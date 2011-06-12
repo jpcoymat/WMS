@@ -1,4 +1,4 @@
-class LocationTypeController < ApplicationController
+class Admin::LocationTypeController < ApplicationController
 
   before_filter :authorize
 

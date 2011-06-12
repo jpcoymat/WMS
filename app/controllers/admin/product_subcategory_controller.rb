@@ -1,4 +1,4 @@
-class ProductSubcategoryController < ApplicationController
+class Admin::ProductSubcategoryController < ApplicationController
 
   before_filter :authorize
 

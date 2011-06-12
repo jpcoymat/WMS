@@ -1,4 +1,4 @@
-class AllocationStrategyRuleController < ApplicationController
+class Admin::AllocationStrategyRuleController < ApplicationController
 
   before_filter :authorize
 

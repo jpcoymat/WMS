@@ -1,4 +1,4 @@
-class DockDoorController < ApplicationController
+class Admin::DockDoorController < ApplicationController
 
 
   before_filter :authorize

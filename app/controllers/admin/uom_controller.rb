@@ -1,4 +1,4 @@
-class UomController < ApplicationController
+class Admin::UomController < ApplicationController
 
   before_filter :authorize
   

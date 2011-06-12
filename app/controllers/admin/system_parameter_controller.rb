@@ -1,4 +1,4 @@
-class SystemParameterController < ApplicationController
+class Admin::SystemParameterController < ApplicationController
 
   def system_parameters
     @user = User.find(session[:user_id])

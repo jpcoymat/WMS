@@ -1,4 +1,4 @@
-class AllocationZoneController < ApplicationController
+class Admin::AllocationZoneController < ApplicationController
 
   before_filter :authorize
   

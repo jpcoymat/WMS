@@ -1,4 +1,4 @@
-class ReceiptTypeController < ApplicationController
+class Admin::ReceiptTypeController < ApplicationController
 
   before_filter :authorize
   

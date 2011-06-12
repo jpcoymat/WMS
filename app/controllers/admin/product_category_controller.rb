@@ -1,4 +1,4 @@
-class ProductCategoryController < ApplicationController
+class Admin::ProductCategoryController < ApplicationController
 
   def product_categories
     @product_categories = ProductCategory.all(:order => "name", :conditions => ["company_id = ?", User.find(session[:user_id]).warehouse.company_id])

@@ -1,4 +1,4 @@
-class CompanyController < ApplicationController
+class Admin::CompanyController < ApplicationController
 
 
   before_filter :authorize

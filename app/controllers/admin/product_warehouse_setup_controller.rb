@@ -1,4 +1,4 @@
-class ProductWarehouseSetupController < ApplicationController
+class Admin::ProductWarehouseSetupController < ApplicationController
 
   before_filter :authorize
 

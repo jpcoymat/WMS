@@ -1,4 +1,4 @@
-class WarehouseController < ApplicationController
+class Admin::WarehouseController < ApplicationController
 
 
   before_filter :authorize

@@ -1,4 +1,4 @@
-class ProductPackageController < ApplicationController
+class Admin::ProductPackageController < ApplicationController
 
   before_filter :authorize
 

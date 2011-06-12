@@ -1,4 +1,4 @@
-class UserController < ApplicationController
+class Admin::UserController < ApplicationController
 
   before_filter :authorize
   

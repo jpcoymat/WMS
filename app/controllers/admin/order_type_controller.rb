@@ -1,4 +1,4 @@
-class OrderTypeController < ApplicationController
+class Admin::OrderTypeController < ApplicationController
 
   before_filter :authorize
   

@@ -1,4 +1,4 @@
-class StorageZoneController < ApplicationController
+class Admin::StorageZoneController < ApplicationController
 
   before_filter :authorize
   

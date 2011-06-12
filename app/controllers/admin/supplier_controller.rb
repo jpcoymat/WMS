@@ -1,4 +1,4 @@
-class SupplierController < ApplicationController
+class Admin::SupplierController < ApplicationController
 
   before_filter :authorize
 

@@ -1,17 +1,4 @@
 Wms::Application.routes.draw do
-  get "inventory_management/containers"
-
-  get "inventory_management/inventory_updates"
-
-  get "inventory_management/locations"
-
-  get "inventory_management/shipments"
-
-  get "inventory_management/assignments"
-
-  get "inbound/start_receiving"
-
-  get "inbound/confirm_lp"
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
@@ -59,6 +46,15 @@ Wms::Application.routes.draw do
   #     # (app/controllers/admin/products_controller.rb)
   #     resources :products
   #   end
+  
+  namespace :admin do
+    resources :allocation_strategies
+    resources :allocation_strategy_lines
+    resources :allocation_strategy_rules
+    resources :allocation_zones
+    resources :companies 
+    resources :customer_types
+  end
 
 
   # You can have the root of your site routed with "root"
