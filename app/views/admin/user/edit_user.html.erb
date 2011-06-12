@@ -1,0 +1,6 @@
+<h1>Edit User Details	</h1>
+	<%= form_for :user, :url => {:controller => 'admin', :action => 'update_user'} do |form|	%>
+		<%= form.hidden_field :id	%>
+		<%= render :partial => 'user', :locals => {:form => form }	%>
+		<%= submit_tag "Update User"	%>
+	<% end %>

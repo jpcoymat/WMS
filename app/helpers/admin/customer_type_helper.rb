@@ -1,0 +1,2 @@
+module Admin::CustomerTypeHelper
+end

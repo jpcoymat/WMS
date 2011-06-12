@@ -1,0 +1,26 @@
+<h3>Product Subategories for Category <%= @product_category.name %></h3>
+	<% if @product_subcategories.empty? %>
+		<p>No Product Categories created yet.</p>
+	<% else %>
+		<table>
+			<tr><th>Name	</th>	<th>Description	</th>	</tr>
+			<% for product_subcategory in @product_subcategories %>
+				<tr><td><%= product_subcategory.name 																																									%>	</td>
+					<td><%= product_subcategory.description																																								%>	</td>
+					<td><%= link_to "Edit", :controller => 'admin', :action => 'edit_product_subcategory', :product_subcategory => product_subcategory																	%>	</td> 
+					<td><%= product_subcategory.deleteable? ? link_to("Delete", {:controller => 'admin', :action => 'delete_product_subcategory', :product_subcategory => product_subcategory}, :method => :post) : ""	%>	</td>
+				</tr>
+			<% end %>
+		</table>
+	<% end %>
+	<br><br><hr>
+	<h4>Create New Product Category<h4>
+		<%= form_for :product_subcategory, :url => {:controller => 'admin', :action => 'create_product_subcategory'} do |form| %>
+			<%= form.hidden_field :company_id, :value => User.find(session[:user_id]).warehouse.company_id 	%>
+			<%= form.hidden_field :product_category_id, :value => @product_category.id						 %>
+			<table>
+				<tr><td>Product Subcategory Name		</td>	<td><%= form.text_field :name 			%>	</td></tr>
+				<tr><td>Product Subcategory Description	</td>	<td><%= form.text_field :description	%>	</td></tr>
+			</table>
+			<%= submit_tag "Create Product Subcategory"%>
+		<% end %>

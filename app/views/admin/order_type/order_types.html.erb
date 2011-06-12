@@ -1,0 +1,26 @@
+<h1>Order Types	</h1>
+	<% if @order_types.empty?	%>
+		<p>No Order Types have been created</p>
+	<% else 	%>
+		<table>
+			<tr><th>Order Type	</th>	<th>Description		</th>	</tr>
+			<% for order_type in @order_types	%>
+				<tr><td><%= order_type.order_type																																		%>	</td>
+					<td><%= order_type.description																																		%>	</td>
+					<td><%= link_to "Edit", :controller => 'admin', :action => 'edit_order_type', :order_type => order_type																%>	</td>
+					<td><%= order_type.deleteable?	?	link_to("Delete", {:controller => 'admin', :action => 'delete_order_type', :order_type => order_type}, :method => :post) : ""	%>	</td>
+				</tr>
+			<% end 	%>
+		</table>
+	<% end %>
+	<br><br><hr><br>
+	<h3>Create New Order Type	</h3>
+	<%= form_for :order_type, :url => {:controller => 'admin', :action => 'create_order_type'} do |form|		%>
+		<%= form.hidden_field :company_id, :value => @warehouse.company.id	%>
+		<table>
+			<tr><td>Order Type					</td>	<td><%= form.text_field :order_type			%>	</td></tr>
+			<tr><td>Descripion					</td>	<td><%= form.text_field :description		%>	</td></tr>
+		</table>
+		<%= submit_tag "Create Order Type"	%>
+	<% end 	%>
+			

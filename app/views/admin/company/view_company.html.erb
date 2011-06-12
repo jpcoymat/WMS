@@ -1,0 +1,16 @@
+<h3>Company Information</h3>
+
+<table>
+  <tr><td>Company Name          </td> <td><%= @company.name 						%></td></tr>
+  <tr><td>Address               </td> <td><%= @company.address_1            		%></td></tr>
+  <tr><td>Address               </td> <td><%= @company.address_2         	    	%></td></tr>
+  <tr><td>City                  </td> <td><%= @company.city                     	%></td></tr>
+  <tr><td>Postal Code           </td> <td><%= @company.postal_code              	%></td></tr>
+  <tr><td>Country               </td> <td><%= @company.country.name               	%></td></tr>
+  <tr><td>Default Quantity UOM  </td> <td><%= @company.default_quantity_uom.name	%></td></tr>
+  <tr><td>Default Weight UOM    </td> <td><%= @company.default_weight_uom.name 	   	%></td></tr>
+  <tr><td>Default Volume UOM    </td> <td><%= @company.default_length_uom.name    	%></td></tr>
+</table>
+
+<br><br>
+<%= link_to "Edit Company", :controller =>'admin', :action => 'edit_company', :company => @company %>

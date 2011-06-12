@@ -1,0 +1,10 @@
+<table>	
+	<tr><td>Available for Allocation	</td>	<td><%= form.check_box	:available_for_allocation																				%>	</td></tr>
+	<tr><td>Available for Storage		</td>	<td><%= form.check_box	:available_for_storage																					%>	</td></tr>
+	<tr><td>Mix Products?				</td>	<td><%= form.check_box	:mix_products																							%>	</td></tr>
+	<tr><td>Collapse Containers?		</td>	<td><%= form.check_box	:collapse_containers																					%>	</td></tr>
+	<tr><td>Replenishable?				</td>	<td><%= form.check_box	:replenishable																							%>	</td></tr>
+	<tr><td>Storage Zone				</td>	<td><%= form.select :storage_zone_id, @warehouse.storage_zones.collect {|sz| [sz.name, sz.id]}, :include_blank => true			%>	</td></tr>
+	<tr><td>Allocation Zone				</td>	<td><%= form.select :allocation_zone_id, @warehouse.allocation_zones.collect {|az| [az.name, az.id]}, :include_blank => true	%>	</td></tr>
+</table>
+	

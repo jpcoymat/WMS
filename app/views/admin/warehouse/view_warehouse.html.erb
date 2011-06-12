@@ -1,0 +1,15 @@
+<h3>Warehouse <%= @warehouse.name	%>	</h3>
+
+<table>
+	<tr><td>Warehouse Name				</td>	<td><%= @warehouse.name				%>	</td></tr>
+	<tr><td>Warehouse Code				</td>	<td><%= @warehouse.code				%>	</td></tr>
+	<tr><td>Warehouse Description		</td>	<td><%= @warehouse.description		%>	</td></tr>
+	<tr><td>Address 1					</td>	<td><%= @warehouse.address_1		%>	</td></tr>
+	<tr><td>Address 2					</td>	<td><%= @warehouse.address_2		%>	</td></tr>
+	<tr><td>City						</td>	<td><%= @warehouse.city				%>	</td></tr>
+	<tr><td>State						</td>	<td><%= @warehouse.state			%>	</td></tr>
+	<tr><td>Postal Code					</td>	<td><%= @warehouse.postal_code		%>	</td></tr>
+	<tr><td>Country						</td>	<td><%= @warehouse.country.name		%>	</td></tr>
+</table>
+<%= link_to "Dock Doors", :controller => 'admin', :action => 'dock_doors', :warehouse => @warehouse					%>
+<%= link_to "Edit Warehouse Details", :controller => 'admin', :action => 'edit_warehouse', :warehouse => @warehouse	%>	

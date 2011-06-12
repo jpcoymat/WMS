@@ -1,0 +1,36 @@
+<h3>Storage Strategy Details	</h3>
+
+	<table>
+		<tr><td>Code		</td>	<td><%= @storage_strategy.code			%>	</td></tr>
+		<tr><td>Name		</td>	<td><%= @storage_strategy.name			%>	</td></tr>
+		<tr><td>Description	</td>	<td><%= @storage_strategy.description	%>	</td></tr>
+	</table>
+	
+	<h4>Storage Strategy Lines	</h4>
+		<% if @storage_strategy.storage_strategy_lines.empty?	%>
+			<p>No Lines have been defined for this strategy.</p>
+		<% else 												%>
+			<table>
+				<tr><td>Order Sequence	</td>	<td>Storage Zone </td>	<td>Check Volume?	</td>	<td>Check Dimensions?	</td>	<td>Check Containers?	</td></tr>
+				<% @storage_strategy.storage_strategy_lines.each do |storage_strategy_line|	%>
+					<tr><td><%= storage_strategy_line.order_sequence																														%>	</td>
+						<td><%= storage_strategy_line.storage_zone.name																														%>	</td>
+						<td><%= storage_strategy_line.check_volume																															%>	</td>
+						<td><%= storage_strategy_line.check_dimensions																														%>	</td>
+						<td><%= storage_strategy_line.check_containers																														%>	</td>
+						<td><%= link_to "Edit", :controler => 'admin', :action => 'edit_storage_strategy_line', :storage_strategy_line => storage_strategy_line								%>	</td>
+						<td><%= link_to "Delete", {:controller => 'admin', :action => 'delete_storage_strategy_line', :storage_strategy_line => storage_strategy_line}, :method => :post	%>	</td>
+					</tr>
+				<% end %>
+			</table>
+		<% end %>
+		<br><br><hr><br>
+		<%= link_to "Storage Strategies", :controller => 'admin', :action => 'storage_strategies'%>
+		<br><br><hr><br>
+		<h4>Add Storage Strategy Line	</h4>
+		<%= form_for :storage_strategy_line, :url => {:controller => 'admin', :action => 'create_storage_strategy_line'} do |form|	%>
+			<%= form.hidden_field :storage_strategy_id, :value => @storage_strategy.id	%>
+			<%= render :partial => 'storage_strategy_line', :locals => {:form => form}	%>
+			<%= submit_tag "Add Line"													%>
+		<% end %>
+					
