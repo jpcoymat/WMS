@@ -1,4 +1,4 @@
-(function() {
+ (function() {
   // Technique from Juriy Zaytsev
   // http://thinkweb2.com/projects/prototype/detecting-event-support-without-browser-sniffing/
   function isEventSupported(eventName) {
