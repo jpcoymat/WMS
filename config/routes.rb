@@ -48,12 +48,37 @@ Wms::Application.routes.draw do
   #   end
   
   namespace :admin do
-    resources :allocation_strategies
-    resources :allocation_strategy_lines
+    resources :allocation_strategies do 
+      resources :allocation_strategy_lines
+    end
     resources :allocation_strategy_rules
     resources :allocation_zones
     resources :companies 
     resources :customer_types
+    resources :dock_doors
+    resources :location_types
+    resources :locations
+    resources :order_types
+    resources :product_categories do
+      resources :product_subcategories
+    end
+    resources :product_location_assignments
+    resources :product_packages
+    resources :product_statuses
+    resources :product_warehouse_setups
+    resources :products
+    resources :purchase_order_types
+    resources :receipt_types
+    resources :storage_strategies do
+      resources :storage_strategy_lines
+    end
+    resources :storage_strategy_rules
+    resources :storage_zones
+    resources :suppliers
+    resources :system_parameters
+    resources :uoms
+    resources :users
+    resources :warehouses
   end
 
 

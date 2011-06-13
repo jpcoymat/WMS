@@ -1,0 +1,26 @@
+<h3>Allocation Strategies	</h3>
+
+	<% if @allocation_strategies.empty?	%>
+		<p>No Allocation Strategies have been defined.</p>
+	<% else 	%>
+		<table>
+			<tr><th>Code		</th>	<th>Name			</th>	<th>Description		</th>	</tr>
+			<% @allocation_strategies.each do |allocation_strategy| %>
+				<tr><td><%= allocation_strategy.code														%>	</td>
+					<td><%= allocation_strategy.name														%>	</td>
+					<td><%= allocation_strategy.description													%>	</td>
+					<td><%= link_to "Details", 	admin_allocation_strategy_allocation_strategy_lines_path(allocation_strategy) 		%>	</td>
+					<td><%= link_to "Edit", 	edit_admin_allocation_strategy_path(allocation_strategy)	%>	</td>
+					<td><%= allocation_strategy.deleteable? ? link_to("Delete", admin_allocation_strategy_path(allocation_strategy), :method => :delete) : ""	%>	</td>
+				</tr>
+			<% end %>
+		</table>
+	<% end 	%>
+	<br><br><hr><br>
+	<%= form_for :allocation_strategy, :url => admin_allocation_strategies_path do |form|	%>
+		<%= form.hidden_field	:warehouse_id, :value => @warehouse.id						%>
+		<%= render :partial => 'allocation_strategy', :locals => {:form => form}			%>
+		<%= submit_tag "Create Allocation Strategy"											%>
+	<% end 	%>
+			
+			
