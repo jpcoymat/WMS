@@ -1,0 +1,9 @@
+<table>
+	<tr><td>Order Sequence			</td>	<td><%= form.text_field :order_sequence	%>	</td></tr>
+	<tr><td>Allocation Zone			</td>	<td><%= form.select :allocation_zone_id,		AllocationZone.all(:conditions => ["warehouse_id = ?", User.find(session[:user_id]).warehouse.id]).collect {|az| [az.code, az.id]}		%>	</td></tr>
+	<tr><td>Containerization Method	</td>	<td><%= form.select :containerization_method, 	AllocationStrategyLine.containerization_methods.collect {|cm| [cm,cm]}																	%>	</td></tr>
+	<tr><td>Minimum Pick UOM		</td>	<td><%= form.select :minimum_pick_uom, 			AllocationStrategyLine.minimum_pick_uoms.collect {|mp| [mp,mp]}																			%>	</td></tr>
+	<tr><td>Containerization Level	</td>	<td><%= form.select :containerization_level, 	AllocationStrategyLine.containerization_levels {|cl| [cl,cl]}																			%>	</td></tr>
+</table>
+	
+	

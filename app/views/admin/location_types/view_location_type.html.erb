@@ -1,0 +1,27 @@
+<h4>Basic Location Type Attributes</h4>
+<table>
+	<tr><td>Code						</td>	<td><%= @location_type.code								%>	</td></tr>
+	<tr><td>Name						</td>	<td><%= @location_type.name								%>	</td></tr>
+	<tr><td>Zone?						</td>	<td><%= @location_type.zone								%>	</td></tr>
+	<tr><td>Aisle?						</td>	<td><%= @location_type.aisle							%>	</td></tr>
+	<tr><td>Bay?						</td>	<td><%= @location_type.bay								%>	</td></tr>
+	<tr><td>Level?						</td>	<td><%= @location_type.level							%>	</td></tr>
+	<tr><td>Position?					</td>	<td><%= @location_type.position							%>	</td></tr>
+</table>
+<h4>Location Dimensions	and Capacities</h4>
+<p>
+	Default Company Length UOM: <%= User.find(session[:user_id]).company.default_length_uom.name	%>
+</p>
+<p>
+	Default Company Weight UOM: <%= User.find(session[:user_id]).company.default_weight_uom.name	%>
+</p>
+<table>
+	<tr><td>Length						</td>	<td><%= @location_type.length					%>	</td></tr>
+	<tr><td>Width						</td>	<td><%= @location_type.width					%>	</td></tr>
+	<tr><td>Height						</td>	<td><%= @location_type.height					%>	</td></tr>
+ 	<tr><td>Volume						</td>	<td><%= @location_type.volume					%>	</td></tr>
+	<tr><td>Maximum Weight				</td>	<td><%= @location_type.maximum_weight			%>	</td></tr>
+	<tr><td>Maximum Containers			</td>	<td><%= @location_type.maximum_containers		%>	</td></tr>
+</table>
+
+<%= link_to "Edit", :controller => 'admin', :action => 'edit_location_type', :location_type => @location_type	%>

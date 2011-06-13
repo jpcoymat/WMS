@@ -1,0 +1,30 @@
+<h1>Location Details	</h1>
+	<table>
+		<tr><td>Name	</td>	<td><%= @location.name					%>	</td></tr>
+		<% if @location.location_type.zone		%>
+			<tr><td>Zone					</td>	<td><%= @location.zone		%>	</td>
+		<% end %>
+		<% if @location.location_type.aisle		%>
+			<tr><td>Aisle					</td>	<td><%= @location.aisle		%>	</td>
+		<% end %>
+		<% if @location.location_type.bay		%>
+			<tr><td>Bay						</td>	<td><%= @location.bay		%>	</td>
+		<% end %>
+		<% if @location.location_type.level		%>
+			<tr><td>Level					</td>	<td><%= @location.level		%>	</td>
+		<% end %>
+		<% if @location.location_type.position	%>
+			<tr><td>Position				</td>	<td><%= @location.position	%>	</td>
+		<% end %>
+		<tr><td>Pick Travel Sequence		</td>	<td><%= @location.pick_travel_sequence		%>	</td></tr>
+		<tr><td>Storage Travel Sequence		</td>	<td><%= @location.storage_travel_sequence	%>	</td></tr>
+		<tr><td>Available for Allocation	</td>	<td><%= @location.available_for_allocation	%>	</td></tr>
+		<tr><td>Available for Storage		</td>	<td><%= @location.available_for_storage		%>	</td></tr>
+		<tr><td>Mix Products?				</td>	<td><%= @location.mix_products				%>	</td></tr>
+		<tr><td>Collapse Containers?		</td>	<td><%= @location.collapse_containers		%>	</td></tr>
+		<tr><td>Storage Zone				</td>	<td><%= @location.storage_zone.name			%>	</td></tr>
+		<tr><td>Allocation Zone				</td>	<td><%= @location.allocation_zone.name		%>	</td></tr>
+		<tr><td>Replenishable?				</td>	<td><%= @location.replenishable				%>	</td></tr>
+	</table>
+	<p><%= link_to "Edit", :controller => 'admin', :action => 'edit_location', :location => @location	%>	</p>
+	<p><%= link_to("Pick Location Assignments", :controller => 'admin', :action => 'product_location_assignments', :location => @location) if @location.replenishable %></p>

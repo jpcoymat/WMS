@@ -1,0 +1,33 @@
+<h1>Product Packages for Product <%= @product.name %>	</h1>
+
+	<% unless @product.product_packages.empty? %>
+		<table>
+			<tr><th>Unit of Measure	</th>	<th>Length	</th>	<th>Width	</th>	<th>Height	</th>	<th>Volume	</th>	<th>Quantity	</th>	<th>Logical Each</th>	<th>Logical Case	</th>	<th>Logical Pallet	</th>	</tr>
+			<% for product_package in @product.product_packages	%>
+				<tr><td><%= product_package.uom.code																						%>	</td>
+					<td><%= number_with_delimiter	product_package.length																	%>	</td>
+					<td><%= number_with_delimiter	product_package.width																	%>	</td>
+					<td><%= number_with_delimiter	product_package.height																	%>	</td>
+					<td><%= number_with_delimiter	product_package.volume																	%>	</td>
+					<td><%= number_with_delimiter	product_package.quantity																%>	</td>
+					<td><%= product_package.logical_each																					%>	</td>
+					<td><%= product_package.logical_case 																					%>	</td>
+					<td><%= product_package.logical_pallet																					%>	</td>
+					<td><%= link_to "Edit", :controller => 'admin', :action => 'edit_product_package', :product_package => product_package	%>	</td>
+				</tr>
+			<% end %>
+		</table>
+	<% else %>
+		<p> No product packages have been defined for this product</p>
+	<% end %>
+	<br><br><hr><br>
+	<%= form_for :product_package, :url => {:controller => 'admin', :action => 'create_product_package'} do |form| %>
+		<%= form.hidden_field :product_id, :value => @product.id %>
+		<%= render :partial => 'product_package', :locals => {:form => form } %>
+		<%= submit_tag "Create Product Package"%>
+	<% end %>
+	<br><br><hr><br>
+	<%= link_to "Product Info", :controller => 'admin', :action => 'view_product',	:product => @product	%> | 
+	<%= link_to "Product Warehouse Setup",	:controller => 'admin', :action => 'product_warehouse_setup', :product => @product	%>
+			
+			

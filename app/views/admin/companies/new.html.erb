@@ -1,0 +1,6 @@
+<h1>Create New Company</h1>
+
+<%= form_for :company, :url => {:controller => 'admin', :action => 'set_company_uoms'} do |form| %>
+  	<%= render :partial => "company", :locals => {:form => form} %>
+	<%= submit_tag "Create New Company"%>
+<% end %>

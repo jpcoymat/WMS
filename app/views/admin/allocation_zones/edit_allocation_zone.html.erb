@@ -1,0 +1,8 @@
+<h4>Edit Allocation Zone	</h4>
+
+	<%= form_for :allocation_zone, :url => {:controller => 'admin', :action => 'update_allocation_zone'} do |form|	%>
+		<%= form.hidden_field :id	%>
+		<%= render :partial => 'allocation_zone', :locals => {:form => form}	%>
+		<%= submit_tag "Update Allocation Zone"%>
+		
+	<% end 	%>
