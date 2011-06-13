@@ -1,8 +1,0 @@
-<table>
-  <tr><td>Company Name          </td> <td><%= form.text_field :name                                                                 %></td></tr>
-  <tr><td>Address               </td> <td><%= form.text_field :address_1                                                       		%></td></tr>
-  <tr><td>Address               </td> <td><%= form.text_field :address_2                                                       		%></td></tr>
-  <tr><td>City                  </td> <td><%= form.text_field :city                                                                 %></td></tr>
-  <tr><td>Postal Code           </td> <td><%= form.text_field :postal_code                                                          %></td></tr>
-  <tr><td>Country               </td> <td><%= form.select :country_id, @countries.collect {|c| [c.name, c.id]}                      %></td></tr>
-</table>

@@ -1,7 +1,0 @@
-<h3>Warehouse <%= @warehouse.name	%>	</h3>
-
-	<%= form_for :warehouse, :url => {:controller => 'admin', :action => 'update_warehouse'} do |form|	%>
-		<%= form.hidden_field :id											%>
-		<%= render :partial => 'warehouse', :locals => {:form => form}		%>
-		<%= submit_tag "Update Warehouse"									%>
-	<% end %>

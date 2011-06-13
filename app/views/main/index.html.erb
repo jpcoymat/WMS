@@ -4,38 +4,38 @@
 		<h4>Master Data</h4>
 			<p>
 			<ul>
-				<li><%= link_to "Companies" , 			admin_companies 			%></li>
-				<li><%= link_to "Warehouses", 			:controller => 'admin', :action => 'warehouses' 		%></li>
-				<li><%= link_to "System Parameters",	:controller => 'admin', :action => 'system_parameters'	%></li>
-				<li><%= link_to "Product Statuses",		:controller => 'admin',	:action => 'product_statuses'	%></li>
-				<li><%= link_to	"Product Categories", 	:controller => 'admin', :action => 'product_categories'	%></li>
-				<li><%= link_to "Products",				:controller => 'admin', :action => 'products'			%></li>
-				<li><%= link_to	"Units of Measure",		:controller => 'admin',	:action => 'uoms'				%></li>
-				<li><%= link_to	"Suppliers", 			:controller => 'admin', :action => 'suppliers'			%></li>
-				<li><%= link_to "Location Types",		:controller => 'admin', :action => 'location_types'		%></li>
-				<li><%= link_to "Locations",			:controller => 'admin', :action => 'locations'			%></li>
-				<li><%= link_to "Users",				:controller => 'admin', :action => 	'users'				%></li>
+				<li><%= link_to "Companies" , 			admin_companies_path 			%></li>
+				<li><%= link_to "Warehouses", 			admin_warehouses_path 			%></li>
+				<li><%= link_to "System Parameters",	admin_system_parameters_path	%></li>
+				<li><%= link_to "Product Statuses",		admin_product_statuses_path		%></li>
+				<li><%= link_to	"Product Categories", 	admin_product_categories_path	%></li>
+				<li><%= link_to "Products",				admin_products_path				%></li>
+				<li><%= link_to	"Units of Measure",		admin_uoms_path					%></li>
+				<li><%= link_to	"Suppliers", 			admin_suppliers_path			%></li>
+				<li><%= link_to "Location Types",		admin_location_types_path		%></li>
+				<li><%= link_to "Locations",			admin_locations_path			%></li>
+				<li><%= link_to "Users",				admin_users_path				%></li>
 			</ul>
 			</p>
 		<h4>Inbound</h4>
 			<p>
 			<ul>
-				<li><%= link_to "Purchase Order Types",		:controller => 'admin', :action => 'purchase_order_types'	%></li>
-				<li><%= link_to "Receipt Types",			:controller => 'admin', :action => 'receipt_types'			%></li>
-				<li><%= link_to	"Storage Zones",			:controller => 'admin', :action => 'storage_zones'			%></li>
-				<li><%= link_to "Storage Strategies",		:controller => 'admin', :action => 'storage_strategies'		%></li>
-				<li><%= link_to	"Storage Strategy Rules",	:controller => 'admin',	:action => 'storage_strategy_rules'	%></li>
+				<li><%= link_to "Purchase Order Types",		admin_purchase_order_types_path		%></li>
+				<li><%= link_to "Receipt Types",			admin_receipt_types_path			%></li>
+				<li><%= link_to	"Storage Zones",			admin_storage_zones_path			%></li>
+				<li><%= link_to "Storage Strategies",		admin_storage_strategies_path		%></li>
+				<li><%= link_to	"Storage Strategy Rules",	admin_storage_strategy_rules_path	%></li>
 			</ul>
 			</p>
 		<h4>Outbound</h4>
 			<p>
 			<ul>
-				<li><%= link_to	"Replenishment Locations",		:controller => 'admin',	:action => 'replenishment_locations'	%></li>
-				<li><%= link_to "Customer Types",				:controller => 'admin', :action => 'customer_types'				%></li>
-				<li><%= link_to "Order Types",					:controller => 'admin', :action => 'order_types'				%></li>
-				<li><%= link_to "Allocation Zones", 			:controller => 'admin', :action => 'allocation_zones'			%></li>
-				<li><%= link_to	"Allocation Strategy",			:controller => 'admin',	:action => 'allocation_strategies'		%></li>
-				<li><%= link_to "Allocation Strategy Rules",	:controller => 'admin', :action => 'allocation_strategy_rules'	%></li>
+				<li><%= link_to	"Replenishment Locations",	:controller => 'admin',	:action => 'replenishment_locations' %></li>
+				<li><%= link_to "Customer Types",				admin_customer_types_path			%></li>
+				<li><%= link_to "Order Types",					admin_order_types_path				%></li>
+				<li><%= link_to "Allocation Zones", 			admin_allocation_zones_path			%></li>
+				<li><%= link_to	"Allocation Strategy",			admin_allocation_strategies_path		%></li>
+				<li><%= link_to "Allocation Strategy Rules",	admin_allocation_strategy_rules_path	%></li>
 			</ul>
 			</p>
 				

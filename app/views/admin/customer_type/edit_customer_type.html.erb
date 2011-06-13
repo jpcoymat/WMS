@@ -1,6 +1,0 @@
-<h3>Edit Customer Type	</h3>
-	<%= form_for :customer_type, :url =>{:controller => 'admin', :action => 'update_customer_type'} do |form|	%>
-		<%= form.hidden_field :id											%>
-		<%= render :partial => 'customer_type', :locals => {:form => form}	%>
-		<%= submit_tag "Update Customer Type"								%>
-	<% end %>
