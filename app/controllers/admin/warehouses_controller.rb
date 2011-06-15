@@ -41,7 +41,7 @@ class Admin::WarehousesController < ApplicationController
     end
   end
   
-  def delete
+  def destroy
     Warehouse.destroy(params[:warehouse])
     redirect_to(warehouses_url)
   end

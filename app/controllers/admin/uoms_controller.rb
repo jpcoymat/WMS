@@ -31,7 +31,7 @@ class Admin::UomsController < ApplicationController
     end
   end
 
-  def delete
+  def destroy
     Uom.destroy(params[:uom])
     redirect_to :contoller => 'admin', :action => 'uoms'
   end

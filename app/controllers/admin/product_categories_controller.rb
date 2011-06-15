@@ -35,7 +35,7 @@ class Admin::ProductCategoriesController < ApplicationController
   
   
   
-  def delete_product_category
+  def destroy
     @product_category = ProductCategory.find(params[:product_category])
     @product_category.destroy
     flash[:notice] = "Product Category has been deleted"

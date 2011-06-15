@@ -1,6 +1,5 @@
 <h3>Edit Allocation Strategy	</h3>
-	<%= form_for :allocation_strategy, :url => admin_allocation_strategy_path, :method => :put do |form|	%>
-		<%= form.hidden_field :id	%>
+	<%= form_for [:admin, @allocation_strategy], :html => {:method => :put} do |form|	%>
 		<%= render :partial => 'allocation_strategy', :locals => {:form => form}	%>
 		<%= submit_tag "Update Allocation Strategy"	%>
 	<% end 	%>

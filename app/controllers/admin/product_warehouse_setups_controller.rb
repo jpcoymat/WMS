@@ -31,7 +31,7 @@ class Admin::ProductWarehouseSetupsController < ApplicationController
     end
   end
   
-  def delete
+  def destroy
     @product = Product.find(params[:product_warehouse_setup][:product_id])
     ProductWarehouseSetup.destroy(params[:product_warehouse_setup])
     redirect_to :controller => 'admin', :action => 'product_warehouse_setup', :product => @product

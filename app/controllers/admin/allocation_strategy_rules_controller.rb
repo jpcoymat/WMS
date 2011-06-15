@@ -2,23 +2,42 @@ class Admin::AllocationStrategyRulesController < ApplicationController
 
   before_filter :authorize
 
+  def index
+    @warehouse = User.find(session[:user_id]).warehouse
+    @allocation_strategy_rules = @warehouse.allocation_strategy_rules
+    @allocation_strategy_rule = AllocationStrategyRule.new
+  end
+
+
   def edit
-    @allocation_strategy = AllocationStrategy.find(params[:allocation_strategy])
+    @warehouse = User.find(session[:user_id]).warehouse
+    @allocation_strategy_rule = AllocationStrategyRule.find(params[:id])
   end
   
   def update
-    @allocation_strategy = AllocationStrategy.find(params[:allocation_strategy][:id])
-    if @allocation_strategy.update_attributes(params[:allocation_strategy])
-      redirect_to :controller => 'admin', :action => 'allocation_strategies'
+    @allocation_strategy_rule = AllocationStrategyRule.find(params[:id])
+    if @allocation_strategy_rule.update_attributes(params[:allocation_strategy_rule])
+      redirect_to admin_allocation_strategy_rules_path
     else
       flash[:notice] = "Error updating Allocation Strategy"
-      redirect_to :controller => 'admin', :action => 'edit_allocation_strategy', :allocation_strategy => @allocation_strategy  
+      @warehouse = User.find(session[:user_id]).warehouse
+      render :action => 'edit' 
     end
   end
   
-  def delete
-    AllocationStrategy.destroy(params[:allocation_strategy])
-    redirect_to :controller => 'admin', :action => 'allocation_strategies'
+  def destroy
+    AllocationStrategyRule.destroy(params[:id])
+    redirect_to admin_allocation_strategy_rules_path
+  end
+  
+  def create
+    @allocation_strategy_rule = AllocationStrategyRule.new(params[:allocation_strategy_rule])
+    if @allocation_strategy_rule.save
+      flash[:notice] = "Allocation Strategy Rule created succesfully"
+    else
+      flash[:notice] = "Error creating Allocation Strategy Rule"
+    end
+    redirect_to admin_allocation_strategy_rules_path
   end
 
 

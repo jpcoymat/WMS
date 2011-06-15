@@ -34,7 +34,7 @@ class Admin::ProductSubcategoriesController < ApplicationController
     end
   end
   
-  def delete
+  def destroy
     @product_subcategory = ProductSubcategory.find(params[:product_subcategory])
     @product_category = @product_subcategory.product_category
     @product_subcategory.destroy

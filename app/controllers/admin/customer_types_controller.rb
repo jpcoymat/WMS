@@ -5,6 +5,7 @@ class Admin::CustomerTypesController < ApplicationController
   def index
     @company = User.find(session[:user_id]).company
     @customer_types = @company.customer_types
+    @customer_type = CustomerType.new
   end
   
   def create
@@ -14,26 +15,26 @@ class Admin::CustomerTypesController < ApplicationController
     else
       flash[:notice] = "Error creating Customer Type"
     end
-    redirect_to :controller => 'admin', :action => 'customer_types'
+    redirect_to admin_customer_types_path
   end
   
   def edit
-    @customer_type = CustomerType.find(params[:customer_type])
+    @customer_type = CustomerType.find(params[:id])
   end
   
   def update
-    @customer_type = CustomerType.find(params[:customer_type][:id])
+    @customer_type = CustomerType.find(params[:id])
     if @customer_type.update_attributes(params[:customer_type])
-      redirect_to :controller => 'admin', :action => 'customer_types'
+      redirect_to admin_customer_types_path
     else
       flash[:notice] = "Error updating customer type"
-      redirect_to :controller => 'admin', :action => 'edit_customer_type', :customer_type => @customer_type
+      render :action => 'edit'
     end
   end
 
-  def delete
-    CustomerType.destroy(params[:customer_type])
-    redirect_to :controller => 'admin', :action => 'customer_types'
+  def destroy
+    CustomerType.destroy(params[:id])
+    redirect_to admin_customer_types_path
   end
   
 

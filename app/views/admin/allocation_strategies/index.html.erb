@@ -17,7 +17,7 @@
 		</table>
 	<% end 	%>
 	<br><br><hr><br>
-	<%= form_for :allocation_strategy, :url => admin_allocation_strategies_path do |form|	%>
+	<%= form_for [:admin, @allocation_strategy], :url => admin_allocation_strategies_path do |form|	%>
 		<%= form.hidden_field	:warehouse_id, :value => @warehouse.id						%>
 		<%= render :partial => 'allocation_strategy', :locals => {:form => form}			%>
 		<%= submit_tag "Create Allocation Strategy"											%>

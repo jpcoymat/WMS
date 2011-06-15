@@ -31,7 +31,7 @@ class Admin::StorageZonesController < ApplicationController
     redirect_to :controller => 'admin', :action => 'storage_zones'
   end
   
-  def delete
+  def destroy
     StorageZone.destroy(params[:storage_zone])
     redirect_to :controller => 'admin', :action => 'storage_zones'
   end

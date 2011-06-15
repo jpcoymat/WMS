@@ -32,7 +32,7 @@ class Admin::OrderTypesController < ApplicationController
     end
   end
   
-  def delete
+  def destroy
     OrderType.destroy(params[:order_type])
     flash[:notice] = "Order Type created succesfully"
     redirect_to :controller =>'admin', :action => 'order_types'

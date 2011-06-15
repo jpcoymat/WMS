@@ -32,7 +32,7 @@ class Admin::PurchaseOrderTypesController < ApplicationController
     end
   end
   
-  def delete
+  def destroy
     PurchaseOrderType.destroy(params[:purchase_order_type])
     redirect_to :controller => 'admin', :action => 'purchase_order_types'
   end

@@ -16,14 +16,14 @@
 					<td><%= allocation_strategy_line.containerization_method						%>	</td>
 					<td><%= allocation_strategy_line.minimum_pick_uom								%>	</td>
 					<td><%= allocation_strategy_line.containerization_level							%>	</td>
-					<td><%= link_to "Edit", edit_admin_allocation_strategy_allocation_strategy_line_path(allocation_strategy_line)							%>	</td>
-					<td><%= link_to "Delete", admin_allocation_strategy_allocation_strategy_line(allocation_strategy_line), :method => :delete	%>	</td>
+					<td><%= link_to "Edit", edit_admin_allocation_strategy_allocation_strategy_line_path(@allocation_strategy,allocation_strategy_line)								%>	</td>
+					<td><%= link_to "Delete", admin_allocation_strategy_allocation_strategy_line_path(@allocation_strategy,allocation_strategy_line), :method => :delete	%>	</td>
 				</tr>
 			<% end %>
 		</table>
 	<% end %>
 	<br><br><hr><br>
-	<%= form_for @allocation_strategy_line, :url => admin_allocation_strategy_allocation_strategy_lines_path do |form|	%>
+	<%= form_for [:admin, @allocation_strategy, @allocation_strategy_line] do |form|	%>
 		<%= form.hidden_field :allocation_strategy_id, :value => @allocation_strategy.id	%>
 		<%= render :partial => 'allocation_strategy_line', :locals => {:form => form}		%>
 		<%= submit_tag "Add Allocation Line"	%>

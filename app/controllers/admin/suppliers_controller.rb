@@ -31,7 +31,7 @@ class Admin::SuppliersController < ApplicationController
     end
   end
   
-  def delete
+  def destroy
     Supplier.destroy(params[:supplier])
     redirect_to :controller => 'admin', :action => 'suppliers'
   end
