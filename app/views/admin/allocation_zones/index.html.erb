@@ -1,0 +1,23 @@
+<h2>Allocation Zones	</h2>
+
+	<% if @warehouse.allocation_zones.empty?	%>
+		<p>No Allocation Zones have been created yet.</p>
+	<% else %>
+	 	<table>
+			<tr><th>Code					</th> <th>Name	</th>	<th>Description			</th></tr>
+			<% @warehouse.allocation_zones.each do |allocation_zone|	%>
+				<tr><td><%= allocation_zone.code											%>	</td>	
+					<td><%= allocation_zone.name											%>	</td>
+					<td><%= allocation_zone.description										%>	</td>
+					<td><%= link_to "Edit", edit_admin_allocation_zone_path(allocation_zone)		%>	</td>
+					<td><%= allocation_zone.deleteable? ? link_to("Delete", admin_allocation_zone_path(allocation_zone), :method => :post) : ""	%>	</td>
+				</tr>
+			<% end %>
+		</table>
+	<% end %>
+	<br><br><hr><br>
+	<%= form_for [:admin, @allocation_zone] do |form|	%>
+		<%= form.hidden_field :warehouse_id, :value => @warehouse.id			%>
+		<%= render :partial => 'allocation_zone', :locals => {:form => form}	%>
+		<%= submit_tag "Create Allocation Zone"	%>
+	<% end 	%>

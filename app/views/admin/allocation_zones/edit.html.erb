@@ -1,0 +1,7 @@
+<h4>Edit Allocation Zone	</h4>
+
+	<%= form_for [:admin, @allocation_zone] do |form|	%>
+		<%= render :partial => 'allocation_zone', :locals => {:form => form}	%>
+		<%= submit_tag "Update Allocation Zone"%>
+		
+	<% end 	%>

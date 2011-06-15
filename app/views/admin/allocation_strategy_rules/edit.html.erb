@@ -1,0 +1,5 @@
+<h3>Edit Allocation Strategy Rule	</h3>
+	<%= form_for [:admin, @allocation_strategy_rule] do |form|	%>
+		<%= render :partial => 'allocation_strategy_rule', :locals => {:form => form}	%>
+		<%= submit_tag "Update Rule"	%>
+	<% end %>

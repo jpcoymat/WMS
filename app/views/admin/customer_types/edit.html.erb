@@ -1,0 +1,5 @@
+<h3>Edit Customer Type	</h3>
+	<%= form_for [:admin, @customer_type] do |form|	%>
+		<%= render :partial => 'customer_type', :locals => {:form => form}	%>
+		<%= submit_tag "Update Customer Type"								%>
+	<% end %>

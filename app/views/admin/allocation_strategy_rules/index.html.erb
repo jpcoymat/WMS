@@ -1,0 +1,28 @@
+<h3>Allocation Strategy Rules	</h3>
+
+	<% if @allocation_strategy_rules.empty?	%>
+		<p>No Allocation Strategy Rules have been defined for this warehouse.</p>
+	<% else %>
+		<table>
+			<tr><th colspan=6>Criteria	</th>	<th rowspan=2>Final Result	</th></tr>
+			<tr><th>Order Sequence		</th>	<th>Order Type		</th>	<th>Product Category	</th>	<th>Product Subcategory	</th>	<th>Customer	</th>	<th>Customer Type	</th>	</tr>
+			<% @allocation_strategy_rules.each do |allocation_strategy_rule|	%>
+				<tr><td><%= allocation_strategy_rule.order_sequence			%>	</td>
+					<td><%= allocation_strategy_rule.order_type.nil? ? "" : allocation_strategy_rule.order_type.order_type %></td>
+					<td><%= allocation_strategy_rule.product_category.nil? ? "" : allocation_strategy_rule.product_category.name																%>	</td>
+					<td><%= allocation_strategy_rule.product_subcategory.nil? ? "" : allocation_strategy_rule.product_subcategory.name %>	</td>
+					<td><%= allocation_strategy_rule.customer.nil? ? "" : allocation_strategy_rule.customer.name	%>	</td>
+					<td><%= allocation_strategy_rule.customer_type.nil? ? "" : allocation_strategy_rule.customer_type.code %></td>
+					<td><%= allocation_strategy_rule.allocation_strategy.name										%>	</td>
+					<td><%= link_to "Edit", edit_admin_allocation_strategy_rule_path(allocation_strategy_rule)		%>	</td>
+					<td><%= link_to "Delete", admin_allocation_strategy_rule_path(allocation_strategy_rule), :method => :delete	%>	</td>
+			<% end %>
+		</table>
+	<% end %>
+	<br><br><hr><br>
+	<h4>Create New Allocation Strategy Rule	</h4>
+		<%= form_for [:admin, @allocation_strategy_rule] do |form|	%>
+			<%= form.hidden_field :warehouse_id, :value => @warehouse.id	%>
+			<%= render :partial => 'allocation_strategy_rule', :locals => {:form => form}	%>
+			<%= submit_tag "Create Rule"%>
+		<% end %>
