@@ -5,12 +5,14 @@
 	<table> 
 		<tr><th>Company Name</th> <th>City</th> <th>Country</th> </tr>
 		<% for company in @companies %>
-			<tr><td><%= company.name %> </td> <td><%= company.city %> </td>  <td><%= company.country.name %> </td> 
-			    <td><%= link_to "View", :controller => 'admin', :action => 'view_company', :company => company  %></td>
-			    <td><%= link_to "Edit", :controller => 'admin', :action => 'edit_company', :company => company  %></td>
+			<tr><td><%= company.name %> </td> 
+				<td><%= company.city %> </td>  
+				<td><%= company.country.name %> </td> 
+			    <td><%= link_to "View", admin_company_path(company)  %></td>
+			    <td><%= link_to "Edit", edit_admin_company_path(company)  %></td>
 			</tr>
 		<% end %>
 	</table>
 <% end %> 
 <br><br><hr><br>
-<%= link_to "Add New Company", :controller => 'admin', :action => 'new_company' %>
+<%= link_to "Add New Company", new_admin_company_path %>

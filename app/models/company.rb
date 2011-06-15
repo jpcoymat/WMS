@@ -15,7 +15,12 @@ class Company < ActiveRecord::Base
   has_many  :product_subcategories
   has_many  :suppliers
   has_many  :uoms
-  has_many  :assignment_types  
+  has_many  :assignment_types
+  
+  has_many :volume_uoms
+  has_many :quantity_uoms
+  has_many :weight_uoms
+  has_many :dimension_uoms  
 
   validates	:name, :uniqueness => true
   validates	:name, :address_1, :city, :country_id, :presence => true
