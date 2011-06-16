@@ -2,10 +2,11 @@ class Admin::ProductCategoriesController < ApplicationController
 
   def index
     @product_categories = ProductCategory.all(:order => "name", :conditions => ["company_id = ?", User.find(session[:user_id]).warehouse.company_id])
+    @product_category = ProductCategory.new
   end
   
   def show
-    @product_category = ProductCategory.find(params[:product_category])
+    @product_category = ProductCategory.find(params[:id])
   end
   
   def create
@@ -15,18 +16,18 @@ class Admin::ProductCategoriesController < ApplicationController
     else   
       flash[:notice] = "Error Creating Product Category"
     end
-    redirect_to(product_categories_url)
+    redirect_to(admin_product_categories_path)
   end
   
   def edit
-    @product_category = ProductCategory.find(params[:product_category])
+    @product_category = ProductCategory.find(params[:id])
   end
   
   def update
-    @product_category = ProductCategory.find(params[:product_category][:id])
+    @product_category = ProductCategory.find(params[:id])
     if @product_category.update_attributes(params[:product_category])
       flash[:notice] = "Product Category updated correctly"
-      redirect_to @product_category
+      redirect_to admin_product_categories_path
     else
       flash[:notice] = "Error updating Product Category"
       render :action => 'edit_product_category'
@@ -36,10 +37,10 @@ class Admin::ProductCategoriesController < ApplicationController
   
   
   def destroy
-    @product_category = ProductCategory.find(params[:product_category])
+    @product_category = ProductCategory.find(params[:id])
     @product_category.destroy
     flash[:notice] = "Product Category has been deleted"
-    redirect_to(product_categories_url)
+    redirect_to(admin_product_categories_path)
   end
 
 

@@ -60,7 +60,13 @@ Wms::Application.routes.draw do
     end
     resources :customer_types
     resources :location_types
-    resources :locations
+    resources :locations  do
+      collection do
+        get 'lookup'
+        post 'lookup'
+        post 'new'
+      end
+    end       
     resources :order_types
     resources :product_categories do
       resources :product_subcategories
