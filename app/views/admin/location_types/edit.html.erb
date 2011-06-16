@@ -1,0 +1,6 @@
+<h4>Edit Location Type	</h4>
+
+	<%= form_for [:admin, @location_type] do |form|	%>
+		<%= render :partial => 'location_type', :locals => {:form => form}		%>
+		<%= submit_tag "Update Location Type"	%>
+	<% end %>

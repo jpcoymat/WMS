@@ -1,0 +1,5 @@
+<h2>Edit Dock Door	</h2>
+	<%= form_for [:admin, @warehouse, @dock_door] do |form|	%>
+		<%= render :partial => 'dock_door', :locals => {:form => form}	%>
+		<%= submit_tag "Update"%>
+	<% end %>
