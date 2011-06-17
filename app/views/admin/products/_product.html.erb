@@ -26,14 +26,14 @@
 	</tr>
 	<tr>
 		<td><%= form.label :supplier_id			%>	</td>	
-		<td><%= form.select	:supplier_id, Supplier.all.collect {|s| [s.name, s.id]}, :include_blank => true		%>	</td>
+		<td><%= form.select	:supplier_id, @suppliers.collect {|s| [s.name, s.id]}, :include_blank => true		%>	</td>
 	</tr>
 	<tr>
 		<td><%= form.label :category_id ,"Category"%></td>	
-		<td><%= form.select :product_category_id, ProductCategory.all.collect {|pc| [pc.name, pc.id]}, :prompt => "Select a Category"		%>	</td>
+		<td><%= form.select :product_category_id, @product_categories.collect {|pc| [pc.name, pc.id]}, :prompt => "Select a Category"		%>	</td>
 	</tr>
 	<tr id = "product_subcategory_field">
 		<td><%= form.label :subcategory_id, "Subcategory" %>	</td>	
-		<td><%= form.select :product_subcategory_id, ProductSubcategory.all.collect {|ps| [ps.name, ps.id]}, :prompt => "Select a Subcategory"	%>	</td>
+		<td><%= form.select :product_subcategory_id, @product_subcategories.collect {|ps| [ps.name, ps.id]}, :prompt => "Select a Subcategory"	%>	</td>
 	</tr>
 </table>		

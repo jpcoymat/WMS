@@ -64,7 +64,8 @@ Wms::Application.routes.draw do
       collection do
         get 'lookup'
         post 'lookup'
-        post 'new'
+        get 'add'
+        post 'add'
       end
     end       
     resources :order_types
@@ -72,10 +73,15 @@ Wms::Application.routes.draw do
       resources :product_subcategories
     end
     resources :product_location_assignments
-    resources :product_packages
     resources :product_statuses
-    resources :product_warehouse_setups
-    resources :products
+    resources :products do
+      resources :product_packages
+      resources :product_warehouse_setups
+      collection do
+        get 'lookup'
+        post 'lookup'
+      end
+    end
     resources :purchase_order_types
     resources :receipt_types
     resources :storage_strategies do

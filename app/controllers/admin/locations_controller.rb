@@ -23,8 +23,7 @@ class Admin::LocationsController < ApplicationController
   def update
     @location = Location.find(params[:id])
     if @location.update_attributes(params[:location])
-      @location.save
-      redirect_to admin_location(@location)
+      redirect_to admin_location_path(@location)
     else
       flash[:notice] = "Error updating Location"
       @warehouse = @location.warehouse
@@ -32,7 +31,7 @@ class Admin::LocationsController < ApplicationController
     end
   end
   
-  def new
+  def add
     @warehouse = User.find(session[:user_id]).warehouse
     @location_types = @warehouse.location_types
     if request.post?
@@ -42,16 +41,18 @@ class Admin::LocationsController < ApplicationController
   end
   
   def create
-    @location_type = LocationType.find(params[:locations][:location_type_id])
-    location_range = params[:locations].clone.delete_if {|k,v| !(k.include?("from_") or k.include?("to_"))}
+    @location_type = LocationType.find(params[:location_data][:location_type_id])
+    location_range = params[:location_data].clone.delete_if {|k,v| !(k.include?("from_") or k.include?("to_"))}
     if @location_type.location_range_valid?(location_range)
-      location_attributes = params[:locations].clone.delete_if { |k,v| (k.include?("from_") or k.include?("to_"))}
+      location_attributes = params[:location_data].clone.delete_if { |k,v| (k.include?("from_") or k.include?("to_"))}
       code_to_execute = create_loop_string(location_range, @location_type.active_components_array, location_attributes)
       eval code_to_execute
-      redirect_to :controller => 'admin', :action => 'locations'
+      redirect_to lookup_admin_locations_path
     else
       flash[:notice] = "Location Range is not valid"
-      redirect_to :controller => 'admin', :action => 'add_locations'
+      @warehouse = User.find(session[:user_id]).warehouse
+      @location_types = @warehouse.location_types
+      render :action => 'add'
     end
   end
 
