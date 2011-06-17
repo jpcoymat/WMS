@@ -32,7 +32,7 @@ class Admin::ProductPackagesController < ApplicationController
     end
   end
 
-  def delete
+  def destroy
     ProductPackage.destroy(params[:product_package])
     redirect_to(product_packages_url)
   end

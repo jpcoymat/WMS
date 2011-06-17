@@ -24,4 +24,4 @@
 	<tr><td>Maximum Containers			</td>	<td><%= @location_type.maximum_containers		%>	</td></tr>
 </table>
 
-<%= link_to "Edit", :controller => 'admin', :action => 'edit_location_type', :location_type => @location_type	%>
+<%= link_to "Edit", edit_admin_location_type_path(@location_type)	%>

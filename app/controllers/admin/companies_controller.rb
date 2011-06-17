@@ -13,29 +13,32 @@ class Admin::CompaniesController < ApplicationController
   end
 
   def show
-    @company = Company.find(params[:company])
+    @company = Company.find(params[:id])
   end
 
   def create
     @company = Company.new(params[:company])
     if @company.save!
       @company.create_uoms
-      @company.create_assignment_types
-      redirect_to :controller => 'admin', :action => 'company_uom_setup', :notice =>  "Company #{@company.name} created succesfully."
+      @company.create_product_statuses
+      flash[:notice] =  "Company #{@company.name} created succesfully."
+      redirect_to uom_setup_admin_company_path(@company)
     else
-      redirect_to :controller => 'admin', :action => 'new_company'
+      @countries = Country.all(:order => 'name')
+      render :action => 'new'
     end
   end
   
-  def company_uom_setup
-    @company        = Company.find(params[:company])
+  def uom_setup
+    @company        = Company.find(params[:id])
     @quantity_uoms  = QuantityUom.all(:conditions => "company_id = #{@company.id} ")
+    @dimension_uoms = DimensionUom.all(:conditions => "company_id = #{@company.id}")
     @weight_uoms    = WeightUom.all(:conditions => "company_id = #{@company.id} ")
     @volume_uoms    = VolumeUom.all(:conditions => "company_id = #{@company.id} ")    
   end
 
   def edit
-    @company = Company.find(params[:company])
+    @company = Company.find(params[:id])
     @countries = Country.all(:order => 'name')
     @quantity_uoms = QuantityUom.all(:conditions => "company_id = #{@company.id} ")
     @weight_uoms = Uom.all(:conditions => "company_id = #{@company.id} ")
@@ -43,10 +46,10 @@ class Admin::CompaniesController < ApplicationController
   end
 
   def update
-    @company = Company.find(params[:company][:id])
+    @company = Company.find(params[:id])
     if @company.update_attributes(params[:company])
       flash[:notice] = "Company info updated succesfully"
-      redirect_to @company
+      redirect_to admin_companies_path
     else	
       flash[:notice] = "Error updating company information"
       @countries = Country.all(:order => 'name')

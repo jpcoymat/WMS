@@ -11,5 +11,5 @@
 	<tr><td>Postal Code					</td>	<td><%= @warehouse.postal_code		%>	</td></tr>
 	<tr><td>Country						</td>	<td><%= @warehouse.country.name		%>	</td></tr>
 </table>
-<%= link_to "Dock Doors", :controller => 'admin', :action => 'dock_doors', :warehouse => @warehouse		%>
-<%= link_to "Edit Warehouse Details", edit_admin_warehouse_path(@warehouse)								%>	
+<%= link_to "Dock Doors", admin_warehouse_dock_doors_path(@warehouse.id)		%>
+<%= link_to "Edit Warehouse Details", edit_admin_warehouse_path(@warehouse)		%>	

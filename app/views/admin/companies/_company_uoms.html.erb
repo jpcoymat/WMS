@@ -1,5 +1,11 @@
 <table>
-	<tr><td>Default Quantity UOM  </td> <td><%= form.select :default_quantity_uom_id, @quantity_uoms.collect {|q| [q.code, q.id]}     %></td></tr>
-  	<tr><td>Default Weight UOM    </td> <td><%= form.select :default_weight_uom_id, @weight_uoms.collect {|w| [w.code, w.id]}         %></td></tr>
-  	<tr><td>Default Dimension UOM </td> <td><%= form.select :default_length_uom_id, @dimension_uoms.collect {|v| [v.code, v.id]}  	  %></td></tr>
+	<tr><td>Default Quantity UOM  </td> 
+		<td><%= form.select :default_quantity_uom_id, @quantity_uoms.collect {|q| [q.code, q.id]}     	%></td>
+	</tr>
+  	<tr><td>Default Weight UOM    </td> 
+	<td><%= form.select :default_weight_uom_id, @weight_uoms.collect {|w| [w.code, w.id]}         		%></td>
+	</tr>
+  	<tr><td>Default Dimension UOM </td> 
+		<td><%= form.select :default_length_uom_id, @dimension_uoms.collect {|v| [v.code, v.id]}  	  	%></td>
+	</tr>
  </table>

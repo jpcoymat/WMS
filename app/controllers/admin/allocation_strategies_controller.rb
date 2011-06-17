@@ -5,15 +5,16 @@ class Admin::AllocationStrategiesController < ApplicationController
   def index
     @warehouse = User.find(session[:user_id]).warehouse
     @allocation_strategies = @warehouse.allocation_strategies
+    @allocation_strategy = AllocationStrategy.new
   end
   
   def create
     @allocation_strategy = AllocationStrategy.new(params[:allocation_strategy])
     if @allocation_strategy.save
-      redirect_to :controller => 'admin', :action => 'allocation_strategy_lines', :allocation_strategy => @allocation_strategy
+      redirect_to admin_allocation_strategy_allocation_strategy_lines_path(@allocation_strategy.id)
     else
       flash[:notice] = "Error creating allocation strategy"
-      redirect_to :controller => 'admin', :action => 'allocation_strategy'
+      redirect_to admin_allocation_strategies_path
     end
   end
   
@@ -22,7 +23,7 @@ class Admin::AllocationStrategiesController < ApplicationController
   end
   
   def update
-    @allocation_strategy = AllocationStrategy.find(params[:allocation_strategy][:id])
+    @allocation_strategy = AllocationStrategy.find(params[:id])
     if @allocation_strategy.update_attributes(params[:allocation_strategy])
       redirect_to admin_allocation_strategies_path
     else
@@ -31,8 +32,8 @@ class Admin::AllocationStrategiesController < ApplicationController
     end
   end
   
-  def delete
-    AllocationStrategy.destroy(params[:allocation_strategy])
+  def destroy
+    AllocationStrategy.destroy(params[:id])
     redirect_to admin_allocation_strategies_path
   end
   

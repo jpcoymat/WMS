@@ -10,7 +10,7 @@
 	</table>
 
 	<h4>Edit Details</h4>
-	<%= form_for :location, :url => {:controller =>  'admin', :action => 'update_location'} do |form| %>
+	<%= form_for [:admin, @location] do |form| %>
 		<%= form.hidden_field :id					%>
 		<%= render :partial => 'location', :locals => {:form => form}	%>
 		<%= submit_tag "Update Location"				%>

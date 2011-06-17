@@ -31,7 +31,7 @@ class Admin::ReceiptTypesController < ApplicationController
     end
   end  
   
-  def delete
+  def destroy
     ReceiptType.destroy(params[:receipt_type])
     redirect_to :controller => 'admin', :action => 'receipt_types'
   end

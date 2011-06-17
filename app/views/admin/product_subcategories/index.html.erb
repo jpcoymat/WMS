@@ -7,15 +7,15 @@
 			<% for product_subcategory in @product_subcategories %>
 				<tr><td><%= product_subcategory.name 																																									%>	</td>
 					<td><%= product_subcategory.description																																								%>	</td>
-					<td><%= link_to "Edit", :controller => 'admin', :action => 'edit_product_subcategory', :product_subcategory => product_subcategory																	%>	</td> 
-					<td><%= product_subcategory.deleteable? ? link_to("Delete", {:controller => 'admin', :action => 'delete_product_subcategory', :product_subcategory => product_subcategory}, :method => :post) : ""	%>	</td>
+					<td><%= link_to "Edit", edit_admin_product_category_product_subcategory_path(@product_category, product_subcategory)																	%>	</td> 
+					<td><%= product_subcategory.deleteable? ? link_to("Delete", admin_product_category_product_subcategory_path(@product_category, product_subcategory) , :method => :delete) : ""	%>	</td>
 				</tr>
 			<% end %>
 		</table>
 	<% end %>
 	<br><br><hr>
 	<h4>Create New Product Category<h4>
-		<%= form_for :product_subcategory, :url => {:controller => 'admin', :action => 'create_product_subcategory'} do |form| %>
+		<%= form_for [:admin, @product_category, @product_subcategory] do |form| %>
 			<%= form.hidden_field :company_id, :value => User.find(session[:user_id]).warehouse.company_id 	%>
 			<%= form.hidden_field :product_category_id, :value => @product_category.id						 %>
 			<table>

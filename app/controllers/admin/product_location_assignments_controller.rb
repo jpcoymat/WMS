@@ -37,7 +37,7 @@ class Admin::ProductLocationAssignmentsController < ApplicationController
     end    
   end
   
-  def delete
+  def destroy
     @location = ProductLocationAssignment.find(params[:product_location_assignment]).location
     ProductLocationAssignment.destroy(params[:product_location_assignment])
     redirect_to :controller => 'admin', :action => 'product_location_assignments', :location => @location

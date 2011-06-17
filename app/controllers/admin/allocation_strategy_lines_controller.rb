@@ -4,6 +4,7 @@ class Admin::AllocationStrategyLinesController < ApplicationController
   
   def index
     @allocation_strategy = AllocationStrategy.find(params[:allocation_strategy_id])
+    @allocation_strategy_line = AllocationStrategyLine.new
   end
   
   def create
@@ -18,10 +19,12 @@ class Admin::AllocationStrategyLinesController < ApplicationController
   
   def edit
     @allocation_strategy_line = AllocationStrategyLine.find(params[:id])
+    @allocation_strategy = @allocation_strategy_line.allocation_strategy
+    
   end
 
   def update
-    @allocation_strategy_line = AllocationStrategyLine.find(params[:allocation_strategy_line][:id])
+    @allocation_strategy_line = AllocationStrategyLine.find(params[:id])
     if @allocation_strategy_line.update_attributes(params[:allocation_strategy_line])
       redirect_to admin_allocation_strategy_allocation_strategy_lines_path(@allocation_strategy_line.allocation_strategy_id)
     else
@@ -30,9 +33,9 @@ class Admin::AllocationStrategyLinesController < ApplicationController
     end
   end
   
-  def delete
-    @allocation_strategy = AllocationStrategyLine.find(params[:allocation_strategy_line]).allocation_strategy
-    AllocationStrategyLine.destroy(params[:allocation_strategy_line])
+  def destroy
+    @allocation_strategy = AllocationStrategyLine.find(params[:id]).allocation_strategy
+    AllocationStrategyLine.destroy(params[:id])
     redirect_to admin_allocation_strategy_allocation_strategy_lines_path(@allocation_strategy.id)
   end
   

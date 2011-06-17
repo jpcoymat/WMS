@@ -1,7 +1,7 @@
 class Uom < ActiveRecord::Base
 
-  validates	:code, :uniqueness => true
-  validates 	:name, :uniqueness => true
+  validates_uniqueness_of	:code, :scope => :company_id
+  validates_uniqueness_of :name, :scope => :company_id
   validates   	:type, :code, :name, :company_id, :presence => true
 
   belongs_to 	:company

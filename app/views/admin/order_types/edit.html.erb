@@ -1,6 +1,5 @@
 <h3>Edit Order Type		</h3>
-	<%= form_for :order_type, :url => {:controller => 'admin', :action => 'update_order_type'} do |form|		%>
-		<%= form.hidden_field :id	%>
+	<%= form_for [:admin, @order_type] do |form|		%>
 		<table>
 			<tr><td>Order Type					</td>	<td><%= form.text_field :order_type			%>	</td></tr>
 			<tr><td>Descripion					</td>	<td><%= form.text_field :description		%>	</td></tr>

@@ -53,20 +53,35 @@ Wms::Application.routes.draw do
     end
     resources :allocation_strategy_rules
     resources :allocation_zones
-    resources :companies 
+    resources :companies do
+      member do
+        get 'uom_setup'
+      end
+    end
     resources :customer_types
-    resources :dock_doors
     resources :location_types
-    resources :locations
+    resources :locations  do
+      collection do
+        get 'lookup'
+        post 'lookup'
+        get 'add'
+        post 'add'
+      end
+    end       
     resources :order_types
     resources :product_categories do
       resources :product_subcategories
     end
     resources :product_location_assignments
-    resources :product_packages
     resources :product_statuses
-    resources :product_warehouse_setups
-    resources :products
+    resources :products do
+      resources :product_packages
+      resources :product_warehouse_setups
+      collection do
+        get 'lookup'
+        post 'lookup'
+      end
+    end
     resources :purchase_order_types
     resources :receipt_types
     resources :storage_strategies do
@@ -78,7 +93,9 @@ Wms::Application.routes.draw do
     resources :system_parameters
     resources :uoms
     resources :users
-    resources :warehouses
+    resources :warehouses do
+      resources :dock_doors
+    end
   end
 
 

@@ -1,5 +1,0 @@
-<h2>Edit Dock Door	</h2>
-	<%= form_for :dock_door, :url => {:controller => 'admin', :action => 'update_dock_door'} do |form|	%>
-		<%= form.hidden_field	:id										%>
-		<%= render :partial => 'dock_door', :locals => {:form => form}	%>
-	<% end %>

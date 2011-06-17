@@ -1,6 +1,5 @@
 <h3>Edit Allocation Strategy Rule	</h3>
-	<%= form_for :allocation_strategy_rule, :url => {:controller => 'admin', :action => 'update_allocation_strategy_rule'} do |form|	%>
-		<%= form.hidden_field :id		%>
+	<%= form_for [:admin, @allocation_strategy_rule] do |form|	%>
 		<%= render :partial => 'allocation_strategy_rule', :locals => {:form => form}	%>
 		<%= submit_tag "Update Rule"	%>
 	<% end %>

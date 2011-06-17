@@ -34,7 +34,7 @@ class Admin::StorageStrategyRulesController < ApplicationController
     end
   end
   
-  def delete
+  def destroy
     StorageStrategyRule.destroy(params[:storage_strategy_rule])
     redirect_to :controller => 'admin', :action => 'storage_strategy_rules'
   end

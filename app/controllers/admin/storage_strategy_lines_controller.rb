@@ -33,7 +33,7 @@ class Admin::StorageStrategyLinesController < ApplicationController
     end
   end
   
-  def delete
+  def destroy
     @storage_strategy = StorageStrategyLine.find(params[:storage_strategy_line]).storage_strategy
     StorageStrategyLine.destroy(params[:storage_strategy_line])
     redirect_to :controller => 'admin', :action => 'storage_strategy_lines', :storage_strategy => @storage_strategy 

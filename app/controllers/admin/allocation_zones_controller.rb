@@ -4,6 +4,7 @@ class Admin::AllocationZonesController < ApplicationController
   
   def index	
     @warehouse = User.find(session[:user_id]).warehouse	
+    @allocation_zone = AllocationZone.new
   end
 
   def	create
@@ -13,26 +14,26 @@ class Admin::AllocationZonesController < ApplicationController
     else
 	    flash[:notice] = "Error creating Allocation Zone"
     end
-    redirect_to :controller => 'admin', :action => 'allocation_zones'
+    redirect_to admin_storage_zones_path
   end
 
   def edit	
-    @allocation_zone = AllocationZone.find(params[:allocation_zone])
+    @allocation_zone = AllocationZone.find(params[:id])
   end 
 
   def update
-    @allocation_zone = AllocationZone.find(params[:allocation_zone][:id])
+    @allocation_zone = AllocationZone.find(params[:id])
     if @allocation_zone.update_attributes(params[:allocation_zone])
 	    flash[:notice] = "Allocation Zone updated correctly."
-	    redirect_to :controller => 'admin', :action => 'allocation_zones'
+	    redirect_to admin_allocation_zones_path
     else
 	    flash[:notice] = "Error updating Allocation Zone"
-	    redirect_to :controller => 'admin', :action => 'edit_allocation_zone', :allocation_zone => @allocation_zone
+	    render :action => 'edit'
     end
   end
 
-  def delete	
-	  AllocationZone.destroy(params[:allocation_zone])
+  def destroy	
+	  AllocationZone.destroy(params[:id])
 	  redirect_to :controller => 'admin', :action => 'allocation_zones'
   end
   

@@ -5,6 +5,7 @@ class Admin::OrderTypesController < ApplicationController
   def index
     @warehouse = User.find(session[:user_id]).warehouse
     @order_types = @warehouse.company.order_types
+    @order_type = OrderType.new
   end
   
   def create
@@ -14,28 +15,28 @@ class Admin::OrderTypesController < ApplicationController
     else
       flash[:notice] = "Error creating Order Type"
     end
-    redirect_to :controller => 'admin', :action => 'order_types'
+    redirect_to admin_order_types_path
   end
   
   def edit
-    @order_type = OrderType.find(params[:order_type])
+    @order_type = OrderType.find(params[:id])
   end
   
   def update
-    @order_type = OrderType.find(params[:order_type][:id])
+    @order_type = OrderType.find(params[:id])
     if @order_type.update_attributes(params[:order_type])
       flash[:notice] = "Order Type updated succesfully"
-      redirect_to :controller => 'admin', :action => 'order_types'
+      redirect_to admin_order_types_path
     else
       flash[:notice] = "Error updating order type"
-      redirect_to :controller => 'admin', :action => 'edit_order_type', :order_type => @order_type
+      render :action => 'edit'
     end
   end
   
-  def delete
-    OrderType.destroy(params[:order_type])
+  def destroy
+    OrderType.destroy(params[:id])
     flash[:notice] = "Order Type created succesfully"
-    redirect_to :controller =>'admin', :action => 'order_types'
+    redirect_to admin_order_types_path
   end
   
 

@@ -12,6 +12,7 @@
 	</table>		
 	
 	<p>
+	<%= link_to "Edit", edit_admin_product_path(@product)						%>	| 	
 	<%= link_to "View Prouct Packages", :controller => 'admin', :action => 'product_packages', :product => @product	%> 		|		 
 	<%= link_to "View Product Warehouse Settings", :controller => 'admin', :action => 'product_warehouse_setup', :product => @product %>
 	</p>

@@ -1,0 +1,8 @@
+<h4>Update Product Category<h4>
+	<%= form_for [:admin, @product_category] do |form| %>
+		<table>
+			<tr><td>Product Category Name			</td>	<td><%= form.text_field :name 			%>	</td></tr>
+			<tr><td>Product Category Description	</td>	<td><%= form.text_field :description	%>	</td></tr>
+		</table>
+		<%= submit_tag "Update Product Category"%>
+	<% end %>
