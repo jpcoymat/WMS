@@ -1,0 +1,5 @@
+<h4>Edit Product Warehouse Setup	</h4>
+	<%= form_for [:admin, @product, @product_warehouse_setup] do |form|	%>
+		<%= render :partial => 'product_warehouse_setup', :locals => {:form => form}	%>
+		<%= submit_tag "Update Product Warehouse Setup"								%>
+	<% end %>

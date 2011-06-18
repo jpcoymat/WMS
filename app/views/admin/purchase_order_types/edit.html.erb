@@ -1,0 +1,9 @@
+<h3>Edit Purchase Order Type</h3>
+
+<%= form_for [:admin, @purchase_order_type] do |form|	%>
+	<table>
+		<tr><td>Purchase Order Type		</td>	<td><%= form.text_field :purchase_order_type		%>	</td></tr>
+		<tr><td>Description				</td>	<td><%= form.text_field	:description				%>	</td></tr>
+	</table>
+	<%= submit_tag "Update PO Type"	%>
+<% end %>

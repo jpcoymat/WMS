@@ -1,0 +1,24 @@
+<h3>Purchase Order Types	</h3>
+	<% if @purchase_order_types.empty?	%>
+		<p>No Purchase Order Types have been created.</p>
+	<% else 	%>
+		<table>
+			<tr><th>Purchase Order Type		</th>	<th>Description		</th>	</tr>
+			<% @purchase_order_types.each do |purchase_order_type|	%>
+				<tr><td><%= purchase_order_type.purchase_order_type												%>	</td>
+					<td><%= purchase_order_type.description														%>	</td>
+					<td><%= link_to "Edit", edit_admin_purchase_order_type_path(purchase_order_type)			%>	</td>
+					<td><%= purchase_order_type.deleteable? ? link_to("Delete", admin_purchase_order_type_path(purchase_order_type), :method => :delete) : ""	%>	</td>
+				</tr>
+			<% end %>
+		</table>
+	<% end %>
+	<br><br><hr><br>
+	<%= form_for [:admin, @purchase_order_type] do |form|	%>
+		<%= form.hidden_field	:company_id, :value => @warehouse.company.id	%>
+		<table>
+			<tr><td>Purchase Order Type		</td>	<td><%= form.text_field :purchase_order_type		%>	</td></tr>
+			<tr><td>Description				</td>	<td><%= form.text_field	:description				%>	</td></tr>
+		</table>
+		<%= submit_tag "Create PO Type"	%>
+	<% end %>

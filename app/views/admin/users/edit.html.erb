@@ -1,0 +1,5 @@
+<h1>Edit User Details	</h1>
+	<%= form_for [:admin, @user] do |form|	%>
+		<%= render :partial => 'user', :locals => {:form => form }	%>
+		<%= submit_tag "Update User"	%>
+	<% end %>

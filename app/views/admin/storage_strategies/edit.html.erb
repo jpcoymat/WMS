@@ -1,0 +1,6 @@
+<h4>Edit Storage Strategy </h4>
+
+<%= form_for [:admin, @storage_strategy] do |form|	%>
+	<%= render :partial => 'storage_strategy', :locals => {:form => form}	%>
+	<%= submit_tag "Update Storage Strategy"								%>
+<% end %>

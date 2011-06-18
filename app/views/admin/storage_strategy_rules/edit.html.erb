@@ -1,0 +1,5 @@
+<h3>Edit Storage Strategy Rule	</h3>
+	<%= form_for [:admin, @storage_strategy_rule] do |form|	%>
+		<%= render :partial => 'storage_strategy_rule', :locals => {:form => form }	%>
+		<%= submit_tag "Update Rule"												%>
+	<% end %>

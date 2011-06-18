@@ -1,0 +1,24 @@
+<h3>Storage Strategies	</h3>
+
+	<% if @storage_strategies.empty?	%>
+		<p>No Storage Strategies have been setup.</p>
+	<% else 							%>
+		<table>
+			<tr><th>Code		</th><th>Name		</th><th>Description		</th></tr>
+			<% @storage_strategies.each do |storage_strategy|	%>
+				<tr><td><%= storage_strategy.code																	%>	</td>
+					<td><%= storage_strategy.name																	%>	</td>
+					<td><%= storage_strategy.description															%>	</td>
+					<td><%= link_to "View", admin_storage_strategy_storage_strategy_lines_path(storage_strategy)		%>	</td>
+					<td><%= link_to "Edit", edit_admin_storage_strategy_path(storage_strategy)						%>	</td>
+					<td><%= storage_strategy.deleteable? ? link_to("Delete", admin_storage_strategy_path(storage_strategy), :method => :delete) : ""	%>	</td>
+				</tr>
+			<% end %>
+		</table>
+	<% end %>
+	<br><br><hr><br>
+	<%= form_for [:admin, @storage_strategy] do |form|	%>
+		<%= form.hidden_field :warehouse_id, :value => @warehouse.id			%>
+		<%= render :partial => 'storage_strategy', :locals => {:form => form}	%>
+		<%= submit_tag "Create Storage Strategy"								%>
+	<% end %>

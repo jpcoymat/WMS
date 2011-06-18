@@ -1,0 +1,5 @@
+<h4>Edit Receipt Type	</h4>
+	<%= form_for [:admin, @receipt_type ] do |form|	%>
+		<%= render :partial => 'receipt_type', :locals => {:form => form}	%>
+		<%= submit_tag "Update Receipt Type"								%>
+	<% end %>
