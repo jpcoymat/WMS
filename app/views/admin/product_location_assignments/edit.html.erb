@@ -2,7 +2,7 @@
 	<p>Location:	<%= @location.name	%>	</p>
 	<p>Product:		<%= @product_location_assignment.product.name	%></p>
 	
-	<%= form_for :product_location_assignment, :url => {:controller => 'admin', :action => 'update_product_location_assignment'} do |form|	%>
+	<%= form_for [:admin, @product_location_assignment] do |form|	%>
 		<%= form.hidden_field	:id	%>
 		<%= render :partial => 'product_location_assignment', :locals => {:form => form}	%>
 		<%= submit_tag "Update"		%>

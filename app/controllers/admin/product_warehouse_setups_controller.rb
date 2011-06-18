@@ -3,7 +3,8 @@ class Admin::ProductWarehouseSetupsController < ApplicationController
   before_filter :authorize
 
   def index
-    @product = Product.find(params[:product])
+    @product = Product.find(params[:product_id])
+    @product_warehouse_setup = ProductWarehouseSetup.new
   end
   
   def create
@@ -14,27 +15,30 @@ class Admin::ProductWarehouseSetupsController < ApplicationController
     else
       flash[:notice] = "Error creating Product Warehouse Setup"
     end
-    redirect_to :controller => 'admin', :action => 'product_warehouse_setup', :product => @product
+    redirect_to admin_product_product_warehouse_setups_path(@product,@product_warehouse_setup)
   end
   
   def edit
-    @product_warehouse_setup = ProductWarehouseSetup.find(params[:product_warehouse_setup])
+    @product_warehouse_setup = ProductWarehouseSetup.find(params[:id])
+    @product = @product_warehouse_setup.product  
   end
   
   def update
-    @product_warehouse_setup = ProductWarehouseSetup.find(params[:product_warehouse_setup][:id])
+    @product_warehouse_setup = ProductWarehouseSetup.find(params[:id])
     if @product_warehouse_setup.update_attributes(params[:product_warehouse_setup])
-      redirect_to :controller => 'admin', :action => 'product_warehouse_setup', :product => @product_warehouse_setup.product
+      redirect_to admin_product_product_warehouse_setups_path(@product_warehouse_setup.product_id)
     else
       flash[:notice] = "Error updating Product Warehouse Setup"
-      redirect_to :controller => 'admin', :action => 'edit_product_warehouse_setup', :product_warehouse_setup => @product_warehouse_setup
+      @product = @product_warehouse_setup.product  
+      render :action => 'edit'
     end
   end
   
   def destroy
-    @product = Product.find(params[:product_warehouse_setup][:product_id])
-    ProductWarehouseSetup.destroy(params[:product_warehouse_setup])
-    redirect_to :controller => 'admin', :action => 'product_warehouse_setup', :product => @product
+    @product_warehouse_setup = ProductWarehouseSetup.find(params[:id])
+    @product = @product_warehouse_setup.product  
+    @product_warehouse_setup.destroy
+    redirect_to admin_product_product_warehouse_setups_path(@product.id)
   end
 
 end

@@ -1,7 +1,6 @@
 <h3>Warehouse <%= @warehouse.name	%>	</h3>
 
-	<%= form_for @warehouse,:url => admin_warehouses_path do |form|	%>
-		<%= form.hidden_field :id											%>
+	<%= form_for [:admin, @warehouse] do |form|	%>
 		<%= render :partial => 'warehouse', :locals => {:form => form}		%>
 		<%= submit_tag "Update Warehouse"									%>
 	<% end %>

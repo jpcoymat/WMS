@@ -1,6 +1,5 @@
 <h4>Edit Unit of Measure</h4>
-	<% form_for :uom, :url => {:controller => 'admin', :action => 'update_uom'} do |form| %>
-		<%= form.hidden_field :id	%>
+	<% form_for [:admin, @uom.becomes(Uom)] do |form| %>
 		<%= render :partial => 'uom', :locals => {:form => form}	%>
 		<%= submit_tag "Update UOM"	%>
 	<% end %>

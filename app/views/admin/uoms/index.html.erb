@@ -1,0 +1,26 @@
+<h3>Units of Measure</h3>
+	<% unless @uoms.empty?	%>
+		<table>
+			<tr><th>Code</th>	<th>name</th>	<th>Description	</th>	<th>Measurement Type</th>	<th>Discrete UOM?</th>	</tr>
+			<% for uom in @uoms	%>
+				<tr><td><%= uom.code													%>	</td>
+					<td><%= uom.name													%>	</td>
+					<td><%= uom.description												%>	</td>
+					<td><%= uom.uom_type												%>	</td>
+					<td><%= uom.discrete												%>	</td>
+					<td><%= link_to "Edit", edit_admin_uom_path(uom)					%>	</td>
+				<% if uom.deleteable?	%>
+					<td><%= link_to "Delete", admin_uom_path(uom), :method => :delete	%>	</td>
+				<% end %>
+				</tr>
+			<% end %>
+		</table>
+	<% else %>
+		<p>No UOMs for this company.</p>
+	<% end %>
+	<br><br><hr><br>
+	<% form_for [:admin, @uom] do |form| %>
+		<%= form.hidden_field :company_id, :value => User.find(session[:user_id]).company.id	%>
+		<%= render :partial => 'uom', :locals => {:form => form}								%>
+		<%= submit_tag "Crete UOM"																%>
+	<% end %>

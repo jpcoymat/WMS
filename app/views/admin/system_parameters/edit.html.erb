@@ -1,0 +1,5 @@
+<h3>Update System Parameter</h3>
+	<%= form_for [:admin, @system_parameter] do |form| %>
+		<%= render :partial => "system_parameter", :locals => {:form => form}%>
+		<%= submit_tag "Update Sys Param"%>
+	<% end %>

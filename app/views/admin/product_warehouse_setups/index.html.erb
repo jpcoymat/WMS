@@ -5,22 +5,22 @@
 		<table>
 			<tr><th>Warehouse	</th>	<th>Lot Management Type	</th>	<th>Product Status	</th>	<th>Storage Strategy	</th>	<th>Allocation Strategy	</th>	</tr>
 			<% @product.product_warehouse_setups.each do |product_warehouse_setup|	%>
-				<tr><td><%= product_warehouse_setup.warehouse.name																										%>	</td>
-					<td><%= product_warehouse_setup.lot_management_type																									%>	</td>
-					<td><%= product_warehouse_setup.product_status.code																									%>	</td>
+				<tr><td><%= product_warehouse_setup.warehouse.name												%>	</td>
+					<td><%= product_warehouse_setup.lot_management_type											%>	</td>
+					<td><%= product_warehouse_setup.product_status.code											%>	</td>
 					<td><%= product_warehouse_setup.storage_strategy.nil? ? "" : product_warehouse_setup.storage_strategy.code											%>	</td>
 					<td><%= product_warehouse_setup.allocation_strategy.nil? ? "" : product_warehouse_setup.allocation_strategy.code									%>	</td>
-					<td><%= link_to "Edit", :controller => 'admin', :action => 'edit_product_warehouse_setup', :product_warehouse_setup => product_warehouse_setup		%>	</td>
-					<td><%= link_to "Delete", :controller => 'admin', :action => 'delete_product_warehouse_setup', :product_warehouse_setup => product_warehouse_setup	%>	</td>
+					<td><%= link_to "Edit", edit_admin_product_product_warehouse_setup_path(@product,product_warehouse_setup)		%>	</td>
+					<td><%= link_to "Delete", admin_product_product_warehouse_setup_path(@product, product_warehouse_setup), :method => :delete	%>	</td>
 				</tr>
 			<% end %>
 		</table>
 	<% end %>
-	<br><%= link_to "Product Info", :controller => 'admin', :action => 'view_product',	:product => @product	%>
+	<br><%= link_to "Product Info", admin_product_path(@product)	%>
 	
 	<br><br><hr><br>
 	<h4>Create New Product Warehouse Setup</h4>
-		<%= form_for :product_warehouse_setup, :url => {:controller => 'admin', :action => 'create_product_warehouse_setup'}	do |form| %>
+		<%= form_for [:admin, @product, @product_warehouse_setup]	do |form| %>
 			<%= form.hidden_field	:product_id, :value => @product.id	%>
 			<%= render :partial => 'product_warehouse_setup', :locals => {:form => form}	%>
 			<%= submit_tag "Create Whse Setup"	%>

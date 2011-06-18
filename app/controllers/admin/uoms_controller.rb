@@ -4,36 +4,42 @@ class Admin::UomsController < ApplicationController
   
   def index
     @uoms = Uom.all(:conditions => ["company_id = ?", User.find(session[:user_id]).company.id])
+    @uom = Uom.new
   end
 
   def create
     @uom = Uom.new(params[:uom])
+    @uom.type = params[:uom][:type]
     if @uom.save
       flash[:notice] = "UOM record saved succesfully"
     else
       flash[:notice] = "Error creating UOM record"
+      @uom.errors.full_messages.each do |msg|
+        flash[:notice] += msg + "\n"
+      end
     end
-    redirect_to :controller => 'admin', :action => 'uoms'
+    redirect_to admin_uoms_path
   end
   
   def edit
-    @uom = Uom.find(params[:uom])
+    @uom = Uom.find(params[:id])
+    @uom.becomes(Uom)
   end
   
   def update
-    @uom = Uom.find(params[:uom][:id])
+    @uom = Uom.find(params[:id])
     if @uom.update_attributes(params[:uom])
-      flash[:notice] = "UOM record updated succesfully"
-      redirect_to :controller => 'admin', :action => 'uoms'
+      flash[:notice] = "UOM record updated succesfully " 
+      redirect_to admin_uoms_path
     else
       flash[:notice] = "Error updating UOM record"
-      redirect_to :controller => 'admin', :action => 'edit_uom', :uom => uom
+      render :action => 'edit'
     end
   end
 
   def destroy
-    Uom.destroy(params[:uom])
-    redirect_to :contoller => 'admin', :action => 'uoms'
+    Uom.destroy(params[:id])
+    redirect_to admin_uoms_path
   end
   
 

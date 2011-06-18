@@ -1,11 +1,27 @@
 <table>
-	<tr><td>Order Sequence 			</td>	<td><%= form.text_field :order_sequence_number	%>	</td></tr>
-	<tr><td>Product Category		</td>	<td><%= form.select :product_category_id, @company.product_categories.collect {|pc| [pc.name, pc.id]}, :include_blank => true						%>	</td></tr>
-	<tr><td>Product Subcategory		</td>	<td><%= form.select :product_subcategory_id, @company.product_subcategories.collect {|ps| [ps.name, ps.id]}, :include_blank => true					%>	</td></tr>
-	<tr><td>Uom						</td>	<td><%= form.select :uom_id, @company.uoms.collect {|u| [u.code, u.id]}, :include_blank => true														%>	</td></tr>
-	<tr><td>Supplier				</td>	<td><%= form.select :supplier_id, @company.suppliers.collect {|s| [s.name, s.id]}, :include_blank => true											%>	</td></tr>
-	<tr><td>Purchase Order Type		</td>	<td><%= form.select :purchase_order_type_id, @company.purchase_order_types.collect {|po| [po.purchase_order_type, po.id]}, :include_blank => true	%>	</td></tr>
-	<tr><td>Receipt Type			</td>	<td><%= form.select :receipt_type_id, @company.receipt_types.collect {|r| [r.code, r.id]}, :include_blank => true									%>	</td></tr>
-	<tr><td>Product Status			</td>	<td><%= form.select :product_status_id, @company.product_statuses.collect {|p| [p.code, p.id]}, :include_blank => true								%>	</td></tr>
-	<tr><td>Storage Strategy 		</td>	<td><%= form.select :storage_strategy_id, @warehouse.storage_strategies.collect {|ss| [ss.name, ss.id]}												%>	</td></tr>
+	<tr><td>Order Sequence 			</td>	
+		<td><%= form.text_field :order_sequence_number	%>	</td></tr>
+	<tr><td>Product Category		</td>	
+		<td><%= form.select :product_category_id, @company.product_categories.collect {|pc| [pc.name, pc.id]}, :include_blank => true						%>	</td>
+	</tr>
+	<tr><td>Product Subcategory		</td>	
+		<td><%= form.select :product_subcategory_id, @company.product_subcategories.collect {|ps| [ps.name, ps.id]}, :include_blank => true					%>	</td>
+	</tr>
+	<tr><td>Uom						</td>	
+		<td><%= form.select :uom_id, @company.uoms.collect {|u| [u.code, u.id]}, :include_blank => true		%>	</td>
+	</tr>
+	<tr><td>Supplier				</td>	
+		<td><%= form.select :supplier_id, @company.suppliers.collect {|s| [s.name, s.id]}, :include_blank => true	%>	</td>
+	</tr>
+	<tr><td>Purchase Order Type		</td>	
+		<td><%= form.select :purchase_order_type_id, @company.purchase_order_types.collect {|po| [po.purchase_order_type, po.id]}, :include_blank => true	%>	</td>
+	</tr>
+	<tr><td>Receipt Type			</td>	
+		<td><%= form.select :receipt_type_id, @company.receipt_types.collect {|r| [r.code, r.id]}, :include_blank => true									%>	</td>
+	</tr>
+	<tr><td>Product Status			</td>	
+		<td><%= form.select :product_status_id, @company.product_statuses.collect {|p| [p.code, p.id]}, :include_blank => true		%>	</td></tr>
+	<tr><td>Storage Strategy 		</td>	
+		<td><%= form.select :storage_strategy_id, @warehouse.storage_strategies.collect {|ss| [ss.name, ss.id]}	%>	</td>
+	</tr>
 </table>

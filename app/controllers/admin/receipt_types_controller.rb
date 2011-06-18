@@ -5,6 +5,7 @@ class Admin::ReceiptTypesController < ApplicationController
   def index
     @company = User.find(session[:user_id]).company
     @receipt_types = @company.receipt_types
+    @receipt_type = ReceiptType.new
   end
   
   def create
@@ -14,26 +15,27 @@ class Admin::ReceiptTypesController < ApplicationController
     else
       flash[:notice] = "Error creating Receipt Type"
     end
-    redirect_to :controller => 'admin', :action => 'receipt_types'
+    redirect_to admin_receipt_types_path
   end
   
   def edit 
-    @receipt_type = ReceiptType.find(params[:receipt_type])
+    @receipt_type = ReceiptType.find(params[:id])
   end
   
   def update
-    @receipt_type = ReceiptType.find(params[:receipt_type][:id])
+    @receipt_type = ReceiptType.find(params[:id])
     if @receipt_type.update_attributes(params[:receipt_type])
-      redirect_to :controller => 'admin', :action => 'receipt_types'
+      redirect_to admin_receipt_types_path
     else
       flash[:notice] = "Error updating Receipt Type"
-      redirect_to :controller => 'admin', :action => 'edit_receipt_type', :receipt_type => @receipt_type
+      render 'edit'
     end
   end  
   
   def destroy
-    ReceiptType.destroy(params[:receipt_type])
-    redirect_to :controller => 'admin', :action => 'receipt_types'
+    @receipt_type = ReceiptType.find(params[:id])
+    @receipt_type.destroy
+    redirect_to admin_receipt_types_path
   end
   
 

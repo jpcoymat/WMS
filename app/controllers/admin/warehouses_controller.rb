@@ -20,7 +20,7 @@ class Admin::WarehousesController < ApplicationController
     @warehouse = Warehouse.new(params[:warehouse])
     if @warehouse.save
       @warehouse.add_system_parameters
-      redirect_to @warhouse
+      redirect_to admin_warehouses_path
     else
       flash[:notice] = "Error creating new warehouse.  Please try again."
       render :action => 'add_warehouses'
@@ -32,9 +32,9 @@ class Admin::WarehousesController < ApplicationController
   end
   
   def update
-    @warehouse = Warehouse.find(params[:warehouse][:id])
+    @warehouse = Warehouse.find(params[:id])
     if @warehouse.update_attributes(params[:warehouse])
-      redirect_to @warehouse
+      redirect_to admin_warehouses_path
     else
       flash[:notice] = "Error updating warehouse.  Please try again."
       render :action => 'edit_warehouse'
@@ -42,8 +42,8 @@ class Admin::WarehousesController < ApplicationController
   end
   
   def destroy
-    Warehouse.destroy(params[:warehouse])
-    redirect_to(warehouses_url)
+    Warehouse.destroy(params[:id])
+    redirect_to(admin_warehouses_path)
   end
 
 end

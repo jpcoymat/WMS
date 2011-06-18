@@ -1,0 +1,5 @@
+<h3>Edit Supplier	</h3>
+	<%= form_for [:admin, @supplier] do |form| %>
+		<%= render :partial => 'supplier', :locals => {:form => form }	%>
+		<%= submit_tag "Update Supplier"%>
+	<% end %>

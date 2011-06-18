@@ -1,6 +1,6 @@
 <h1>System Parameter Maintenance</h1>
 <p>Please enter your search criteria</p>
-	<%= form_for :system_parameter, :url => {:controller => 'admin', :action => 'system_parameters'} do |form| %>
+	<%= form_for :system_parameter, :url => lookup_admin_system_parameters_path do |form| %>
 		<table>
 			<tr><td>Parameter Code 			</td>	<td><%= form.text_field :code %>		</td>
 				<td>Parameter Description	</td>	<td><%= form.text_field :description %>	</td>
@@ -14,10 +14,10 @@
 		<table>
 			<tr><th>Code	</th>	<th>Description	</th>	<th>Value	</th>	</tr>
 			<% for system_parameter in @system_parameters %>
-				<tr><td><%= system_parameter.code 																								%>	</td>
-					<td><%= system_parameter.description																						%>	</td>
-					<td><%= system_parameter.value																								%>	</td>
-					<td><%= link_to "Edit", :controller => 'admin', :action => 'edit_system_parameter', :system_parameter => system_parameter	%>	</td>
+				<tr><td><%= system_parameter.code 													%>	</td>
+					<td><%= system_parameter.description											%>	</td>
+					<td><%= system_parameter.value													%>	</td>
+					<td><%= link_to "Edit", edit_admin_system_parameter_path(system_parameter)		%>	</td>
 				</tr>
 			<% end %>
 	<% end %>

@@ -6,6 +6,7 @@ class Admin::StorageStrategyRulesController < ApplicationController
     @warehouse = User.find(session[:user_id]).warehouse
     @company = @warehouse.company
     @storage_strategy_rules = @warehouse.storage_strategy_rules
+    @storage_strategy_rule = StorageStrategyRule.new
   end
   
   def create
@@ -15,28 +16,30 @@ class Admin::StorageStrategyRulesController < ApplicationController
     else
       flash[:notice] = "Error creating Storage Strategy Rule"
     end
-    redirect_to :controller => 'admin', :action => 'storage_strategy_rules'
+    redirect_to admin_storage_strategy_rules_path 
   end
 
   def edit
     @warehouse = User.find(session[:user_id]).warehouse
     @company = @warehouse.company
-    @storage_strategy_rule = StorageStrategyRule.find(params[:storage_strategy_rule])
+    @storage_strategy_rule = StorageStrategyRule.find(params[:id])
   end
   
   def update
-    @storage_strategy_rule = StorageStrategyRule.find(params[:storage_strategy_rule][:id])
+    @storage_strategy_rule = StorageStrategyRule.find(params[:id])
     if @storage_strategy_rule.update_attributes(params[:storage_strategy_rule])
-      redirect_to :controller => 'admin', :action => 'storage_strategy_rules'
+      redirect_to admin_storage_strategy_rules_path
     else
       flash[:notice] = "Error updating Storage Strategy Rules"
-      redirect_to :controller => 'admin', :action => 'edit_storage_strategy_rule', :storage_strategy_rule => @storage_strategy_rule
+      @warehouse = User.find(session[:user_id]).warehouse
+      @company = @warehouse.company
+      render :action => 'edit'
     end
   end
   
   def destroy
-    StorageStrategyRule.destroy(params[:storage_strategy_rule])
-    redirect_to :controller => 'admin', :action => 'storage_strategy_rules'
+    StorageStrategyRule.destroy(params[:id])
+    redirect_to admin_storage_strategy_rules_path
   end
   
 

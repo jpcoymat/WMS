@@ -5,6 +5,7 @@ class Admin::PurchaseOrderTypesController < ApplicationController
   def index
     @warehouse = User.find(session[:user_id]).warehouse
     @purchase_order_types = PurchaseOrderType.all(:conditions => ["company_id = ?", @warehouse.company.id])
+    @purchase_order_type = PurchaseOrderType.new
   end
   
   def create
@@ -14,27 +15,28 @@ class Admin::PurchaseOrderTypesController < ApplicationController
     else
       flash[:notice] = "Error creating Purchase Order Type"
     end
-    redirect_to :controller => 'admin', :action => 'purchase_order_types'
+    redirect_to admin_purchase_order_types_path
   end
   
   def edit
-    @purchase_order_type = PurchaseOrderType.find(params[:purchase_order_type])
+    @purchase_order_type = PurchaseOrderType.find(params[:id])
   end
   
   def update
-    @purchase_order_type = PurchaseOrderType.find(params[:purchase_order_type][:id])
+    @purchase_order_type = PurchaseOrderType.find(params[:id])
     if @purchase_order_type.update_attributes(params[:purchase_order_type])
       flash[:notice] = "Purchase Order Type udpated succesfully"
-      redirect_to :controller => 'admin', :action => 'purchase_order_types'
+      redirect_to admin_purchase_order_types_path
     else
       flash[:notice] = "Error updating Purchase Order Type"
-      redirect_to :controller => 'admin', :action => 'edit_purchase_order_type', :purchase_order_type => @purchase_order_type      
+      render :action => 'edit'      
     end
   end
   
   def destroy
-    PurchaseOrderType.destroy(params[:purchase_order_type])
-    redirect_to :controller => 'admin', :action => 'purchase_order_types'
+    @purchase_order_type = PurchaseOrderType.find(params[:id])
+    @purchase_order_type.destroy
+    redirect_to admin_purchase_order_types_path
   end
   
 

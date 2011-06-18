@@ -4,14 +4,14 @@
 	<tr><th>Last Name					</th>	<td><%= @user.last_name		%>	</td></tr>
 	<tr><th>Username					</th>	<td><%= @user.username		%>	</td></tr>
 	<tr><th>Email						</th>	<td><%= @user.email			%>	</td></tr>
-	<tr><th>Date of Birth					</th>	<td><%= @user.dob 			%>	</td></tr>
+	<tr><th>Date of Birth				</th>	<td><%= @user.dob 			%>	</td></tr>
 	<tr><th>Position					</th>	<td><%= @user.position		%>	</td></tr>
 	<tr><th>Sex							</th>	<td><%= @user.sex			%>	</td></tr>
 </table>		
 <br><br>
 <p>
-	<%= link_to "Edit", :controller => 'admin', :action => 'edit_user', :user => @user	%>
+	<%= link_to "Edit", edit_admin_user_path(@user)	%>
 </p>
 <p>
-	<%= link_to "Users", :controller => 'admin', :action => 'users'	%>
+	<%= link_to "Users", admin_users_path	%>
 </p>

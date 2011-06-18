@@ -5,10 +5,11 @@ class Admin::UsersController < ApplicationController
   def index
     @warehouse = User.find(session[:user_id]).warehouse 
     @users = @warehouse.users
+    @user = User.new
   end
   
   def show
-    @user = User.find(params[:user])
+    @user = User.find(params[:id])
   end
   
   def create
@@ -18,19 +19,19 @@ class Admin::UsersController < ApplicationController
     else
       flash[:notice] = "Error creating new user"
     end
-    redirect_to :controller => 'admin', :action => 'users'
+    redirect_to admin_users_path
   end
   
   def edit
-    @user = User.find(params[:user])
+    @user = User.find(params[:id])
   end
   
   def update
-    @user = User.find(params[:user][:id])
+    @user = User.find(params[:id])
     if @user.update_attributes(params[:user])
-      redirect_to :controller => 'admin', :action => 'users'
+      redirect_to admin_users_path
     else
-      redirect_to :controller => 'admin', :action => 'edit_user', :user => @user
+      render :action => 'edit'
     end    
   end
   

@@ -6,21 +6,21 @@
 		<table>
 			<tr><th>Name	</th>	<th>Address	</th>	<th>City	</th>	<th>State	</th>	<th>Postal Code	</th>	<th>Country	</th>	</tr>
 			<% @suppliers.each do |supplier| %>
-				<tr><td><%= supplier.name																																	%>	</td>
-					<td><%= supplier.address_1																																%>	</td>
-					<td><%= supplier.city																																	%>	</td>
-					<td><%= supplier.state																																	%>	</td>
+				<tr><td><%= supplier.name																			%>	</td>
+					<td><%= supplier.address_1																		%>	</td>
+					<td><%= supplier.city																			%>	</td>
+					<td><%= supplier.state																			%>	</td>
 					<td><%= supplier.postal_code																															%>	</td>
 					<td><%= supplier.country.name																															%>	</td>
-					<td><%= link_to "Edit", :controller => 'admin', :action => 'edit_supplier', :supplier => supplier														%>	</td>
-					<td><%= supplier.deleteable? ? link_to("Delete", {:controller => 'admin', :action => 'delete_supplier', :supplier => supplier}, :method => :post) : ""	%>	</td>
+					<td><%= link_to "Edit", edit_admin_supplier_path(supplier)										%>	</td>
+					<td><%= supplier.deleteable? ? link_to("Delete", admin_supplier_path(supplier), :method => :delete) : "" %></td>
 				</tr>
 			<% end %>
 		</table>
 	<% end %>
 	<br><br><hr><br>
 	<h4>Create new supplier	</h4>
-		<%= form_for :supplier, :url => {:controller => 'admin', :action => 'create_supplier'} do |form| %>
+		<%= form_for [:admin, @supplier] do |form| %>
 			<%= form.hidden_field	:company_id, :value => User.find(session[:user_id]).company.id	%>
 			<%= render :partial => 'supplier', :locals => {:form => form }%>
 			<%= submit_tag "Create Supplier"	%>

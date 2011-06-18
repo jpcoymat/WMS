@@ -4,20 +4,21 @@ class Admin::StorageZonesController < ApplicationController
   
   def index
     @storage_zones = StorageZone.all(:conditions => ["warehouse_id = ?", User.find(session[:user_id]).warehouse.id])
+    @storage_zone = StorageZone.new
   end
   
   def edit
-    @storage_zone = StorageZone.find(params[:storage_zone])
+    @storage_zone = StorageZone.find(params[:id])
   end
   
   def update
-    @storage_zone = StorageZone.find(params[:storage_zone][:id])
+    @storage_zone = StorageZone.find(params[:id])
     if @storage_zone.update_attributes(params[:storage_zone])
       flash[:notice] = "Storage Zone updated correctly"
-      redirect_to :controller => 'admin', :action => 'storage_zones'
+      redirect_to admin_storage_zones_path
     else
       flash[:notice] = "Error updating Storage Zone"
-      redirect_to :controller => 'admin', :action => 'edit_storage_zone', :storage_zone => @strorage_zone
+      render :action => 'edit'
     end
   end
   
@@ -28,12 +29,12 @@ class Admin::StorageZonesController < ApplicationController
     else
       flash[:notice] = "Error creating new Storage Zone"
     end
-    redirect_to :controller => 'admin', :action => 'storage_zones'
+    redirect_to admin_storage_zones_path
   end
   
   def destroy
-    StorageZone.destroy(params[:storage_zone])
-    redirect_to :controller => 'admin', :action => 'storage_zones'
+    StorageZone.destroy(params[:id])
+    redirect_to admin_storage_zones_path
   end
   
 
