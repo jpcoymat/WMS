@@ -1,6 +1,0 @@
-<h3>Update System Parameter</h3>
-	<%= form_for :system_parameter, :url => {:controller => 'admin', :action => 'update_system_parameter'} do |form| %>
-		<%= form.hidden_field :id , :value => @system_parameter.id %>
-		<%= render :partial => "system_parameter", :locals => {:form => form}%>
-		<%= submit_tag "Update Sys Parm"%>
-	<% end %>

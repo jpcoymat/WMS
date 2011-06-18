@@ -4,17 +4,17 @@
 		<h4>Master Data</h4>
 			<p>
 			<ul>
-				<li><%= link_to "Companies" , 			admin_companies_path 			%></li>
-				<li><%= link_to "Warehouses", 			admin_warehouses_path 			%></li>
-				<li><%= link_to "System Parameters",	admin_system_parameters_path	%></li>
-				<li><%= link_to "Product Statuses",		admin_product_statuses_path		%></li>
-				<li><%= link_to	"Product Categories", 	admin_product_categories_path	%></li>
-				<li><%= link_to "Products",				lookup_admin_products_path		%></li>
-				<li><%= link_to	"Units of Measure",		admin_uoms_path					%></li>
-				<li><%= link_to	"Suppliers", 			admin_suppliers_path			%></li>
-				<li><%= link_to "Location Types",		admin_location_types_path		%></li>
-				<li><%= link_to "Locations",			lookup_admin_locations_path		%></li>
-				<li><%= link_to "Users",				admin_users_path				%></li>
+				<li><%= link_to "Companies" , 			admin_companies_path 				%></li>
+				<li><%= link_to "Warehouses", 			admin_warehouses_path 				%></li>
+				<li><%= link_to "System Parameters",	lookup_admin_system_parameters_path	%></li>
+				<li><%= link_to "Product Statuses",		admin_product_statuses_path			%></li>
+				<li><%= link_to	"Product Categories", 	admin_product_categories_path		%></li>
+				<li><%= link_to "Products",				lookup_admin_products_path			%></li>
+				<li><%= link_to	"Units of Measure",		admin_uoms_path						%></li>
+				<li><%= link_to	"Suppliers", 			admin_suppliers_path				%></li>
+				<li><%= link_to "Location Types",		admin_location_types_path			%></li>
+				<li><%= link_to "Locations",			lookup_admin_locations_path			%></li>
+				<li><%= link_to "Users",				admin_users_path					%></li>
 			</ul>
 			</p>
 		<h4>Inbound</h4>
@@ -30,7 +30,7 @@
 		<h4>Outbound</h4>
 			<p>
 			<ul>
-				<li><%= link_to	"Replenishment Locations",	:controller => 'admin',	:action => 'replenishment_locations' %></li>
+				<li><%= link_to	"Replenishment Locations",	replenishment_locations_admin_product_location_assignments_path %></li>
 				<li><%= link_to "Customer Types",				admin_customer_types_path			%></li>
 				<li><%= link_to "Order Types",					admin_order_types_path				%></li>
 				<li><%= link_to "Allocation Zones", 			admin_allocation_zones_path			%></li>

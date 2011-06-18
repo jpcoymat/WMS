@@ -4,6 +4,7 @@ class Admin::SuppliersController < ApplicationController
 
   def index
     @suppliers = Supplier.all(:conditions => ["company_id = ?", User.find(session[:user_id]).company.id])
+    @supplier = Supplier.new
   end
   
   def create
@@ -13,27 +14,28 @@ class Admin::SuppliersController < ApplicationController
     else
       flash[:notice] = "Error creating supplier"
     end
-    redirect_to :controller => 'admin', :action => 'suppliers'
+    redirect_to admin_suppliers_path
   end
   
   def edit
-    @supplier = Supplier.find(params[:supplier])
+    @supplier = Supplier.find(params[:id])
   end
   
   def update
-    @supplier = Supplier.find(params[:supplier][:id])
+    @supplier = Supplier.find(params[:id])
     if @supplier.update_attributes(params[:supplier])
       flash[:notice] = "Supplier updated succesfully"
-      redirect_to :controller => 'admin', :action => 'suppliers'
+      redirect_to admin_suppliers_path
     else
       flash[:notice] = "An error occurred updating suppliers"
-      redirect_to :controller => 'admin', :action => 'edit_supplier', :supplier => @supplier
+      render :action => 'edit'
     end
   end
   
   def destroy
-    Supplier.destroy(params[:supplier])
-    redirect_to :controller => 'admin', :action => 'suppliers'
+    @supplier = Supplier.find(params[:id])
+    @supplier.destroy
+    redirect_to admin_suppliers_path
   end
 
 

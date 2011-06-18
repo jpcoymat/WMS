@@ -72,7 +72,12 @@ Wms::Application.routes.draw do
     resources :product_categories do
       resources :product_subcategories
     end
-    resources :product_location_assignments
+    resources :product_location_assignments do
+      collection do
+        get 'replenishment_locations'
+        post 'replenishment_locations'
+      end
+    end
     resources :product_statuses
     resources :products do
       resources :product_packages
@@ -90,8 +95,17 @@ Wms::Application.routes.draw do
     resources :storage_strategy_rules
     resources :storage_zones
     resources :suppliers
-    resources :system_parameters
+    resources :system_parameters do
+      collection do
+        get 'lookup'
+        post 'lookup'
+      end
+    end
     resources :uoms
+    resources :quantity_uoms, :controller => 'uoms', :type => 'QuantityUom'
+    resources :dimension_uoms, :controller => 'uoms', :type => 'DimensionUom'
+    resources :volume_uoms, :controller => 'uoms', :type => 'VolumeUom'
+    resources :weight_uoms, :controller => 'uoms', :type => 'WeightUom'
     resources :users
     resources :warehouses do
       resources :dock_doors

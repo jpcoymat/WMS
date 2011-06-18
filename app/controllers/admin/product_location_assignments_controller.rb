@@ -2,11 +2,22 @@ class Admin::ProductLocationAssignmentsController < ApplicationController
 
   before_filter :authorize
   
+  def replenishment_locations
+    @warehouse = User.find(session[:user_id]).warehouse
+    if request.post?
+      location_criteria = params[:location].clone
+      location_criteria.delete_if {|k,v| v.blank?}
+      @locations = Location.where(:warehouse_id => @warehouse.id, :replenishable => true)
+      @locations.where(location_criteria).order('name').all
+    end
+  end
+
   def index
-    @location = Location.find(params[:location])
+    @location = Location.find(params[:location_id])
     @product_location_assignments = @location.product_location_assignments
     @warehouse = @location.warehouse
     @products = @warehouse.products
+    @product_location_assignment = ProductLocationAssignment.new
   end
   
   def create
@@ -17,30 +28,35 @@ class Admin::ProductLocationAssignmentsController < ApplicationController
     else
       flash[:notice] = "Error creating Product Location Assignment"
     end
-    redirect_to :controller => 'admin', :action => 'product_location_assignments', :location => @location
+    redirect_to admin_product_location_assignments_path(:location_id => @location.id)
   end
   
   def edit
-    @product_location_assignment = ProductLocationAssignment.find(params[:product_location_assignment])
+    @product_location_assignment = ProductLocationAssignment.find(params[:id])
     @location = @product_location_assignment.location
     @warehouse = @location.warehouse
+    @products = @warehouse.products
     
   end
   
   def update
     @product_location_assignment = ProductLocationAssignment.find(params[:product_location_assignment][:id])
     if @product_location_assignment.update_attributes(params[:product_location_assignment])
-      redirect_to :controller => 'admin', :action => 'product_location_assignments', :location => @product_location_assignment.location
+      redirect_to admin_product_location_assignments_path(:location_id => @product_location_assignment.location.id)
     else
+      @location = @product_location_assignment.location
+      @warehouse = @location.warehouse
+      @products = @warehouse.products
       flash[:notice] = "Error updating Product Location Assignment"
-      redirect_to :controller => 'admin', :action => 'edit_product_location_assignment', :product_location_assignment => @product_location_assignment 
+      render :action => 'edit' 
     end    
   end
   
   def destroy
-    @location = ProductLocationAssignment.find(params[:product_location_assignment]).location
-    ProductLocationAssignment.destroy(params[:product_location_assignment])
-    redirect_to :controller => 'admin', :action => 'product_location_assignments', :location => @location
+    @product_location_assignment = ProductLocationAssignment.find(params[:id])
+    @location = @product_location_assignment.location
+    @product_location_assignment.destroy
+    redirect_to admin_product_location_assignments_path(:location_id => @location.id)
   end
   
 
