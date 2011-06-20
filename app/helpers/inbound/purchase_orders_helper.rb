@@ -1,0 +1,2 @@
+module Inbound::PurchaseOrdersHelper
+end

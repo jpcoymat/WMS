@@ -1,0 +1,6 @@
+<h1>New Purchase Order Line	</h1>
+	<%= form_for [:inbound, @purchase_order, @purchase_order_line] do |form|	%>
+		<%= form.hidden_field :purchase_order_id, :value => @purchase_order.id				%>
+		<%= render :partial => 'purchase_order_line', :locals => {:form => form}	%>
+		<%= submit_tag "Add PO Line"												%>
+	<% end %>

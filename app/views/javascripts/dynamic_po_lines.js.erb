@@ -1,0 +1,30 @@
+var purchase_order_lines = new Array();
+<% @purchase_orders.each do |purchase_order| %>
+	<% purchase_order.purchase_order_lines.each do |purchase_order_line| %>
+		purchase_order_lines.push(new Array(<%= purchase_order_line.purchase_order_id %>, '<%=h purchase_order_line.line_number %>', <%= purchase_order_line.id %>));
+	<% end %>	
+<% end %>
+
+function purchaseOrderSelected() {
+
+	purchase_order_id = $('receipt_line_purchase_order_id').getValue();
+	options = $('receipt_line_purchase_order_line_id').options;
+	options.length = 1;
+	purchase_order_lines.each(function(po_line) {
+		if (po_line[0] == purchase_order_id) {
+			options[options.length] = new Option(po_line[1],po_line[2]);
+		}
+	
+	});
+	if (options.length == 1) {
+		$('receipt_line_purchase_order_line_id').hide();
+	}
+	else {
+		$('receipt_line_purchase_order_line_id').show();
+	}
+}
+
+document.observe('dom:loaded', function() {
+	purchaseOrderSelected();
+	$('receipt_line_purchase_order_id').observe('change',purchaseOrderSelected);
+});

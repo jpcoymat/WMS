@@ -1,0 +1,2 @@
+module Inbound::ReceiptLinesHelper
+end

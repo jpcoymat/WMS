@@ -1,0 +1,5 @@
+<h4>Edit Receipt 	</h4>
+	<%= form_for [:inbound, @receipt] do |form|	%>
+		<%= render :partial => 'receipt', :locals => {:form => form}	%>
+		<%= submit_tag "Update Receipt"									%>
+	<% end %>
