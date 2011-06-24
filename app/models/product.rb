@@ -12,8 +12,9 @@ class Product < ActiveRecord::Base
   has_many      :product_warehouse_setups
   has_many      :product_location_assignments
   
-  validates	:name, :barcode,  :company_id, :presence => true
+  validates	    :name, :barcode,  :company_id, :presence => true
   validates     :name, :uniqueness => true
+  validates     :product_subcategory_id, :product_category_match => true
   
 
   def health_check

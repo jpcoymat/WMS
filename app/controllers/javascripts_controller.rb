@@ -6,8 +6,11 @@ class JavascriptsController < ApplicationController
   
   def dynamic_po_lines
     @purchase_orders = User.find(session[:user_id]).company.purchase_orders
-    
   end
 
+  def set_product
+    @products = User.find(session[:user_id]).company.products
+    @purchase_order_lines = PurchaseOrderLine.all
+  end
 
 end
