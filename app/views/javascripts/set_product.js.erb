@@ -16,7 +16,7 @@ function purchaseOrderLineSelected() {
 		options = $('receipt_line_product_id').options;
 		options.length = 0;
 		products.each(function(product) {
-			options[options.length] = new Option(product[0],product[1]);
+			options[options.length] = new Option(product[1],product[0]);
 		});		
 	}
 	else {
@@ -25,7 +25,7 @@ function purchaseOrderLineSelected() {
 		options.length = 0;
 		po_lines.each(function(po_line) {
 			if (po_line[0] == purchase_order_line_id) {
-				options[options.length] = new Option(po_line[1],po_line[2]);
+				options[options.length] = new Option(po_line[2],po_line[1]);
 			}
 
 		});
