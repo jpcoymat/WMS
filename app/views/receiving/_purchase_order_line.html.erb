@@ -1,6 +1,0 @@
-<table>
-	<tr><td>Line Number		</td>	<td><%= form.text_field :line_number											%>	</td></tr>
-	<tr><td>Product			</td>	<td><%= form.select :product_id, @company.products.collect {|p| [p.name, p.id]}	%>	</td></tr>
-	<tr><td>Product Status	</td>	<td><%= form.select :product_status_id, @company.product_statuses.collect {|ps| [ps.code, ps.id]}, :include_blank => true	%></td></tr>
-	<tr><td>Quantity 		</td>	<td><%= form.text_field	:quantity												%>	</td></tr>
-</table>

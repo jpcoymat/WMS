@@ -24,7 +24,6 @@ class PurchaseOrderLine < ActiveRecord::Base
 
 
   validates 	:line_number, :purchase_order_id, :product_id, :quantity, :presence => true
-  
   validates 	:quantity, :numericality => {:greater_than_or_equal_to => 1}
  
   validates_uniqueness_of :line_number, :scope => :purchase_order_id, :message => "PO Line already exists"
@@ -47,11 +46,11 @@ class PurchaseOrderLine < ActiveRecord::Base
 
 
   def editable?
-	self.purchase_order.editable?
+	  self.purchase_order.editable?
   end
   
   def deleteable?
-	self.purchase_order.created?
+	  self.purchase_order.created?
   end
 
 end

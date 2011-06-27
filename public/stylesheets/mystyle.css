@@ -584,3 +584,11 @@ ol.commentlist {
   margin-bottom: 2em;
   background-color: #f0f0f0;
 }
+
+div #left_block {
+	text-align: left;
+}
+
+div #right_block {
+	text-align: right;
+}

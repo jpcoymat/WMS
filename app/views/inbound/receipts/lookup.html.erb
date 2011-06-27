@@ -1,0 +1,47 @@
+<h1>Receipts</h1>
+<p>Please enter your search criteria.</p>
+	<%= form_for :receipt_search_criteria, :url => lookup_inbound_receipts_path do |form|	%>
+		<table>
+			<tr><td>Supplier		</td>	
+				<td><%= form.select :supplier_id, @warehouse.company.suppliers.collect {|s| [s.name, s.id]}, :include_blank => true				%>	</td>
+				<td>Receipt Type	</td>	
+				<td><%= form.select :receipt_type_id, @warehouse.company.receipt_types.collect {|rt| [rt.name, rt.id]}, :include_blank => true	%>	</td>
+			</tr>
+			<tr>
+				<td>Est. Receipt Date	</td>	
+				<td><%= form.date_select :estimated_receipt_date, 	:include_blank => true	%>	</td>
+				<td>Real Receipt Date	</td>	
+				<td><%= form.date_select :real_receipt_date, 		:include_blank => true	%>	</td>
+			</tr>
+		</table>
+		<%= submit_tag "View Receipts"%>
+	<% end %>
+	<br><br><hr>
+	<% if request.post?	%>
+		<% unless @receipts.empty?	%>
+			<table>
+				<tr><th>Receipt Number			</th>	
+					<th>Receipt State			</th>	
+					<th>Supplier				</th>	
+					<th>Expected Receipt Date	</th>	
+					<th>Total Receipt Quantity	</th>
+					<th>Total Received Quantity	</th>
+				</tr>
+				<% @receipts.each do |receipt|	%>
+					<tr><td><%= receipt.receipt_number	%>	</td>
+						<td><%= receipt.state														%>	</td>
+						<td><%= receipt.supplier.nil? ? "" : receipt.supplier.name					%>	</td>
+						<td><%= receipt.estimated_receipt_date										%>	</td>
+						<td><%= receipt.total_quantity												%>	</td>
+						<td><%= receipt.received_quantity											%>	</td>
+						<td><%= link_to "View", inbound_receipt_path(receipt)						%>	</td>
+						<td><%= link_to "Edit", edit_inbound_receipt_path(receipt)					%>	</td>
+					</tr>
+				<% end %>
+		<% else %>
+			<p>No Receipts were found that match your criteria.</p>
+		<% end %>
+	<% end %>
+	<br><br><hr><br>
+	<%= link_to "Create New Receipt", new_inbound_receipt_path	%>
+	

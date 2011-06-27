@@ -2,16 +2,12 @@ class ReceiptLine < ActiveRecord::Base
 
   include AASM
   
-  aasm_column :state
-  aasm_initial_state  :created
-  aasm_state  :created
-  aasm_state  :received
-  aasm_state  :canceled
-
 
   validates	:receipt_id, :lp, :product_id, :quantity, :presence => true
   validates	:quantity, :numericality => {:greater_than_or_equal_to => 1}
-
+  validates :purchase_order_line_id, :product_match => true
+  validates :purchase_order_line_id, :supplier_match => true
+  
   before_create :determine_lot
 
   belongs_to    :receipt
@@ -20,7 +16,14 @@ class ReceiptLine < ActiveRecord::Base
   belongs_to    :product_package
   belongs_to    :lot
   belongs_to    :dock_door
-  belongs_to	:purchse_order_line
+  belongs_to	  :purchase_order_line
+
+  aasm_column :state
+  aasm_initial_state  :created
+  aasm_state  :created
+  aasm_state  :received
+  aasm_state  :canceled
+
 
   aasm_event :start_receiving do
     transitions :to => :received, :from => [:created]

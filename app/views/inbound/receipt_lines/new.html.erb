@@ -1,0 +1,9 @@
+<% javascript 'dynamic_po_lines' 	%>
+<% javascript 'set_product'			%>
+
+<h1>Add Receipt Line</h1>
+<%= form_for [:inbound, @receipt, @receipt_line] do |form|	%>
+	<%= form.hidden_field :receipt_id, :value => @receipt.id			%>
+	<%= render :partial => 'receipt_line', :locals => {:form => form}	%>
+	<%= submit_tag "Create Receipt Line"								%>
+<% end %>

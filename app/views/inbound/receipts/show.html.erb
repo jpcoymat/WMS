@@ -22,8 +22,4 @@
 	</table>
 <% end %>
 <br><br><hr><br>
-<%= form_for :receipt_line, :url => {:controller => 'receiving', :action => 'create_receipt_line'} do |form|	%>
-	<%= form.hidden_field :receipt_id, :value => @receipt.id			%>
-	<%= render :partial => 'receipt_line', :locals => {:form => form}	%>
-	<%= submit_tag "Create Receipt Line"								%>
-<% end %>
+<%= link_to "Add Receipt Line", new_inbound_receipt_receipt_line_path(@receipt) %>

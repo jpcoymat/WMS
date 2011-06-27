@@ -112,6 +112,24 @@ Wms::Application.routes.draw do
     end
   end
 
+  namespace :inbound do
+    resources :purchase_orders do
+      resources :purchase_order_lines 
+      collection do
+        get 'lookup'
+        post 'lookup'
+      end
+    end
+    resources :receipts do
+      resources :receipt_lines
+      collection do
+        get 'lookup'
+        post 'lookup'
+      end
+    end            
+  end
+
+
 
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.

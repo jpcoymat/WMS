@@ -1,0 +1,38 @@
+var po_lines = new Array();
+<% @purchase_order_lines.each do |purchase_order_line| %>
+	po_lines.push(new Array(<%= purchase_order_line.id %>, <%= purchase_order_line.product_id %>, '<%=h purchase_order_line.product.name %>'));
+<% end %>
+
+var products = new Array()
+<% @products.each do |product| %>
+	products.push(new Array(<%= product.id %>, '<%=h product.name %>'));
+<% end %>
+
+
+function purchaseOrderLineSelected() {
+
+	purchase_order_line_id = $('receipt_line_purchase_order_line_id').getValue();
+	if (purchase_order_line_id == '') {
+		options = $('receipt_line_product_id').options;
+		options.length = 0;
+		products.each(function(product) {
+			options[options.length] = new Option(product[1],product[0]);
+		});		
+	}
+	else {
+		
+		options = $('receipt_line_product_id').options;
+		options.length = 0;
+		po_lines.each(function(po_line) {
+			if (po_line[0] == purchase_order_line_id) {
+				options[options.length] = new Option(po_line[2],po_line[1]);
+			}
+
+		});
+	}	
+}
+
+document.observe('dom:loaded', function() {
+	purchaseOrderLineSelected();
+	$('receipt_line_purchase_order_line_id').observe('change',purchaseOrderLineSelected);
+});

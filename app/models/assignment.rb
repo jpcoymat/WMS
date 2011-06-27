@@ -12,7 +12,7 @@ class Assignment < ActiveRecord::Base
   aasm_initial_state  :created
   aasm_state          :released
   aasm_state          :in_process
-  aasm_state          :closed
+  aasm_state          :completed
   aasm_state          :canceled
   
   
@@ -26,6 +26,10 @@ class Assignment < ActiveRecord::Base
   
   aasm_event :cancel do
     transitions :to => :canceled, :from => [:created,:released]
+  end
+  
+  aasm_event :complete do
+    transitions :to => :completed, :from [:created,:released,:in_process]
   end
   
   

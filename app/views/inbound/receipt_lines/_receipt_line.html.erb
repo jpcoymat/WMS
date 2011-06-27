@@ -1,0 +1,22 @@
+<table>
+	<tr>
+		<td>LP					</td>	
+		<td><%= form.text_field :lp															%>	</td>
+	</tr>
+	<tr>
+		<td>Purchase Order </td>
+		<td><%= select_tag "receipt_line_purchase_order_id",  "<option value=''></option>".html_safe+ options_from_collection_for_select(@purchase_orders,"id","purchase_order_number") 				%>
+	<tr id="receipt_line_purchase_order_line_field">
+		<td>Purchase Order Line	</td>
+		<td><%= form.select :purchase_order_line_id, @purchase_order_lines.collect {|pol| [pol.line_number, pol.id]}	%>	</td>
+	</tr>		
+	<tr>
+		<td>Product				</td>	
+		<td><%= form.select :product_id, @company.products.collect {|p| [p.name, p.id]}		%>	</td>
+	</tr>
+	<tr>
+		<td>Quantity			</td>	
+		<td><%= form.text_field :quantity													%>	</td>
+	</tr>
+</table>
+	

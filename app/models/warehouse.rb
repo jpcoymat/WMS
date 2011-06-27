@@ -45,6 +45,13 @@ class Warehouse < ActiveRecord::Base
                               :description => "Allocate new receipts against wave shortages",
                               :value => true,
                               :warehouse_id => self.id
+                            },
+                            {
+                              :code => "103",
+                              :name => "Over-receipt",
+                              :description => "Allow over-receipt of Purchase Order",
+                              :value => true,
+                              :warehouse_id => self.id
                             }])
   end
   
