@@ -128,6 +128,13 @@ Wms::Application.routes.draw do
       end
     end            
   end
+  
+  namespace :outbound do
+    resources :orders do
+      resources :order_lines
+    end
+    resources :shipments
+  end
 
 
 
