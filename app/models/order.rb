@@ -50,9 +50,17 @@ class Order < ActiveRecord::Base
 
   has_many	:shipment_contents, :as => :content
 
-
+  accepts_nested_attributes_for :order_lines
+  
   def ship_country
     @ship_country = Country.find(self.ship_country_id)
   end
+  
+  def self.states
+    @@states = []
+    Order.aasm_states.each {|state| @@states << state.name.to_s }
+    @@states
+  end
+  
 
 end
