@@ -1,0 +1,2 @@
+module Outbound::OrdersHelper
+end
