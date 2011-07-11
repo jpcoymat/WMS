@@ -1,0 +1,5 @@
+<h3>Update Product Status	</h3>
+	<%= form_for [:admin, @product_status] do |form|	%>
+		<%= render :partial => 'product_status', :locals => {:form => form}	%>
+		<%= submit_tag "Create Product Status"								%>
+	<% end %>
