@@ -132,6 +132,10 @@ Wms::Application.routes.draw do
   namespace :outbound do
     resources :orders do
       resources :order_lines
+      collection do
+        get 'lookup'
+        post 'lookup'
+      end
     end
     resources :shipments
   end
