@@ -1,0 +1,15 @@
+<h1>Orders	</h1>
+	
+	<p>Please enter your search criteria.</p>
+	<%= form_for :order, lookup_outbound_orders_path do |form|	%>
+		<table>
+			<tr><td>Order Number	</td>	<td><%= form.text_field :order_number	%>	</td>
+				<td>Order State		</td>	<td><%= form.select :state, @order_states.collect {|s| [s,s]}, :include_blank => true	%>	</td>
+			</tr>
+			<tr><td>Customer Name	</td>	<td><%= form.select :customer_id, @customers.collect {|c| [c.name, c.id]}, :include_blank => true	%>	</td>
+				<td>Ship Date		</td>	<td><%= form.date_select :ship_date		%>	</td>
+			</tr>
+		</table>
+		<%= submit_tag "Look Up"	%>
+	<% end %>
+	
