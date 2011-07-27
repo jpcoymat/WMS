@@ -46,7 +46,7 @@ class Order < ActiveRecord::Base
   belongs_to	:customer
   belongs_to	:order_type
   
-  has_many	:order_lines  
+  has_many	:order_lines, :dependent => :destroy  
 
   has_many	:shipment_contents, :as => :content
 

@@ -33,6 +33,36 @@ class Outbound::OrdersController < ApplicationController
     end
   end
   
+  def new
+    @order = Order.new
+    @order.order_lines.build
+    @company = User.find(session[:user_id]).company
+    @warehouses = @company.warehouses
+    @products = @company.products
+    @product_statuses = @company.product_statuses
+    @order_types = @company.order_types
+    @customers = @company.customers
+    @countries = Country.all
+  end
+  
+  def create
+    @order = Order.new(params[:order])
+    if @order.save
+      flash[:notice] = "Order created succesfully"
+      redirect_to outbound_order_path(@order)
+    else
+      flash[:notice] = "Error while creating Order"
+      @order.order_lines.build
+      @company = User.find(session[:user_id]).company
+      @warehouses = @company.warehouses
+      @products = @company.products
+      @product_statuses = @company.product_statuses
+      @order_types = @company.order_types
+      @customers = @company.customers
+      @countries = Country.all
+      render :action => 'new'
+    end
+  end
   
   
 
