@@ -1,0 +1,35 @@
+<h1>Orders	</h1>
+	
+	<p>Please enter your search criteria.</p>
+	<%= form_for :order, :url => lookup_outbound_orders_path do |form|	%>
+		<table>
+			<tr><td>Order Number	</td>	<td><%= form.text_field :order_number	%>	</td>
+				<td>Order State		</td>	<td><%= form.select :state, @order_states.collect {|s| [s,s]}, :include_blank => true	%>	</td>
+			</tr>
+			<tr><td>Customer Name	</td>	<td><%= form.select :customer_id, @customers.collect {|c| [c.name, c.id]}, :include_blank => true	%>	</td>
+				<td>Ship Date		</td>	<td><%= form.date_select :ship_date, :include_blank => true		%>	</td>
+			</tr>
+		</table>
+		<%= submit_tag "Look Up"	%>
+	<% end %>
+	<br><br><hr><br>
+	<% if request.post?	%>
+		<% if @orders.empty? %>
+			<p>There are no orders that match your criteria.</p>
+		<% else %>
+			<table>
+				<tr><th>Order Number	</th>Customer Name	</th> <th>Ship To	</th> </th>State </th>	</tr>
+				<% @orders.each do |order| %>
+					<tr><td><%= order.order_number													%>	</td>
+						<td><%= order.customer.name													%>	</td>
+						<td><%= order.full_shipping_address											%>	</td>
+						<td><%= order.state															%>	</td>
+						<td><%= link_to "View",	outbound_order_path(order)							%>	</td>
+						<td><%= link_to("Edit", edit_outbound_order_path(order)) if order.editable?	%>	</td>
+					</tr>
+				<% end %>
+			</table>
+		<% end %>
+	<% end %>
+	<hr><br><br>
+	<%= link_to "New Order", new_outbound_order_path	%>

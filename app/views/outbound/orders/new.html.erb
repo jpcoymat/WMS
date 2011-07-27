@@ -1,0 +1,20 @@
+<h1>New Order	</h1>
+
+	<%= form_for [:outbound, @order], :url => outbound_orders_path do |form| %>
+		<%= form.hidden_field :company_id, :value => @company.id	%>
+		<%= render :partial => 'order', :locals => {:form => form}	%>
+		<h2>Order Lines</h2>
+		<table >
+			<tr>
+				<th>Line Number	</th>
+				<th>Product		</th>
+				<th>Product Status	</th>
+				<th>Quantity Ordered	</th>
+			</tr>
+		<%= form.fields_for :order_lines do |builder|	%>
+			<%= render :partial => 'order_line', :locals => {:form => builder}%>
+		<% end %>
+		</table>
+		<%= link_to_add_fields "Add Order Line", form, :order_lines %>
+		
+	<% end %>

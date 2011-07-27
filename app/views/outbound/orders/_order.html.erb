@@ -1,0 +1,48 @@
+<table>
+	<tr>
+		<td>Order Number	</td>	
+		<td><%= form.text_field :order_number	%>	</td>
+	</tr>
+	<tr>
+		<td>Order Type		</td>	
+		<td><%= form.select :order_type_id, @order_types.collect { |ot| [ot.order_type, ot.id]}, :include_blank => true	%>	</td>
+	</tr>
+		<td>Customer		</td>
+		<td><%= form.select :customer_id, @customers.collect {|c| [c.name, c.id]}	%>	</td>
+	</tr>
+	<tr>
+		<td>Ship By Date						</td>
+		<td><%= form.date_select :ship_date	%>	</td>
+	<tr>
+	</tr>
+		<td>Warehouse							</td>
+		<td><%= form.select :warehouse_id, @warehouses.collect {|w| [w.name, w.id]}	%>	</td>
+	<tr>
+		<td>Priority							</td>
+		<td><%= form.text_field	:priority	%>	</td>
+	</tr>
+	<tr>
+		<td>Ship To Address							</td>
+		<td><%= form.text_field :ship_address_1	%>	</td>
+	</tr>
+	<tr>
+		<td>Ship To Address	(2)						</td>
+		<td><%= form.text_field :ship_address_2	%>	</td>
+	</tr>
+	<tr>
+		<td>Ship To City							</td>
+		<td><%= form.text_field :ship_city		%>	</td>
+	</tr>
+	<tr>
+		<td>Ship To State							</td>
+		<td><%= form.text_field :ship_state		%>	</td>
+	</tr>
+	<tr>
+		<td>Ship To Postal Code							</td>
+		<td><%= form.text_field :ship_postal_code	%>	</td>
+	</tr>
+	<tr>
+		<td>Ship To Country							</td>
+		<td><%= form.select :ship_country_id, @countries.collect {|c| [c.name, c.id]}	%>	</td>
+	</tr>
+</table>

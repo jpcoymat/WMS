@@ -46,7 +46,7 @@ class Order < ActiveRecord::Base
   belongs_to	:customer
   belongs_to	:order_type
   
-  has_many	:order_lines  
+  has_many	:order_lines, :dependent => :destroy  
 
   has_many	:shipment_contents, :as => :content
 
@@ -62,5 +62,14 @@ class Order < ActiveRecord::Base
     @@states
   end
   
+  def full_shipping_address
+    @full_shipping_address = self.ship_addres_1 + ", "
+    @full_shipping_address += self.ship_address_2 unless self.ship_address_2.nil?
+    @full_shipping_address += self.ship_city + ", " + self.ship_state + ", " + self.ship_postal_code + ", " + self.ship_country.name
+  end
+  
+  def editable?
+    self.created?
+  end
 
 end
