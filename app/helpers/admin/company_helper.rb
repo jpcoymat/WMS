@@ -1,0 +1,2 @@
+module Admin::CompanyHelper
+end

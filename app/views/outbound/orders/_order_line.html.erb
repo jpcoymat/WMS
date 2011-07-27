@@ -1,0 +1,6 @@
+<tr>
+	<td><%= form.text_field :line_sequence_number	%>	</td>
+	<td><%= form.select :product_id, @products.collect {|p| [p.name, p.id]}	%></td>
+	<td><%= form.select :product_status_id, @product_statuses.collect {|ps| [ps.code,ps.id]}%>	</td>
+	<td><%= form.text_field :quantity_ordered	%>	</td>
+</tr>
