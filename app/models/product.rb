@@ -11,6 +11,7 @@ class Product < ActiveRecord::Base
   has_many      :product_packages, :order => 'quantity DESC'
   has_many      :product_warehouse_setups
   has_many      :product_location_assignments
+  has_many      :lots
   
   validates	    :name, :barcode,  :company_id, :presence => true
   validates     :name, :uniqueness => true
