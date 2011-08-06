@@ -13,6 +13,8 @@ class User < ActiveRecord::Base
   attr_accessor	:password, :password_confirmation
   
   belongs_to 	:warehouse
+  
+  after_save :flush_passwords
 
 
   def password_must_be_present
@@ -52,5 +54,12 @@ class User < ActiveRecord::Base
   def full_name
     @full_name = self.first_name + " " + self.last_name
   end
+  
+  private
+  
+    def flush_passwords
+      @password = @password_confirmation = nil
+    end
+      
 
 end
