@@ -7,6 +7,7 @@ class ReceiptLine < ActiveRecord::Base
   validates	:quantity, :numericality => {:greater_than_or_equal_to => 1}
   validates :purchase_order_line_id, :product_match => true
   validates :purchase_order_line_id, :supplier_match => true
+  validates :lp,  :nonexisting_lp => true
   
   before_create :determine_lot
 
@@ -21,8 +22,8 @@ class ReceiptLine < ActiveRecord::Base
   aasm_column :state
   aasm_initial_state  :created
   aasm_state  :created
-  aasm_state  :received
-  aasm_state  :canceled
+  aasm_state  :received,  :enter => :create_assignments_and_containers, :guard => :valid_for_receiving?
+  aasm_state  :canceled,  :guard => :valid_for_cancellation?
 
 
   aasm_event :start_receiving do
@@ -41,7 +42,30 @@ class ReceiptLine < ActiveRecord::Base
       self.lot = @product_warehouse_setup.find_or_create_lot
     end
   end
+  
+  def create_assignment
     
+  end
+  
+  def create_containers
+    
+  end
+  
+  def create_assignments_and_containers
+    
+  end
+  
+  def valid_for_receiving?
+    (self.receipt.in_receiving? or self.receipt.created?) and self.created?
+  end
+    
+  def received_by_user
+    User.find(self.received_by_user_id)
+  end
+  
+  def valid_for_cancellation?
+    self.created?
+  end
 
 
 end

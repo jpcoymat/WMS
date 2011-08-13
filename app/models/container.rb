@@ -27,8 +27,8 @@ class Container < ActiveRecord::Base
 
 
   def self.location_types
-	@location_types = ["DockDoor","Location","User","Shipment"]
-	@location_types
+	  @location_types = ["DockDoor","Location","User","Shipment"]
+	  @location_types
   end
 
 
@@ -189,7 +189,7 @@ class Container < ActiveRecord::Base
     @orders = []
     @orders << self.direct_orders
     children.each do |container|
-      @orders = container.direct_orders
+      @orders = container.orders
     end
     @orders.flatten!
     @orders.unique!
