@@ -2,9 +2,9 @@ class ProductMatchValidator < ActiveModel::EachValidator
 
   def validate_each(record, attribute, value)
     unless value.nil? 
-      purchase_order_line = PurchaseOrderLine.find(value)
-      unless purchase_order_line.product_id == record.attributes["product_id"]
-        record.errors[attribute] << "Product on PO Line does not match Product on record"
+      remote_object = attribute.to_s.gsub("_id","").camelize.constantize.find(value)
+      unless remote_object.product == record.product
+        record.erros[attribute] << "#{remote_object.humanize}'s Product does not match record product"
       end
     end
   end

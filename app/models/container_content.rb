@@ -10,6 +10,10 @@ class ContainerContent < ActiveRecord::Base
   validates :quantity, :container_id, :product_id, :presence => true 
   validates :quantity, :numericality => {:greater_than_or_equal_to => 1}
 
+  validates :receipt_line_id, :product_match => true
+  validates :order_line_id, :product_match => true
+  validates :lot_id, :lot_match => true
+  
 
   def attributes_match?(content_attributes)
     attributes_match =true

@@ -1,0 +1,5 @@
+class ReceivingAssignment < Assignment
+  
+  
+
+end

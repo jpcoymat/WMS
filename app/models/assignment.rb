@@ -21,17 +21,15 @@ class Assignment < ActiveRecord::Base
   end
   
   aasm_event :start_processing do
-    transitions :to => :in_process, :from => [:created,:released] 
+    transitions :to => :in_process, :from => [:created, :released] 
   end
   
   aasm_event :cancel do
-    transitions :to => :canceled, :from => [:created,:released]
+    transitions :to => :canceled, :from => [:created, :released]
   end
   
   aasm_event :complete do
-    transitions :to => :completed, :from [:created,:released,:in_process]
+    transitions :to => :completed, :from => [:created, :released, :in_process]
   end
   
-  
-
 end

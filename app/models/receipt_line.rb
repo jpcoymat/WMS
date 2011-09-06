@@ -7,6 +7,7 @@ class ReceiptLine < ActiveRecord::Base
   validates	:quantity, :numericality => {:greater_than_or_equal_to => 1}
   validates :purchase_order_line_id, :product_match => true
   validates :purchase_order_line_id, :supplier_match => true
+  validates :lp,  :nonexisting_lp => true
   
   before_create :determine_lot
 
@@ -31,7 +32,6 @@ class ReceiptLine < ActiveRecord::Base
 
   aasm_event :cancel do
     transitions :to => :canceled, :from => [:created]
-    transitions :to => :received, :from => [:received]
   end
 
 
@@ -42,6 +42,17 @@ class ReceiptLine < ActiveRecord::Base
     end
   end
     
+  def valid_for_receiving?
+    (self.receipt.in_receiving? or self.receipt.created?) and self.created?
+  end
+    
+  def received_by_user
+    User.find(self.received_by_user_id)
+  end
+  
+  def valid_for_cancellation?
+    self.created?
+  end
 
 
 end
