@@ -22,8 +22,8 @@ class ReceiptLine < ActiveRecord::Base
   aasm_column :state
   aasm_initial_state  :created
   aasm_state  :created
-  aasm_state  :received,  :enter => :create_assignments_and_containers, :guard => :valid_for_receiving?
-  aasm_state  :canceled,  :guard => :valid_for_cancellation?
+  aasm_state  :received
+  aasm_state  :canceled
 
 
   aasm_event :start_receiving do
@@ -32,7 +32,6 @@ class ReceiptLine < ActiveRecord::Base
 
   aasm_event :cancel do
     transitions :to => :canceled, :from => [:created]
-    transitions :to => :received, :from => [:received]
   end
 
 
@@ -42,19 +41,7 @@ class ReceiptLine < ActiveRecord::Base
       self.lot = @product_warehouse_setup.find_or_create_lot
     end
   end
-  
-  def create_assignment
     
-  end
-  
-  def create_containers
-    
-  end
-  
-  def create_assignments_and_containers
-    
-  end
-  
   def valid_for_receiving?
     (self.receipt.in_receiving? or self.receipt.created?) and self.created?
   end
