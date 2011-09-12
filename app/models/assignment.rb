@@ -1,9 +1,9 @@
 class Assignment < ActiveRecord::Base
 
-	has_many 	  :assignment_details, :dependent => :destroy
+	has_many 	  :assignment_details, dependent: :destroy
 	belongs_to	:warehouse
 	
-	validates 	:type, :presence => true
+	validates 	:type, presence: true
 	
 	include AASM
   

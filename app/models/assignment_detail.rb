@@ -1,10 +1,10 @@
 class AssignmentDetail < ActiveRecord::Base
 
 	belongs_to  :assignment
-	validates   :assignment_id, :presence => true
+	validates   :assignment_id, presence: true
 	
-	belongs_to  :from_location, :polymorphic => true
-	belongs_to  :end_location,  :polymorphic => true
+	belongs_to  :from_location, polymorphic: true
+	belongs_to  :end_location,  polymorphic: true
 
 
 	def expected_product

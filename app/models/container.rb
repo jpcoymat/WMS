@@ -13,10 +13,10 @@ class Container < ActiveRecord::Base
   aasm_state :closed
 
 
-  belongs_to	:container_location,  :polymorphic => true
+  belongs_to	:container_location,  polymorphic: true
   belongs_to 	:container_type
   has_many	  :container_contents
-  has_many	  :container_contents, :dependent => :destroy
+  has_many	  :container_contents, dependent: :destroy
 
   acts_as_tree :foreign_key => 'parent_container_id'
 

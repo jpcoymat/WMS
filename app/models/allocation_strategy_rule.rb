@@ -8,7 +8,7 @@ class AllocationStrategyRule < ActiveRecord::Base
   belongs_to    :customer
   belongs_to	:customer_type
   
-  validates	:warehouse_id, :order_sequence, :allocation_strategy_id, :presence => true
+  validates	:warehouse_id, :order_sequence, :allocation_strategy_id, presence: true
 
 
   def match_criteria

@@ -2,8 +2,8 @@ class Lot < ActiveRecord::Base
 
   belongs_to  :product
   belongs_to  :product_status
-  validates :product_id, :fifo_date, :product_status_id, :name, :presence => true
-  validates :name, :uniqueness => true 
+  validates :product_id, :fifo_date, :product_status_id, :name, presence: true
+  validates :name, uniqueness: true 
   
   
   before_create :set_name

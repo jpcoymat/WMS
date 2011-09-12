@@ -39,7 +39,7 @@ class Order < ActiveRecord::Base
   end
   
 
-  validates	:order_number, :ship_date, :customer_id, :received_date, :ship_addres_1, :ship_city, :ship_country_id, :company_id, :presence => true
+  validates	:order_number, :ship_date, :customer_id, :received_date, :ship_addres_1, :ship_city, :ship_country_id, :company_id, presence: true
   validates	:order_number, :uniqueness => true
 
   belongs_to	:company

@@ -2,9 +2,9 @@ class OrderLine < ActiveRecord::Base
 
   before_create :find_allocation_strategy
 
-  validates :line_sequence_number, :product_id, :quantity_ordered, :order_id, :presence => true
-  validates :line_sequence_number, :uniqueness => true
-  validates :lot_id, :lot_match => true
+  validates :line_sequence_number, :product_id, :quantity_ordered, :order_id, presence: true
+  validates :line_sequence_number, uniqueness: true
+  validates :lot_id, lot_match: true
   validates :quantity_ordered, :numericality => {:greater_than => 0}
 
   belongs_to	:order
@@ -36,7 +36,7 @@ class OrderLine < ActiveRecord::Base
   def find_allocation_strategy
     @allocation_strategy = nil
     index = 0
-    allocation_strategy_rules = AllocationStrategyRules.where(:warehouse_id => self.order.warehouse_id).order(:order_sequence).all
+    allocation_strategy_rules = AllocationStrategyRules.where(warehouse_id: self.order.warehouse_id).order(:order_sequence).all
     while @allocation_strategy.nil? and index < allocation_strategy_rules.count
       allocation_strategy_rule = allocation_strategy_rules.allocation_strategy_rule
       if match_allocation_rule?(allocation_strategy_rule)
@@ -48,15 +48,15 @@ class OrderLine < ActiveRecord::Base
   end
   
   def product_name=(product_name)
-    @product = Product.where(:name => product_name).first 
+    @product = Product.where(name: product_name).first 
   end
   
   def lot_name=(lot_name)
-    @lot = Lot.where(:name => lot_name).first
+    @lot = Lot.where(name: lot_name).first
   end 
   
   def product_status_code=(product_status_code)
-    @product_status = ProductStatus.where(:code => product_status_code)
+    @product_status = ProductStatus.where(code: product_status_code)
   end
 
 end

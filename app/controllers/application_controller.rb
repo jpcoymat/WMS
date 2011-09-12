@@ -5,7 +5,7 @@ class ApplicationController < ActionController::Base
   protected
 
   def authorize
-    unless User.find_by_id(session[:user_id])
+    unless session[:user_id] and User.find(session[:user_id])
       redirect_to :controller => 'login', :action => 'login'
     end
   end
