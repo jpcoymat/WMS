@@ -1,7 +1,7 @@
 class Supplier < ActiveRecord::Base
 
-  validates	:name, :address_1, :city, :country_id, :company_id, :presence => true
-  validates	:name, :uniqueness => true
+  validates	:name, :address_1, :city, :country_id, :company_id, presence: true
+  validates	:name, uniqueness: true
   belongs_to    :country
   belongs_to    :company
   

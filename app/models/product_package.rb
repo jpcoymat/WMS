@@ -3,8 +3,8 @@ class ProductPackage < ActiveRecord::Base
   belongs_to 	:product
   belongs_to 	:uom
 
-  validates 	:product_id, :length, :width, :height, :quantity, :uom_id, :presence => true
-  validates_uniqueness_of	:uom_id, :scope => :product_id
+  validates 	:product_id, :length, :width, :height, :quantity, :uom_id, presence: true
+  validates_uniqueness_of	:uom_id, scope: :product_id
 
 
   def volume
