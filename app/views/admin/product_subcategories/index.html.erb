@@ -8,7 +8,7 @@
 				<tr><td><%= product_subcategory.name 																																									%>	</td>
 					<td><%= product_subcategory.description																																								%>	</td>
 					<td><%= link_to "Edit", edit_admin_product_category_product_subcategory_path(@product_category, product_subcategory)																	%>	</td> 
-					<td><%= product_subcategory.deleteable? ? link_to("Delete", admin_product_category_product_subcategory_path(@product_category, product_subcategory) , :method => :delete) : ""	%>	</td>
+					<td><%= product_subcategory.deleteable? ? link_to("Delete", admin_product_category_product_subcategory_path(@product_category, product_subcategory) , method: :delete) : ""	%>	</td>
 				</tr>
 			<% end %>
 		</table>

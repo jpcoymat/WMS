@@ -16,13 +16,13 @@ class Warehouse < ActiveRecord::Base
   has_many    :location_types
   has_many    :product_location_assignments
   has_many    :product_warehouse_setups
-  has_many    :products, :through => :product_warehouse_setups
+  has_many    :products, through: :product_warehouse_setups
   has_many    :shipments
 
 
-  validates	:name, :uniqueness: true
-  validates	:code, :uniqueness: true 
-  validates 	:name, :code, :address_1, :city, :country_id, :company_id, :presence: true
+  validates	:name, uniqueness: true
+  validates	:code, uniqueness: true 
+  validates 	:name, :code, :address_1, :city, :country_id, :company_id, presence: true
 
   def add_system_parameters
     SystemParameter.create([{ 
@@ -60,7 +60,7 @@ class Warehouse < ActiveRecord::Base
   end
   
   def receivable_receipts
-    @receivable_receipts = Receipt.where(:warehouse_id: self.id, state: "created").all
+    @receivable_receipts = Receipt.where(warehouse_id: self.id, state: "created").all
   end
   
   def closeable_receipts

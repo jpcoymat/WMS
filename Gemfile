@@ -11,14 +11,15 @@ gem 'mongrel', '>= 1.2.0.pre2'
 
 gem 'pg'
 gem 'aasm'
-
+gem 'jquery-rails'
+gem 'prototype-rails'
 #plugins 
 gem 'acts_as_tree'
 #gem 'acts_as_state_machine' 
 
 # Use unicorn as the web server
 gem 'unicorn'
-
+gem 'bcrypt-ruby'
 # Deploy with Capistrano
 # gem 'capistrano'
 
@@ -31,6 +32,7 @@ gem 'unicorn'
 # gem 'sqlite3-ruby', :require => 'sqlite3'
 # gem 'aws-s3', :require => 'aws/s3'
 gem 'thin'
+
 
 # Bundle gems for the local environment. Make sure to
 # put test-only gems in this group so their generators

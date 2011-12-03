@@ -14,7 +14,7 @@ class Admin::AllocationZonesController < ApplicationController
     else
 	    flash[:notice] = "Error creating Allocation Zone"
     end
-    redirect_to admin_storage_zones_path
+    redirect_to admin_allocation_zones_path
   end
 
   def edit	

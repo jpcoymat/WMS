@@ -1,7 +1,7 @@
 class AllocationStrategy < ActiveRecord::Base
 
   belongs_to              :warehouse
-  has_many                :allocation_strategy_lines, :dependent => :destroy, :order => :order_sequence
+  has_many                :allocation_strategy_lines, dependent: :destroy, order: :order_sequence
   has_many                :product_warehouse_setups
   has_many                :allocation_strategy_rules
   has_many                :product_location_assignments
