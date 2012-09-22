@@ -1,6 +1,7 @@
 source 'http://rubygems.org'
 
-gem 'rails', '>= 3.0.0'
+gem 'bcrypt-ruby'
+gem 'rails', '3.2.6'
 gem 'resque'
 #gem 'redis'
 #gem 'redis-namespace'
@@ -31,7 +32,7 @@ gem 'bcrypt-ruby'
 # gem 'nokogiri'
 # gem 'sqlite3-ruby', :require => 'sqlite3'
 # gem 'aws-s3', :require => 'aws/s3'
-gem 'thin'
+# gem 'thin'
 
 
 # Bundle gems for the local environment. Make sure to
