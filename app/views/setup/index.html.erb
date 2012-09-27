@@ -1,6 +1,6 @@
 <h1>Please Enter the New Company Details</h1>
 
-	<% form_for :company, :url => {:controller => 'setup', :action => 'create_company'}, :html=>{:multipart=>true} do |form| %>
+	<%= form_for :company, :url => {:controller => 'setup', :action => 'create_company'}, :html=>{:multipart=>true} do |form| %>
 	<table>
 		<tr><td>Name 		</td>	<td><%= form.text_field :name %>												</td></tr>
 		<tr><td>Address 1	</td>	<td><%= form.text_field :address_1 %>											</td></tr>
