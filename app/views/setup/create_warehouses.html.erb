@@ -21,7 +21,7 @@
 	<% end %>
 		
 	<h3>Create New Warehouse</h3>
-		<% form_for :warehouse, :url => {:controller => 'setup', :action => 'add_warehouse'} do |form| %>
+		<%= form_for :warehouse, :url => {:controller => 'setup', :action => 'add_warehouse'} do |form| %>
 			<%= form.hidden_field :company_id, :value => @company.id %>
 			<%= render :partial => "warehouse", :locals => {:form => form }%>
 			<%= submit_tag "Create Warehouse" %>

@@ -23,7 +23,7 @@ class PurchaseOrderLine < ActiveRecord::Base
   end
 
 
-  validates 	:line_number, :purchase_order_id, :product_id, :quantity, :presence => true
+  validates 	:line_number, :purchase_order_id, :product_id, :quantity, presence: true
   validates 	:quantity, :numericality => {:greater_than_or_equal_to => 1}
  
   validates_uniqueness_of :line_number, :scope => :purchase_order_id, :message => "PO Line already exists"

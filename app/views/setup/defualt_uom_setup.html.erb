@@ -1,6 +1,6 @@
 <h1>Setup company-default UOMs</h1>
 
-<% form_for :company, :url => {:controller => 'setup', :action => 'update_company_uoms'} do |form| %>
+<%= form_for :company, :url => {:controller => 'setup', :action => 'update_company_uoms'} do |form| %>
 	<%= form.hidden_field :id %>
 	<table>
 		<tr><td>Quantity UOM	</td>	<td><%= form.select :default_quantity_uom_id, @qty_uoms.collect {|q| [q.name, q.id]} %></td></tr>

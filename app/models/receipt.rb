@@ -10,8 +10,8 @@ class Receipt < ActiveRecord::Base
   aasm_state :canceled
 
 
-  validates	:estimated_receipt_date, :warehouse_id, :receipt_number, :presence => true
-  validates	:receipt_number, :uniqueness => true
+  validates	:estimated_receipt_date, :warehouse_id, :receipt_number, presence: true
+  validates	:receipt_number, uniqueness: true
   
   belongs_to    :warehouse
   belongs_to    :supplier

@@ -17,7 +17,7 @@
 	<% end %>
 	<br><br><hr><br>
 	<h3>Add New User</h3>
-		<% form_for :user, :url => {:controler => 'setup', :action => 'add_user'} do |form| %>
+		<%= form_for :user, :url => {:controler => 'setup', :action => 'add_user'} do |form| %>
 			<%= form.hidden_field :warehouse_id, :value => @warehouse.id 	%>
 			<%= render :partial => 'user', :locals => {:form => form} 	%>
 			<%= submit_tag "Create User"	%>

@@ -1,7 +1,7 @@
 class ProductCategory < ActiveRecord::Base
 
-  validates	:name, :uniqueness => true
-  validates	:name, :description, :company_id, :presence => true
+  validates	:name, uniqueness: true
+  validates	:name, :description, :company_id, presence: true
 
   belongs_to	:company
 

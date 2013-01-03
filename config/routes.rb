@@ -101,10 +101,10 @@ Wms::Application.routes.draw do
       end
     end
     resources :uoms
-    resources :quantity_uoms, :controller => 'uoms', :type => 'QuantityUom'
-    resources :dimension_uoms, :controller => 'uoms', :type => 'DimensionUom'
-    resources :volume_uoms, :controller => 'uoms', :type => 'VolumeUom'
-    resources :weight_uoms, :controller => 'uoms', :type => 'WeightUom'
+    resources :quantity_uoms,   controller: 'uoms', type: 'QuantityUom'
+    resources :dimension_uoms,  controller: 'uoms', type: 'DimensionUom'
+    resources :volume_uoms,     controller: 'uoms', type: 'VolumeUom'
+    resources :weight_uoms,     controller: 'uoms', type: 'WeightUom'
     resources :users
     resources :warehouses do
       resources :dock_doors
@@ -139,7 +139,17 @@ Wms::Application.routes.draw do
     resources :shipments
   end
   
+  controller :javascripts do
+    get 'javascripts/dynamic_product_subcategories'
+    get 'javascripts/dynamic_po_lines'
+    get 'javascripts/set_product'
+  end
 
+  controller :login do
+    get 'login' => :login
+    post 'validate_user'=> :validate_user
+    get 'logout' => :logout
+  end
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
   root :to => 'main#index'
@@ -148,5 +158,6 @@ Wms::Application.routes.draw do
 
   # This is a legacy wild controller route that's not recommended for RESTful applications.
   # Note: This route will make all actions in every controller accessible via GET requests.
+
   match ':controller(/:action(/:id(.:format)))'
 end

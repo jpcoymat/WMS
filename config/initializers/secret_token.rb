@@ -4,4 +4,4 @@
 # If you change this key, all old signed cookies will become invalid!
 # Make sure the secret is at least 30 characters and all random,
 # no regular words or you'll be exposed to dictionary attacks.
-Wms::Application.config.secret_token = 'a19318aec3fc3214f1aa5a2fefd650bb03b89f3497db937b60e7f626d50231ebe994293572e88a640f229138ec6456b0854b0ea7ea14d2abd4b213782af1fe7a'
+Wms::Application.config.secret_token = '72c018aaf76eb34f6a3298e83f83a074053a57eb67de23b42c140477128b65d6b4c0fba6511ac92bbee5c0c1dd0d77d4e5c5d6258d4670183411ddef9657fec1'

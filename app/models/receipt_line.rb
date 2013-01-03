@@ -3,11 +3,11 @@ class ReceiptLine < ActiveRecord::Base
   include AASM
   
 
-  validates	:receipt_id, :lp, :product_id, :quantity, :presence => true
+  validates	:receipt_id, :lp, :product_id, :quantity, presence: true
   validates	:quantity, :numericality => {:greater_than_or_equal_to => 1}
-  validates :purchase_order_line_id, :product_match => true
-  validates :purchase_order_line_id, :supplier_match => true
-  validates :lp,  :nonexisting_lp => true
+  validates :purchase_order_line_id, product_match: true
+  validates :purchase_order_line_id, supplier_match: true
+  validates :lp,  nonexisting_lp: true
   
   before_create :determine_lot
 
@@ -37,7 +37,7 @@ class ReceiptLine < ActiveRecord::Base
 
   def determine_lot
     if self.lot.nil?
-      @product_warehouse_setup = ProductWarehouseSetup.where(:product_id => self.product_id, :warehouse_id => self.receipt.warehouse_id).first
+      @product_warehouse_setup = ProductWarehouseSetup.where(product_id: self.product_id, warehouse_id: self.receipt.warehouse_id).first
       self.lot = @product_warehouse_setup.find_or_create_lot
     end
   end

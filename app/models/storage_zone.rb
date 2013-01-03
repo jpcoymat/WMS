@@ -1,7 +1,7 @@
 class StorageZone < ActiveRecord::Base
   
-  validates	:warehouse_id, :code, :name, :presence => true
-  validates	:code, :uniqueness => true
+  validates	:warehouse_id, :code, :name, presence: true
+  validates	:code, uniqueness: true
   
   has_many      :locations
   has_many      :storage_strategy_lines

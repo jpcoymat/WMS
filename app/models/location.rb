@@ -2,12 +2,12 @@ class Location < ActiveRecord::Base
 
   before_create         :name
 
-  validates		:name,  :warehouse_id,  :location_type_id, :presence => true
-  validates		:name,  :uniqueness => true
+  validates		:name,  :warehouse_id,  :location_type_id, presence: true
+  validates		:name,  uniqueness: true
   
-  has_many    :containers,          :as => :container_location
-  has_many    :assignment_details,  :as => :from_location
-  has_many    :assignment_details,  :as => :end_location
+  has_many    :containers,          as: :container_location
+  has_many    :assignment_details,  as: :from_location
+  has_many    :assignment_details,  as: :end_location
   
   has_many    :product_location_assignments
   has_many    :assignment_details
@@ -19,7 +19,7 @@ class Location < ActiveRecord::Base
   
   def pending_storage_assignments
       @pending_storage_assignments = []
-  	  assignment_details = AssignmentDetail.where(:end_location_id => self.id, :end_location_type => self.class.to_s).all
+  	  assignment_details = AssignmentDetail.where(end_location_id: self.id, end_location_type: self.class.to_s).all
   	  assignment_details.delete_if {|ad| ad.assignment.type != "StorageAssignment" and Container.find(ad.from_container_id).parent_container_id.nil?}
   	  assignment_details.each do |assignment_detail| 
   	    @pending_storage_assignments << assignment_detail.assignment

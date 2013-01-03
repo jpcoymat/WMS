@@ -24,8 +24,8 @@ class PurchaseOrder < ActiveRecord::Base
 
 
 
-  validates	:purchase_order_number, :company_id, :presence => true
-  validates	:purchase_order_number, :uniqueness => true
+  validates	:purchase_order_number, :company_id, presence: true
+  validates	:purchase_order_number, uniqueness: true
   
   belongs_to    :supplier
   belongs_to    :purchase_order_type
