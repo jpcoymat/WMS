@@ -1,7 +1,7 @@
 source 'http://rubygems.org'
 
 gem 'bcrypt-ruby'
-gem 'rails', '3.2.6'
+gem 'rails'
 gem 'resque'
 #gem 'redis'
 #gem 'redis-namespace'
