@@ -43,7 +43,7 @@ class ReceiptLine < ActiveRecord::Base
   end
     
   def valid_for_receiving?
-    (self.receipt.in_receiving? or self.receipt.created?) and self.created?
+    self.receipt.valid_for_receiving? and self.created?
   end
     
   def received_by_user

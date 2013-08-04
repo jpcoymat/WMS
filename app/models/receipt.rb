@@ -48,5 +48,9 @@ class Receipt < ActiveRecord::Base
     end
     @received_quantity
   end
+  
+  def valid_for_receiving?
+    (self.receipt.in_receiving? or self.receipt.created?) 
+  end
  
 end
