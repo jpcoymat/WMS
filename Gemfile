@@ -1,6 +1,5 @@
 source 'http://rubygems.org'
 
-gem 'bcrypt-ruby'
 gem 'rails', '>=4.0.0'
 gem 'resque'
 #gem 'redis'
@@ -20,7 +19,7 @@ gem 'acts_as_tree'
 
 # Use unicorn as the web server
 gem 'unicorn'
-gem 'bcrypt-ruby'
+gem 'bcrypt-ruby', '~> 3.0.0'
 # Deploy with Capistrano
 # gem 'capistrano'
 
