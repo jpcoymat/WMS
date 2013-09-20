@@ -1,5 +1,7 @@
 class PurchaseOrderLine < ActiveRecord::Base
 
+  roomer :tenanted
+
   include AASM
   
   aasm_column :state

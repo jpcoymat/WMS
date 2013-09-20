@@ -10,11 +10,10 @@
 #       Install PostgreSQL and put its /bin directory on your path.
 development:
   adapter: postgresql
-  encoding: latin9
+  encoding: utf8
   database: wms_development
   pool: 5
-  username: postgres
-  password: postgres
+  username: <%= ENV['DBUSER'] %>
 
   # Connect on a TCP socket. Omitted by default since the client uses a
   # domain socket that doesn't need configuration. Windows does not have
@@ -36,11 +35,10 @@ development:
 # Do not set this db to the same as development or production.
 test:
   adapter: postgresql
-  encoding: latin9
+  encoding: utf8
   database: wms_test
   pool: 5
-  username: postgres
-  password: postgres
+  username: <%= ENV['DBUSER'] %>
 
 production:
   adapter: postgresql

@@ -1,5 +1,7 @@
 class Assignment < ActiveRecord::Base
 
+  roomer :tenanted
+
 	has_many 	  :assignment_details, dependent: :destroy
 	belongs_to	:warehouse
 	

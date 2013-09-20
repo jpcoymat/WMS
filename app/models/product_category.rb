@@ -1,5 +1,7 @@
 class ProductCategory < ActiveRecord::Base
 
+  roomer :tenanted
+
   validates	:name, uniqueness: true
   validates	:name, :description, :company_id, presence: true
 

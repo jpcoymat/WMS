@@ -1,5 +1,7 @@
 class ReceiptLine < ActiveRecord::Base
 
+  roomer :tenanted
+
   include AASM
   
 

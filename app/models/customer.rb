@@ -1,5 +1,7 @@
 class Customer < ActiveRecord::Base
 
+  roomer :tenanted
+
   belongs_to :customer_type
   belongs_to :company 
 

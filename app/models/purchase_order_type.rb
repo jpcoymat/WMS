@@ -1,5 +1,7 @@
 class PurchaseOrderType < ActiveRecord::Base
   
+  roomer :tenanted
+
   validates	:purchase_order_type, :company_id, presence: true
   validates	:purchase_order_type, uniqueness: true
   

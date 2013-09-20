@@ -11,7 +11,7 @@ class CreateProductWarehouseSetups < ActiveRecord::Migration
       t.timestamps
     end
     
-    drop_table :product_warehouse_settings
+    #drop_table :product_warehouse_settings
   end
 
   def self.down

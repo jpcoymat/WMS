@@ -1,5 +1,7 @@
 class OrderLine < ActiveRecord::Base
 
+  roomer :tenanted
+
   before_create :find_allocation_strategy
 
   validates :line_sequence_number, :product_id, :quantity_ordered, :order_id, presence: true

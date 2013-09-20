@@ -1,5 +1,6 @@
 class Order < ActiveRecord::Base
 
+  roomer :tenanted
 
   include AASM
   

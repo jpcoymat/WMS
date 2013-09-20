@@ -2,7 +2,7 @@ class CreateContainers < ActiveRecord::Migration
   def self.up
     create_table :containers do |t|
       t.string :lp, :null => false, :limit => 50
-      t.reference :container_location, :polymorphic => true, :null => false
+      t.references :container_location, :polymorphic => true, :null => false
       t.integer :container_type_id
       t.decimal :length, :precision => 8, :scale => 2
       t.decimal :width, :precision => 8, :scale => 2
