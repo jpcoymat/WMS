@@ -1,5 +1,7 @@
 class ReceiptType < ActiveRecord::Base
 
+  roomer :tenanted
+
   belongs_to	:company
   has_many	:receipts
   has_many	:storage_strategy_rules

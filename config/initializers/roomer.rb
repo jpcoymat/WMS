@@ -60,7 +60,7 @@ Roomer.setup do |config|
   # Set to true for automatic inclusion
   # of Roomer::Extensions::Controller in
   # Application::Controller
-  # config.install_controller_extensions = false
+  config.install_controller_extensions = true
 
   # Safe to run on Heroku
   # Roomer.heroku_safe = true

@@ -1,5 +1,7 @@
 class Uom < ActiveRecord::Base
 
+  roomer :tenanted
+
   validates_uniqueness_of	:code, scope: :company_id
   validates_uniqueness_of :name, scope: :company_id
   validates   	:type, :code, :name, :company_id, presence: true

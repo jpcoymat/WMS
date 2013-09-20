@@ -1,5 +1,7 @@
 class Company < ActiveRecord::Base
 
+  roomer :tenanted
+
   belongs_to :country
   has_many  :warehouses
   has_many  :products

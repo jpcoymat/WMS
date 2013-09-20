@@ -153,6 +153,7 @@ Wms::Application.routes.draw do
   
   controller :setup do
     get 'index' => :index
+    post 'create_company' => :create_company
   end
   
   # You can have the root of your site routed with "root"

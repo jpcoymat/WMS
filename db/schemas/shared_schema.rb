@@ -2,6 +2,15 @@
     
 Roomer::Schema.define(:version => 20130920042236) do
 
+  create_table "countries", :force => true do |t|
+    t.string   "name",                                 :null => false
+    t.string   "iso_code",               :limit => 3
+    t.string   "language",               :limit => 25
+    t.integer  "telephone_country_code"
+    t.datetime "created_at",                           :null => false
+    t.datetime "updated_at",                           :null => false
+  end
+
   create_table "tenants", :force => true do |t|
     t.string   "url_identifier"
     t.string   "schema_name"

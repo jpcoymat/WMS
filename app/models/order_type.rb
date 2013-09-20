@@ -1,5 +1,7 @@
 class OrderType < ActiveRecord::Base
 
+  roomer :tenanted
+
   validates	:order_type, :company_id, presence: true
   validates	:order_type, uniqueness: true
   

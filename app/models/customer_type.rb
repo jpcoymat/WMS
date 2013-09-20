@@ -1,5 +1,7 @@
 class CustomerType < ActiveRecord::Base
 
+  roomer :tenanted
+
   belongs_to                :company
   has_many                  :customers
   has_many                  :allocation_strategy_rules

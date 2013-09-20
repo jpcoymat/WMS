@@ -137,15 +137,6 @@ Roomer::Schema.define(:version => 20110906202839) do
     t.string   "state",                   :limit => 50,                               :null => false
   end
 
-  create_table "countries", :force => true do |t|
-    t.string   "name",                                 :null => false
-    t.string   "iso_code",               :limit => 3
-    t.string   "language",               :limit => 25
-    t.integer  "telephone_country_code"
-    t.datetime "created_at",                           :null => false
-    t.datetime "updated_at",                           :null => false
-  end
-
   create_table "customer_types", :force => true do |t|
     t.integer  "company_id",                :null => false
     t.string   "code",        :limit => 5,  :null => false

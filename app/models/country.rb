@@ -4,4 +4,5 @@ class Country < ActiveRecord::Base
 
   validates	:name, :iso_code, presence: true
 
+  roomer :shared
 end

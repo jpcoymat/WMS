@@ -1,5 +1,7 @@
 class Warehouse < ActiveRecord::Base
 
+  roomer :tenanted
+
   belongs_to  :company
   belongs_to  :country
   has_many    :locations
