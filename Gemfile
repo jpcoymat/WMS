@@ -1,6 +1,6 @@
 source 'http://rubygems.org'
 
-gem 'rails', '>=4.0.0'
+gem 'rails', '3.2.13'
 gem 'resque'
 #gem 'redis'
 #gem 'redis-namespace'
@@ -20,6 +20,9 @@ gem 'acts_as_tree'
 # Use unicorn as the web server
 gem 'unicorn'
 gem 'bcrypt-ruby', '~> 3.0.0'
+
+gem 'roomer', :git => 'git@github.com:gosuri/roomer.git', :ref => 'search_path'
+
 # Deploy with Capistrano
 # gem 'capistrano'
 
