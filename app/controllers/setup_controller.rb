@@ -8,6 +8,7 @@ class SetupController < ApplicationController
 
 	def create_company
 		@company = Company.new(params[:company])
+		@company.logo_filename = "foo"
 		if @company.save!
 			@company.create_uoms
 			@company.create_product_statuses
