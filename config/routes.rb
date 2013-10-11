@@ -162,9 +162,18 @@ Wms::Application.routes.draw do
     post 'update_company_uoms' => :update_company_uoms
     post 'add_warehouse' => :add_warehouse
     post 'add_user' => :add_user
-
   end
   
+  namespace :api do
+    namespace :v1 do
+      resources :purchase_orders do
+        collection do
+          get 'search'
+        end
+      end
+    end
+  end
+
   devise_for :user, :path => '', :path_names => { :sign_in => "login", :sign_out => "logout", :sign_up => "register" }
   
   # You can have the root of your site routed with "root"
