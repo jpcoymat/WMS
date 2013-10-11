@@ -153,7 +153,14 @@ Wms::Application.routes.draw do
   
   controller :setup do
     get 'index' => :index
+    get 'defualt_uom_setup' => :defualt_uom_setup
+    get 'create_warehouses' => :create_warehouses
+    get 'warehouse_users' => :warehouse_users
     post 'create_company' => :create_company
+    post 'update_company_uoms' => :update_company_uoms
+    post 'add_warehouse' => :add_warehouse
+    post 'add_user' => :add_user
+
   end
   
   # You can have the root of your site routed with "root"
