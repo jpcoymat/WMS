@@ -1,9 +1,9 @@
 class Admin::CustomerTypesController < ApplicationController
   
-  before_filter :authorize
+
   
   def index
-    @company = User.find(session[:user_id]).company
+    @company = current_user.company
     @customer_types = @company.customer_types
     @customer_type = CustomerType.new
   end

@@ -1,13 +1,14 @@
 <h1>Welcome to WMS</h1>
 
-
-<%= form_for :user_login, :url=>{:controller=>'login', :action=>'validate_user'} do |form| %>
+<form action='/login' method='post'>
   <table>
-    <tr><td align=right>Username	</td> <td><%= form.text_field :username %>		</td></tr>
-    <tr><td align=right>Password  	</td> <td><%= form.password_field :password %>	</td></tr>
+	<input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>" />
+    <tr><td align=right>Email	</td> <td><input type="text" name="user[email]"/></td></tr>
+    <tr><td align=right>Password  	</td> <td><input type="password" name="user[password]"/></td></tr>
   </table>
-  <%= submit_tag "Log In" %>
-<% end %>
+  <input type="submit" value="Sign In"/>
+
+</form>
 <br><br>
 <%= link_to "Create New Company", :controller => 'setup', :action => 'index' %>
 

@@ -1,9 +1,8 @@
 class Admin::AllocationZonesController < ApplicationController
 
-  before_filter :authorize
   
   def index	
-    @warehouse = User.find(session[:user_id]).warehouse	
+    @warehouse = current_user.warehouse	
     @allocation_zone = AllocationZone.new
   end
 

@@ -1,7 +1,5 @@
 class Inbound::ReceiptLinesController < ApplicationController
 
-  before_filter :authorize
-
 
   def index
     @receipt = Receipt.find(params[:id])
@@ -10,7 +8,7 @@ class Inbound::ReceiptLinesController < ApplicationController
   end
   
   def new
-    @company = User.find(session[:user_id]).company
+    @company = current_user.company
     @receipt_line = ReceiptLine.new
     @receipt = Receipt.find(params[:receipt_id])
     @purchase_order_lines = PurchaseOrderLine.all

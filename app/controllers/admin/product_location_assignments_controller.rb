@@ -1,9 +1,8 @@
 class Admin::ProductLocationAssignmentsController < ApplicationController
 
-  before_filter :authorize
   
   def replenishment_locations
-    @warehouse = User.find(session[:user_id]).warehouse
+    @warehouse = current_user.warehouse
     if request.post?
       location_criteria = params[:location].clone
       location_criteria.delete_if {|k,v| v.blank?}

@@ -1,9 +1,8 @@
 class Admin::UsersController < ApplicationController
 
-  before_filter :authorize
   
   def index
-    @warehouse = User.find(session[:user_id]).warehouse 
+    @warehouse = current_user.warehouse 
     @users = @warehouse.users
     @user = User.new
   end

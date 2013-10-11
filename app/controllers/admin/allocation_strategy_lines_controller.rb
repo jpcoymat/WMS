@@ -1,6 +1,5 @@
 class Admin::AllocationStrategyLinesController < ApplicationController
   
-  before_filter :authorize
   
   def index
     @allocation_strategy = AllocationStrategy.find(params[:allocation_strategy_id])

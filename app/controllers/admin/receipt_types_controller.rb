@@ -1,9 +1,8 @@
 class Admin::ReceiptTypesController < ApplicationController
 
-  before_filter :authorize
   
   def index
-    @company = User.find(session[:user_id]).company
+    @company = current_user.company
     @receipt_types = @company.receipt_types
     @receipt_type = ReceiptType.new
   end

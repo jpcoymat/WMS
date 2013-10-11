@@ -9,6 +9,8 @@ gem 'resque'
 
 gem 'mongrel', '>= 1.2.0.pre2'
 
+gem 'devise'
+
 gem 'pg'
 gem 'aasm'
 gem 'jquery-rails'
@@ -27,7 +29,7 @@ gem 'roomer', :git => 'git@github.com:gosuri/roomer.git', :ref => 'search_path'
 # gem 'capistrano'
 
 # To use debugger
-# gem 'ruby-debug'
+# gem 'byebug'
 
 # Bundle the extra gems:
 # gem 'bj'

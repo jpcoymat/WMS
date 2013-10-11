@@ -17,7 +17,7 @@
 	<br><br><hr>
 	<h4>Create New Product Category<h4>
 		<%= form_for [:admin, @product_category] do |form| %>
-			<%= form.hidden_field :company_id, :value => User.find(session[:user_id]).warehouse.company_id %>
+			<%= form.hidden_field :company_id, :value => current_user.warehouse.company_id %>
 			<table>
 				<tr><td>Product Category Name			</td>	<td><%= form.text_field :name 			%>	</td></tr>
 				<tr><td>Product Category Description	</td>	<td><%= form.text_field :description	%>	</td></tr>

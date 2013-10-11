@@ -1,10 +1,9 @@
 class Admin::WarehousesController < ApplicationController
 
 
-  before_filter :authorize
 
   def index
-    @company = User.find(session[:user_id]).company 
+    @company = current_user.company 
   end
   
   def show

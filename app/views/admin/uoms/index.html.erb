@@ -20,7 +20,7 @@
 	<% end %>
 	<br><br><hr><br>
 	<% form_for [:admin, @uom] do |form| %>
-		<%= form.hidden_field :company_id, :value => User.find(session[:user_id]).company.id	%>
+		<%= form.hidden_field :company_id, :value => current_user.company.id	%>
 		<%= render :partial => 'uom', :locals => {:form => form}								%>
 		<%= submit_tag "Crete UOM"																%>
 	<% end %>

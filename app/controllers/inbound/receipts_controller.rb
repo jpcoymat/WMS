@@ -1,10 +1,8 @@
 class Inbound::ReceiptsController < ApplicationController
 
-  before_filter :authorize
-
 
   def lookup
-    @warehouse = User.find(session[:user_id]).warehouse
+    @warehouse = current_user.warehouse
     if request.post?
       params[:receipt_search_criteria].delete_if {|k,v| v.blank?}
       @receipts = Receipt.all(:conditions => params[:receipt_search_criteria], :order => 'receipt_number')
@@ -12,7 +10,7 @@ class Inbound::ReceiptsController < ApplicationController
   end
 
   def new
-    @warehouse = User.find(session[:user_id]).warehouse
+    @warehouse = current_user.warehouse
     @receipt = Receipt.new
   end
   
@@ -23,7 +21,7 @@ class Inbound::ReceiptsController < ApplicationController
     else
       flash[:notice] = "Error creating receipt"
       @receipt.errors.full_messages.each {|msg| flash[:notice] += msg}
-      @warehouse = User.find(session[:user_id]).warehouse
+      @warehouse = current_user.warehouse
       render :action => 'new'
     end    
   end

@@ -1,9 +1,8 @@
 class Admin::LocationsController < ApplicationController
 
-  before_filter :authorize
   
   def lookup
-    @warehouse = User.find(session[:user_id]).warehouse
+    @warehouse = current_user.warehouse
     if request.post?
       params[:location].delete_if {|k,v| v.blank?   }
       params[:location][:warehouse_id] = @warehouse.id
@@ -32,7 +31,7 @@ class Admin::LocationsController < ApplicationController
   end
   
   def add
-    @warehouse = User.find(session[:user_id]).warehouse
+    @warehouse = current_user.warehouse
     @location_types = @warehouse.location_types
     if request.post?
       @location_type = LocationType.find(params[:location_type][:id])
@@ -50,7 +49,7 @@ class Admin::LocationsController < ApplicationController
       redirect_to lookup_admin_locations_path
     else
       flash[:notice] = "Location Range is not valid"
-      @warehouse = User.find(session[:user_id]).warehouse
+      @warehouse = current_user.warehouse
       @location_types = @warehouse.location_types
       render :action => 'add'
     end

@@ -1,24 +1,21 @@
 class LoginController < ApplicationController
-
-  before_filter :authorize, :except => [:login, :validate_user]
-
-  def login    
-  end
+  before_filter :authenticate_user!, :except => [:login]
+  protect_from_forgery :except => :login
   
-  def validate_user
-    @user = User.where(:username => params[:user_login][:username]).first    
-    if @user and @user.authenticate(params[:user_login][:password]) 
-      session[:user_id] = @user.id
-      flash[:notice] = "Welcome to WMS."
-      redirect_to :controller => 'main', :action => 'index' 
-    else
-      flash[:notice] = "Invalid username/password."
-      redirect_to :controller => 'login', :action => 'login'
+  def login    
+    if request.post?
+      if authenticate_user!
+        flash[:notice] = "Welcome to WMS."
+        redirect_to :controller => 'main', :action => 'index' 
+      else
+        flash[:notice] = "Invalid username/password."
+        redirect_to :controller => 'login', :action => 'login'
+      end
     end
   end
 
   def logout
-    session[:user_id] = nil
+    sign_out current_user
     redirect_to :controller => 'login', :action => 'login'
   end
 

@@ -1,7 +1,5 @@
 class Admin::ProductSubcategoriesController < ApplicationController
 
-  before_filter :authorize
-
 
   def index
     @product_category = ProductCategory.find(params[:product_category_id])

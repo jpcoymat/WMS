@@ -1,9 +1,8 @@
 class Admin::AllocationStrategyRulesController < ApplicationController
 
-  before_filter :authorize
 
   def index
-    @warehouse = User.find(session[:user_id]).warehouse
+    @warehouse = current_user.warehouse
     @allocation_strategy_rules = @warehouse.allocation_strategy_rules
     @allocation_strategy_rule = AllocationStrategyRule.new
   end

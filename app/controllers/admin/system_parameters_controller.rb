@@ -1,7 +1,7 @@
 class Admin::SystemParametersController < ApplicationController
 
   def lookup
-    @user = User.find(session[:user_id])
+    @user = current_user
     if request.post?
       params[:system_parameter].delete_if {|k,v| v.blank? }
       params[:system_parameter][:warehouse_id] = @user.warehouse_id

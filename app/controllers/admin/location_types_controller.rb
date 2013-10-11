@@ -1,9 +1,8 @@
 class Admin::LocationTypesController < ApplicationController
 
-  before_filter :authorize
 
   def index
-    @warehouse = User.find(session[:user_id]).warehouse
+    @warehouse = current_user.warehouse
     @location_types = @warehouse.location_types
     @location_type = LocationType.new
   end

@@ -1,9 +1,8 @@
 class Admin::StorageZonesController < ApplicationController
 
-  before_filter :authorize
   
   def index
-    @storage_zones = StorageZone.all(:conditions => ["warehouse_id = ?", User.find(session[:user_id]).warehouse.id])
+    @storage_zones = StorageZone.all(:conditions => ["warehouse_id = ?", current_user.warehouse.id])
     @storage_zone = StorageZone.new
   end
   

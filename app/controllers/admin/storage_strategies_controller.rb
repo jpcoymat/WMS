@@ -1,9 +1,8 @@
 class Admin::StorageStrategiesController < ApplicationController
 
-  before_filter :authorize
 
   def index
-    @warehouse = User.find(session[:user_id]).warehouse
+    @warehouse = current_user.warehouse
     @storage_strategies = @warehouse.storage_strategies
     @storage_strategy = StorageStrategy.new
   end

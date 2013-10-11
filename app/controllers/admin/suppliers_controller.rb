@@ -1,9 +1,8 @@
 class Admin::SuppliersController < ApplicationController
 
-  before_filter :authorize
 
   def index
-    @suppliers = Supplier.all(:conditions => ["company_id = ?", User.find(session[:user_id]).company.id])
+    @suppliers = Supplier.all(:conditions => ["company_id = ?", current_user.company.id])
     @supplier = Supplier.new
   end
   

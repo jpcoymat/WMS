@@ -1,7 +1,6 @@
 class Admin::CompaniesController < ApplicationController
 
 
-  before_filter :authorize
 
   def index
     @companies = Company.all(:order => 'name')

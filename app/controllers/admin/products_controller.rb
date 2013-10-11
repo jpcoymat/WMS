@@ -1,9 +1,8 @@
 class Admin::ProductsController < ApplicationController
 
-  before_filter :authorize
 
   def lookup
-    @warehouse = User.find(session[:user_id]).warehouse
+    @warehouse = current_user.warehouse
     @company =  @warehouse.company
     if request.post?      
       params[:product].delete_if {|k,v| v.blank?  }
@@ -18,7 +17,7 @@ class Admin::ProductsController < ApplicationController
 
   def edit
     @product = Product.find(params[:id])
-    @company = User.find(session[:user_id]).company
+    @company = current_user.company
     @product_categories = @company.product_categories
     @product_subcategories = @company.product_subcategories
     @suppliers =  @company.suppliers 
@@ -30,7 +29,7 @@ class Admin::ProductsController < ApplicationController
       flash[:notice] = "Product updated succesfully"
       redirect_to admin_product_path(@product)
     else
-      @company = User.find(session[:user_id]).company
+      @company = current_user.company
       @product_categories = @company.product_categories
       @product_subcategories = @company.product_subcategories
       @suppliers =  @company.suppliers 
@@ -41,7 +40,7 @@ class Admin::ProductsController < ApplicationController
   
   def new
     @product = Product.new
-    @company = User.find(session[:user_id]).company
+    @company = current_user.company
     @product_categories = @company.product_categories
     @product_subcategories = @company.product_subcategories
     @suppliers =  @company.suppliers 
@@ -52,7 +51,7 @@ class Admin::ProductsController < ApplicationController
     if @product.save
       redirect_to admin_product_path(@product)
     else
-      @company = User.find(session[:user_id]).company
+      @company = current_user.company
       @product_categories = @company.product_categories
       @product_subcategories = @company.product_subcategories
       @suppliers =  @company.suppliers 

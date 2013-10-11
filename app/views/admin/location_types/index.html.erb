@@ -19,7 +19,7 @@
 	<br><br><hr><br>
 	<h4>Create New Location Type	</h4>
 	<%= form_for [:admin, @location_type] do |form|	%>
-		<%= form.hidden_field :warehouse_id, :value => User.find(session[:user_id]).warehouse.id	%>
+		<%= form.hidden_field :warehouse_id, :value => current_user.warehouse.id	%>
 		<%= render :partial => 'location_type', :locals => {:form => form}	%>
 		<%= submit_tag "Create Location Type"	%>
 	<% end %>

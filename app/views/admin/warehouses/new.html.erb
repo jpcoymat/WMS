@@ -1,7 +1,7 @@
 <h4>New Warehouse	</h4>
 
 <%= form_for [:admin, @warehouse] do |form|	%>
-	<%= form.hidden_field :company_id, :value => User.find(session[:user_id]).company.id	%>
+	<%= form.hidden_field :company_id, :value => current_user.company.id	%>
 	<%= render :partial => 'warehouse', :locals => {:form => form}							%>
 	<%= submit_tag "Create Warehouse"														%>
 <% end %>

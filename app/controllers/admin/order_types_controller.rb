@@ -1,9 +1,8 @@
 class Admin::OrderTypesController < ApplicationController
 
-  before_filter :authorize
   
   def index
-    @warehouse = User.find(session[:user_id]).warehouse
+    @warehouse = current_user.warehouse
     @order_types = @warehouse.company.order_types
     @order_type = OrderType.new
   end

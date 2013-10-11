@@ -1,10 +1,8 @@
 class Inbound::PurchaseOrdersController < ApplicationController
 
-  before_filter :authorize
-
 
   def lookup
-    @company = User.find(session[:user_id]).company
+    @company = current_user.company
     if request.post?
       params[:purchase_order_criteria].delete_if {|k,v| v.blank?}
       @purchase_orders = PurchaseOrder.all(:conditions => params[:purchase_orders], :order => 'purchase_order_number')
@@ -27,7 +25,7 @@ class Inbound::PurchaseOrdersController < ApplicationController
   end
 
   def new
-    @company = User.find(session[:user_id]).company
+    @company = current_user.company
     @purchase_order = PurchaseOrder.new
   end
 

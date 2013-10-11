@@ -1,6 +1,5 @@
 class Admin::StorageStrategyLinesController < ApplicationController
 
-  before_filter :authorize
   
   def index
     @storage_strategy = StorageStrategy.find(params[:storage_strategy_id])

@@ -1,10 +1,8 @@
 class Admin::ProductStatusesController < ApplicationController
-  
-  before_filter :authorize
-  
+    
   
   def index
-    @company = User.find(session[:user_id]).company
+    @company = current_user.company
     @product_statuses = ProductStatus.all
     @product_status = ProductStatus.new
   end

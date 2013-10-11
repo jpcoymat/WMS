@@ -1,7 +1,7 @@
 class Admin::ProductCategoriesController < ApplicationController
 
   def index
-    @product_categories = ProductCategory.all(:order => "name", :conditions => ["company_id = ?", User.find(session[:user_id]).warehouse.company_id])
+    @product_categories = ProductCategory.all(:order => "name", :conditions => ["company_id = ?", current_user.warehouse.company_id])
     @product_category = ProductCategory.new
   end
   

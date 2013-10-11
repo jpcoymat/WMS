@@ -1,6 +1,6 @@
 # It's strongly recommended to check this file into your version control system.
     
-Roomer::Schema.define(:version => 20110906202839) do
+Roomer::Schema.define(:version => 20131011032903) do
 
   create_table "allocation_strategies", :force => true do |t|
     t.string   "name",         :limit => 25, :null => false
@@ -533,18 +533,29 @@ Roomer::Schema.define(:version => 20110906202839) do
   end
 
   create_table "users", :force => true do |t|
-    t.string   "first_name",                    :null => false
-    t.string   "last_name",                     :null => false
-    t.string   "username",                      :null => false
-    t.string   "password_digest",               :null => false
-    t.datetime "created_at",                    :null => false
-    t.datetime "updated_at",                    :null => false
-    t.date     "dob",                           :null => false
-    t.string   "email",           :limit => 50, :null => false
-    t.string   "position",        :limit => 50
+    t.string   "first_name",                                           :null => false
+    t.string   "last_name",                                            :null => false
+    t.string   "username",                                             :null => false
+    t.datetime "created_at",                                           :null => false
+    t.datetime "updated_at",                                           :null => false
+    t.date     "dob",                                                  :null => false
+    t.string   "email",                  :limit => 50,                 :null => false
+    t.string   "position",               :limit => 50
     t.integer  "warehouse_id"
-    t.string   "sex",             :limit => 10, :null => false
+    t.string   "sex",                    :limit => 10,                 :null => false
+    t.string   "encrypted_password",                   :default => "", :null => false
+    t.string   "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.integer  "sign_in_count",                        :default => 0,  :null => false
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.string   "current_sign_in_ip"
+    t.string   "last_sign_in_ip"
   end
+
+  add_index "users", ["email"], :name => "index_users_on_email", :unique => true
+  add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token", :unique => true
 
   create_table "warehouses", :force => true do |t|
     t.string   "name",        :limit => 100, :null => false

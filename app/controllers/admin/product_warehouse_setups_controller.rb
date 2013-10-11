@@ -1,6 +1,5 @@
 class Admin::ProductWarehouseSetupsController < ApplicationController
 
-  before_filter :authorize
 
   def index
     @product = Product.find(params[:product_id])

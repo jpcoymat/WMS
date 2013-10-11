@@ -1,6 +1,6 @@
 class SetupController < ApplicationController
 
-	skip_before_filter :authorize
+	before_filter :authenticate_user!, :except => [:index, :create_company, :default_uom_setup, :update_company_uoms, :create_warehouses, :add_warehouses, :warehouse_users, :add_warehouse, :add_user]
 
 	def index
 		@countries = Country.all(:order => 'iso_code')

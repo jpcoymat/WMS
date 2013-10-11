@@ -1,9 +1,6 @@
 class Admin::DockDoorsController < ApplicationController
 
 
-  before_filter :authorize
-
-
   def index
     @warehouse = Warehouse.find(params[:warehouse_id])
     @dock_doors = @warehouse.dock_doors    

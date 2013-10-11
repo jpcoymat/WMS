@@ -1,6 +1,5 @@
 class Inbound::PurchaseOrderLinesController < ApplicationController
 
-  before_filter :authorize
 
   def create
     @purchase_order = PurchaseOrder.find(params[:purchase_order_line][:purchase_order_id])

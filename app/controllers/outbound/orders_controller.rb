@@ -1,7 +1,7 @@
 class Outbound::OrdersController < ApplicationController
 
   def lookup
-    @company = User.find(session[:user_id]).company
+    @company = current_user.company
     @customers = @company.customers
     @order_states = Order.states
     @order_type = @company.order_types
@@ -18,7 +18,7 @@ class Outbound::OrdersController < ApplicationController
   
   def edit
     @order = Order.find(params[:id])    
-    @company = User.find(session[:user_id]).company
+    @company = current_user.company
     @order_type = @company.order_types
   end
   
@@ -28,7 +28,7 @@ class Outbound::OrdersController < ApplicationController
       redirect_to outbound_order_path(@order)
     else
       render :action => 'edit'
-      @company = User.find(session[:user_id]).company
+      @company = current_user.company
       @order_type = @company.order_types
     end
   end
@@ -36,7 +36,7 @@ class Outbound::OrdersController < ApplicationController
   def new
     @order = Order.new
     @order.order_lines.build
-    @company = User.find(session[:user_id]).company
+    @company = current_user.company
     @warehouses = @company.warehouses
     @products = @company.products
     @product_statuses = @company.product_statuses
@@ -53,7 +53,7 @@ class Outbound::OrdersController < ApplicationController
     else
       flash[:notice] = "Error while creating Order"
       @order.order_lines.build
-      @company = User.find(session[:user_id]).company
+      @company = current_user.company
       @warehouses = @company.warehouses
       @products = @company.products
       @product_statuses = @company.product_statuses

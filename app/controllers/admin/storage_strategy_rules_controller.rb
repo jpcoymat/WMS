@@ -1,9 +1,8 @@
 class Admin::StorageStrategyRulesController < ApplicationController
 
-  before_filter :authorize
-  
+
   def index
-    @warehouse = User.find(session[:user_id]).warehouse
+    @warehouse = current_user.warehouse
     @company = @warehouse.company
     @storage_strategy_rules = @warehouse.storage_strategy_rules
     @storage_strategy_rule = StorageStrategyRule.new
@@ -20,7 +19,7 @@ class Admin::StorageStrategyRulesController < ApplicationController
   end
 
   def edit
-    @warehouse = User.find(session[:user_id]).warehouse
+    @warehouse = current_user.warehouse
     @company = @warehouse.company
     @storage_strategy_rule = StorageStrategyRule.find(params[:id])
   end
@@ -31,7 +30,7 @@ class Admin::StorageStrategyRulesController < ApplicationController
       redirect_to admin_storage_strategy_rules_path
     else
       flash[:notice] = "Error updating Storage Strategy Rules"
-      @warehouse = User.find(session[:user_id]).warehouse
+      @warehouse = current_user.warehouse
       @company = @warehouse.company
       render :action => 'edit'
     end

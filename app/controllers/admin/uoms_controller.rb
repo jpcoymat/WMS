@@ -1,9 +1,8 @@
 class Admin::UomsController < ApplicationController
-
-  before_filter :authorize
   
   def index
-    @uoms = Uom.all(:conditions => ["company_id = ?", User.find(session[:user_id]).company.id])
+    @user = current_user
+    @uoms = @user.warehouse.company.uoms
     @uom = Uom.new
   end
 

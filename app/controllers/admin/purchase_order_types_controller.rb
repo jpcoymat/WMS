@@ -1,9 +1,8 @@
 class Admin::PurchaseOrderTypesController < ApplicationController
 
-  before_filter :authorize
   
   def index
-    @warehouse = User.find(session[:user_id]).warehouse
+    @warehouse = current_user.warehouse
     @purchase_order_types = PurchaseOrderType.all(:conditions => ["company_id = ?", @warehouse.company.id])
     @purchase_order_type = PurchaseOrderType.new
   end
