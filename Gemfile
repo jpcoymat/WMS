@@ -23,7 +23,7 @@ gem 'acts_as_tree'
 gem 'unicorn'
 gem 'bcrypt-ruby', '~> 3.0.0'
 
-gem 'roomer', :git => 'git@github.com:gosuri/roomer.git', :ref => 'search_path'
+gem 'roomer', :github => 'gosuri/roomer', :ref => 'search_path'
 
 # Deploy with Capistrano
 # gem 'capistrano'
