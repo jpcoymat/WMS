@@ -12,7 +12,7 @@ class SetupController < ApplicationController
 		if @company.save!
 			@company.create_uoms
 			@company.create_product_statuses
-			redirect_to :controller => 'setup', :action => 'defualt_uom_setup', :company => @company
+			redirect_to defualt_uom_setup_path, :company => @company
 		else
 			flash[:notice] = "Error creating company.  Please try again."
 			redirect_to :controller => 'setup', :action => 'index'
@@ -31,10 +31,10 @@ class SetupController < ApplicationController
 		@company = Company.find(params[:company][:id])
 		if @company.update_attributes(params[:company])
 			flash[:notice] = "Company updated correctly."
-			redirect_to :controller => 'setup', :action => 'create_warehouses', :company => @company
+			redirect_to create_warehouses_path, :company => @company
 		else
 			flash[:notice] = "Cannot update company.  Please try again."
-			redirect_to :controller => 'setup', :action => 'default_uom_setup', :company => @company		
+			redirect_to defualt_uom_setup_path, :company => @company		
 		end
 	end
 
@@ -47,10 +47,10 @@ class SetupController < ApplicationController
 	  if @warehouse.save
 	    @warehouse.add_system_parameters
 	    flash[:notice] = "Warehouse has been succesfully created."
-	    redirect_to :controller => 'setup', :action => 'warehouse_users', :warehouse => @warehouse
+	    redirect_to warehouse_users_path, :warehouse => @warehouse
 	  else
       flash[:notice] = "Error creating warehouse"
-      redirect_to :controller => 'setup', :action => 'create_warehouses', :company => @warehouse.company
+      redirect_to create_warehouses_path, :company => @warehouse.company
 	 end
 	end
 	
@@ -65,7 +65,7 @@ class SetupController < ApplicationController
    else
      flash[:notice] = "Error creating user"
    end
-   redirect_to :controller => 'setup', :action => 'warehouse_users', :warehouse => @user.warehouse 
+   redirect_to warehouse_users_path, :warehouse => @user.warehouse 
 	end
 
 
