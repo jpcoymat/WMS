@@ -51,7 +51,6 @@ class Inbound::ReceivingAssignmentController < ApplicationController
     end
     
     def single_dock_door?(receipt_lines)
-      dock_door = 
     end
 
 end
