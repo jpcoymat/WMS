@@ -24,19 +24,19 @@ class Inbound::ReceivingAssignmentController < ApplicationController
     end
     
     def lp_valid?(lp)
-      lp_valid? = true
+      is_lp_valid? = true
       @receipt_lines = ReceiptLine.where(:lp => lp)
       unless @receipt_lines.empty?
         @receipt_lines.each do |receipt_line|
           if !(receipt_line.created?)
-            lp_valid? = false
+            is_lp_valid? = false
             break
           end
         end
       else
-        lp_valid? = false
+        is_lp_valid? = false
       end
-      lp_valid
+      is_lp_valid
     end
     
     def same_lp?(receipt_lines)
