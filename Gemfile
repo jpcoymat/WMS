@@ -25,6 +25,7 @@ gem 'bcrypt-ruby', '~> 3.0.0'
 
 gem 'roomer', :github => 'gosuri/roomer', :ref => 'search_path'
 
+ruby '2.0.0'
 # Deploy with Capistrano
 # gem 'capistrano'
 
