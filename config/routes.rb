@@ -166,6 +166,7 @@ Wms::Application.routes.draw do
   
   namespace :api do
     namespace :v1 do
+      resources :users
       resources :purchase_orders do
         collection do
           get 'search'
