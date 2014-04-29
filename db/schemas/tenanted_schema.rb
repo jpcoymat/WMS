@@ -1,6 +1,6 @@
 # It's strongly recommended to check this file into your version control system.
     
-Roomer::Schema.define(:version => 20131011032903) do
+Roomer::Schema.define(:version => 20140429053508) do
 
   create_table "allocation_strategies", :force => true do |t|
     t.string   "name",         :limit => 25, :null => false
@@ -300,7 +300,7 @@ Roomer::Schema.define(:version => 20131011032903) do
   end
 
   create_table "product_packages", :force => true do |t|
-    t.string   "product_id",                                                      :null => false
+    t.integer  "product_id",                                                      :null => false
     t.boolean  "logical_each"
     t.boolean  "logical_case"
     t.boolean  "logical_pallet"
