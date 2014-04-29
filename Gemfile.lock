@@ -10,7 +10,6 @@ GIT
 GEM
   remote: http://rubygems.org/
   specs:
-    aasm (3.0.24)
     actionmailer (3.2.13)
       actionpack (= 3.2.13)
       mail (~> 2.5.3)
@@ -142,7 +141,6 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  aasm
   acts_as_tree
   bcrypt-ruby (~> 3.0.0)
   devise

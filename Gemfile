@@ -12,7 +12,7 @@ gem 'mongrel', '>= 1.2.0.pre2'
 gem 'devise'
 
 gem 'pg'
-gem 'aasm'
+#gem 'aasm'
 gem 'jquery-rails'
 gem 'prototype-rails'
 #plugins 
