@@ -1,4 +1,3 @@
-
 GIT
   remote: git://github.com/gosuri/roomer.git
   revision: 46cb1b047d5394ceac77bb4ef417c08ba1c55d1f
@@ -11,6 +10,7 @@ GIT
 GEM
   remote: http://rubygems.org/
   specs:
+    aasm (3.0.24)
     actionmailer (3.2.13)
       actionpack (= 3.2.13)
       mail (~> 2.5.3)
@@ -142,6 +142,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  aasm
   acts_as_tree
   bcrypt-ruby (~> 3.0.0)
   devise
