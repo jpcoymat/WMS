@@ -27,4 +27,4 @@
 		<tr><td>Replenishable?				</td>	<td><%= @location.replenishable				%>	</td></tr>
 	</table>
 	<p><%= link_to "Edit", edit_admin_location_path(@location)	%>	</p>
-	<p><%= link_to("Pick Location Assignments", :controller => 'admin', :action => 'product_location_assignments', :location => @location) if @location.replenishable %></p>
+	<p><%= link_to("Pick Location Assignments", admin_product_location_assignments_path, location: @location) if @location.replenishable %></p>

@@ -3,7 +3,7 @@ class ProductSubcategory < ActiveRecord::Base
   roomer :tenanted
 
   validates	:name, :description, :product_category, :company_id, presence: true
-  validates	:name, uniqueness: true
+  validates	:name, uniqueness: {scope: :product_category_id}
 
   belongs_to    :company
   belongs_to    :product_category

@@ -9,7 +9,7 @@
 					<td><%= product_category.description														%>	</td>
 					<td><%= link_to "Subcategories", admin_product_category_product_subcategories_path(product_category.id)														%>	</td>
 					<td><%= link_to "Edit", edit_admin_product_category_path(product_category)					%>	</td> 
-					<td><%= product_category.deleteable? ? link_to("Delete", admin_product_category_path(product_category), :method => :delete) : ""	%>	</td>
+					<td><%= button_to("Delete", admin_product_category_path(product_category), method: :delete) if product_category.deleteable?	%>	</td>
 				</tr>
 			<% end %>
 		</table>
