@@ -54,5 +54,10 @@ class PurchaseOrderLine < ActiveRecord::Base
   def deleteable?
 	  self.purchase_order.created?
   end
+  
+  def as_json(options={})
+    super(:include => :product)
+  end
+  
 
 end

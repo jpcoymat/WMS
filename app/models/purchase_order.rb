@@ -58,4 +58,8 @@ class PurchaseOrder < ActiveRecord::Base
 	@received_quantity
   end 
 
+  def as_json(options={})
+    super(:include => {:purchase_order_lines => {:include => :product}})
+  end
+  
 end
