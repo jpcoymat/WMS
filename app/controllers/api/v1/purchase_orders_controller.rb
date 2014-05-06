@@ -15,7 +15,7 @@ class Api::V1::PurchaseOrdersController < ApplicationController
     end
   end
   
-  def list
+  def index
     respond_with(PurchaseOrder.all, status: 200)
   end
 
