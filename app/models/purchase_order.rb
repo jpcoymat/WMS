@@ -50,16 +50,16 @@ class PurchaseOrder < ActiveRecord::Base
   end
  
   def received_quantity
-	@received_quantity = 0
-	#first adding receipt lines against self
-	self.receipt_lines.each do |receipt_line|
-		@received_quantity += receipt_line.quantity	
-	end
-	@received_quantity
+	  @received_quantity = 0
+	  #first adding receipt lines against self
+	  self.receipt_lines.each do |receipt_line|
+		  @received_quantity += receipt_line.quantity	
+	  end
+	  @received_quantity
   end 
 
   def as_json(options={})
-    super(:include => {:purchase_order_lines => {:include => :product}})
+    super(root: true, :include => {:purchase_order_lines => {:include => :product}})
   end
   
 end
