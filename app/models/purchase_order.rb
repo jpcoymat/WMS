@@ -59,7 +59,7 @@ class PurchaseOrder < ActiveRecord::Base
   end 
 
   def as_json(options={})
-    super(root: true, :include => {:purchase_order_lines => {:include => :product}})
+    super(:include => {:purchase_order_lines => {:include => :product}})
   end
   
 end
