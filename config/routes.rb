@@ -170,6 +170,7 @@ Wms::Application.routes.draw do
       resources :purchase_orders do
         collection do
           get 'search'
+          get 'list'
         end
       end
     end
