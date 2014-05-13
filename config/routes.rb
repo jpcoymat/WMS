@@ -89,7 +89,6 @@ Wms::Application.routes.draw do
       end
     end
     resources :purchase_order_types
-    resources :receipt_types
     resources :storage_strategies do
       resources :storage_strategy_lines
     end
@@ -121,13 +120,6 @@ Wms::Application.routes.draw do
         post 'lookup'
       end
     end
-    resources :receipts do
-      resources :receipt_lines
-      collection do
-        get 'lookup'
-        post 'lookup'
-      end
-    end            
   end
   
   namespace :outbound do
