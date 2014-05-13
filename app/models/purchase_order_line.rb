@@ -34,14 +34,14 @@ class PurchaseOrderLine < ActiveRecord::Base
   belongs_to    :product
   belongs_to    :product_status
 
-  has_many      :receipt_lines
+  has_many      :container_contents
 
 
   
   def received_quantity
     @receivied_quantity = 0
-    self.receipt_lines.each do |receipt_line|
-      @received_quantity += receipt_line.quantity
+    self.container_contents.each do |container_content|
+      @received_quantity += container_content.quantity
     end
     @received_quantity
   end

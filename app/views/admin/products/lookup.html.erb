@@ -27,13 +27,13 @@
 				<tr><th>Supplier	</th><th>Product Name	</th>	<th>Product Category	</th>	<th>Product Subcategory</th>	<th>Health Check</th></tr>
 				<% for product in @products %>
 					<tr>
-						<td><%= product.supplier.nil? ? "" : product.supplier.name							%>	</td>
-						<td><%= product.name 																%>	</td>
-						<td><%= product.product_category.nil? ? "" : product.product_category.name			%>	</td>
-						<td><%= product.product_subcategory.nil? ? "" : product.product_subcategory.name 	%>	</td>
-						<td><%= product.health_check														%>	</td>
-						<td><%= link_to "View", admin_product_path(product)									%>	</td>
-						<td><%= link_to "Edit",	edit_admin_product_path(product)							%>	</td>
+						<td><%= product.supplier.try(:name)							%>	</td>
+						<td><%= product.name 										%>	</td>
+						<td><%= product.product_category.try(:name)					%>	</td>
+						<td><%= product.product_subcategory.try(:name) 				%>	</td>
+						<td><%= product.health_check								%>	</td>
+						<td><%= link_to "View", admin_product_path(product)			%>	</td>
+						<td><%= link_to "Edit",	edit_admin_product_path(product)	%>	</td>
 					</tr>
 				<% end %>
 			</table>

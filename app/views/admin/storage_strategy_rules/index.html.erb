@@ -4,18 +4,17 @@
 	<% else %>
 		<table>
 			<tr><th colspan=8>Criteria</th><th rowspan="2">Storage Strategy</th></tr>
-			<tr><th>Order Sequence</th> <th>Product Category</th> <th>Product Subcategory</th> <th>UOM</th> <th>Supplier</th> <th>Purchse Order Type</th> <th>Receipt Type</th> <th>Product Status</th> </tr>
+			<tr><th>Order Sequence</th> <th>Product Category</th> <th>Product Subcategory</th> <th>UOM</th> <th>Supplier</th> <th>Purchse Order Type</th>  <th>Product Status</th> </tr>
 			<% @storage_strategy_rules.each do |storage_strategy_rule| %>
-				<tr><td><%= storage_strategy_rule.order_sequence_number 												%>	</td>
-				    <td><%= storage_strategy_rule.product_category.nil? ? "" : storage_strategy_rule.product_category.name 																%>	</td>
- 				    <td><%= storage_strategy_rule.product_subcategory.nil? ? "" : storage_strategy_rule.product_subcategory.name 														%>	</td>
-				    <td><%= storage_strategy_rule.uom.nil? ? "" : storage_strategy_rule.uom.name 						%>	</td>
-				    <td><%= storage_strategy_rule.supplier.nil? ? "" : storage_strategy_rule.supplier.name 				%>	</td>
-				    <td><%= storage_strategy_rule.purchase_order_type.nil? ? "" : storage_strategy_rule.purchase_order_type.purchase_order_type 										%>	</td>
-				    <td><%= storage_strategy_rule.receipt_type.nil? ? "" : storage_strategy_rule.receipt_type.name 		%>	</td>
-				    <td><%= storage_strategy_rule.product_status.nil? ? "" : storage_strategy_rule.product_status.code 	%>	</td>
-					<td><%= storage_strategy_rule.storage_strategy.name													%>	</td>
-					<td><%= link_to "Edit", edit_admin_storage_strategy_rule_path(storage_strategy_rule)				%>	</td>
+				<tr><td><%= storage_strategy_rule.order_sequence_number 							%>	</td>
+				    <td><%= storage_strategy_rule.product_category.try(:name) 						%>	</td>
+ 				    <td><%= storage_strategy_rule.product_subcategory.try(:name) 					%>	</td>
+				    <td><%= storage_strategy_rule.uom.try(:name) 									%>	</td>
+				    <td><%= storage_strategy_rule.supplier.try(:name)								%>	</td>
+				    <td><%= storage_strategy_rule.purchase_order_type.try(:purchase_order_type) 	%>	</td>  
+				    <td><%= storage_strategy_rule.product_status.try(:code) 						%>	</td>
+					<td><%= storage_strategy_rule.storage_strategy.name								%>	</td>
+					<td><%= link_to "Edit", edit_admin_storage_strategy_rule_path(storage_strategy_rule)			%>	</td>
 					<td><%= link_to "Delete", admin_storage_strategy_rule_path(storage_strategy_rule),:method => :delete%>	</td>
 				</tr>
 			<% end %>

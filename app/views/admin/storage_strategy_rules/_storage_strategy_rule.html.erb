@@ -16,9 +16,6 @@
 	<tr><td>Purchase Order Type		</td>	
 		<td><%= form.select :purchase_order_type_id, @company.purchase_order_types.collect {|po| [po.purchase_order_type, po.id]}, :include_blank => true	%>	</td>
 	</tr>
-	<tr><td>Receipt Type			</td>	
-		<td><%= form.select :receipt_type_id, @company.receipt_types.collect {|r| [r.code, r.id]}, :include_blank => true									%>	</td>
-	</tr>
 	<tr><td>Product Status			</td>	
 		<td><%= form.select :product_status_id, @company.product_statuses.collect {|p| [p.code, p.id]}, :include_blank => true		%>	</td></tr>
 	<tr><td>Storage Strategy 		</td>	

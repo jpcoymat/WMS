@@ -50,21 +50,7 @@ class Container < ActiveRecord::Base
   end
   
 
-  def receipt_types
-    @receipt_types = []
-    self.container_contents.each do |container_content|
-      unless container_content.receipt_line.nil?
-        @receipt_types << container_content.receipt_line.receipt.receipt_type unless @receipt_types.include?(container_content.receipt_line.receipt.receipt_type) 
-      end
-    end
-    children.each do |child_container|
-      @receipt_types << child_container.receipt_types
-    end
-    @receipt_types.flatten!
-    @receipt_types.uniq!
-    @receipt_types
-  end
- 
+
   def product_categories
     @product_categories = []
     self.container_contents.each do |container_content|
@@ -94,7 +80,6 @@ class Container < ActiveRecord::Base
 
   def storage_attributes
     @storage_attributes = {}
-    receipt_types.count ==1 ? @storage_attributes["receipt_type_id"] = @receipt_types.first.id : nil
     product_categories.count == 1 ? @storage_attributes["product_category_id"] = @product_categories.first.id : nil
     product_subcategories.count == 1 ? @storage_attributes["product_subcategory_id"] = @product_subcategories.first.id : nil 
     uom ? @storage_attributes["uom_id"] = @uom.id : nil
@@ -119,22 +104,22 @@ class Container < ActiveRecord::Base
     @total_quantity
   end
   
-  def receipts
-    @receipts = []
+  def purchase_orders
+    @purchase_orders = []
     self.container_contents.each do |container_content| 
-      unless container_content.receipt_line.nil?
-        @receipts << container_content.receipt_line.receipt unless @receipts.include?(container_content.receipt_line.receipt)
+      if container_content.purchase_order_line
+        @purchase_orders << container_content.purchase_order_line.purchase_order unless @purchase_order.include?(container_content.purchase_order_lines.purchase_order)
       end
     end
-    children.each {|child_container| @receipts << child_container.receipts}
-    @receipts.flatten!
-    @receipts.uniq!
-    @receipts
+    children.each {|child_container| @purchase_orders << child_container.purchase_orders}
+    @purchase_orders.flatten!
+    @purchase_orders.uniq!
+    @purchase_orders
   end
   
   def supplier
     @supplier = nil
-    @supplier = receipts.first.supplier if receipts.count == 1
+    @supplier = purchase_orders.first.supplier if purchase_orders.count == 1
     @supplier
   end
 
@@ -170,20 +155,7 @@ class Container < ActiveRecord::Base
     @total_weight
   end
   
-  def self.create_from_receipt_lines(lp, container_location)
-    @receipt_lines = ReceiptLine.where(:lp => lp).all
-    container = nil
-    unless @receipt_lines.empty?
-      container = Container.new(:lp => lp, :container_location => container_location)
-      container.save!
-      @receipt_lines.each do |receipt_line|
-        container_content = ContainerContent.new(:container_id => container.id, :product_id => receipt_line.product_id,:lot_id => receipt_line.lot_id,:product_status_id =>receipt_line.product_status_id, :quantity =>receipt_line.quantity, :receipt_line_id => receipt_line.id)
-        container_content.save
-      end
-    end
-    container
-  end
-  
+
   
   def orders
     @orders = []

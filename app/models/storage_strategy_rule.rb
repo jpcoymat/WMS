@@ -10,7 +10,6 @@ class StorageStrategyRule < ActiveRecord::Base
   belongs_to  :supplier
   belongs_to  :product_status
   belongs_to  :purchase_order_type
-  belongs_to  :receipt_type
   belongs_to  :storage_strategy
 
   def match_for_container?(container)

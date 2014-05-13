@@ -9,11 +9,10 @@ class Supplier < ActiveRecord::Base
   
   has_many      :products
   has_many      :purchase_orders
-  has_many      :receipts
   has_many      :storage_strategy_rules
   
   def deleteable?
-    if self.products.empty? and self.purchase_orders.empty? and self.receipts.empty? and self.storage_strategy_rules.empty?
+    if self.products.empty? and self.purchase_orders.empty? and self.storage_strategy_rules.empty?
       true
     else
       false

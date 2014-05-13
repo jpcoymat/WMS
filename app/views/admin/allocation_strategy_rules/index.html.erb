@@ -7,12 +7,12 @@
 			<tr><th colspan=6>Criteria	</th>	<th rowspan=2>Final Result	</th></tr>
 			<tr><th>Order Sequence		</th>	<th>Order Type		</th>	<th>Product Category	</th>	<th>Product Subcategory	</th>	<th>Customer	</th>	<th>Customer Type	</th>	</tr>
 			<% @allocation_strategy_rules.each do |allocation_strategy_rule|	%>
-				<tr><td><%= allocation_strategy_rule.order_sequence			%>	</td>
-					<td><%= allocation_strategy_rule.order_type.nil? ? "" : allocation_strategy_rule.order_type.order_type %></td>
-					<td><%= allocation_strategy_rule.product_category.nil? ? "" : allocation_strategy_rule.product_category.name																%>	</td>
-					<td><%= allocation_strategy_rule.product_subcategory.nil? ? "" : allocation_strategy_rule.product_subcategory.name %>	</td>
-					<td><%= allocation_strategy_rule.customer.nil? ? "" : allocation_strategy_rule.customer.name	%>	</td>
-					<td><%= allocation_strategy_rule.customer_type.nil? ? "" : allocation_strategy_rule.customer_type.code %></td>
+				<tr><td><%= allocation_strategy_rule.order_sequence												%>	</td>
+					<td><%= allocation_strategy_rule.order_type.try(:order_type) 								%></td>
+					<td><%= allocation_strategy_rule.product_category.try(:name)								%>	</td>
+					<td><%= allocation_strategy_rule.product_subcategory.try(:name)		 						%>	</td>
+					<td><%= allocation_strategy_rule.customer.try(:name)										%>	</td>
+					<td><%= allocation_strategy_rule.customer_type.try(:code) 									%></td>
 					<td><%= allocation_strategy_rule.allocation_strategy.name										%>	</td>
 					<td><%= link_to "Edit", edit_admin_allocation_strategy_rule_path(allocation_strategy_rule)		%>	</td>
 					<td><%= link_to "Delete", admin_allocation_strategy_rule_path(allocation_strategy_rule), :method => :delete	%>	</td>

@@ -1,14 +1,14 @@
 <h4>Product Details</h4>
 	<table>
-		<tr><td>Name				</td>	<td><%= @product.name																%>	</td></tr>
-		<tr><td>Alias Name			</td>	<td><%= @product.alias																%>	</td></tr>
-		<tr><td>Barcode				</td>	<td><%= @product.barcode															%>	</td></tr>
-		<tr><td>Description			</td>	<td><%= @product.description														%>	</td></tr>
-		<tr><td>Product Category	</td>	<td><%= @product.product_category.nil? ? "" : @product.product_category.name		%>	</td></tr>
-		<tr><td>Product Subcategory	</td>	<td><%= @product.product_subcategory.nil? ? "" : @product.product_subcategory.name 	%>	</td></tr>
-		<tr><td>Supplier			</td>	<td><%= @product.supplier.nil? ? "" : @product.supplier.name						%>	</td></tr>
-		<tr><td>GTIN Number			</td>	<td><%= @product.gtin_number														%>	</td></tr>
-		<tr><td>UPC Number			</td>	<td><%= @product.upc_number															%>	</td></tr>
+		<tr><td>Name				</td>	<td><%= @product.name								%>	</td></tr>
+		<tr><td>Alias Name			</td>	<td><%= @product.alias								%>	</td></tr>
+		<tr><td>Barcode				</td>	<td><%= @product.barcode							%>	</td></tr>
+		<tr><td>Description			</td>	<td><%= @product.description						%>	</td></tr>
+		<tr><td>Product Category	</td>	<td><%= @product.product_category.try(:name)		%>	</td></tr>
+		<tr><td>Product Subcategory	</td>	<td><%= @product.product_subcategory.try(:name) 	%>	</td></tr>
+		<tr><td>Supplier			</td>	<td><%= @product.supplier.try(:name)				%>	</td></tr>
+		<tr><td>GTIN Number			</td>	<td><%= @product.gtin_number						%>	</td></tr>
+		<tr><td>UPC Number			</td>	<td><%= @product.upc_number							%>	</td></tr>
 	</table>		
 	
 	<p>

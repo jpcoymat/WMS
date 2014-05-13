@@ -9,7 +9,6 @@ class Company < ActiveRecord::Base
   has_many  :customer_types 
   has_many  :purchase_order_types
   has_many  :purchase_orders
-  has_many  :receipt_types
   has_many  :orders
   has_many  :order_types
   has_many  :product_statuses

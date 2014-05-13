@@ -36,8 +36,8 @@
 				<% @locations.each do |location|	%>
 					<tr><td><%= location.name				%></td>
 						<td><%= location.location_type.code	%>	</td>
-						<td><%= location.allocation_zone.nil? ? "" : location.allocation_zone.code			%>	</td>
-						<td><%= location.storage_zone.nil?  ? "" : location.storage_zone.code					%>	</td>
+						<td><%= location.allocation_zone.try(:code)			%>	</td>
+						<td><%= location.storage_zone.try(:code)					%>	</td>
 						<td><%= link_to "Details",	admin_location_path(location)	%>	</td>
 						<td><%= link_to "Edit", edit_admin_location_path(location)		%>	</td>
 					</tr>

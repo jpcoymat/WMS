@@ -10,7 +10,6 @@ class Warehouse < ActiveRecord::Base
   has_many    :dock_doors
   has_many    :system_parameters
   has_many    :users
-  has_many    :receipts
   has_many    :storage_strategies
   has_many    :storage_strategy_rules
   has_many    :allocation_strategies
@@ -60,14 +59,6 @@ class Warehouse < ActiveRecord::Base
   def deleteable?
     self.locations.empty? and self.allocation_zones.empty? and self.storage_zones.empty? and self.dock_doors.empty? and self.users.empty?
   end
-  
-  def receivable_receipts
-    @receivable_receipts = Receipt.where(warehouse_id: self.id, state: "created").all
-  end
-  
-  def closeable_receipts
-    @closeable_receipts = Receipt.where(warehouse_id: self.id, state: "in_receiving").all
-  end
-  
+    
 
 end

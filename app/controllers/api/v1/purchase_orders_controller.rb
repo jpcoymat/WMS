@@ -3,7 +3,7 @@ class Api::V1::PurchaseOrdersController < ApplicationController
 
   def search
     po = PurchaseOrder.find_by_purchase_order_number(params[:po_number])
-    respond_with(po, :status => po.blank? ? 404 : 200)
+    respond_with(po, status: po.blank? ? 404 : 200)
   end
   
   def search_by_supplier
