@@ -1,6 +1,6 @@
 # It's strongly recommended to check this file into your version control system.
     
-Roomer::Schema.define(:version => 20140513043026) do
+Roomer::Schema.define(:version => 20140513053007) do
 
   create_table "allocation_strategies", :force => true do |t|
     t.string   "name",         :limit => 25, :null => false
@@ -392,44 +392,6 @@ Roomer::Schema.define(:version => 20140513043026) do
     t.string   "state",                  :limit => 50, :null => false
   end
 
-  create_table "receipt_lines", :force => true do |t|
-    t.integer  "receipt_id",                           :null => false
-    t.string   "lp",                     :limit => 50, :null => false
-    t.integer  "product_id",                           :null => false
-    t.integer  "lot_id",                               :null => false
-    t.integer  "product_status_id"
-    t.decimal  "quantity",                             :null => false
-    t.datetime "created_at",                           :null => false
-    t.datetime "updated_at",                           :null => false
-    t.integer  "dock_door_id"
-    t.integer  "purchase_order_line_id"
-    t.string   "state",                  :limit => 50, :null => false
-    t.date     "received_at"
-    t.integer  "received_by_user_id"
-  end
-
-  create_table "receipt_types", :force => true do |t|
-    t.string   "name",        :limit => 25,  :null => false
-    t.string   "code",        :limit => 50,  :null => false
-    t.string   "description", :limit => 100
-    t.datetime "created_at",                 :null => false
-    t.datetime "updated_at",                 :null => false
-    t.integer  "company_id",                 :null => false
-  end
-
-  create_table "receipts", :force => true do |t|
-    t.integer  "supplier_id",                          :null => false
-    t.date     "estimated_receipt_date"
-    t.integer  "receipt_type_id"
-    t.integer  "warehouse_id",                         :null => false
-    t.string   "receipt_number",         :limit => 50, :null => false
-    t.date     "ship_date"
-    t.datetime "created_at",                           :null => false
-    t.datetime "updated_at",                           :null => false
-    t.date     "received_at"
-    t.string   "state",                  :limit => 50, :null => false
-  end
-
   create_table "shipment_contents", :force => true do |t|
     t.integer  "shipment_id",  :null => false
     t.integer  "content_id"
@@ -483,7 +445,6 @@ Roomer::Schema.define(:version => 20140513043026) do
     t.datetime "created_at",             :null => false
     t.datetime "updated_at",             :null => false
     t.integer  "purchase_order_type_id"
-    t.integer  "receipt_type_id"
   end
 
   create_table "storage_zones", :force => true do |t|
