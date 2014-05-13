@@ -35,7 +35,6 @@ class PurchaseOrder < ActiveRecord::Base
 
   has_many      :purchase_order_lines
   
-  
 
   def editable?
     self.state == 'created'

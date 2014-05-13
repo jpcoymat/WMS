@@ -16,7 +16,8 @@ class Api::V1::PurchaseOrdersController < ApplicationController
   end
   
   def index
-    respond_with(PurchaseOrder.all, status: 200)
+    purchase_orders = PurchaseOrder.where("state in ('created', 'in_receiving')")
+    respond_with(purchase_orders, status: 200)
   end
 
   
