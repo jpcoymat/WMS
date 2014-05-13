@@ -59,9 +59,14 @@ class PurchaseOrder < ActiveRecord::Base
   def type_name
     purchase_order_type.try(:purchase_order_type)
   end
+
+  def supplier_name
+    supplier.try(:name)
+  end
+
   
   def as_json(options={})
-    super(include: {purchase_order_lines: {include: :product}}, methods: [:type_name])
+    super(include: {purchase_order_lines: {include: :product}}, methods: [:type_name, :supplier_name])
   end
   
 end
