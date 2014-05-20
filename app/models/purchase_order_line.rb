@@ -59,5 +59,13 @@ class PurchaseOrderLine < ActiveRecord::Base
     super(:include => :product)
   end
   
+  def containers
+    @containers = []
+    self.container_contents.each do |container_content|
+      @containers << container_content.container
+    end
+    @containers
+  end
+  
 
 end

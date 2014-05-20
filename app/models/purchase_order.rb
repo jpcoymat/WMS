@@ -69,4 +69,14 @@ class PurchaseOrder < ActiveRecord::Base
     super(include: {purchase_order_lines: {include: :product}}, methods: [:type_name, :supplier_name])
   end
   
+  def containers
+    @containers = []
+    self.purchase_order_lines.each do |po_line|
+      @containers << po_line.containers
+    end
+    @containers.flatten!
+    @containers.uniq!
+    @containers
+  end
+  
 end
